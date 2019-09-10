@@ -1,5 +1,5 @@
-public class ArvoreBinaria<T extends Comparable<T>>{
-	private class No<T extends Comparable<T>>{
+public class ArvoreBinaria<T extends Comparable<T>> implements Cloneable{
+	private class No<T extends Comparable<T>> implements Cloneable{
 		private T dado;
 		public No<T> esquerda, direita;
 
