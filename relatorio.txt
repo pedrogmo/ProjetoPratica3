@@ -1,0 +1,5 @@
+* 10/08: criação do projeto no GitHub
+
+* 09/09: decidimos a ideia final do projeto e o nome (solarium)
+
+* 10/09: esqueleto da classe AvoreBinaria em java
