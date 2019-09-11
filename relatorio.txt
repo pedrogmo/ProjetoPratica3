@@ -3,3 +3,5 @@
 * 09/09: decidimos a ideia final do projeto e o nome (solarium)
 
 * 10/09: esqueleto da classe AvoreBinaria em java
+
+* 11/09: começo da classe No
