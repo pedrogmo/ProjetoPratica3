@@ -37,16 +37,10 @@ public class ArvoreBinaria<T extends Comparable<T>>
 				this.dado = this.cloneDeT(modelo.dado);
 			else
 				this.dado = modelo.dado;
-			if (modelo.esquerda != null &&
-				!modelo.esquerda.removido)
-			{
+			if (modelo.esquerda != null)
 				this.esquerda = new No<T>(modelo.esquerda);
-			}
-			if (modelo.direita != null &&
-				!modelo.direita.removido)
-			{
+			if (modelo.direita != null)
 				this.direita = new No<T>(modelo.direita);
-			}
 			this.altura = modelo.altura;
 			this.removido = modelo.removido;
 		}
@@ -89,20 +83,19 @@ public class ArvoreBinaria<T extends Comparable<T>>
 
 		public boolean isFolha(){
 			return 
-				(this.esquerda == null || this.esquerda.removido) &&
-				(this.direita == null || this.direita.removido);
+				(this.esquerda == null || this.esquerda.removido && this.esquerda.isFolha()) &&
+				(this.direita == null || this.direita.removido && this.direita.isFolha());
 		}
 
 		public String toString(){
 			String ret = "";
-			if (this.esquerda != null &&
-				!this.esquerda.removido)
+			if (this.esquerda != null)
 			{
 				ret += this.esquerda.toString();
 			}
-			ret += "(" + this.dado.toString() + ")";
-			if (this.direita != null &&
-				!this.direita.removido)
+			if (!this.removido)
+				ret += "(" + this.dado.toString() + ")";
+			if (this.direita != null)
 			{
 				ret += this.direita.toString();
 			}
@@ -116,16 +109,10 @@ public class ArvoreBinaria<T extends Comparable<T>>
 			ret += 2 * new Integer(this.altura).hashCode();
 			ret += 2 * new Boolean(this.removido).hashCode();
 
-			if (this.esquerda != null &&
-				!this.esquerda.removido)
-			{
+			if (this.esquerda != null)
 				ret += 2 * this.esquerda.hashCode();
-			}
-			if (this.direita != null &&
-				!this.direita.removido)
-			{
+			if (this.direita != null)
 				ret += 2 * this.direita.hashCode();
-			}
 
 			return ret;
 		}
@@ -190,8 +177,7 @@ public class ArvoreBinaria<T extends Comparable<T>>
 		}
 
 		private int compT(
-			T t0,
-			T t1)
+			T t0, T t1)
 		{
 			int ret = 0;
 			try
@@ -230,6 +216,28 @@ public class ArvoreBinaria<T extends Comparable<T>>
 		return ret;
 	}
 
+	private int alturaDe(
+		No<T> no)
+	{
+		if (no == null)
+			return -1;
+		if (no.removido){
+			if (no.esquerda != null &&
+				no.direita != null)
+			{
+				return Math.max(
+					no.esquerda.getAltura(),
+					no.direita.getAltura());
+			}
+			else if (no.esquerda != null)
+				return no.esquerda.getAltura();
+			else if (no.direita != null)
+				return no.direita.getAltura();
+			return -1;
+		}
+		return no.altura;
+	}
+
 	public int getQuantidade(){
 		return this.qtd;
 	}
@@ -254,20 +262,24 @@ public class ArvoreBinaria<T extends Comparable<T>>
 		No<T> item,
 		No<T> pai) throws Exception
     {
-        if (pai == null || pai.removido)
+        if (pai == null || 
+        	pai.removido)
+        {
             pai = new No<T>(item);
+            ++this.qtd;
+        }
         else{
             if (item.compareTo(pai) < 0){
-                pai.esquerda = inserir(item, pai.esquerda);
-                if (pai.esquerda.getAltura() - pai.direita.getAltura() > 1)
+                pai.esquerda = inserir(item, pai.esquerda);                
+                if (alturaDe(pai.esquerda) - alturaDe(pai.direita) > 1)
                     if (item.compareTo(pai.esquerda) < 0)
                         pai = girarComFilhoEsquerdo(pai);
                     else
                         pai = duploComFilhoEsquerdo(pai);
             }
             else if (item.compareTo(pai) > 0){
-                pai.direita = inserir(item, pai.direita);
-                if (pai.direita.getAltura() - pai.esquerda.getAltura() > 1)
+                pai.direita = inserir(item, pai.direita);                
+                if (alturaDe(pai.direita) - alturaDe(pai.esquerda) > 1)
                     if (item.compareTo(pai.direita) > 0)
                         pai = girarComFilhoDireito(pai);
                     else
@@ -275,8 +287,8 @@ public class ArvoreBinaria<T extends Comparable<T>>
             }
             pai.setAltura(
             	Math.max(
-            		pai.esquerda.getAltura(),
-            		pai.direita.getAltura()) 
+            		alturaDe(pai.esquerda),
+            		alturaDe(pai.direita)) 
             	+ 1);
         }
         return pai;
@@ -293,14 +305,14 @@ public class ArvoreBinaria<T extends Comparable<T>>
 
         no.setAltura(
         	Math.max(
-        		no.esquerda.getAltura(), 
-        		no.direita.getAltura())
+        		alturaDe(no.esquerda), 
+        		alturaDe(no.direita))
         	+ 1);
 
         temp.setAltura(
         	Math.max(
-        		temp.esquerda.getAltura(),
-        		no.getAltura())
+        		alturaDe(temp.esquerda),
+        		alturaDe(no))
         	+ 1);
 
         return temp;
@@ -317,13 +329,13 @@ public class ArvoreBinaria<T extends Comparable<T>>
 
         no.setAltura(
         	Math.max(
-        		no.esquerda.getAltura(),
-        		no.direita.getAltura())
+        		alturaDe(no.esquerda),
+        		alturaDe(no.direita))
         	+ 1);
         temp.setAltura(
         	Math.max(
-        		temp.direita.getAltura(),
-        		no.getAltura())
+        		alturaDe(temp.direita),
+        		alturaDe(no))
         	+ 1);
 
         return temp;
@@ -357,11 +369,13 @@ public class ArvoreBinaria<T extends Comparable<T>>
 		No<T> atual) throws Exception
 	{
 		int comp = procurado.compareTo(atual);
-		if (comp == 0)
-			atual.removido = true;
+		if (comp == 0){
+			if (!atual.removido)
+				--this.qtd;
+			atual.removido = true;			
+		}
 		else if (comp < 0){
-			if (atual.esquerda != null &&
-				atual.esquerda.removido)
+			if (atual.esquerda != null)
 			{
 				remover(
 					procurado,
@@ -369,8 +383,7 @@ public class ArvoreBinaria<T extends Comparable<T>>
 			}
 		}
 		else{
-			if (atual.direita != null &&
-				atual.direita.removido)
+			if (atual.direita != null)
 			{
 				remover(
 					procurado,
@@ -396,25 +409,22 @@ public class ArvoreBinaria<T extends Comparable<T>>
 		No<T> atual)
 	{		
 		int comp = procurado.compareTo(atual);
-		if (comp == 0)
+		if (comp == 0){
+			if (atual.removido)
+				return null;
 			return atual.getDado();
+		}
 
 		else if (comp < 0){
-			if (atual.esquerda == null ||
-				atual.esquerda.removido)
-			{
+			if (atual.esquerda == null)
 				return null;
-			}
 			return buscar(
 				procurado, 
 				atual.esquerda);
 		}
 
-		if (atual.direita == null ||
-			atual.direita.removido)
-		{
+		if (atual.direita == null)
 			return null;
-		}
 		return buscar(
 			procurado, 
 			atual.direita);
