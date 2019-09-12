@@ -1,4 +1,5 @@
 import java.lang.reflect.*;
+import java.lang.Math;
 
 public class ArvoreBinaria<T extends Comparable<T>> 
 	implements Cloneable
@@ -23,6 +24,12 @@ public class ArvoreBinaria<T extends Comparable<T>>
 		}
 
 		public No(
+			T info) throws Exception
+		{
+			this.setDado(info);			
+		}
+
+		public No(
 			No<T> modelo)
 		{
 			if (modelo.dado instanceof Cloneable)
@@ -43,7 +50,7 @@ public class ArvoreBinaria<T extends Comparable<T>>
 			return ret;
 		}
 
-		public T getDado(){
+		public T getT(){
 			if (this.dado instanceof Cloneable)
 				return this.cloneDeT(this.dado);
 			return this.dado;
@@ -53,7 +60,7 @@ public class ArvoreBinaria<T extends Comparable<T>>
 			T info) throws Exception
 		{
 			if (info==null)
-				throw new NullPointerException("No<T>: Dado nulo");
+				throw new NullPointerException("No - setDado: info nula");
 			if (info instanceof Cloneable)
 				this.dado = this.cloneDeT(info);
 			else
@@ -68,7 +75,7 @@ public class ArvoreBinaria<T extends Comparable<T>>
 			int alt) throws Exception
 		{
 			if (alt < 0)
-				throw new IllegalArgumentException("No<T>: Altura negativa");
+				throw new IllegalArgumentException("No - setAltura: altura negativa");
 			this.altura = alt;
 		}
 
@@ -210,8 +217,105 @@ public class ArvoreBinaria<T extends Comparable<T>>
 	public void adicionar(
 		T info) throws Exception
 	{
-
+		if (info == null)
+			throw new NullPointerException("ArvoreBinaria - adicionar: info nula");
+		this.raiz = inserir(
+			new No<T>(info),
+			this.raiz);
 	}
+
+	private No<T> inserir(
+		No<T> item,
+		No<T> pai) throws Exception
+    {
+        if (pai == null)
+            pai = new No<T>(item);
+        else{
+            if (item.compareTo(pai) < 0){
+                pai.esquerda = inserir(item, pai.esquerda);
+                if (pai.esquerda.getAltura() - pai.direita.getAltura() > 1)
+                    if (item.compareTo(pai.esquerda) < 0)
+                        pai = girarComFilhoEsquerdo(pai);
+                    else
+                        pai = duploComFilhoEsquerdo(pai);
+            }
+            else if (item.compareTo(pai) > 0){
+                pai.direita = inserir(item, pai.direita);
+                if (pai.direita.getAltura() - pai.esquerda.getAltura() > 1)
+                    if (item.compareTo(pai.direita) > 0)
+                        pai = girarComFilhoDireito(pai);
+                    else
+                        pai = duploComFilhoDireito(pai);
+            }
+            pai.setAltura(
+            	Math.max(
+            		pai.esquerda.getAltura(),
+            		pai.direita.getAltura()) 
+            	+ 1);
+        }
+        return pai;
+    }
+
+    private No<T> girarComFilhoEsquerdo(
+    	No<T> no) throws Exception
+    {
+        No<T> temp = no;
+
+        temp = no.esquerda;
+        no.esquerda = temp.direita;
+        temp.direita = no;
+
+        no.setAltura(
+        	Math.max(
+        		no.esquerda.getAltura(), 
+        		no.direita.getAltura())
+        	+ 1);
+
+        temp.setAltura(
+        	Math.max(
+        		temp.esquerda.getAltura(),
+        		no.getAltura())
+        	+ 1);
+
+        return temp;
+    }
+
+    private No<T> girarComFilhoDireito(
+    	No<T> no) throws Exception
+    {
+        No<T> temp = no;
+
+        temp = no.direita;
+        no.direita = temp.esquerda;
+        temp.esquerda = no;
+
+        no.setAltura(
+        	Math.max(
+        		no.esquerda.getAltura(),
+        		no.direita.getAltura())
+        	+ 1);
+        temp.setAltura(
+        	Math.max(
+        		temp.direita.getAltura(),
+        		no.getAltura())
+        	+ 1);
+
+        return temp;
+    }
+
+    private No<T> duploComFilhoEsquerdo(
+    	No<T> no) throws Exception
+    {
+        no.esquerda = girarComFilhoDireito(no.esquerda);
+        return girarComFilhoEsquerdo(no);
+    }
+
+    private No<T> duploComFilhoDireito(
+    	No<T> no) throws Exception
+    {
+        no.direita = girarComFilhoEsquerdo(no.direita);
+        return girarComFilhoDireito(no);
+    }
 
 	public void remover(
 		T info) throws Exception
@@ -225,11 +329,7 @@ public class ArvoreBinaria<T extends Comparable<T>>
 		if (this.isVazia())
 			return null;
 		No<T> noProcurado = 
-			new No<T>(
-				info,
-				null,
-				null,
-				0);
+			new No<T>(info);
 		return buscar(
 			noProcurado, 
 			this.raiz);
@@ -240,7 +340,7 @@ public class ArvoreBinaria<T extends Comparable<T>>
 	{
 		int comp = procurado.compareTo(atual);
 		if (comp == 0)
-			return atual.getDado();
+			return atual.getT();
 
 		else if (comp < 0){
 			if (atual.esquerda == null)
