@@ -10,6 +10,7 @@ public class ArvoreBinaria<T extends Comparable<T>>
 		private T dado = null;
 		public No<T> esquerda = null, direita = null;
 		private int altura = 0;
+		public boolean removido = false;
 
 		public No(
 			T info, 
@@ -36,11 +37,18 @@ public class ArvoreBinaria<T extends Comparable<T>>
 				this.dado = this.cloneDeT(modelo.dado);
 			else
 				this.dado = modelo.dado;
-			if (modelo.esquerda != null)
+			if (modelo.esquerda != null &&
+				!modelo.esquerda.removido)
+			{
 				this.esquerda = new No<T>(modelo.esquerda);
-			if (modelo.direita != null)
+			}
+			if (modelo.direita != null &&
+				!modelo.direita.removido)
+			{
 				this.direita = new No<T>(modelo.direita);
+			}
 			this.altura = modelo.altura;
+			this.removido = modelo.removido;
 		}
 
 		public Object clone(){
@@ -50,7 +58,7 @@ public class ArvoreBinaria<T extends Comparable<T>>
 			return ret;
 		}
 
-		public T getT(){
+		public T getDado(){
 			if (this.dado instanceof Cloneable)
 				return this.cloneDeT(this.dado);
 			return this.dado;
@@ -81,17 +89,23 @@ public class ArvoreBinaria<T extends Comparable<T>>
 
 		public boolean isFolha(){
 			return 
-				this.esquerda == null &&
-				this.direita == null;
+				(this.esquerda == null || this.esquerda.removido) &&
+				(this.direita == null || this.direita.removido);
 		}
 
 		public String toString(){
 			String ret = "";
-			if (this.esquerda != null)
+			if (this.esquerda != null &&
+				!this.esquerda.removido)
+			{
 				ret += this.esquerda.toString();
+			}
 			ret += "(" + this.dado.toString() + ")";
-			if (this.direita != null)
+			if (this.direita != null &&
+				!this.direita.removido)
+			{
 				ret += this.direita.toString();
+			}
 			return ret;
 		}
 
@@ -100,10 +114,18 @@ public class ArvoreBinaria<T extends Comparable<T>>
 
 			ret += 2 * this.dado.hashCode();
 			ret += 2 * new Integer(this.altura).hashCode();
-			if (this.esquerda != null)
+			ret += 2 * new Boolean(this.removido).hashCode();
+
+			if (this.esquerda != null &&
+				!this.esquerda.removido)
+			{
 				ret += 2 * this.esquerda.hashCode();
-			if (this.direita != null)
+			}
+			if (this.direita != null &&
+				!this.direita.removido)
+			{
 				ret += 2 * this.direita.hashCode();
+			}
 
 			return ret;
 		}
@@ -120,6 +142,8 @@ public class ArvoreBinaria<T extends Comparable<T>>
 
 			No<T> n = (No<T>) obj;
 
+			if (this.removido != n.removido)
+				return false;
 			if(this.altura != n.altura)
 				return false;
 			if (!this.dado.equals(n.dado))
@@ -195,7 +219,7 @@ public class ArvoreBinaria<T extends Comparable<T>>
 		ArvoreBinaria modelo)
 	{
 		this.qtd = modelo.qtd;
-		if (modelo.raiz != null)
+		if(!modelo.isVazia())
 			this.raiz = new No<T>(modelo.raiz);
 	}
 
@@ -211,7 +235,9 @@ public class ArvoreBinaria<T extends Comparable<T>>
 	}
 
 	public boolean isVazia(){
-		return this.raiz == null;
+		return 
+			this.raiz == null ||
+			this.raiz.removido;
 	}
 
 	public void adicionar(
@@ -228,7 +254,7 @@ public class ArvoreBinaria<T extends Comparable<T>>
 		No<T> item,
 		No<T> pai) throws Exception
     {
-        if (pai == null)
+        if (pai == null || pai.removido)
             pai = new No<T>(item);
         else{
             if (item.compareTo(pai) < 0){
@@ -320,7 +346,37 @@ public class ArvoreBinaria<T extends Comparable<T>>
 	public void remover(
 		T info) throws Exception
 	{
+		if (!this.isVazia())
+			remover(
+				new No<T>(info),
+				this.raiz);
+	}
 
+	private void remover(
+		No<T> procurado,
+		No<T> atual) throws Exception
+	{
+		int comp = procurado.compareTo(atual);
+		if (comp == 0)
+			atual.removido = true;
+		else if (comp < 0){
+			if (atual.esquerda != null &&
+				atual.esquerda.removido)
+			{
+				remover(
+					procurado,
+					atual.esquerda);
+			}
+		}
+		else{
+			if (atual.direita != null &&
+				atual.direita.removido)
+			{
+				remover(
+					procurado,
+					atual.direita);
+			}
+		}
 	}
 
 	public T buscar(
@@ -334,24 +390,31 @@ public class ArvoreBinaria<T extends Comparable<T>>
 			noProcurado, 
 			this.raiz);
 	}
+	
 	private T buscar(
 		No<T> procurado,
 		No<T> atual)
-	{
+	{		
 		int comp = procurado.compareTo(atual);
 		if (comp == 0)
-			return atual.getT();
+			return atual.getDado();
 
 		else if (comp < 0){
-			if (atual.esquerda == null)
+			if (atual.esquerda == null ||
+				atual.esquerda.removido)
+			{
 				return null;
+			}
 			return buscar(
 				procurado, 
 				atual.esquerda);
 		}
 
-		if (atual.direita == null)
+		if (atual.direita == null ||
+			atual.direita.removido)
+		{
 			return null;
+		}
 		return buscar(
 			procurado, 
 			atual.direita);
@@ -367,6 +430,7 @@ public class ArvoreBinaria<T extends Comparable<T>>
 		int ret = 1;
 
 		ret += 2 * new Integer(this.qtd).hashCode();
+
 		if (!this.isVazia())
 			ret += 2 * this.raiz.hashCode();
 
