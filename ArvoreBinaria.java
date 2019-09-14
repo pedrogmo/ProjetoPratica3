@@ -442,13 +442,15 @@ public class ArvoreBinaria<T extends Comparable<T>>
 			atual.direita);
 	}
 
-	public String toString(){
+	public String toString()
+	{
 		if (this.isVazia())
 			return "Arvore vazia";
 		return this.raiz.toString();
 	}
 
-	public int hashCode(){
+	public int hashCode()
+	{
 		int ret = 1;
 
 		ret += 2 * new Integer(this.qtd).hashCode();
