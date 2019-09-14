@@ -45,14 +45,16 @@ public class ArvoreBinaria<T extends Comparable<T>>
 			this.removido = modelo.removido;
 		}
 
-		public Object clone(){
+		public Object clone()
+		{
 			No<T> ret = null;
 			try{ ret = new No<T>(this); }
 			catch(Exception exc){}
 			return ret;
 		}
 
-		public T getDado(){
+		public T getDado()
+		{
 			if (this.dado instanceof Cloneable)
 				return this.cloneDeT(this.dado);
 			return this.dado;
@@ -69,7 +71,8 @@ public class ArvoreBinaria<T extends Comparable<T>>
 				this.dado = info;
 		}
 
-		public int getAltura(){
+		public int getAltura()
+		{
 			return this.altura;
 		}
 
@@ -81,13 +84,15 @@ public class ArvoreBinaria<T extends Comparable<T>>
 			this.altura = alt;
 		}
 
-		public boolean isFolha(){
+		public boolean isFolha()
+		{
 			return 
 				(this.esquerda == null || this.esquerda.removido && this.esquerda.isFolha()) &&
 				(this.direita == null || this.direita.removido && this.direita.isFolha());
 		}
 
-		public String toString(){
+		public String toString()
+		{
 			String ret = "";
 			if (this.esquerda != null)
 			{
@@ -102,7 +107,8 @@ public class ArvoreBinaria<T extends Comparable<T>>
 			return ret;
 		}
 
-		public int hashCode(){
+		public int hashCode()
+		{
 			int ret = 1;
 
 			ret += 2 * this.dado.hashCode();
@@ -209,7 +215,8 @@ public class ArvoreBinaria<T extends Comparable<T>>
 			this.raiz = new No<T>(modelo.raiz);
 	}
 
-	public Object clone(){
+	public Object clone()
+	{
 		ArvoreBinaria<T> ret = null;
 		try{ ret = new ArvoreBinaria<T>(this); }
 		catch(Exception erro){}
@@ -238,11 +245,13 @@ public class ArvoreBinaria<T extends Comparable<T>>
 		return no.altura;
 	}
 
-	public int getQuantidade(){
+	public int getQuantidade()
+	{
 		return this.qtd;
 	}
 
-	public boolean isVazia(){
+	public boolean isVazia()
+	{
 		return 
 			this.raiz == null ||
 			this.raiz.removido;
@@ -261,99 +270,102 @@ public class ArvoreBinaria<T extends Comparable<T>>
 	private No<T> inserir(
 		No<T> item,
 		No<T> pai) throws Exception
-    {
-        if (pai == null || 
-        	pai.removido)
-        {
-            pai = new No<T>(item);
-            ++this.qtd;
-        }
-        else{
-            if (item.compareTo(pai) < 0){
-                pai.esquerda = inserir(item, pai.esquerda);                
-                if (alturaDe(pai.esquerda) - alturaDe(pai.direita) > 1)
-                    if (item.compareTo(pai.esquerda) < 0)
-                        pai = girarComFilhoEsquerdo(pai);
-                    else
-                        pai = duploComFilhoEsquerdo(pai);
-            }
-            else if (item.compareTo(pai) > 0){
-                pai.direita = inserir(item, pai.direita);                
-                if (alturaDe(pai.direita) - alturaDe(pai.esquerda) > 1)
-                    if (item.compareTo(pai.direita) > 0)
-                        pai = girarComFilhoDireito(pai);
-                    else
-                        pai = duploComFilhoDireito(pai);
-            }
-            pai.setAltura(
-            	Math.max(
-            		alturaDe(pai.esquerda),
-            		alturaDe(pai.direita)) 
-            	+ 1);
-        }
-        return pai;
-    }
+    	{
+        	if (pai == null || 
+        		pai.removido)
+        	{
+            		pai = new No<T>(item);
+            		++this.qtd;
+        	}
+        	else
+		{
+            		if (item.compareTo(pai) < 0)
+			{
+                		pai.esquerda = inserir(item, pai.esquerda);                
+                		if (alturaDe(pai.esquerda) - alturaDe(pai.direita) > 1)
+                    			if (item.compareTo(pai.esquerda) < 0)
+                        			pai = girarComFilhoEsquerdo(pai);
+                    			else
+                        			pai = duploComFilhoEsquerdo(pai);
+            		}
+            		else if (item.compareTo(pai) > 0)
+			{
+                		pai.direita = inserir(item, pai.direita);                
+                		if (alturaDe(pai.direita) - alturaDe(pai.esquerda) > 1)
+                    			if (item.compareTo(pai.direita) > 0)
+                        			pai = girarComFilhoDireito(pai);
+                    			else
+                        			pai = duploComFilhoDireito(pai);
+            		}
+            		pai.setAltura(
+            			Math.max(
+            				alturaDe(pai.esquerda),
+            				alturaDe(pai.direita)) 
+            			+ 1);
+        	}
+        	return pai;
+    	}
 
-    private No<T> girarComFilhoEsquerdo(
-    	No<T> no) throws Exception
-    {
-        No<T> temp = no;
+    	private No<T> girarComFilhoEsquerdo(
+    		No<T> no) throws Exception
+    	{
+        	No<T> temp = no;
 
-        temp = no.esquerda;
-        no.esquerda = temp.direita;
-        temp.direita = no;
+        	temp = no.esquerda;
+        	no.esquerda = temp.direita;
+        	temp.direita = no;
 
-        no.setAltura(
-        	Math.max(
-        		alturaDe(no.esquerda), 
-        		alturaDe(no.direita))
-        	+ 1);
+        	no.setAltura(
+        		Math.max(
+        			alturaDe(no.esquerda), 
+        			alturaDe(no.direita))
+        		+ 1);
 
-        temp.setAltura(
-        	Math.max(
-        		alturaDe(temp.esquerda),
-        		alturaDe(no))
-        	+ 1);
+        	temp.setAltura(
+        		Math.max(
+        			alturaDe(temp.esquerda),
+        			alturaDe(no))
+        		+ 1);
 
-        return temp;
-    }
+        	return temp;
+    	}
 
-    private No<T> girarComFilhoDireito(
-    	No<T> no) throws Exception
-    {
-        No<T> temp = no;
+    	private No<T> girarComFilhoDireito(
+    		No<T> no) throws Exception
+    	{
+        	No<T> temp = no;
 
-        temp = no.direita;
-        no.direita = temp.esquerda;
-        temp.esquerda = no;
+        	temp = no.direita;
+        	no.direita = temp.esquerda;
+        	temp.esquerda = no;
 
-        no.setAltura(
-        	Math.max(
-        		alturaDe(no.esquerda),
-        		alturaDe(no.direita))
-        	+ 1);
-        temp.setAltura(
-        	Math.max(
-        		alturaDe(temp.direita),
-        		alturaDe(no))
-        	+ 1);
+        	no.setAltura(
+        		Math.max(
+        			alturaDe(no.esquerda),
+        			alturaDe(no.direita))
+        		+ 1);
+      	  	temp.setAltura(
+      	  		Math.max(
+        			alturaDe(temp.direita),
+        			alturaDe(no))
+        		+ 1);
 
-        return temp;
-    }
+        	return temp;
+    	}
 
-    private No<T> duploComFilhoEsquerdo(
-    	No<T> no) throws Exception
-    {
-        no.esquerda = girarComFilhoDireito(no.esquerda);
-        return girarComFilhoEsquerdo(no);
-    }
+    	private No<T> duploComFilhoEsquerdo(
+    		No<T> no) throws Exception
+    	{
+        	no.esquerda = girarComFilhoDireito(no.esquerda);
+        	return girarComFilhoEsquerdo(no);
+    	}
 
-    private No<T> duploComFilhoDireito(
-    	No<T> no) throws Exception
-    {
-        no.direita = girarComFilhoEsquerdo(no.direita);
-        return girarComFilhoDireito(no);
-    }
+    	private No<T> duploComFilhoDireito(
+    		No<T> no) throws Exception
+    	{
+        	no.direita = girarComFilhoEsquerdo(no.direita);
+        	return girarComFilhoDireito(no);
+    	}
 
 	public void remover(
 		T info) throws Exception
