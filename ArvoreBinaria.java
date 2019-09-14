@@ -171,7 +171,8 @@ public class ArvoreBinaria<T extends Comparable<T>>
 		private T cloneDeT(T t)
 		{
 			T ret = null;
-			try{
+			try
+			{
 				Class<?> classe = t.getClass();
 				Class<?>[] tiposFormais = null;
 				Method metodo = classe.getMethod("clone", tiposFormais);
@@ -227,21 +228,7 @@ public class ArvoreBinaria<T extends Comparable<T>>
 		No<T> no)
 	{
 		if (no == null)
-			return -1;
-		if (no.removido){
-			if (no.esquerda != null &&
-				no.direita != null)
-			{
-				return Math.max(
-					no.esquerda.getAltura(),
-					no.direita.getAltura());
-			}
-			else if (no.esquerda != null)
-				return no.esquerda.getAltura();
-			else if (no.direita != null)
-				return no.direita.getAltura();
-			return -1;
-		}
+			return -1;		
 		return no.altura;
 	}
 
@@ -271,8 +258,7 @@ public class ArvoreBinaria<T extends Comparable<T>>
 		No<T> item,
 		No<T> pai) throws Exception
     	{
-        	if (pai == null || 
-        		pai.removido)
+        	if (pai == null)
         	{
             		pai = new No<T>(item);
             		++this.qtd;
@@ -297,6 +283,9 @@ public class ArvoreBinaria<T extends Comparable<T>>
                     			else
                         			pai = duploComFilhoDireito(pai);
             		}
+			else
+				pai.removido = false;
+
             		pai.setAltura(
             			Math.max(
             				alturaDe(pai.esquerda),
@@ -381,12 +370,14 @@ public class ArvoreBinaria<T extends Comparable<T>>
 		No<T> atual) throws Exception
 	{
 		int comp = procurado.compareTo(atual);
-		if (comp == 0){
+		if (comp == 0)
+		{
 			if (!atual.removido)
 				--this.qtd;
 			atual.removido = true;			
 		}
-		else if (comp < 0){
+		else if (comp < 0)
+		{
 			if (atual.esquerda != null)
 			{
 				remover(
@@ -394,7 +385,8 @@ public class ArvoreBinaria<T extends Comparable<T>>
 					atual.esquerda);
 			}
 		}
-		else{
+		else
+		{
 			if (atual.direita != null)
 			{
 				remover(
@@ -421,13 +413,15 @@ public class ArvoreBinaria<T extends Comparable<T>>
 		No<T> atual)
 	{		
 		int comp = procurado.compareTo(atual);
-		if (comp == 0){
+		if (comp == 0)
+		{
 			if (atual.removido)
 				return null;
 			return atual.getDado();
 		}
 
-		else if (comp < 0){
+		else if (comp < 0)
+		{
 			if (atual.esquerda == null)
 				return null;
 			return buscar(
