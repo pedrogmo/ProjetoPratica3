@@ -268,28 +268,28 @@ public class ArvoreBinaria<T extends Comparable<T>>
             		if (item.compareTo(pai) < 0)
 			{
                 		pai.esquerda = inserir(item, pai.esquerda);                
-                		if (alturaDe(pai.esquerda) - alturaDe(pai.direita) > 1)
+                		if (this.alturaDe(pai.esquerda) - this.alturaDe(pai.direita) > 1)
                     			if (item.compareTo(pai.esquerda) < 0)
-                        			pai = girarComFilhoEsquerdo(pai);
+                        			pai = this.girarComFilhoEsquerdo(pai);
                     			else
-                        			pai = duploComFilhoEsquerdo(pai);
+                        			pai = this.duploComFilhoEsquerdo(pai);
             		}
             		else if (item.compareTo(pai) > 0)
 			{
                 		pai.direita = inserir(item, pai.direita);                
-                		if (alturaDe(pai.direita) - alturaDe(pai.esquerda) > 1)
+                		if (this.alturaDe(pai.direita) - this.alturaDe(pai.esquerda) > 1)
                     			if (item.compareTo(pai.direita) > 0)
-                        			pai = girarComFilhoDireito(pai);
+                        			pai = this.girarComFilhoDireito(pai);
                     			else
-                        			pai = duploComFilhoDireito(pai);
+                        			pai = this.duploComFilhoDireito(pai);
             		}
 			else
 				pai.removido = false;
 
             		pai.setAltura(
             			Math.max(
-            				alturaDe(pai.esquerda),
-            				alturaDe(pai.direita)) 
+            				this.alturaDe(pai.esquerda),
+            				this.alturaDe(pai.direita)) 
             			+ 1);
         	}
         	return pai;
@@ -306,14 +306,14 @@ public class ArvoreBinaria<T extends Comparable<T>>
 
         	no.setAltura(
         		Math.max(
-        			alturaDe(no.esquerda), 
-        			alturaDe(no.direita))
+        			this.alturaDe(no.esquerda), 
+        			this.alturaDe(no.direita))
         		+ 1);
 
         	temp.setAltura(
         		Math.max(
-        			alturaDe(temp.esquerda),
-        			alturaDe(no))
+        			this.alturaDe(temp.esquerda),
+        			this.alturaDe(no))
         		+ 1);
 
         	return temp;
@@ -330,13 +330,13 @@ public class ArvoreBinaria<T extends Comparable<T>>
 
         	no.setAltura(
         		Math.max(
-        			alturaDe(no.esquerda),
-        			alturaDe(no.direita))
+        			this.alturaDe(no.esquerda),
+        			this.alturaDe(no.direita))
         		+ 1);
       	  	temp.setAltura(
       	  		Math.max(
-        			alturaDe(temp.direita),
-        			alturaDe(no))
+        			this.alturaDe(temp.direita),
+        			this.alturaDe(no))
         		+ 1);
 
         	return temp;
@@ -345,15 +345,15 @@ public class ArvoreBinaria<T extends Comparable<T>>
     	private No<T> duploComFilhoEsquerdo(
     		No<T> no) throws Exception
     	{
-        	no.esquerda = girarComFilhoDireito(no.esquerda);
-        	return girarComFilhoEsquerdo(no);
+        	no.esquerda = this.girarComFilhoDireito(no.esquerda);
+        	return this.girarComFilhoEsquerdo(no);
     	}
 
     	private No<T> duploComFilhoDireito(
     		No<T> no) throws Exception
     	{
-        	no.direita = girarComFilhoEsquerdo(no.direita);
-        	return girarComFilhoDireito(no);
+        	no.direita = this.girarComFilhoEsquerdo(no.direita);
+        	return this.girarComFilhoDireito(no);
     	}
 
 	public void remover(
@@ -465,7 +465,7 @@ public class ArvoreBinaria<T extends Comparable<T>>
 		if (this.getClass() != obj.getClass())
 			return false;
 
-		ArvoreBinaria a = (ArvoreBinaria) obj;
+		ArvoreBinaria<T> a = (ArvoreBinaria<T>) obj;
 
 		if (this.qtd != a.qtd)
 			return false;
