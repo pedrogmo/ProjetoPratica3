@@ -87,8 +87,8 @@ public class ArvoreBinaria<T extends Comparable<T>>
 		public boolean isFolha()
 		{
 			return 
-				(this.esquerda == null || this.esquerda.removido && this.esquerda.isFolha()) &&
-				(this.direita == null || this.direita.removido && this.direita.isFolha());
+				this.esquerda == null &&
+				this.direita == null;
 		}
 
 		public String toString()
