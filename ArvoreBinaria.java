@@ -449,7 +449,7 @@ public class ArvoreBinaria<T extends Comparable<T>>
 
 		ret += 2 * new Integer(this.qtd).hashCode();
 
-		if (!this.isVazia())
+		if (this.raiz != null)
 			ret += 2 * this.raiz.hashCode();
 
 		return ret;
