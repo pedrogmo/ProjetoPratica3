@@ -10,16 +10,22 @@ import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toolbar;
 
 public class MainActivity extends AppCompatActivity {
 
+    Toolbar toolBar_main;
     TextView tvNumeroPlacas, tvInversor, tvInversorMais, tvInversorMenos;
     EditText etIrradiacao, etMedia, etWatts;
     Button btnCalcular;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        toolBar_main = (Toolbar) findViewById(R.id.toolBar_main);
+
         tvNumeroPlacas = findViewById(R.id.tvNumeroPlacas);
         tvInversor = findViewById(R.id.tvInversor);
         tvInversorMais = findViewById(R.id.tvInversorMais);

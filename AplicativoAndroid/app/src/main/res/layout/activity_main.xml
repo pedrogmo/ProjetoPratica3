@@ -7,6 +7,29 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
+    <Toolbar
+        android:id="@+id/toolBar_main"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="#FFE135"
+        android:elevation="4dp"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        >
+    </Toolbar>
+    <View android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:background="@drawable/toolbar_dropshadow"/>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity"
+    android:layout_margin="30dp">
+
     <EditText
         android:id="@+id/etMedia"
         android:layout_width="match_parent"
@@ -69,4 +92,8 @@
         android:layout_margin="10dp"
         android:text="Inveror Menos:"/>
 
+
 </LinearLayout>
+
+</LinearLayout>
+
