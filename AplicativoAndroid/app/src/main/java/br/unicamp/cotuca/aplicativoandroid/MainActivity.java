@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        toolBar_main = (Toolbar) findViewById(R.id.toolBar_main);
+        //toolBar_main = (Toolbar) findViewById(R.id.toolBar_main);
 
         tvNumeroPlacas = findViewById(R.id.tvNumeroPlacas);
         tvInversor = findViewById(R.id.tvInversor);
