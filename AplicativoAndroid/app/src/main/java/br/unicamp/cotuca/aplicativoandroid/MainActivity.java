@@ -3,11 +3,12 @@ package br.unicamp.cotuca.aplicativoandroid;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.view.inputmethod.EditorInfo;
-import android.support.*;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -19,7 +20,6 @@ public class MainActivity extends AppCompatActivity {
     TextView tvNumeroPlacas, tvInversor, tvInversorMais, tvInversorMenos;
     EditText etIrradiacao, etMedia, etWatts;
     Button btnCalcular;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +57,7 @@ public class MainActivity extends AppCompatActivity {
                         Double.parseDouble(etIrradiacao.getText().toString()))  + "");
             }
         });
+
     }
     private void limpar()
     {

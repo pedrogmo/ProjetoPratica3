@@ -6,19 +6,6 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".MainActivity">
-    <menu xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto">
-        <item
-            android:id="@+id/action_favorite"
-            android:icon="@drawable/ic_favorite_black_48dp"
-            android:title="@string/action_favorite"
-            app:showAsAction="ifRoom"/>
-
-        <item android:id="@+id/action_settings"
-            android:title="@string/action_settings"
-            app:showAsAction="never"/>
-    </menu>
-
     <!--<Toolbar
         android:id="@+id/toolBar_main"
         android:layout_width="match_parent"
@@ -31,7 +18,8 @@
     </Toolbar>-->
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_gravity="left">
 
         <com.google.android.material.navigation.NavigationView
             android:id="@+id/nav_view"
