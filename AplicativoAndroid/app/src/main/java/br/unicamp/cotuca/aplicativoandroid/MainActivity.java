@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.view.inputmethod.EditorInfo;
+import android.support.*;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -14,7 +15,7 @@ import android.widget.Toolbar;
 
 public class MainActivity extends AppCompatActivity {
 
-    Toolbar toolBar_main;
+    Toolbar toolbar;
     TextView tvNumeroPlacas, tvInversor, tvInversorMais, tvInversorMenos;
     EditText etIrradiacao, etMedia, etWatts;
     Button btnCalcular;
@@ -30,7 +31,8 @@ public class MainActivity extends AppCompatActivity {
         tvInversor = findViewById(R.id.tvInversor);
         tvInversorMais = findViewById(R.id.tvInversorMais);
         tvInversorMenos = findViewById(R.id.tvInversorMenos);
-
+        /*toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);*/
         etIrradiacao = findViewById(R.id.etIrradiacao);
         etMedia = findViewById(R.id.etMedia);
         etWatts = findViewById(R.id.etWatts);

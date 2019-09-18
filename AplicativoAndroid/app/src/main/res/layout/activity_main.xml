@@ -6,6 +6,18 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".MainActivity">
+    <menu xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+        <item
+            android:id="@+id/action_favorite"
+            android:icon="@drawable/ic_favorite_black_48dp"
+            android:title="@string/action_favorite"
+            app:showAsAction="ifRoom"/>
+
+        <item android:id="@+id/action_settings"
+            android:title="@string/action_settings"
+            app:showAsAction="never"/>
+    </menu>
 
     <!--<Toolbar
         android:id="@+id/toolBar_main"
@@ -17,9 +29,23 @@
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
         >
     </Toolbar>-->
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.google.android.material.navigation.NavigationView
+            android:id="@+id/nav_view"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="start"
+            android:fitsSystemWindows="true"
+            app:headerLayout="@layout/nav_header_menu_lateral"
+            app:menu="@menu/activity_menu_lateral_drawer" />
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
     <View android:layout_width="match_parent"
         android:layout_height="5dp"
         android:background="@drawable/toolbar_dropshadow"/>
+
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"

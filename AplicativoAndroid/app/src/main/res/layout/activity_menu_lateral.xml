@@ -6,8 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:openDrawer="start">
-
+    tools:openDrawer="start"
+    >
     <include
         layout="@layout/app_bar_menu_lateral"
         android:layout_width="match_parent"
@@ -23,3 +23,4 @@
         app:menu="@menu/activity_menu_lateral_drawer" />
 
 </androidx.drawerlayout.widget.DrawerLayout>
+
