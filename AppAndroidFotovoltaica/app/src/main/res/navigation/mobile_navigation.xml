@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_calculadora">
+
+    <fragment
+        android:id="@+id/nav_calculadora"
+        android:name="com.example.appandroidfotovoltaica.ui.home.HomeFragment"
+        android:label="@string/menu_calculadora"
+        tools:layout="@layout/fragment_calculadora" />
+
+    <fragment
+        android:id="@+id/nav_clientes"
+        android:name="com.example.appandroidfotovoltaica.ui.gallery.GalleryFragment"
+        android:label="@string/menu_clientes"
+        tools:layout="@layout/fragment_clientes" />
+
+    <fragment
+        android:id="@+id/nav_placas"
+        android:name="com.example.appandroidfotovoltaica.ui.slideshow.SlideshowFragment"
+        android:label="@string/menu_placas"
+        tools:layout="@layout/fragment_slideshow" />
+
+    <fragment
+        android:id="@+id/nav_propostas"
+        android:name="com.example.appandroidfotovoltaica.ui.tools.ToolsFragment"
+        android:label="@string/menu_propostas"
+        tools:layout="@layout/fragment_tools" />
+
+    <fragment
+        android:id="@+id/nav_share"
+        android:name="com.example.appandroidfotovoltaica.ui.share.ShareFragment"
+        android:label="@string/menu_share"
+        tools:layout="@layout/fragment_propostas" />
+
+    <fragment
+        android:id="@+id/nav_send"
+        android:name="com.example.appandroidfotovoltaica.ui.send.SendFragment"
+        android:label="@string/menu_send"
+        tools:layout="@layout/fragment_placas" />
+</navigation>
