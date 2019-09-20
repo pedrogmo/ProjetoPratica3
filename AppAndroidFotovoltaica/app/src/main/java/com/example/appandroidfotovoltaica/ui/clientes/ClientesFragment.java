@@ -1,4 +1,4 @@
-package com.example.appandroidfotovoltaica.ui.gallery;
+package com.example.appandroidfotovoltaica.ui.clientes;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -14,14 +14,14 @@ import androidx.lifecycle.ViewModelProviders;
 
 import com.example.appandroidfotovoltaica.R;
 
-public class GalleryFragment extends Fragment {
+public class ClientesFragment extends Fragment {
 
-    private GalleryViewModel galleryViewModel;
+    private ClientesViewModel galleryViewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         galleryViewModel =
-                ViewModelProviders.of(this).get(GalleryViewModel.class);
+                ViewModelProviders.of(this).get(ClientesViewModel.class);
         View root = inflater.inflate(R.layout.fragment_clientes, container, false);
         final TextView textView = root.findViewById(R.id.text_gallery);
         galleryViewModel.getText().observe(this, new Observer<String>() {

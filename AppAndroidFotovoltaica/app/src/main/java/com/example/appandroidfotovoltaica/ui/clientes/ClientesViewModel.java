@@ -1,16 +1,16 @@
-package com.example.appandroidfotovoltaica.ui.gallery;
+package com.example.appandroidfotovoltaica.ui.clientes;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class GalleryViewModel extends ViewModel {
+public class ClientesViewModel extends ViewModel {
 
     private MutableLiveData<String> mText;
 
-    public GalleryViewModel() {
+    public ClientesViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("This is gallery fragment");
+        mText.setValue("This is clientes fragment");
     }
 
     public LiveData<String> getText() {
