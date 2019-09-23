@@ -1,9 +1,18 @@
-public class Teste{
+public class Teste
+{
 	public static void main(
 		String[] args)
 	{
-		try{
-			ArvoreBinaria<Produto> ab = new ArvoreBinaria<Produto>();			
+		try
+		{
+			ArvoreBinaria<Produto> ab = new ArvoreBinaria<Produto>();
+			ab.adicionar(new Produto(
+				"belVita",
+				15.50f,
+				"Bolacha do MEIRA"
+			));
+			Produto p = ab.buscar(new Produto("belVita"));
+			System.out.println(p.getDescricao());
 		}
 		catch(
 			Exception erro)
