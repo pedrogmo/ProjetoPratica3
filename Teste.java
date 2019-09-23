@@ -3,17 +3,7 @@ public class Teste{
 		String[] args)
 	{
 		try{
-			ArvoreBinaria<Integer> ab = new ArvoreBinaria<Integer>();
-
-			ab.adicionar(1);
-			ab.adicionar(2);
-			ab.adicionar(3);
-			ab.adicionar(4);
-			ab.adicionar(5);
-
-			ab.remover(1);
-
-			
+			ArvoreBinaria<Produto> ab = new ArvoreBinaria<Produto>();			
 		}
 		catch(
 			Exception erro)
