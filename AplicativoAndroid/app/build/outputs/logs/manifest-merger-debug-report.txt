@@ -1,0 +1,201 @@
+-- Merging decision tree log ---
+manifest
+ADDED from C:\Users\gusta\OneDrive\Documentos\GitHub\ProjetoPratica3\AplicativoAndroid\app\src\main\AndroidManifest.xml:2:1-30:12
+INJECTED from C:\Users\gusta\OneDrive\Documentos\GitHub\ProjetoPratica3\AplicativoAndroid\app\src\main\AndroidManifest.xml:2:1-30:12
+INJECTED from C:\Users\gusta\OneDrive\Documentos\GitHub\ProjetoPratica3\AplicativoAndroid\app\src\main\AndroidManifest.xml:2:1-30:12
+INJECTED from C:\Users\gusta\OneDrive\Documentos\GitHub\ProjetoPratica3\AplicativoAndroid\app\src\main\AndroidManifest.xml:2:1-30:12
+MERGED from [com.google.android.material:material:1.0.0] C:\Users\gusta\.gradle\caches\transforms-2\files-2.1\970a830fded8c259c0cae8a0205ffe3a\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.appcompat:appcompat:1.1.0] C:\Users\gusta\.gradle\caches\transforms-2\files-2.1\e800894bdfe5945fe8bc7334d8a0a06c\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.constraintlayout:constraintlayout:1.1.3] C:\Users\gusta\.gradle\caches\transforms-2\files-2.1\21942e1e1b04d9fe00fdf6a01edfea18\AndroidManifest.xml:2:1-11:12
+MERGED from [androidx.legacy:legacy-support-v4:1.0.0] C:\Users\gusta\.gradle\caches\transforms-2\files-2.1\c6b3081c9fe20f02c5dff3109fa988b3\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.fragment:fragment:1.1.0] C:\Users\gusta\.gradle\caches\transforms-2\files-2.1\bfc3eebd8185ffb2cef7f9891cc1323a\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.appcompat:appcompat-resources:1.1.0] C:\Users\gusta\.gradle\caches\transforms-2\files-2.1\b1f1668f6645fed0d410e2d037eb5e04\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.recyclerview:recyclerview:1.0.0] C:\Users\gusta\.gradle\caches\transforms-2\files-2.1\bca94b4daef2a05210cc9cfe49e4fb74\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.legacy:legacy-support-core-ui:1.0.0] C:\Users\gusta\.gradle\caches\transforms-2\files-2.1\532a92dab33c111bf360f7995b8b5967\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.drawerlayout:drawerlayout:1.0.0] C:\Users\gusta\.gradle\caches\transforms-2\files-2.1\deaa125405ec539f38cd1ea015949c47\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.media:media:1.0.0] C:\Users\gusta\.gradle\caches\transforms-2\files-2.1\1868ebdb2d52cdeb16c859e8169bf83d\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] C:\Users\gusta\.gradle\caches\transforms-2\files-2.1\eedaea17481547e4ebb4f1c666c7d2c4\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.transition:transition:1.0.0] C:\Users\gusta\.gradle\caches\transforms-2\files-2.1\f9ad8d44c1d81a27f4063fe15890d1ee\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.viewpager:viewpager:1.0.0] C:\Users\gusta\.gradle\caches\transforms-2\files-2.1\c8a5502249b0cf2031bc04bac238bc19\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.loader:loader:1.0.0] C:\Users\gusta\.gradle\caches\transforms-2\files-2.1\bd37c93a7db37fbe2469f6134deced8b\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.activity:activity:1.0.0] C:\Users\gusta\.gradle\caches\transforms-2\files-2.1\2d9a02e50ec572bd1d9d850f338f89b1\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] C:\Users\gusta\.gradle\caches\transforms-2\files-2.1\0a94bcc21d7cef1d0ac10047a1bb336c\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] C:\Users\gusta\.gradle\caches\transforms-2\files-2.1\4beb35e5519a273540d466fb476eb35d\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.0.0] C:\Users\gusta\.gradle\caches\transforms-2\files-2.1\b476cec2a4196c28235cd30c09c7e12e\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.slidingpanelayout:slidingpanelayout:1.0.0] C:\Users\gusta\.gradle\caches\transforms-2\files-2.1\e77d8e47b574fa5489f18af5dedb018c\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.customview:customview:1.0.0] C:\Users\gusta\.gradle\caches\transforms-2\files-2.1\c1bbfadb27be0a5d4493e8871e6f0295\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.swiperefreshlayout:swiperefreshlayout:1.0.0] C:\Users\gusta\.gradle\caches\transforms-2\files-2.1\8f1f7c4883d02b21185ceec197e1c206\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.asynclayoutinflater:asynclayoutinflater:1.0.0] C:\Users\gusta\.gradle\caches\transforms-2\files-2.1\11aab4c6302a478cc3aba8f312c99b76\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.core:core:1.1.0] C:\Users\gusta\.gradle\caches\transforms-2\files-2.1\b634e3cf1f49e5dd8690ea68de9baa61\AndroidManifest.xml:17:1-26:12
+MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] C:\Users\gusta\.gradle\caches\transforms-2\files-2.1\8134fc97e7ba3ea31e72a4090dd14073\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.cardview:cardview:1.0.0] C:\Users\gusta\.gradle\caches\transforms-2\files-2.1\0f5305c8dfb53933700b1e067d63235a\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] C:\Users\gusta\.gradle\caches\transforms-2\files-2.1\efdac4e854f05a583d31e79926ba89ad\AndroidManifest.xml:17:1-27:12
+MERGED from [androidx.documentfile:documentfile:1.0.0] C:\Users\gusta\.gradle\caches\transforms-2\files-2.1\1dd83273264c222bf9822cfbbcc0e418\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] C:\Users\gusta\.gradle\caches\transforms-2\files-2.1\d24ea78f98d7d585f857e285c9c750c4\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.print:print:1.0.0] C:\Users\gusta\.gradle\caches\transforms-2\files-2.1\297516ccb82d6ab43da6d684a36724a4\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.interpolator:interpolator:1.0.0] C:\Users\gusta\.gradle\caches\transforms-2\files-2.1\52e607d0088188d8d51907e629dcb44f\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.1.0] C:\Users\gusta\.gradle\caches\transforms-2\files-2.1\239a37d7b366ce909fcfdf4d821e8713\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.1.0] C:\Users\gusta\.gradle\caches\transforms-2\files-2.1\c7a47f0cab1c9417c6d6a0c35d9aa822\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.savedstate:savedstate:1.0.0] C:\Users\gusta\.gradle\caches\transforms-2\files-2.1\58aae63344da6138fea130a1cd756e32\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] C:\Users\gusta\.gradle\caches\transforms-2\files-2.1\bef2da865907fcfb6ea8167378ace9ab\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.0.0] C:\Users\gusta\.gradle\caches\transforms-2\files-2.1\aa4f859ce31620a6465facf44190b189\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.arch.core:core-runtime:2.0.0] C:\Users\gusta\.gradle\caches\transforms-2\files-2.1\38141784ace805e8675a8d795d4ef126\AndroidManifest.xml:17:1-22:12
+INJECTED from C:\Users\gusta\OneDrive\Documentos\GitHub\ProjetoPratica3\AplicativoAndroid\app\src\main\AndroidManifest.xml:2:1-30:12
+INJECTED from C:\Users\gusta\OneDrive\Documentos\GitHub\ProjetoPratica3\AplicativoAndroid\app\src\main\AndroidManifest.xml:2:1-30:12
+INJECTED from C:\Users\gusta\OneDrive\Documentos\GitHub\ProjetoPratica3\AplicativoAndroid\app\src\main\AndroidManifest.xml:2:1-30:12
+	package
+		ADDED from C:\Users\gusta\OneDrive\Documentos\GitHub\ProjetoPratica3\AplicativoAndroid\app\src\main\AndroidManifest.xml:3:5-50
+		INJECTED from C:\Users\gusta\OneDrive\Documentos\GitHub\ProjetoPratica3\AplicativoAndroid\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\gusta\OneDrive\Documentos\GitHub\ProjetoPratica3\AplicativoAndroid\app\src\main\AndroidManifest.xml
+	android:versionName
+		INJECTED from C:\Users\gusta\OneDrive\Documentos\GitHub\ProjetoPratica3\AplicativoAndroid\app\src\main\AndroidManifest.xml
+		ADDED from C:\Users\gusta\OneDrive\Documentos\GitHub\ProjetoPratica3\AplicativoAndroid\app\src\main\AndroidManifest.xml:2:1-30:12
+		INJECTED from C:\Users\gusta\OneDrive\Documentos\GitHub\ProjetoPratica3\AplicativoAndroid\app\src\main\AndroidManifest.xml
+	android:versionCode
+		INJECTED from C:\Users\gusta\OneDrive\Documentos\GitHub\ProjetoPratica3\AplicativoAndroid\app\src\main\AndroidManifest.xml
+		ADDED from C:\Users\gusta\OneDrive\Documentos\GitHub\ProjetoPratica3\AplicativoAndroid\app\src\main\AndroidManifest.xml:2:1-30:12
+		INJECTED from C:\Users\gusta\OneDrive\Documentos\GitHub\ProjetoPratica3\AplicativoAndroid\app\src\main\AndroidManifest.xml
+	xmlns:android
+		ADDED from C:\Users\gusta\OneDrive\Documentos\GitHub\ProjetoPratica3\AplicativoAndroid\app\src\main\AndroidManifest.xml:2:11-69
+uses-permission#android.permission.ACCESS_NETWORK_STATE
+ADDED from C:\Users\gusta\OneDrive\Documentos\GitHub\ProjetoPratica3\AplicativoAndroid\app\src\main\AndroidManifest.xml:6:5-78
+	android:name
+		ADDED from C:\Users\gusta\OneDrive\Documentos\GitHub\ProjetoPratica3\AplicativoAndroid\app\src\main\AndroidManifest.xml:6:22-76
+uses-permission#android.permission.INTERNET
+ADDED from C:\Users\gusta\OneDrive\Documentos\GitHub\ProjetoPratica3\AplicativoAndroid\app\src\main\AndroidManifest.xml:7:5-66
+	android:name
+		ADDED from C:\Users\gusta\OneDrive\Documentos\GitHub\ProjetoPratica3\AplicativoAndroid\app\src\main\AndroidManifest.xml:7:22-64
+application
+ADDED from C:\Users\gusta\OneDrive\Documentos\GitHub\ProjetoPratica3\AplicativoAndroid\app\src\main\AndroidManifest.xml:9:5-28:19
+MERGED from [com.google.android.material:material:1.0.0] C:\Users\gusta\.gradle\caches\transforms-2\files-2.1\970a830fded8c259c0cae8a0205ffe3a\AndroidManifest.xml:22:5-20
+MERGED from [com.google.android.material:material:1.0.0] C:\Users\gusta\.gradle\caches\transforms-2\files-2.1\970a830fded8c259c0cae8a0205ffe3a\AndroidManifest.xml:22:5-20
+MERGED from [androidx.constraintlayout:constraintlayout:1.1.3] C:\Users\gusta\.gradle\caches\transforms-2\files-2.1\21942e1e1b04d9fe00fdf6a01edfea18\AndroidManifest.xml:9:5-20
+MERGED from [androidx.constraintlayout:constraintlayout:1.1.3] C:\Users\gusta\.gradle\caches\transforms-2\files-2.1\21942e1e1b04d9fe00fdf6a01edfea18\AndroidManifest.xml:9:5-20
+MERGED from [androidx.core:core:1.1.0] C:\Users\gusta\.gradle\caches\transforms-2\files-2.1\b634e3cf1f49e5dd8690ea68de9baa61\AndroidManifest.xml:24:5-89
+MERGED from [androidx.core:core:1.1.0] C:\Users\gusta\.gradle\caches\transforms-2\files-2.1\b634e3cf1f49e5dd8690ea68de9baa61\AndroidManifest.xml:24:5-89
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] C:\Users\gusta\.gradle\caches\transforms-2\files-2.1\efdac4e854f05a583d31e79926ba89ad\AndroidManifest.xml:24:5-25:19
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] C:\Users\gusta\.gradle\caches\transforms-2\files-2.1\efdac4e854f05a583d31e79926ba89ad\AndroidManifest.xml:24:5-25:19
+	android:appComponentFactory
+		ADDED from [androidx.core:core:1.1.0] C:\Users\gusta\.gradle\caches\transforms-2\files-2.1\b634e3cf1f49e5dd8690ea68de9baa61\AndroidManifest.xml:24:18-86
+	android:supportsRtl
+		ADDED from C:\Users\gusta\OneDrive\Documentos\GitHub\ProjetoPratica3\AplicativoAndroid\app\src\main\AndroidManifest.xml:15:9-35
+	android:label
+		ADDED from C:\Users\gusta\OneDrive\Documentos\GitHub\ProjetoPratica3\AplicativoAndroid\app\src\main\AndroidManifest.xml:13:9-41
+	android:roundIcon
+		ADDED from C:\Users\gusta\OneDrive\Documentos\GitHub\ProjetoPratica3\AplicativoAndroid\app\src\main\AndroidManifest.xml:14:9-54
+	android:icon
+		ADDED from C:\Users\gusta\OneDrive\Documentos\GitHub\ProjetoPratica3\AplicativoAndroid\app\src\main\AndroidManifest.xml:12:9-43
+	android:allowBackup
+		ADDED from C:\Users\gusta\OneDrive\Documentos\GitHub\ProjetoPratica3\AplicativoAndroid\app\src\main\AndroidManifest.xml:11:9-35
+	android:theme
+		ADDED from C:\Users\gusta\OneDrive\Documentos\GitHub\ProjetoPratica3\AplicativoAndroid\app\src\main\AndroidManifest.xml:16:9-40
+	android:usesCleartextTraffic
+		ADDED from C:\Users\gusta\OneDrive\Documentos\GitHub\ProjetoPratica3\AplicativoAndroid\app\src\main\AndroidManifest.xml:10:2-37
+activity#br.unicamp.cotuca.aplicativoandroid.menu_lateral
+ADDED from C:\Users\gusta\OneDrive\Documentos\GitHub\ProjetoPratica3\AplicativoAndroid\app\src\main\AndroidManifest.xml:17:9-20:68
+	android:label
+		ADDED from C:\Users\gusta\OneDrive\Documentos\GitHub\ProjetoPratica3\AplicativoAndroid\app\src\main\AndroidManifest.xml:19:13-64
+	android:theme
+		ADDED from C:\Users\gusta\OneDrive\Documentos\GitHub\ProjetoPratica3\AplicativoAndroid\app\src\main\AndroidManifest.xml:20:13-56
+	android:name
+		ADDED from C:\Users\gusta\OneDrive\Documentos\GitHub\ProjetoPratica3\AplicativoAndroid\app\src\main\AndroidManifest.xml:18:13-41
+activity#br.unicamp.cotuca.aplicativoandroid.MainActivity
+ADDED from C:\Users\gusta\OneDrive\Documentos\GitHub\ProjetoPratica3\AplicativoAndroid\app\src\main\AndroidManifest.xml:21:9-27:20
+	android:name
+		ADDED from C:\Users\gusta\OneDrive\Documentos\GitHub\ProjetoPratica3\AplicativoAndroid\app\src\main\AndroidManifest.xml:21:19-47
+intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
+ADDED from C:\Users\gusta\OneDrive\Documentos\GitHub\ProjetoPratica3\AplicativoAndroid\app\src\main\AndroidManifest.xml:22:13-26:29
+action#android.intent.action.MAIN
+ADDED from C:\Users\gusta\OneDrive\Documentos\GitHub\ProjetoPratica3\AplicativoAndroid\app\src\main\AndroidManifest.xml:23:17-69
+	android:name
+		ADDED from C:\Users\gusta\OneDrive\Documentos\GitHub\ProjetoPratica3\AplicativoAndroid\app\src\main\AndroidManifest.xml:23:25-66
+category#android.intent.category.LAUNCHER
+ADDED from C:\Users\gusta\OneDrive\Documentos\GitHub\ProjetoPratica3\AplicativoAndroid\app\src\main\AndroidManifest.xml:25:17-77
+	android:name
+		ADDED from C:\Users\gusta\OneDrive\Documentos\GitHub\ProjetoPratica3\AplicativoAndroid\app\src\main\AndroidManifest.xml:25:27-74
+uses-sdk
+INJECTED from C:\Users\gusta\OneDrive\Documentos\GitHub\ProjetoPratica3\AplicativoAndroid\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from C:\Users\gusta\OneDrive\Documentos\GitHub\ProjetoPratica3\AplicativoAndroid\app\src\main\AndroidManifest.xml
+INJECTED from C:\Users\gusta\OneDrive\Documentos\GitHub\ProjetoPratica3\AplicativoAndroid\app\src\main\AndroidManifest.xml
+MERGED from [com.google.android.material:material:1.0.0] C:\Users\gusta\.gradle\caches\transforms-2\files-2.1\970a830fded8c259c0cae8a0205ffe3a\AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.material:material:1.0.0] C:\Users\gusta\.gradle\caches\transforms-2\files-2.1\970a830fded8c259c0cae8a0205ffe3a\AndroidManifest.xml:20:5-44
+MERGED from [androidx.appcompat:appcompat:1.1.0] C:\Users\gusta\.gradle\caches\transforms-2\files-2.1\e800894bdfe5945fe8bc7334d8a0a06c\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.appcompat:appcompat:1.1.0] C:\Users\gusta\.gradle\caches\transforms-2\files-2.1\e800894bdfe5945fe8bc7334d8a0a06c\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.constraintlayout:constraintlayout:1.1.3] C:\Users\gusta\.gradle\caches\transforms-2\files-2.1\21942e1e1b04d9fe00fdf6a01edfea18\AndroidManifest.xml:5:5-7:41
+MERGED from [androidx.constraintlayout:constraintlayout:1.1.3] C:\Users\gusta\.gradle\caches\transforms-2\files-2.1\21942e1e1b04d9fe00fdf6a01edfea18\AndroidManifest.xml:5:5-7:41
+MERGED from [androidx.legacy:legacy-support-v4:1.0.0] C:\Users\gusta\.gradle\caches\transforms-2\files-2.1\c6b3081c9fe20f02c5dff3109fa988b3\AndroidManifest.xml:20:5-44
+MERGED from [androidx.legacy:legacy-support-v4:1.0.0] C:\Users\gusta\.gradle\caches\transforms-2\files-2.1\c6b3081c9fe20f02c5dff3109fa988b3\AndroidManifest.xml:20:5-44
+MERGED from [androidx.fragment:fragment:1.1.0] C:\Users\gusta\.gradle\caches\transforms-2\files-2.1\bfc3eebd8185ffb2cef7f9891cc1323a\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.fragment:fragment:1.1.0] C:\Users\gusta\.gradle\caches\transforms-2\files-2.1\bfc3eebd8185ffb2cef7f9891cc1323a\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.appcompat:appcompat-resources:1.1.0] C:\Users\gusta\.gradle\caches\transforms-2\files-2.1\b1f1668f6645fed0d410e2d037eb5e04\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.appcompat:appcompat-resources:1.1.0] C:\Users\gusta\.gradle\caches\transforms-2\files-2.1\b1f1668f6645fed0d410e2d037eb5e04\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.recyclerview:recyclerview:1.0.0] C:\Users\gusta\.gradle\caches\transforms-2\files-2.1\bca94b4daef2a05210cc9cfe49e4fb74\AndroidManifest.xml:20:5-44
+MERGED from [androidx.recyclerview:recyclerview:1.0.0] C:\Users\gusta\.gradle\caches\transforms-2\files-2.1\bca94b4daef2a05210cc9cfe49e4fb74\AndroidManifest.xml:20:5-44
+MERGED from [androidx.legacy:legacy-support-core-ui:1.0.0] C:\Users\gusta\.gradle\caches\transforms-2\files-2.1\532a92dab33c111bf360f7995b8b5967\AndroidManifest.xml:20:5-44
+MERGED from [androidx.legacy:legacy-support-core-ui:1.0.0] C:\Users\gusta\.gradle\caches\transforms-2\files-2.1\532a92dab33c111bf360f7995b8b5967\AndroidManifest.xml:20:5-44
+MERGED from [androidx.drawerlayout:drawerlayout:1.0.0] C:\Users\gusta\.gradle\caches\transforms-2\files-2.1\deaa125405ec539f38cd1ea015949c47\AndroidManifest.xml:20:5-44
+MERGED from [androidx.drawerlayout:drawerlayout:1.0.0] C:\Users\gusta\.gradle\caches\transforms-2\files-2.1\deaa125405ec539f38cd1ea015949c47\AndroidManifest.xml:20:5-44
+MERGED from [androidx.media:media:1.0.0] C:\Users\gusta\.gradle\caches\transforms-2\files-2.1\1868ebdb2d52cdeb16c859e8169bf83d\AndroidManifest.xml:20:5-44
+MERGED from [androidx.media:media:1.0.0] C:\Users\gusta\.gradle\caches\transforms-2\files-2.1\1868ebdb2d52cdeb16c859e8169bf83d\AndroidManifest.xml:20:5-44
+MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] C:\Users\gusta\.gradle\caches\transforms-2\files-2.1\eedaea17481547e4ebb4f1c666c7d2c4\AndroidManifest.xml:20:5-44
+MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] C:\Users\gusta\.gradle\caches\transforms-2\files-2.1\eedaea17481547e4ebb4f1c666c7d2c4\AndroidManifest.xml:20:5-44
+MERGED from [androidx.transition:transition:1.0.0] C:\Users\gusta\.gradle\caches\transforms-2\files-2.1\f9ad8d44c1d81a27f4063fe15890d1ee\AndroidManifest.xml:20:5-44
+MERGED from [androidx.transition:transition:1.0.0] C:\Users\gusta\.gradle\caches\transforms-2\files-2.1\f9ad8d44c1d81a27f4063fe15890d1ee\AndroidManifest.xml:20:5-44
+MERGED from [androidx.viewpager:viewpager:1.0.0] C:\Users\gusta\.gradle\caches\transforms-2\files-2.1\c8a5502249b0cf2031bc04bac238bc19\AndroidManifest.xml:20:5-44
+MERGED from [androidx.viewpager:viewpager:1.0.0] C:\Users\gusta\.gradle\caches\transforms-2\files-2.1\c8a5502249b0cf2031bc04bac238bc19\AndroidManifest.xml:20:5-44
+MERGED from [androidx.loader:loader:1.0.0] C:\Users\gusta\.gradle\caches\transforms-2\files-2.1\bd37c93a7db37fbe2469f6134deced8b\AndroidManifest.xml:20:5-44
+MERGED from [androidx.loader:loader:1.0.0] C:\Users\gusta\.gradle\caches\transforms-2\files-2.1\bd37c93a7db37fbe2469f6134deced8b\AndroidManifest.xml:20:5-44
+MERGED from [androidx.activity:activity:1.0.0] C:\Users\gusta\.gradle\caches\transforms-2\files-2.1\2d9a02e50ec572bd1d9d850f338f89b1\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.activity:activity:1.0.0] C:\Users\gusta\.gradle\caches\transforms-2\files-2.1\2d9a02e50ec572bd1d9d850f338f89b1\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] C:\Users\gusta\.gradle\caches\transforms-2\files-2.1\0a94bcc21d7cef1d0ac10047a1bb336c\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] C:\Users\gusta\.gradle\caches\transforms-2\files-2.1\0a94bcc21d7cef1d0ac10047a1bb336c\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] C:\Users\gusta\.gradle\caches\transforms-2\files-2.1\4beb35e5519a273540d466fb476eb35d\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] C:\Users\gusta\.gradle\caches\transforms-2\files-2.1\4beb35e5519a273540d466fb476eb35d\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.0.0] C:\Users\gusta\.gradle\caches\transforms-2\files-2.1\b476cec2a4196c28235cd30c09c7e12e\AndroidManifest.xml:20:5-44
+MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.0.0] C:\Users\gusta\.gradle\caches\transforms-2\files-2.1\b476cec2a4196c28235cd30c09c7e12e\AndroidManifest.xml:20:5-44
+MERGED from [androidx.slidingpanelayout:slidingpanelayout:1.0.0] C:\Users\gusta\.gradle\caches\transforms-2\files-2.1\e77d8e47b574fa5489f18af5dedb018c\AndroidManifest.xml:20:5-44
+MERGED from [androidx.slidingpanelayout:slidingpanelayout:1.0.0] C:\Users\gusta\.gradle\caches\transforms-2\files-2.1\e77d8e47b574fa5489f18af5dedb018c\AndroidManifest.xml:20:5-44
+MERGED from [androidx.customview:customview:1.0.0] C:\Users\gusta\.gradle\caches\transforms-2\files-2.1\c1bbfadb27be0a5d4493e8871e6f0295\AndroidManifest.xml:20:5-44
+MERGED from [androidx.customview:customview:1.0.0] C:\Users\gusta\.gradle\caches\transforms-2\files-2.1\c1bbfadb27be0a5d4493e8871e6f0295\AndroidManifest.xml:20:5-44
+MERGED from [androidx.swiperefreshlayout:swiperefreshlayout:1.0.0] C:\Users\gusta\.gradle\caches\transforms-2\files-2.1\8f1f7c4883d02b21185ceec197e1c206\AndroidManifest.xml:20:5-44
+MERGED from [androidx.swiperefreshlayout:swiperefreshlayout:1.0.0] C:\Users\gusta\.gradle\caches\transforms-2\files-2.1\8f1f7c4883d02b21185ceec197e1c206\AndroidManifest.xml:20:5-44
+MERGED from [androidx.asynclayoutinflater:asynclayoutinflater:1.0.0] C:\Users\gusta\.gradle\caches\transforms-2\files-2.1\11aab4c6302a478cc3aba8f312c99b76\AndroidManifest.xml:20:5-44
+MERGED from [androidx.asynclayoutinflater:asynclayoutinflater:1.0.0] C:\Users\gusta\.gradle\caches\transforms-2\files-2.1\11aab4c6302a478cc3aba8f312c99b76\AndroidManifest.xml:20:5-44
+MERGED from [androidx.core:core:1.1.0] C:\Users\gusta\.gradle\caches\transforms-2\files-2.1\b634e3cf1f49e5dd8690ea68de9baa61\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.core:core:1.1.0] C:\Users\gusta\.gradle\caches\transforms-2\files-2.1\b634e3cf1f49e5dd8690ea68de9baa61\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] C:\Users\gusta\.gradle\caches\transforms-2\files-2.1\8134fc97e7ba3ea31e72a4090dd14073\AndroidManifest.xml:20:5-44
+MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] C:\Users\gusta\.gradle\caches\transforms-2\files-2.1\8134fc97e7ba3ea31e72a4090dd14073\AndroidManifest.xml:20:5-44
+MERGED from [androidx.cardview:cardview:1.0.0] C:\Users\gusta\.gradle\caches\transforms-2\files-2.1\0f5305c8dfb53933700b1e067d63235a\AndroidManifest.xml:20:5-44
+MERGED from [androidx.cardview:cardview:1.0.0] C:\Users\gusta\.gradle\caches\transforms-2\files-2.1\0f5305c8dfb53933700b1e067d63235a\AndroidManifest.xml:20:5-44
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] C:\Users\gusta\.gradle\caches\transforms-2\files-2.1\efdac4e854f05a583d31e79926ba89ad\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] C:\Users\gusta\.gradle\caches\transforms-2\files-2.1\efdac4e854f05a583d31e79926ba89ad\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.documentfile:documentfile:1.0.0] C:\Users\gusta\.gradle\caches\transforms-2\files-2.1\1dd83273264c222bf9822cfbbcc0e418\AndroidManifest.xml:20:5-44
+MERGED from [androidx.documentfile:documentfile:1.0.0] C:\Users\gusta\.gradle\caches\transforms-2\files-2.1\1dd83273264c222bf9822cfbbcc0e418\AndroidManifest.xml:20:5-44
+MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] C:\Users\gusta\.gradle\caches\transforms-2\files-2.1\d24ea78f98d7d585f857e285c9c750c4\AndroidManifest.xml:20:5-44
+MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] C:\Users\gusta\.gradle\caches\transforms-2\files-2.1\d24ea78f98d7d585f857e285c9c750c4\AndroidManifest.xml:20:5-44
+MERGED from [androidx.print:print:1.0.0] C:\Users\gusta\.gradle\caches\transforms-2\files-2.1\297516ccb82d6ab43da6d684a36724a4\AndroidManifest.xml:20:5-44
+MERGED from [androidx.print:print:1.0.0] C:\Users\gusta\.gradle\caches\transforms-2\files-2.1\297516ccb82d6ab43da6d684a36724a4\AndroidManifest.xml:20:5-44
+MERGED from [androidx.interpolator:interpolator:1.0.0] C:\Users\gusta\.gradle\caches\transforms-2\files-2.1\52e607d0088188d8d51907e629dcb44f\AndroidManifest.xml:20:5-44
+MERGED from [androidx.interpolator:interpolator:1.0.0] C:\Users\gusta\.gradle\caches\transforms-2\files-2.1\52e607d0088188d8d51907e629dcb44f\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.1.0] C:\Users\gusta\.gradle\caches\transforms-2\files-2.1\239a37d7b366ce909fcfdf4d821e8713\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.1.0] C:\Users\gusta\.gradle\caches\transforms-2\files-2.1\239a37d7b366ce909fcfdf4d821e8713\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.1.0] C:\Users\gusta\.gradle\caches\transforms-2\files-2.1\c7a47f0cab1c9417c6d6a0c35d9aa822\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.1.0] C:\Users\gusta\.gradle\caches\transforms-2\files-2.1\c7a47f0cab1c9417c6d6a0c35d9aa822\AndroidManifest.xml:20:5-44
+MERGED from [androidx.savedstate:savedstate:1.0.0] C:\Users\gusta\.gradle\caches\transforms-2\files-2.1\58aae63344da6138fea130a1cd756e32\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.savedstate:savedstate:1.0.0] C:\Users\gusta\.gradle\caches\transforms-2\files-2.1\58aae63344da6138fea130a1cd756e32\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] C:\Users\gusta\.gradle\caches\transforms-2\files-2.1\bef2da865907fcfb6ea8167378ace9ab\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] C:\Users\gusta\.gradle\caches\transforms-2\files-2.1\bef2da865907fcfb6ea8167378ace9ab\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.0.0] C:\Users\gusta\.gradle\caches\transforms-2\files-2.1\aa4f859ce31620a6465facf44190b189\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.0.0] C:\Users\gusta\.gradle\caches\transforms-2\files-2.1\aa4f859ce31620a6465facf44190b189\AndroidManifest.xml:20:5-44
+MERGED from [androidx.arch.core:core-runtime:2.0.0] C:\Users\gusta\.gradle\caches\transforms-2\files-2.1\38141784ace805e8675a8d795d4ef126\AndroidManifest.xml:20:5-44
+MERGED from [androidx.arch.core:core-runtime:2.0.0] C:\Users\gusta\.gradle\caches\transforms-2\files-2.1\38141784ace805e8675a8d795d4ef126\AndroidManifest.xml:20:5-44
+INJECTED from C:\Users\gusta\OneDrive\Documentos\GitHub\ProjetoPratica3\AplicativoAndroid\app\src\main\AndroidManifest.xml
+INJECTED from C:\Users\gusta\OneDrive\Documentos\GitHub\ProjetoPratica3\AplicativoAndroid\app\src\main\AndroidManifest.xml
+	android:targetSdkVersion
+		INJECTED from C:\Users\gusta\OneDrive\Documentos\GitHub\ProjetoPratica3\AplicativoAndroid\app\src\main\AndroidManifest.xml
+		ADDED from C:\Users\gusta\OneDrive\Documentos\GitHub\ProjetoPratica3\AplicativoAndroid\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\gusta\OneDrive\Documentos\GitHub\ProjetoPratica3\AplicativoAndroid\app\src\main\AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from C:\Users\gusta\OneDrive\Documentos\GitHub\ProjetoPratica3\AplicativoAndroid\app\src\main\AndroidManifest.xml
+		ADDED from C:\Users\gusta\OneDrive\Documentos\GitHub\ProjetoPratica3\AplicativoAndroid\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\gusta\OneDrive\Documentos\GitHub\ProjetoPratica3\AplicativoAndroid\app\src\main\AndroidManifest.xml
