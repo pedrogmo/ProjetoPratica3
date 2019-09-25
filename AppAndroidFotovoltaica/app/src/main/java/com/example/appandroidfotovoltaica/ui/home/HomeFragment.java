@@ -29,7 +29,7 @@ public class HomeFragment extends Fragment {
 
     private HomeViewModel homeViewModel;
     Toolbar toolbar;
-    TextView tvNumeroPlacas, tvInversor, tvInversorMais, tvInversorMenos;
+    TextView tvNumeroPlacas, tvInversor, tvInversorMais, tvInversorMenos, tvMes;
     EditText etIrradiacao, etMedia, etWatts;
     RadioGroup rg;
     RadioButton rbTotal, rbMensal;
@@ -45,6 +45,7 @@ public class HomeFragment extends Fragment {
         tvInversor = root.findViewById(R.id.tvInversor);
         tvInversorMais = root.findViewById(R.id.tvInversorMais);
         tvInversorMenos = root.findViewById(R.id.tvInversorMenos);
+        tvMes = root.findViewById(R.id.tvMes);
         /*toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);*/
         etIrradiacao = root.findViewById(R.id.etIrradiacao);
