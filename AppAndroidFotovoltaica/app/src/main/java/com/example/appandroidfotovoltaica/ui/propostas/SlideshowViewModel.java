@@ -1,16 +1,16 @@
-package com.example.appandroidfotovoltaica.ui.tools;
+package com.example.appandroidfotovoltaica.ui.propostas;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class ToolsViewModel extends ViewModel {
+public class SlideshowViewModel extends ViewModel {
 
     private MutableLiveData<String> mText;
 
-    public ToolsViewModel() {
+    public SlideshowViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("This is tools fragment");
+        mText.setValue("This is propostas fragment");
     }
 
     public LiveData<String> getText() {

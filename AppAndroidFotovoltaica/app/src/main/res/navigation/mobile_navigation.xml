@@ -16,19 +16,17 @@
         android:name="com.example.appandroidfotovoltaica.ui.clientes.ClientesFragment"
         android:label="@string/menu_clientes"
         tools:layout="@layout/fragment_clientes" />
-
     <fragment
-        android:id="@+id/nav_placas"
-        android:name="com.example.appandroidfotovoltaica.ui.slideshow.SlideshowFragment"
-        android:label="@string/menu_placas"
-        tools:layout="@layout/fragment_slideshow" />
+        android:id="@+id/nav_produtos"
+        android:name="com.example.appandroidfotovoltaica.ui.produtos.ProdutosFragment"
+        android:label="@string/menu_produtos"
+        tools:layout="@layout/fragment_produtos" />
 
     <fragment
         android:id="@+id/nav_propostas"
-        android:name="com.example.appandroidfotovoltaica.ui.tools.ToolsFragment"
+        android:name="com.example.appandroidfotovoltaica.ui.propostas.SlideshowFragment"
         android:label="@string/menu_propostas"
-        tools:layout="@layout/fragment_tools" />
-
+        tools:layout="@layout/fragment_slideshow" />
     <fragment
         android:id="@+id/nav_share"
         android:name="com.example.appandroidfotovoltaica.ui.share.ShareFragment"

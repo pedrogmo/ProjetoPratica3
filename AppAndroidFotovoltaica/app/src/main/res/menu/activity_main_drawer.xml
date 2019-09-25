@@ -13,13 +13,14 @@
             android:icon="@drawable/ic_cliente"
             android:title="Clientes" />
         <item
-            android:id="@+id/nav_placas"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="Placas" />
+            android:id="@+id/nav_produtos"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="Produtos" />
         <item
             android:id="@+id/nav_propostas"
-            android:icon="@drawable/ic_menu_manage"
+            android:icon="@drawable/ic_menu_slideshow"
             android:title="Propostas" />
+
     </group>
 
     <item android:title="Communicate">

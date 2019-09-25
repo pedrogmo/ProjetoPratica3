@@ -1,4 +1,4 @@
-package br.unicamp.cotuca.aplicativoandroid;
+package com.example.appandroidfotovoltaica;
 
 import java.text.DecimalFormat;
 

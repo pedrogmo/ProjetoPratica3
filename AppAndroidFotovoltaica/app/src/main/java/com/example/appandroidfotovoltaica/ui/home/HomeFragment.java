@@ -5,8 +5,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.Toolbar;
@@ -15,9 +18,12 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 
-import br.unicamp.cotuca.aplicativoandroid.CalculadoraFotoVoltaica;
+import com.example.appandroidfotovoltaica.CalculadoraFotoVoltaica;
 
 import com.example.appandroidfotovoltaica.R;
+
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 
 public class HomeFragment extends Fragment {
 
@@ -25,6 +31,8 @@ public class HomeFragment extends Fragment {
     Toolbar toolbar;
     TextView tvNumeroPlacas, tvInversor, tvInversorMais, tvInversorMenos;
     EditText etIrradiacao, etMedia, etWatts;
+    RadioGroup rg;
+    RadioButton rbTotal, rbMensal;
     Button btnCalcular;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -43,6 +51,14 @@ public class HomeFragment extends Fragment {
         etMedia = root.findViewById(R.id.etMedia);
         etWatts = root.findViewById(R.id.etWatts);
 
+        rg = root.findViewById(R.id.rgMedia);
+        rbTotal = root.findViewById(R.id.rbTotal);
+        rbTotal.setChecked(true);// inicia em true
+        rbMensal = root.findViewById(R.id.rbMensal);
+        String meses[] = {"Janeiro","Fevereiro","Março","Abril","Maio",
+                          "Junho","Julho","Agosto","Setembro","Outubro","Novembro","Dezembro"};
+
+
         btnCalcular = root.findViewById(R.id.btnCalcular);
 
         btnCalcular.setOnClickListener(new View.OnClickListener() {
@@ -54,14 +70,15 @@ public class HomeFragment extends Fragment {
                     etIrradiacao.onEditorAction(EditorInfo.IME_ACTION_DONE);
                     etMedia.onEditorAction(EditorInfo.IME_ACTION_DONE);
                     limpar();
-                    tvInversor.setText(tvInversor.getText().toString() + CalculadoraFotoVoltaica.inversor(Double.parseDouble(etMedia.getText().toString()),
-                            Double.parseDouble(etIrradiacao.getText().toString())) + "");
+
                     tvNumeroPlacas.setText(tvNumeroPlacas.getText().toString() + CalculadoraFotoVoltaica.numeroPlacas(Double.parseDouble(etMedia.getText().toString()),
                             Float.parseFloat(etIrradiacao.getText().toString()),
                             Double.parseDouble(etWatts.getText().toString())) + "");
-                    tvInversorMais.setText(tvInversorMais.getText().toString() + CalculadoraFotoVoltaica.inversor(Double.parseDouble(etMedia.getText().toString()),
+                    tvInversor.setText(tvInversor.getText().toString() + CalculadoraFotoVoltaica.inversor(Double.parseDouble(etMedia.getText().toString()),
                             Double.parseDouble(etIrradiacao.getText().toString())) + "");
-                    tvInversorMenos.setText(tvInversorMenos.getText().toString() + CalculadoraFotoVoltaica.inversor(Double.parseDouble(etMedia.getText().toString()),
+                    tvInversorMais.setText(tvInversorMais.getText().toString() + CalculadoraFotoVoltaica.inversorMais(Double.parseDouble(etMedia.getText().toString()),
+                            Double.parseDouble(etIrradiacao.getText().toString())) + "");
+                    tvInversorMenos.setText(tvInversorMenos.getText().toString() + CalculadoraFotoVoltaica.inversorMenos(Double.parseDouble(etMedia.getText().toString()),
                             Double.parseDouble(etIrradiacao.getText().toString())) + "");
                 }
                 catch(Exception e)

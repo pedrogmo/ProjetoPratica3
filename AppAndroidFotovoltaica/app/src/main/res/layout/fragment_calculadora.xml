@@ -22,7 +22,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
-                android:orientation="horizontal">
+                android:orientation="vertical">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -30,23 +30,46 @@
                     android:layout_marginLeft="20dp"
                     android:text="Media"
                     android:textSize="20dp" />
-
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:orientation="horizontal">
+                    <RadioGroup
+                        android:id="@+id/rgMedia"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp">
+                        <RadioButton
+                            android:id="@+id/rbTotal"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Total"></RadioButton>
+                        <RadioButton
+                            android:id="@+id/rbMensal"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Mensal"></RadioButton>
+                    </RadioGroup>
                 <EditText
                     android:id="@+id/etMedia"
                     android:layout_width="200dp"
                     android:layout_height="50dp"
-                    android:layout_marginLeft="40dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
                     android:hint="Media"
                     android:inputType="numberDecimal"
                     android:textAlignment="center"
                     android:textColorHighlight="#FFE135"
                     android:textSize="20dp" />
+
+                </LinearLayout>
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="0dp"
                 android:orientation="horizontal">
 
                 <TextView
@@ -131,6 +154,9 @@
                 android:layout_margin="10dp"
                 android:text="Inveror Menos:"
                 android:textSize="20dp" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="100dp"/>
 
         </LinearLayout>
     </ScrollView>
