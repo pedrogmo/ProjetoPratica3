@@ -25,4 +25,11 @@ public class CalculadoraFotoVoltaica {
         double valorInversor = inversor(media,irradiacao);//para não chamar duas vezes a função
         return  valorInversor - 0.2*valorInversor;
     }
+    public static double media(Double meses[])
+    {
+        double soma = 0;
+        for (int i = 0; i < meses.length; i++)
+            soma += meses[i];
+        return soma/12;
+    }
 }
