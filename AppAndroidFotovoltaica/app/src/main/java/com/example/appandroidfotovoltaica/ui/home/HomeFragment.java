@@ -22,6 +22,7 @@ import androidx.lifecycle.ViewModelProviders;
 import com.example.appandroidfotovoltaica.CalculadoraFotoVoltaica;
 
 import com.example.appandroidfotovoltaica.R;
+import com.example.appandroidfotovoltaica.ValorMensalEnergia;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -30,9 +31,7 @@ public class HomeFragment extends Fragment {
 
     private HomeViewModel homeViewModel;
     private int indiceMes = 0;
-    String meses[] = {"1°", "2°", "3°", "4°", "5°",
-            "6°", "7°", "8°", "9°", "10°", "11°", "12°"};
-    final Double valoresMeses[] = new Double[12];
+    private ValorMensalEnergia valoresMensaisEnergia[];
     Toolbar toolbar;
     TextView tvNumeroPlacas, tvInversor, tvInversorMais, tvInversorMenos, tvMes;
     EditText etIrradiacao, etMedia, etWatts;
@@ -45,6 +44,11 @@ public class HomeFragment extends Fragment {
         homeViewModel =
                 ViewModelProviders.of(this).get(HomeViewModel.class);
         View root = inflater.inflate(R.layout.fragment_calculadora, container, false);
+        valoresMensaisEnergia = new ValorMensalEnergia[12];
+        for (int i = 0; i < valoresMensaisEnergia.length; i++)
+        {
+            valoresMensaisEnergia[i] = new ValorMensalEnergia((i + 1) + "°");
+        }
 
         tvNumeroPlacas = root.findViewById(R.id.tvNumeroPlacas);
         tvInversor = root.findViewById(R.id.tvInversor);
@@ -69,17 +73,16 @@ public class HomeFragment extends Fragment {
             public void onClick(View view) {
                 try {
                     if (etMedia.getText().toString().trim().length() > 0)
-                        valoresMeses[indiceMes] = Double.parseDouble(etMedia.getText().toString());
+                        valoresMensaisEnergia[indiceMes].setValor(Double.parseDouble(etMedia.getText().toString()));
 
                     if (indiceMes <= 0)
                         indiceMes = 11;
                     else
                         indiceMes--;
 
-                    tvMes.setText(meses[indiceMes]);
-                    if (valoresMeses[indiceMes] != null)
-                        etMedia.setText(valoresMeses[indiceMes].toString());
-                    else
+                    tvMes.setText(valoresMensaisEnergia[indiceMes].getMes());
+                    etMedia.setText(valoresMensaisEnergia[indiceMes].getValor() + "");
+                    if (valoresMensaisEnergia[indiceMes].getValor() == 0)
                         etMedia.setText("");
                 } catch (Exception e) {
                 }
@@ -91,17 +94,16 @@ public class HomeFragment extends Fragment {
             public void onClick(View view) {
                 try {
                     if (etMedia.getText().toString().trim().length() > 0)
-                        valoresMeses[indiceMes] = Double.parseDouble(etMedia.getText().toString());
+                        valoresMensaisEnergia[indiceMes].setValor(Double.parseDouble(etMedia.getText().toString()));
 
                     if (indiceMes >= 11)
                         indiceMes = 0;
                     else
                         indiceMes++;
 
-                    tvMes.setText(meses[indiceMes]);
-                    if (valoresMeses[indiceMes] != null)
-                        etMedia.setText(valoresMeses[indiceMes].toString());
-                    else
+                    tvMes.setText(valoresMensaisEnergia[indiceMes].getMes());
+                    etMedia.setText(valoresMensaisEnergia[indiceMes].getValor() + "");
+                    if (valoresMensaisEnergia[indiceMes].getValor() == 0)
                         etMedia.setText("");
                 } catch (Exception e) {
 
@@ -119,7 +121,6 @@ public class HomeFragment extends Fragment {
                     case R.id.rbTotal:
                         indiceMes = 0;
                         etMedia.setText("");
-                        limpar(valoresMeses);
                         btnDir.setVisibility(View.INVISIBLE);
                         btnEsq.setVisibility(View.INVISIBLE);
                         tvMes.setVisibility(View.INVISIBLE);
@@ -130,7 +131,7 @@ public class HomeFragment extends Fragment {
                         btnDir.setVisibility(View.VISIBLE);
                         btnEsq.setVisibility(View.VISIBLE);
                         tvMes.setVisibility(View.VISIBLE);
-                        tvMes.setText(meses[indiceMes]);
+                        tvMes.setText(valoresMensaisEnergia[indiceMes].getMes());
                         break;
                 }
             }
@@ -149,7 +150,7 @@ public class HomeFragment extends Fragment {
                     if (rbTotal.isChecked()) {
                         media = Double.parseDouble(etMedia.getText().toString());
                     } else if (rbMensal.isChecked()) {
-                        media = CalculadoraFotoVoltaica.media(valoresMeses);
+                        media = CalculadoraFotoVoltaica.media(valoresMensaisEnergia);
                     }
 
                     tvNumeroPlacas.setText(tvNumeroPlacas.getText().toString() + CalculadoraFotoVoltaica.numeroPlacas(media,
@@ -177,9 +178,5 @@ public class HomeFragment extends Fragment {
         tvInversorMais.setText("Inversor Mais:");
         tvInversorMenos.setText("Inversor Menos:");
         tvInversor.setText("Inversor:");
-    }
-    private void limpar(Double valores[]) {
-        for (int i = 0; i < valores.length; i++)
-            valores[i] = null;
     }
 }
