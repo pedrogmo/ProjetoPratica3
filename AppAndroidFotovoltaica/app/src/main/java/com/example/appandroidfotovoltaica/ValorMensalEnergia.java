@@ -18,10 +18,7 @@ public class ValorMensalEnergia {
 
     public void setValor(double valor) throws Exception
     {
-        if (valor >=0)
         this.valor = valor;
-        else
-            throw new Exception("Valor de Energia inválido");
     }
 
     public ValorMensalEnergia(String mes, double valor) {

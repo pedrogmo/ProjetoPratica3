@@ -1,6 +1,8 @@
 package com.example.appandroidfotovoltaica.ui.home;
 
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -72,9 +74,6 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 try {
-                    if (etMedia.getText().toString().trim().length() > 0)
-                        valoresMensaisEnergia[indiceMes].setValor(Double.parseDouble(etMedia.getText().toString()));
-
                     if (indiceMes <= 0)
                         indiceMes = 11;
                     else
@@ -93,9 +92,6 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 try {
-                    if (etMedia.getText().toString().trim().length() > 0)
-                        valoresMensaisEnergia[indiceMes].setValor(Double.parseDouble(etMedia.getText().toString()));
-
                     if (indiceMes >= 11)
                         indiceMes = 0;
                     else
@@ -109,6 +105,24 @@ public class HomeFragment extends Fragment {
 
                 }
 
+
+            }
+        });
+        etMedia.addTextChangedListener(new TextWatcher() {
+
+            public void afterTextChanged(Editable s) {}
+
+            public void beforeTextChanged(CharSequence s, int start,
+                                          int count, int after) {
+            }
+
+            public void onTextChanged(CharSequence s, int start,
+                                      int before, int count) {
+                try{
+                    if (rbMensal.isChecked())
+                        valoresMensaisEnergia[indiceMes].setValor(Double.parseDouble(etMedia.getText().toString()));
+                }
+                catch(Exception e){}
 
             }
         });
