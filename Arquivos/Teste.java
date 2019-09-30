@@ -7,6 +7,7 @@ public class Teste
 		{
 			ArvoreBinaria<Produto> ab = new ArvoreBinaria<Produto>();
 			ab.adicionar(new Produto(
+				0,
 				"belVita",
 				15.50f,
 				"Bolacha do MEIRA"

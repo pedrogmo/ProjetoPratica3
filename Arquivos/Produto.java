@@ -7,24 +7,24 @@ public class Produto
 	protected String descricao;	
 
 	public Produto(
+		int pCodigo,
 		String pNome,
 		float pPreco,
 		String pDescricao) throws Exception
 	{
+		this.setCodigo(pCodigo);
 		this.setNome(pNome);
 		this.setPreco(pPreco);
 		this.setDescricao(pDescricao);
-
-		this.codigo = this.nome.hashCode();
 	}
 
 	public Produto(
 		String pNome) throws Exception
 	{
+		this.codigo = 0;
 		this.setNome(pNome);
 		this.preco = 0.0f;
 		this.descricao = "";
-		this.codigo = this.nome.hashCode();
 	}
 
 	public Produto(
@@ -39,6 +39,14 @@ public class Produto
 	public int getCodigo()
 	{
 		return this.codigo;
+	}
+
+	protected void setCodigo(
+		int pCodigo) throws Exception
+	{
+		if (pCodigo < 0)
+			throw new IllegalArgumentException("Produto - setCodigo : codigo negativo");
+		this.codigo = pCodigo;
 	}
 
 	public String getNome()
@@ -123,7 +131,7 @@ public class Produto
 	public int compareTo(
 		Produto outro)
 	{
-		return this.codigo - outro.codigo;
+		return this.nome.compareTo(outro.nome);
 	}
 
 	public Object clone()
