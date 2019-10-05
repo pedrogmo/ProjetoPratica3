@@ -32,4 +32,59 @@ public class ValorMensalEnergia {
     {
         return mes + "-" + valor;
     }
+    public boolean equals (Object obj)
+    {
+        if (this==obj)
+            return true;
+
+        if (obj==null)
+            return false;
+
+        if (this.getClass()!=obj.getClass())
+            return false;
+
+        ValorMensalEnergia hor = (ValorMensalEnergia)obj;
+
+        if (this.mes!=hor.mes)
+            return false;
+
+        if (this.valor!=hor.valor)
+            return false;
+
+        return true;
+    }
+
+    public int hashCode ()
+    {
+        int ret=666;
+
+        ret = ret*2 + new Integer (this.mes   ).hashCode();
+        ret = ret*2 + new Double  (this.valor ).hashCode();
+
+        return ret;
+    }
+
+    public ValorMensalEnergia (ValorMensalEnergia modelo) throws Exception
+    {
+        if (modelo==null)
+            throw new Exception ("Modelo ausente");
+
+        this.mes   =modelo.mes;
+        this.valor =modelo.valor;
+    }
+
+    public Object clone ()
+    {
+        ValorMensalEnergia ret=null;
+
+        try
+        {
+            ret = new ValorMensalEnergia (this);
+        }
+        catch (Exception erro)
+        {}
+
+        return ret;
+    }
+
 }
