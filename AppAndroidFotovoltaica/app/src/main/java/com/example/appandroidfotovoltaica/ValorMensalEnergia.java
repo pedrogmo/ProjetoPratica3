@@ -56,7 +56,7 @@ public class ValorMensalEnergia {
 
     public int hashCode ()
     {
-        int ret=666;
+        int ret=1;
 
         ret = ret*2 + new Integer (this.mes   ).hashCode();
         ret = ret*2 + new Double  (this.valor ).hashCode();
@@ -69,13 +69,13 @@ public class ValorMensalEnergia {
         if (modelo==null)
             throw new Exception ("Modelo ausente");
 
-        this.mes   =modelo.mes;
-        this.valor =modelo.valor;
+        this.mes   = modelo.mes;
+        this.valor = modelo.valor;
     }
 
     public Object clone ()
     {
-        ValorMensalEnergia ret=null;
+        ValorMensalEnergia ret = null;
 
         try
         {
