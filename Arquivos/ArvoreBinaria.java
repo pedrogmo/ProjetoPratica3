@@ -31,8 +31,11 @@ public class ArvoreBinaria<T extends Comparable<T>>
 		}
 
 		public No(
-			No<T> modelo)
+			No<T> modelo) throws Exception
 		{
+			if (modelo == null)
+				throw new NullPointerException("No - construtor de copia: modelo ausente");
+
 			if (modelo.dado instanceof Cloneable)
 				this.dado = this.cloneDeT(modelo.dado);
 			else
@@ -209,8 +212,10 @@ public class ArvoreBinaria<T extends Comparable<T>>
 	{}
 
 	public ArvoreBinaria(
-		ArvoreBinaria modelo)
+		ArvoreBinaria modelo) throws Exception
 	{
+		if (modelo == null)
+			throw new NullPointerException("ArvoreBinaria - construtor de copia: modelo ausente");	
 		this.qtd = modelo.qtd;
 		if(!modelo.isVazia())
 			this.raiz = new No<T>(modelo.raiz);

@@ -28,8 +28,10 @@ public class Produto
 	}
 
 	public Produto(
-		Produto modelo)
+		Produto modelo) throws Exception
 	{
+		if (modelo == null)
+			throw new NullPointerException("Produto - construtor de copia: modelo ausente");
 		this.codigo = modelo.codigo;
 		this.nome = modelo.nome;
 		this.preco = modelo.preco;
