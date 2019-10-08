@@ -17,5 +17,17 @@ create table UsuarioSol(
 	constraint fkUsuarioEmpresa foreign key(codEmpresa) references EmpresaSol(codigo)
 )
 
+create table ClienteSol(
+	codigo int identity(1,1) primary key,
+	email varchar(50) not null,
+	nome varchar(100) not null,
+	telefone varchar(20) not null,
+	data datetime not null,
+	cpf char(14) not null
+
+	constraint chkCpf check(cpf like 
+		'[0-9][0-9][0-9].[0-9][0-9][0-9].[0-9][0-9][0-9]-[0-9][0-9]')
+)
+
 insert into EmpresaSol values('PuroAr', '07.893.913/0001-23')
 insert into UsuarioSol values('gugahmeira@gmail.com', 'Gustavo Henrique de Meira', 'supermacho', 2)
