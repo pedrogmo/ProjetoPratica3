@@ -11,6 +11,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -39,7 +40,8 @@ public class HomeFragment extends Fragment {
     EditText etIrradiacao, etMedia, etWatts;
     RadioGroup rgMedia;
     RadioButton rbTotal, rbMensal;
-    Button btnEsq, btnDir, btnCalcular;
+    Button btnCalcular;
+    ImageView btnEsq, btnDir;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {

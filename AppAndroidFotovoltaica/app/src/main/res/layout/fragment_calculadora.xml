@@ -9,7 +9,8 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:fillViewport="true">
+        android:fillViewport="true"
+        android:background="#7f8c8d">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -57,15 +58,14 @@
                             android:text="Mensal"></RadioButton>
                     </RadioGroup>
                 </LinearLayout>
-
-                    <Button
-                        android:id="@+id/btnEsq"
-                        android:layout_width="20dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="90dp"
-                        android:text="E"
-                        android:visibility="invisible"
-                        android:layout_toLeftOf="@+id/mediaEMes"></Button>
+                <ImageView
+                    android:id="@+id/btnEsq"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/ic_left_arrow"
+                    android:layout_marginTop="90dp"
+                    android:layout_toLeftOf="@+id/mediaEMes"
+                    android:visibility="invisible"></ImageView>
                     <RelativeLayout
                         android:id="@+id/mediaEMes"
                         android:layout_width="wrap_content"
@@ -91,14 +91,14 @@
                             android:layout_marginTop="140dp"
                             android:visibility="invisible"></TextView>
                     </RelativeLayout>
-                    <Button
+                    <ImageView
                         android:id="@+id/btnDir"
-                        android:layout_width="20dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:background="@drawable/ic_right_arrow"
                         android:layout_marginTop="90dp"
-                        android:text="D"
                         android:layout_toRightOf="@+id/mediaEMes"
-                        android:visibility="invisible"></Button>
+                        android:visibility="invisible"></ImageView>
                 </RelativeLayout>
 
 
@@ -166,7 +166,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_margin="20dp"
-                android:text="Calcular" />
+                android:text="Calcular"
+                android:background="#f1c40f"/>
 
             <TextView
                 android:id="@+id/tvNumeroPlacas"
