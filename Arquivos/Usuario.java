@@ -1,82 +1,83 @@
 import java.io.Serializable;
 
 public class Usuario 
-	implements Cloneable, Comparable<Usuario>
+	implements Cloneable, Comparable<Usuario>, Serializable
 {
 	private int codigo;
+	private String email;
+	private String nome;
+	private String senha;
+	private int codEmpresa;
+
 	public int getCodigo()
 	{
 		return this.codigo;
 	}
 
 	public void setCodigo(
-		int pCodigo) throws Exception
+		int codigo) throws Exception
 	{
-		if (pCodigo < 0)
+		if (codigo < 0)
 			throw new IllegalArgumentException("Usuario - setCodigo: codigo negativo");
-		this.codigo = pCodigo;
+		this.codigo = codigo;
 	}
-
-	private String email;
+	
 	public String getEmail()
 	{
 		return this.email;
 	}
 
 	public void setEmail(
-		String pEmail) throws Exception
+		String email) throws Exception
 	{
-		if (pEmail == null)
+		if (email == null)
 			throw new NullPointerException("Usuario - setEmail: email ausente");
-		if (pEmail.equals(""))
+		if (email.equals(""))
 			throw new IllegalArgumentException("Usuario - setEmail: email inválido");
-		this.email = pEmail;
+		this.email = email;
 	}
-
-	private String nome;
+	
 	public String getNome()
 	{
 		return this.nome;
 	}
 
 	public void setNome(
-		String pNome) throws Exception
+		String nome) throws Exception
 	{
-		if (pNome == null)
+		if (nome == null)
 			throw new NullPointerException("Usuario - setNome: nome ausente");
-		if (pNome.equals(""))
+		if (nome.equals(""))
 			throw new IllegalArgumentException("Usuario - setNome: nome inválido");
-		this.nome = pNome;
+		this.nome = nome;
 	}
-
-	private String senha;
+	
 	public String getSenha()
 	{
 		return this.senha;
 	}
 
 	public void setSenha(
-		String pSenha) throws Exception
+		String senha) throws Exception
 	{
-		if (pSenha == null)
+		if (senha == null)
 			throw new NullPointerException("Usuario - setSenha: senha ausente");
-		if (pSenha.equals(""))
+		if (senha.equals(""))
 			throw new IllegalArgumentException("Usuario - setSenha: senha inválido");
-		this.senha = pSenha;
+		this.senha = senha;
 	}
 
-	private int codEmpresa;
 	public int getCodEmpresa()
 	{
 		return this.codEmpresa;
 	}
 
 	public void setCodEmpresa(
-		int pCodEmpresa) throws Exception
+		int codEmpresa) throws Exception
 	{
-		if (pCodEmpresa < 0)
+		if (codEmpresa < 0)
 			throw new IllegalArgumentException("Usuario - setCodEmpresa: codigo negativo");
-		this.codEmpresa = pCodEmpresa;
+		this.codEmpresa = codEmpresa;
 	}
 
 	public Usuario()
@@ -89,27 +90,27 @@ public class Usuario
 	}
 
 	public Usuario(
-		String pEmail) throws Exception
+		String email) throws Exception
 	{
 		this.codigo = 0;
-		this.setEmail(pEmail);
+		this.setEmail(email);
 		this.nome = "";
 		this.senha = "";
 		this.codEmpresa = 0;
 	}
 
 	public Usuario(
-		int pCodigo,
-		String pEmail,
-		String pNome,
-		String pSenha,
-		int pCodEmpresa) throws Exception
+		int codigo,
+		String email,
+		String nome,
+		String senha,
+		int codEmpresa) throws Exception
 	{
-		this.setCodigo(pCodigo);
-		this.setEmail(pEmail);
-		this.setNome(pNome);
-		this.setSenha(pSenha);
-		this.setCodEmpresa(pCodEmpresa);
+		this.setCodigo(codigo);
+		this.setEmail(email);
+		this.setNome(nome);
+		this.setSenha(senha);
+		this.setCodEmpresa(codEmpresa);
 	}
 
 	public Usuario(
