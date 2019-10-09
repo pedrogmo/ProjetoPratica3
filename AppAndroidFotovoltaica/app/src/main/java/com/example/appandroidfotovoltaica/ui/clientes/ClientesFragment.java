@@ -87,28 +87,33 @@ public class ClientesFragment extends Fragment {
                     params.put("cpf", cpf);
 
                     JsonObjectRequest jsObjRequest = new
-                            JsonObjectRequest(
-                                    Request.Method.POST,
-                                    URL,
-                                    new JSONObject(params),
-                                    new Response.Listener<JSONObject>() {
-                                        @Override
-                                            public void onResponse(JSONObject response) {
-                                                Toast.makeText(
-                                                        getActivity().getApplicationContext(),
-                                                        "Cliente inserido",
-                                                        Toast.LENGTH_SHORT).show();
-                                            }
-                                        },
-                                    new Response.ErrorListener() {
-                                        @Override
-                                        public void onErrorResponse(VolleyError error) {
-                                            Toast.makeText(
-                                                    getActivity().getApplicationContext(),
-                                                    error.getMessage(),
-                                                    Toast.LENGTH_SHORT).show();
-                                        }
-                    });
+                        JsonObjectRequest(
+                            Request.Method.POST,
+                            URL,
+                            new JSONObject(params),
+                            new Response.Listener<JSONObject>()
+                            {
+                                @Override
+                                public void onResponse(JSONObject response)
+                                {
+                                    Toast.makeText(
+                                        getActivity().getApplicationContext(),
+                                        "Cliente inserido",
+                                        Toast.LENGTH_SHORT).show();
+                                }
+                            },
+                            new Response.ErrorListener()
+                            {
+                                @Override
+                                public void onErrorResponse(VolleyError error)
+                                {
+                                    Toast.makeText(
+                                        getActivity().getApplicationContext(),
+                                        error.getMessage(),
+                                        Toast.LENGTH_SHORT).show();
+                                }
+                        }
+                    );
                     QUEUE.add(jsObjRequest);
                 }
                 catch(Exception exc)
