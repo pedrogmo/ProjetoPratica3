@@ -22,7 +22,7 @@ create table ClienteSol(
 	email varchar(50) not null,
 	nome varchar(100) not null,
 	telefone varchar(20) not null,
-	data datetime not null,
+	data date not null,
 	cpf char(14) not null
 
 	constraint chkCpf check(cpf like 
