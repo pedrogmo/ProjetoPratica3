@@ -43,12 +43,12 @@ public class ValorMensalEnergia {
         if (this.getClass()!=obj.getClass())
             return false;
 
-        ValorMensalEnergia hor = (ValorMensalEnergia)obj;
+        ValorMensalEnergia vme = (ValorMensalEnergia)obj;
 
-        if (this.mes!=hor.mes)
+        if (!this.mes.equals(vme.mes))
             return false;
 
-        if (this.valor!=hor.valor)
+        if (this.valor!=vme.valor)
             return false;
 
         return true;
@@ -67,7 +67,7 @@ public class ValorMensalEnergia {
     public ValorMensalEnergia (ValorMensalEnergia modelo) throws Exception
     {
         if (modelo==null)
-            throw new Exception ("Modelo ausente");
+            throw new Exception ("ValorMensalEnergia - construtor de copia: modelo ausente");
 
         this.mes   = modelo.mes;
         this.valor = modelo.valor;
