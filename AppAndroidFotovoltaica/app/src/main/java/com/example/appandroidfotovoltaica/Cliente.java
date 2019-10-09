@@ -76,7 +76,7 @@ public class Cliente
         this.codigo = codigo;
     }
 
-    public String getNome() 
+    public String getNome()
     {
         return this.nome;
     }

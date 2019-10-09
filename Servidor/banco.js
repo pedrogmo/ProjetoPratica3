@@ -100,10 +100,17 @@ rota.patch('/update_cliente/:codigo', (requisicao, resposta) => {
 })
 
 rota.post('/insert_cliente', (requisicao, resposta) => {
+console.log("1");
 	const email = requisicao.body.email;
+	console.log(email);
 	const nome = requisicao.body.nome;
+console.log(nome);
 	const telefone = requisicao.body.telefone;
+console.log(telefone);
 	const data = requisicao.body.data;
+console.log(data);
 	const cpf = requisicao.body.cpf;
-	execSQL(`INSERT INTO ClienteSol VALUES('${email}', '${nome}', '${telefone}', '${data}', '${cpf}')`, resposta);
+console.log(cpf);
+	execSQL(`INSERT INTO ClienteSol(email,nome,telefone,data,cpf) VALUES('${email}','${nome}','${telefone}','${data}','${cpf}')`, resposta);
+	console.log("2");
 })

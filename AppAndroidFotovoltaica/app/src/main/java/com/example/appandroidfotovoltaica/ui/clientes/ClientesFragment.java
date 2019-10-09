@@ -66,7 +66,7 @@ public class ClientesFragment extends Fragment {
         this.btnAdicionarCliente = (Button) root.findViewById(R.id.btnAdicionarCliente);
 
         final RequestQueue QUEUE = Volley.newRequestQueue(getActivity().getApplicationContext());
-        final String URL = "http://localhost:3000/insert_cliente";
+        final String URL = "http://177.220.18.81:3000/insert_cliente";
 
         this.btnAdicionarCliente.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -80,10 +80,10 @@ public class ClientesFragment extends Fragment {
                     String cpf = etCpfCliente.getText().toString();
 
                     HashMap<String, String> params = new HashMap<String,String>();
+                    params.put("email", email);
                     params.put("nome", nome);
-                    params.put("data", data);
-                    params.put("email", nome);
                     params.put("telefone", telefone);
+                    params.put("data", data);
                     params.put("cpf", cpf);
 
                     JsonObjectRequest jsObjRequest = new
@@ -97,7 +97,7 @@ public class ClientesFragment extends Fragment {
                                                 Toast.makeText(
                                                         getActivity().getApplicationContext(),
                                                         "Cliente inserido",
-                                                        Toast.LENGTH_SHORT);
+                                                        Toast.LENGTH_SHORT).show();
                                             }
                                         },
                                     new Response.ErrorListener() {
@@ -105,8 +105,8 @@ public class ClientesFragment extends Fragment {
                                         public void onErrorResponse(VolleyError error) {
                                             Toast.makeText(
                                                     getActivity().getApplicationContext(),
-                                                    "Erro ao inserir cliente",
-                                                    Toast.LENGTH_SHORT);
+                                                    error.getMessage(),
+                                                    Toast.LENGTH_SHORT).show();
                                         }
                     });
                     QUEUE.add(jsObjRequest);
@@ -116,7 +116,7 @@ public class ClientesFragment extends Fragment {
                     Toast.makeText(
                             getActivity().getApplicationContext(),
                             "Digite os dados corretamente",
-                            Toast.LENGTH_SHORT);
+                            Toast.LENGTH_SHORT).show();
                 }
             }
         });

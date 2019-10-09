@@ -124,7 +124,6 @@
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:hint="CPF"
-                android:inputType="number"
                 android:layout_marginTop="80dp"
                 android:layout_centerHorizontal="true"
                 ></EditText>
