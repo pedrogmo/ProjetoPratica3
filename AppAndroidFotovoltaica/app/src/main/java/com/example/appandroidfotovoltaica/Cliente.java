@@ -11,7 +11,7 @@ public class Cliente
     private String email;
     private String telefone;
     private String cpf;
-    private Date data;
+    private String data;
 
     public Cliente()
     {
@@ -20,7 +20,7 @@ public class Cliente
         this.email = "";
         this.telefone = "";
         this.cpf = "";
-        this.data = new Date();
+        this.data = "";
     }
 
     public Cliente(
@@ -29,7 +29,7 @@ public class Cliente
         String email,
         String telefone,
         String cpf,
-        Date data) throws Exception
+        String data) throws Exception
     {
         this.setCodigo(codigo);
         this.setNome(nome);
@@ -47,7 +47,7 @@ public class Cliente
         this.setEmail(email);
         this.telefone = "";
         this.cpf = "";
-        this.data = new Date();
+        this.data = "";
     }
 
     public Cliente(
@@ -60,7 +60,7 @@ public class Cliente
         this.email = modelo.email;
         this.telefone = modelo.telefone;
         this.cpf = modelo.cpf;
-        this.data = (Date) modelo.data.clone();
+        this.data = modelo.data;
     }
 
     public int getCodigo()
@@ -128,17 +128,17 @@ public class Cliente
         this.cpf = cpf;
     }
 
-    public Date getData() 
+    public String getData()
     {
         return this.data;
     }
 
     public void setData(
-        Date data) throws Exception
+        String data) throws Exception
     {
         if (data == null)
             throw new Exception("Cliente - setData: data ausente");
-        this.data = (Date) data.clone();
+        this.data = data;
     }
 
     public String toString()
