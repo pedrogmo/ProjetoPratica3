@@ -43,29 +43,67 @@ rota.get('/usuarios', (requisicao, resposta) => {
 	execSQL('SELECT * FROM UsuarioSol', resposta);
 })
 
-rota.get('/usuarios/:id', (requisicao, resposta) => {
-	const id = parseInt(requisicao.params.id);
-	execSQL(`SELECT * FROM UsuarioSol WHERE CODIGO = ${id}`, resposta);
+rota.get('/usuarios/:codigo', (requisicao, resposta) => {
+	const codigo = parseInt(requisicao.params.codigo);
+	execSQL(`SELECT * FROM UsuarioSol WHERE CODIGO = ${codigo}`, resposta);
 })
 
-rota.delete('/delete_usuario/:id', (requisicao, resposta) => {
-	const id = parseInt(requisicao.params.id);
-	execSQL(`DELETE UsuarioSol WHERE CODIGO = ${id}`, resposta);
+rota.delete('/delete_usuario/:codigo', (requisicao, resposta) => {
+	const codigo = parseInt(requisicao.params.codigo);
+	execSQL(`DELETE UsuarioSol WHERE CODIGO = ${codigo}`, resposta);
 })
 
-rota.patch('/update_usuario/:id', (requisicao, resposta) => {
-	const id = parseInt(requisicao.params.id);
+rota.patch('/update_usuario/:codigo', (requisicao, resposta) => {
+	const codigo = parseInt(requisicao.params.codigo);
 	const email = requisicao.body.email;
 	const senha = requisicao.body.senha;
-	execSQL(`UPDATE UsuarioSol SET email = ${email} WHERE CODIGO = ${id}`, resposta);
-	execSQL(`UPDATE UsuarioSol SET nome = ${nome} WHERE CODIGO = ${id}`, resposta);
+	execSQL(`UPDATE UsuarioSol SET email = '${email}' WHERE CODIGO = ${codigo}`, resposta);
+	execSQL(`UPDATE UsuarioSol SET nome = '${nome}' WHERE CODIGO = ${codigo}`, resposta);
 })
 
 rota.post('/insert_usuario', (requisicao, resposta) => {
-	const id = parseInt(requisicao.body.id);
 	const email = requisicao.body.email;
 	const nome = requisicao.body.nome;
 	const senha = requisicao.body.senha;
 	const codEmpresa = parseInt(requisicao.body.codEmpresa);
-	execSQL(`INSERT INTO UsuarioSol VALUES(${id},'${email}', '${nome}', '${senha}', ${codEmpresa})`, resposta);
+	execSQL(`INSERT INTO UsuarioSol VALUES('${email}', '${nome}', '${senha}', ${codEmpresa})`, resposta);
+})
+
+//ROTAS CLIENTE
+
+rota.get('/clientes', (requisicao, resposta) => {
+	execSQL('SELECT * FROM ClienteSol', resposta);
+})
+
+rota.get('/clientes/:codigo', (requisicao, resposta) => {
+	const codigo = parseInt(requisicao.params.codigo);
+	execSQL(`SELECT * FROM ClienteSol WHERE CODIGO = ${codigo}`, resposta);
+})
+
+rota.delete('/delete_cliente/:codigo', (requisicao, resposta) => {
+	const codigo = parseInt(requisicao.params.codigo);
+	execSQL(`DELETE ClienteSol WHERE CODIGO = ${codigo}`, resposta);
+})
+
+rota.patch('/update_cliente/:codigo', (requisicao, resposta) => {
+	const codigo = parseInt(requisicao.params.codigo);
+	const email = requisicao.body.email;
+	const nome = requisicao.body.nome;
+	const telefone = requisicao.body.telefone;
+	const data = requisicao.body.data;
+	const cpf = requisicao.body.cpf;
+	execSQL(`UPDATE ClienteSol SET email = '${email}' WHERE CODIGO = ${codigo}`, resposta);
+	execSQL(`UPDATE ClienteSol SET nome = '${nome}' WHERE CODIGO = ${codigo}`, resposta);
+	execSQL(`UPDATE ClienteSol SET telefone = '${telefone}' WHERE CODIGO = ${codigo}`, resposta);
+	execSQL(`UPDATE ClienteSol SET data = '${data}' WHERE CODIGO = ${codigo}`, resposta);
+	execSQL(`UPDATE ClienteSol SET cpf = '${cpf}' WHERE CODIGO = ${codigo}`, resposta);
+})
+
+rota.post('/insert_cliente', (requisicao, resposta) => {
+	const email = requisicao.body.email;
+	const nome = requisicao.body.nome;
+	const telefone = requisicao.body.telefone;
+	const data = requisicao.body.data;
+	const cpf = requisicao.body.cpf;
+	execSQL(`INSERT INTO ClienteSol VALUES('${email}', '${nome}', '${telefone}', '${data}', '${cpf}')`, resposta);
 })
