@@ -66,7 +66,7 @@ public class ClientesFragment extends Fragment {
         this.btnAdicionarCliente = (Button) root.findViewById(R.id.btnAdicionarCliente);
 
         final RequestQueue QUEUE = Volley.newRequestQueue(getActivity().getApplicationContext());
-        final String URL = "http://177.220.18.81:3000/insert_cliente";
+        final String URL = "http://177.220.18.82:3000/insert_cliente";
 
         this.btnAdicionarCliente.setOnClickListener(new View.OnClickListener() {
             @Override
