@@ -1,3 +1,5 @@
+package com.example.appandroidfotovoltaica;
+
 import java.io.Serializable;
 
 public class Usuario 
@@ -8,6 +10,51 @@ public class Usuario
 	private String nome;
 	private String senha;
 	private int codEmpresa;
+
+	public Usuario()
+	{
+		this.codigo = 0;
+		this.email = "";
+		this.nome = "";
+		this.senha = "";
+		this.codEmpresa = 0;
+	}
+
+	public Usuario(
+		int codigo,
+		String email,
+		String nome,
+		String senha,
+		int codEmpresa) throws Exception
+	{
+		this.setCodigo(codigo);
+		this.setEmail(email);
+		this.setNome(nome);
+		this.setSenha(senha);
+		this.setCodEmpresa(codEmpresa);
+	}
+
+	public Usuario(
+		String email) throws Exception
+	{
+		this.codigo = 0;
+		this.setEmail(email);
+		this.nome = "";
+		this.senha = "";
+		this.codEmpresa = 0;
+	}
+
+	public Usuario(
+		Usuario modelo) throws Exception
+	{
+		if (modelo == null)
+			throw new NullPointerException("Usuario - construtor de copia: modelo ausente");
+		this.codigo = modelo.codigo;
+		this.email = modelo.email;
+		this.nome = modelo.nome;
+		this.senha = modelo.senha;
+		this.codEmpresa = modelo.codEmpresa;
+	}
 
 	public int getCodigo()
 	{
@@ -30,10 +77,8 @@ public class Usuario
 	public void setEmail(
 		String email) throws Exception
 	{
-		if (email == null)
-			throw new NullPointerException("Usuario - setEmail: email ausente");
-		if (email.equals(""))
-			throw new IllegalArgumentException("Usuario - setEmail: email inv√°lido");
+		if (!Verificadora.isEmailValido(email))
+            throw new Exception("Usuario - setEmail: email inv·lido");
 		this.email = email;
 	}
 	
@@ -45,10 +90,8 @@ public class Usuario
 	public void setNome(
 		String nome) throws Exception
 	{
-		if (nome == null)
-			throw new NullPointerException("Usuario - setNome: nome ausente");
-		if (nome.equals(""))
-			throw new IllegalArgumentException("Usuario - setNome: nome inv√°lido");
+		if (!Verificadora.isNomeValido(nome))
+            throw new Exception("Usuario - setNome: nome inv·lido");
 		this.nome = nome;
 	}
 	
@@ -63,7 +106,7 @@ public class Usuario
 		if (senha == null)
 			throw new NullPointerException("Usuario - setSenha: senha ausente");
 		if (senha.equals(""))
-			throw new IllegalArgumentException("Usuario - setSenha: senha inv√°lido");
+			throw new IllegalArgumentException("Usuario - setSenha: senha inv·lido");
 		this.senha = senha;
 	}
 
@@ -78,56 +121,11 @@ public class Usuario
 		if (codEmpresa < 0)
 			throw new IllegalArgumentException("Usuario - setCodEmpresa: codigo negativo");
 		this.codEmpresa = codEmpresa;
-	}
-
-	public Usuario()
-	{
-		this.codigo = 0;
-		this.email = "";
-		this.nome = "";
-		this.senha = "";
-		this.codEmpresa = 0;
-	}
-
-	public Usuario(
-		String email) throws Exception
-	{
-		this.codigo = 0;
-		this.setEmail(email);
-		this.nome = "";
-		this.senha = "";
-		this.codEmpresa = 0;
-	}
-
-	public Usuario(
-		int codigo,
-		String email,
-		String nome,
-		String senha,
-		int codEmpresa) throws Exception
-	{
-		this.setCodigo(codigo);
-		this.setEmail(email);
-		this.setNome(nome);
-		this.setSenha(senha);
-		this.setCodEmpresa(codEmpresa);
-	}
-
-	public Usuario(
-		Usuario modelo) throws Exception
-	{
-		if (modelo == null)
-			throw new NullPointerException("Usuario - construtor de copia: modelo ausente");
-		this.codigo = modelo.codigo;
-		this.email = modelo.email;
-		this.nome = modelo.nome;
-		this.senha = modelo.senha;
-		this.codEmpresa = modelo.codEmpresa;
-	}
+	}	
 
 	public String toString()
 	{
-		return this.codigo + " " + this.nome;
+		return this.codigo + " " + this.email;
 	}
 
 	public int hashCode()

@@ -1,119 +1,195 @@
 package com.example.appandroidfotovoltaica;
 
-public class Cliente {
+import java.util.Date;
+import java.io.Serializable;
+
+public class Cliente
+    implements Cloneable, Comparable<Cliente>, Serializable
+{
+    private int codigo;
     private String nome;
     private String email;
     private String telefone;
     private String cpf;
-    private Data data;
+    private Date data;
 
-
-    public String getNome() {
-        return nome;
+    public Cliente()
+    {
+        this.codigo = 0;
+        this.nome = "";
+        this.email = "";
+        this.telefone = "";
+        this.cpf = "";
+        this.data = new Date();
     }
 
-    public void setNome(String nome) throws Exception
+    public Cliente(
+        int codigo,
+        String nome,
+        String email,
+        String telefone,
+        String cpf,
+        Date data) throws Exception
     {
-        if (!isNomeValido(nome))
-            throw new Exception("Cliente - setNome: nome inválido");
+        this.setCodigo(codigo);
+        this.setNome(nome);
+        this.setEmail(email);
+        this.setTelefone(telefone);
+        this.setCpf(cpf);
+        this.setData(data);
+    }
 
+    public Cliente(
+        String email) throws Exception
+    {
+        this.codigo = 0;
+        this.nome = "";
+        this.setEmail(email);
+        this.telefone = "";
+        this.cpf = "";
+        this.data = new Date();
+    }
+
+    public Cliente(
+        Cliente modelo) throws Exception
+    {
+        if (modelo == null)
+            throw new NullPointerException("Cliente - construtor de copia: modelo ausente");
+        this.codigo = modelo.codigo;
+        this.nome = modelo.nome;
+        this.email = modelo.email;
+        this.telefone = modelo.telefone;
+        this.cpf = modelo.cpf;
+        this.data = (Date) modelo.data.clone();
+    }
+
+    public int getCodigo()
+    {
+        return this.codigo;
+    }
+
+    public void setCodigo(
+        int codigo) throws Exception
+    {
+        if (codigo < 0)
+            throw new IllegalArgumentException("Cliente - setCodigo: codigo negativo");
+        this.codigo = codigo;
+    }
+
+    public String getNome() 
+    {
+        return this.nome;
+    }
+
+    public void setNome(
+        String nome) throws Exception
+    {
+        if (!Verificadora.isNomeValido(nome))
+            throw new Exception("Cliente - setNome: nome inválido");
         this.nome = nome;
     }
 
-    public String getEmail() {
-        return email;
+    public String getEmail() 
+    {
+        return this.email;
     }
 
-    public void setEmail(String email) throws Exception
+    public void setEmail(
+        String email) throws Exception
     {
-        if (!isEmailValido(email))
+        if (!Verificadora.isEmailValido(email))
             throw new Exception("Cliente - setEmail: email inválido");
         this.email = email;
     }
 
-    public String getTelefone() {
-        return telefone;
+    public String getTelefone() 
+    {
+        return this.telefone;
     }
 
-    public void setTelefone(String telefone) throws Exception
+    public void setTelefone(
+        String telefone) throws Exception
     {
-        if (!isTelefoneValido(telefone))
+        if (!Verificadora.isTelefoneValido(telefone))
             throw new Exception("Cliente - setTelefone: telefone inválido");
         this.telefone = telefone;
     }
-    public String getCpf() {
-        return cpf;
+
+    public String getCpf() 
+    {
+        return this.cpf;
     }
 
-    public void setCpf(String cpf) throws Exception
+    public void setCpf(
+        String cpf) throws Exception
     {
-        if (!isCpfValido(cpf))
-            throw new Exception("Cpf - setCpf: cpf inválido");
+        if (!Verificadora.isCpfValido(cpf))
+            throw new Exception("Cliente - setCpf: cpf inválido");
         this.cpf = cpf;
     }
 
-    public Data getData() {
-        return data;
+    public Date getData() 
+    {
+        return this.data;
     }
 
-    public void setData(Data data) throws Exception
+    public void setData(
+        Date data) throws Exception
     {
-        try{
-            this.data = (Data)data.clone();
-        }
-        catch (Exception e)
-        {
-            throw new Exception("Cliente - setData: data inválida");
-        }
-
+        if (data == null)
+            throw new Exception("Cliente - setData: data ausente");
+        this.data = (Date) data.clone();
     }
 
-   private boolean isNomeValido(String nome)
-   {
-       if (nome == null)
-           return false;
-       if (nome.length() <= 0)
-           return false;
-
-       for (int i = 0; i < nome.length(); i++)
-           if (!Character.isLetter(nome.charAt(i)))
-               return false;
-
-       return true;
-   }
-    private boolean isEmailValido(String email)
+    public String toString()
     {
-        if (email == null)
+        return this.codigo + " " + this.email;
+    }
+
+    public int hashCode()
+    {
+        int ret = 1;
+        ret = ret * 2 + new Integer(this.codigo).hashCode();
+        ret = ret * 2 + this.nome.hashCode();
+        ret = ret * 2 + this.email.hashCode();
+        ret = ret * 2 + this.telefone.hashCode();
+        ret = ret * 2 + this.cpf.hashCode();
+        ret = ret * 2 + this.data.hashCode();
+        return ret;
+    }
+
+    public boolean equals(
+        Object obj)
+    {
+        if (this == obj)
+            return true;
+        if (obj == null)
             return false;
-        if (email.length() <= 0)
+        if (this.getClass() != obj.getClass())
             return false;
-        if (!email.contains("@"))
+
+        Cliente c = (Cliente) obj;
+
+        if (this.codigo != c.codigo)
             return false;
-        if (!email.contains(".com"))
+        if (!this.nome.equals(c.nome))
+            return false;
+        if (!this.email.equals(c.email))
+            return false;
+        if (!this.telefone.equals(c.telefone))
+            return false;
+        if (!this.cpf.equals(c.cpf))
+            return false;
+        if (!this.data.equals(c.data))
             return false;
 
         return true;
     }
-    private boolean isTelefoneValido(String telefone)
+
+    public int compareTo(
+        Cliente c)
     {
-        if (telefone == null)
-            return false;
-        if (telefone.length() < 9)
-            return false;
-        for (int i = 0; i < nome.length(); i++)
-            if (!Character.isDigit(nome.charAt(i)))
-                return false;
-
-        return true;
+        return this.email.compareTo(c.email);
     }
-    private boolean isCpfValido(String cpf)
-    {
-        if(!cpf.matches("[0-9]{3}[.]?[0-9]{3}[.]?[0-9]{3}[-]?[0-9]{2}"))
-            return false;
-        return true;
-    }
-
-
-
-
 }
+

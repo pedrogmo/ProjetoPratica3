@@ -1,5 +1,9 @@
+package com.example.appandroidfotovoltaica;
+
+import java.io.Serializable;
+
 public class Produto 
-	implements Cloneable, Comparable<Produto>
+	implements Cloneable, Comparable<Produto>, Serializable
 {
 	protected int codigo;
 	protected String nome;
