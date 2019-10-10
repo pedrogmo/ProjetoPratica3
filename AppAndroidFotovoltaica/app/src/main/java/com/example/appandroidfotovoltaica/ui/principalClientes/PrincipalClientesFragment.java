@@ -6,6 +6,7 @@ import com.example.appandroidfotovoltaica.Enderecos;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,6 +33,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class PrincipalClientesFragment extends Fragment{
@@ -41,6 +43,7 @@ public class PrincipalClientesFragment extends Fragment{
     private EditText etBuscarCliente;
     private ListView lvListaClientes;
     private FloatingActionButton fabNovoCliente;
+    private ArrayList<Cliente> listaClientes;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -51,17 +54,25 @@ public class PrincipalClientesFragment extends Fragment{
         etBuscarCliente = root.findViewById(R.id.etBuscarCliente);
         lvListaClientes = root.findViewById(R.id.lvListaClientes);
         fabNovoCliente = root.findViewById(R.id.fabNovoCliente);
-        try{
-            Cliente[] cl = (Cliente[]) ClienteWS.getObjeto(Cliente[].class, Enderecos.GET_CLIENTES);
 
+        this.listaClientes = new ArrayList<Cliente>();
 
+        try
+        {
+             Cliente[] cl = (Cliente[]) ClienteWS.getObjeto(Cliente[].class, Enderecos.GET_CLIENTES);
+             for(Cliente c : cl)
+                 this.listaClientes.add(c);
         }
         catch (Exception e)
         {
             Toast.makeText(getActivity().getApplicationContext(), "Não foi possível obter os clientes", Toast.LENGTH_SHORT);
         }
 
-
+        this.lvListaClientes.setAdapter(
+                new ClienteArrayAdapter(
+                        getActivity().getApplicationContext(),
+                        this.listaClientes)
+        );
 
         fabNovoCliente.setOnClickListener(new View.OnClickListener() {
             @Override

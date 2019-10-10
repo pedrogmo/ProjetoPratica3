@@ -136,7 +136,7 @@ public class Cliente
     public void setData(
         String data) throws Exception
     {
-        if (data == null)
+        if (data == null || data.equals(""))
             throw new Exception("Cliente - setData: data ausente");
         this.data = data;
     }
