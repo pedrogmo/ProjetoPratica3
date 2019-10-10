@@ -20,12 +20,21 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:hint="Digite o nome do cliente a ser buscado" />
+        <TextView
+            android:id="@+id/tvteste"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="TESTE"
+            android:textAlignment="center"
+            android:gravity="center"
+            android:textSize="24dp"
+            android:layout_below="@id/etBuscarCliente"></TextView>
 
         <ListView
             android:id="@+id/lvListaClientes"
             android:layout_width="match_parent"
             android:layout_height="400dp"
-            android:layout_below="@+id/etBuscarCliente"
+            android:layout_below="@+id/tvteste"
             android:layout_marginTop="30dp" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton

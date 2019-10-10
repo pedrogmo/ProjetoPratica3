@@ -5,6 +5,7 @@ import com.example.appandroidfotovoltaica.ClienteWS;
 import com.example.appandroidfotovoltaica.Enderecos;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -13,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -54,25 +56,27 @@ public class PrincipalClientesFragment extends Fragment{
         etBuscarCliente = root.findViewById(R.id.etBuscarCliente);
         lvListaClientes = root.findViewById(R.id.lvListaClientes);
         fabNovoCliente = root.findViewById(R.id.fabNovoCliente);
-
+        TextView tvteste = root.findViewById(R.id.tvteste);
         this.listaClientes = new ArrayList<Cliente>();
 
         try
         {
              Cliente[] cl = (Cliente[]) ClienteWS.getObjeto(Cliente[].class, Enderecos.GET_CLIENTES);
+             /*while (cl[0] == null)
+             {
+                 TextView tvteste = root.findViewById(R.id.tvteste);
+                 tvteste.append("a");
+             }
              for(Cliente c : cl)
-                 this.listaClientes.add(c);
+                 this.listaClientes.add(c);*/
         }
         catch (Exception e)
         {
-            Toast.makeText(getActivity().getApplicationContext(), "Não foi possível obter os clientes", Toast.LENGTH_SHORT);
+            tvteste.setText(e.toString());
+            //Toast.makeText(getActivity().getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
         }
 
-        this.lvListaClientes.setAdapter(
-                new ClienteArrayAdapter(
-                        getActivity().getApplicationContext(),
-                        this.listaClientes)
-        );
+
 
         fabNovoCliente.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -85,5 +89,28 @@ public class PrincipalClientesFragment extends Fragment{
         });
 
         return root;
+    }
+    private class MyTask extends AsyncTask<String,String,Cliente[]>
+    {
+
+        @Override
+        protected Cliente[] doInBackground(String... param) {//enquanto a thread está funcionando
+            Cliente[] cl = null;
+            try{
+                cl = (Cliente[]) ClienteWS.getObjeto(Cliente[].class, Enderecos.GET_CLIENTES);
+                lvListaClientes.setAdapter(
+                        new ClienteArrayAdapter(
+                                getActivity().getApplicationContext(),
+                                listaClientes)
+                );
+            }
+            catch(Exception e)
+            {
+                Toast.makeText(getActivity().getApplicationContext(),"Erro ao buscar clientes", Toast.LENGTH_SHORT).show();
+            }
+            return cl;
+        }
+
+
     }
 }
