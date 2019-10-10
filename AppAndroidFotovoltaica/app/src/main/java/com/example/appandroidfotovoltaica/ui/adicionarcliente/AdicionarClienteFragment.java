@@ -1,4 +1,4 @@
-package com.example.appandroidfotovoltaica.ui.clientes;
+package com.example.appandroidfotovoltaica.ui.adicionarcliente;
 
 import com.example.appandroidfotovoltaica.Enderecos;
 
@@ -8,13 +8,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.android.volley.Request;
@@ -25,17 +22,13 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.appandroidfotovoltaica.R;
 
-import org.json.JSONException;
 import org.json.JSONObject;
-import org.w3c.dom.Text;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.HashMap;
 
-public class ClientesFragment extends Fragment {
+public class AdicionarClienteFragment extends Fragment {
 
-    private ClientesViewModel galleryViewModel;
+    private AdicionarClienteViewModel galleryViewModel;
 
     private EditText
         etNomeCliente,
@@ -49,8 +42,8 @@ public class ClientesFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         galleryViewModel =
-                ViewModelProviders.of(this).get(ClientesViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_clientes, container, false);
+                ViewModelProviders.of(this).get(AdicionarClienteViewModel.class);
+        View root = inflater.inflate(R.layout.fragment_adicionarcliente, container, false);
         /*final TextView textView = root.findViewById(R.id.text_gallery);
         galleryViewModel.getText().observe(this, new Observer<String>() {
             @Override
