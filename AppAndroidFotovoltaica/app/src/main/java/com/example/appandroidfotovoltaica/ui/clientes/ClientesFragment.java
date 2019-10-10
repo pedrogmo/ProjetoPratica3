@@ -1,5 +1,7 @@
 package com.example.appandroidfotovoltaica.ui.clientes;
 
+import com.example.appandroidfotovoltaica.Enderecos;
+
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -66,7 +68,6 @@ public class ClientesFragment extends Fragment {
         this.btnAdicionarCliente = (Button) root.findViewById(R.id.btnAdicionarCliente);
 
         final RequestQueue QUEUE = Volley.newRequestQueue(getActivity().getApplicationContext());
-        final String URL = "http://177.220.18.82:3000/insert_cliente";
 
         this.btnAdicionarCliente.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -89,7 +90,7 @@ public class ClientesFragment extends Fragment {
                     JsonObjectRequest jsObjRequest = new
                         JsonObjectRequest(
                             Request.Method.POST,
-                            URL,
+                            Enderecos.POST_CLIENTE,
                             new JSONObject(params),
                             new Response.Listener<JSONObject>()
                             {
