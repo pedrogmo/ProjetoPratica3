@@ -1,5 +1,6 @@
 package com.example.appandroidfotovoltaica.ui.principalClientes;
 
+import com.example.appandroidfotovoltaica.ClienteWS;
 import com.example.appandroidfotovoltaica.Enderecos;
 
 import android.content.Intent;
@@ -50,12 +51,14 @@ public class PrincipalClientesFragment extends Fragment{
         lvListaClientes = root.findViewById(R.id.lvListaClientes);
         fabNovoCliente = root.findViewById(R.id.fabNovoCliente);
 
+
         fabNovoCliente.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
                 fragmentTransaction.replace(R.id.fragment_principalClientes, new AdicionarClienteFragment());
                 fragmentTransaction.commit();
+                fabNovoCliente.hide();
             }
         });
 

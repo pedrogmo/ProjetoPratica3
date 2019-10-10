@@ -21,6 +21,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.appandroidfotovoltaica.R;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import org.json.JSONObject;
 
@@ -38,6 +39,7 @@ public class AdicionarClienteFragment extends Fragment {
         etCpfCliente;
 
     private Button btnAdicionarCliente;
+    private FloatingActionButton fab;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -52,6 +54,7 @@ public class AdicionarClienteFragment extends Fragment {
             }
         });*/
 
+        fab = root.findViewById(R.id.fabNovoCliente);
         this.etNomeCliente = (EditText) root.findViewById(R.id.etNomeCliente);
         this.etDataNascimentoCliente = (EditText) root.findViewById(R.id.etDataNascimentoCliente);
         this.etEmailCliente = (EditText) root.findViewById(R.id.etEmailCliente);
