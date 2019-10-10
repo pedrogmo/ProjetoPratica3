@@ -1,5 +1,6 @@
 package com.example.appandroidfotovoltaica.ui.principalClientes;
 
+import com.example.appandroidfotovoltaica.Cliente;
 import com.example.appandroidfotovoltaica.ClienteWS;
 import com.example.appandroidfotovoltaica.Enderecos;
 
@@ -50,6 +51,16 @@ public class PrincipalClientesFragment extends Fragment{
         etBuscarCliente = root.findViewById(R.id.etBuscarCliente);
         lvListaClientes = root.findViewById(R.id.lvListaClientes);
         fabNovoCliente = root.findViewById(R.id.fabNovoCliente);
+        try{
+            Cliente[] cl = (Cliente[]) ClienteWS.getObjeto(Cliente[].class, Enderecos.GET_CLIENTES);
+
+
+        }
+        catch (Exception e)
+        {
+            Toast.makeText(getActivity().getApplicationContext(), "Não foi possível obter os clientes", Toast.LENGTH_SHORT);
+        }
+
 
 
         fabNovoCliente.setOnClickListener(new View.OnClickListener() {
