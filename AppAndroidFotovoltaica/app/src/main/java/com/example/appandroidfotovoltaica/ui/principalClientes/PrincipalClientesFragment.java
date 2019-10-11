@@ -60,11 +60,7 @@ public class PrincipalClientesFragment extends Fragment{
         lvListaClientes = root.findViewById(R.id.lvListaClientes);
         fabNovoCliente = root.findViewById(R.id.fabNovoCliente);
         this.listaClientes = new ArrayList<Cliente>();
-
-        exibirClientes();
-
-
-
+        executarTaskObtancao();
 
         fabNovoCliente.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -78,7 +74,12 @@ public class PrincipalClientesFragment extends Fragment{
 
         return root;
     }
-    private void exibirClientes()
+    private void executarTaskObtancao()
+    {
+        MyTask task = new MyTask();
+        task.execute();
+    }
+    private ArrayList<Cliente> obterClientes()
     {
         StringRequest s = null;
         try
@@ -122,7 +123,7 @@ public class PrincipalClientesFragment extends Fragment{
         catch (Exception e)
         {
         }
-        lvListaClientes.setAdapter(new ClienteArrayAdapter(getActivity().getApplicationContext(), listaClientes));
+        return listaClientes;
     }
     /*private void buscarDados(String s) {
         MyTask task = new MyTask();
@@ -157,4 +158,24 @@ public class PrincipalClientesFragment extends Fragment{
         }
 
     }*/
+    private class MyTask extends AsyncTask<String,Void,ArrayList<Cliente>>
+    {
+        @Override
+        protected void onPreExecute() {
+
+        }
+
+
+        @Override
+        protected ArrayList<Cliente> doInBackground(String... param) {//enquanto a thread está funcionando
+            return obterClientes();
+        }
+
+        @Override
+        protected void onPostExecute(ArrayList<Cliente> c) {
+            //atualizarView(s);
+            lvListaClientes.setAdapter(new ClienteArrayAdapter(getActivity().getApplicationContext(), c));
+
+        }
+    }
 }
