@@ -1,5 +1,6 @@
 package com.example.appandroidfotovoltaica.ui.principalClientes;
 
+import com.android.volley.toolbox.StringRequest;
 import com.example.appandroidfotovoltaica.Cliente;
 import com.example.appandroidfotovoltaica.ClienteWS;
 import com.example.appandroidfotovoltaica.Enderecos;
@@ -33,8 +34,10 @@ import com.example.appandroidfotovoltaica.ui.adicionarcliente.AdicionarClienteFr
 import com.example.appandroidfotovoltaica.ui.adicionarcliente.AdicionarClienteViewModel;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -56,25 +59,10 @@ public class PrincipalClientesFragment extends Fragment{
         etBuscarCliente = root.findViewById(R.id.etBuscarCliente);
         lvListaClientes = root.findViewById(R.id.lvListaClientes);
         fabNovoCliente = root.findViewById(R.id.fabNovoCliente);
-        TextView tvteste = root.findViewById(R.id.tvteste);
         this.listaClientes = new ArrayList<Cliente>();
 
-        try
-        {
-             Cliente[] cl = (Cliente[]) ClienteWS.getObjeto(Cliente[].class, Enderecos.GET_CLIENTES);
-             /*while (cl[0] == null)
-             {
-                 TextView tvteste = root.findViewById(R.id.tvteste);
-                 tvteste.append("a");
-             }
-             for(Cliente c : cl)
-                 this.listaClientes.add(c);*/
-        }
-        catch (Exception e)
-        {
-            tvteste.setText(e.toString());
-            //Toast.makeText(getActivity().getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
-        }
+        exibirClientes();
+
 
 
 
@@ -90,7 +78,57 @@ public class PrincipalClientesFragment extends Fragment{
 
         return root;
     }
-    private class MyTask extends AsyncTask<String,String,Cliente[]>
+    private void exibirClientes()
+    {
+        StringRequest s = null;
+        try
+        {
+            final String url = Enderecos.GET_CLIENTES;
+            RequestQueue queue = Volley.newRequestQueue(getActivity().getApplicationContext());
+            s = new StringRequest(Request.Method.GET, url,
+                    new Response.Listener<String>()
+                    {
+                        @Override
+                        public void onResponse(String response) {
+                            try {
+                                JSONArray clientesJSON = new JSONArray(response);
+
+                                for (int i = 0; i < clientesJSON.length(); i++)
+                                {
+                                    JSONObject c = clientesJSON.getJSONObject(i);
+                                    Cliente cl = new Cliente(c.getInt("codigo"), c.getString("nome"),
+                                            c.getString("email"), c.getString("telefone"),
+                                            c.getString("cpf"), c.getString("data"));
+                                    listaClientes.add(cl);
+                                }
+                            }
+                            catch (Exception e){
+                                Toast.makeText(getActivity().getApplicationContext(),"Não foi possível buscar os clientes", Toast.LENGTH_SHORT);
+                            }
+
+                        }
+                    },
+                    new Response.ErrorListener()
+                    {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            Toast.makeText(getActivity().getApplicationContext(), "Erro ao buscar clientes", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+            );
+
+            queue.add(s);
+        }
+        catch (Exception e)
+        {
+        }
+        lvListaClientes.setAdapter(new ClienteArrayAdapter(getActivity().getApplicationContext(), listaClientes));
+    }
+    /*private void buscarDados(String s) {
+        MyTask task = new MyTask();
+        task.execute(s);
+    }
+    private class MyTask extends AsyncTask<String,Void,Cliente[]>
     {
 
         @Override
@@ -98,11 +136,6 @@ public class PrincipalClientesFragment extends Fragment{
             Cliente[] cl = null;
             try{
                 cl = (Cliente[]) ClienteWS.getObjeto(Cliente[].class, Enderecos.GET_CLIENTES);
-                lvListaClientes.setAdapter(
-                        new ClienteArrayAdapter(
-                                getActivity().getApplicationContext(),
-                                listaClientes)
-                );
             }
             catch(Exception e)
             {
@@ -111,6 +144,17 @@ public class PrincipalClientesFragment extends Fragment{
             return cl;
         }
 
+        @Override
+        protected void onPostExecute(Cliente[] cl) {
+            for (int i = 0; i < cl.length; i++)
+            listaClientes.set(i, cl[i]);
 
-    }
+            lvListaClientes.setAdapter(
+                    new ClienteArrayAdapter(
+                            getActivity().getApplicationContext(),
+                            listaClientes));
+
+        }
+
+    }*/
 }

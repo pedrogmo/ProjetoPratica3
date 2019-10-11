@@ -19,15 +19,15 @@ public class ClienteArrayAdapter extends ArrayAdapter<Cliente> {
 
     public ClienteArrayAdapter(
             Context context,
-            ArrayList<Cliente> listaCardapio)
+            ArrayList<Cliente> listaClientes)
     {
         super(
                 context,
                 0,
-                listaCardapio);
+                listaClientes);
 
         this.context = context;
-        this.listaClientes = listaCardapio;
+        this.listaClientes = listaClientes;
     }
 
     @Override
