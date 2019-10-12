@@ -29,6 +29,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.appandroidfotovoltaica.MyTask;
 import com.example.appandroidfotovoltaica.R;
 import com.example.appandroidfotovoltaica.ui.adicionarcliente.AdicionarClienteFragment;
 import com.example.appandroidfotovoltaica.ui.adicionarcliente.AdicionarClienteViewModel;
@@ -60,7 +61,16 @@ public class PrincipalClientesFragment extends Fragment{
         lvListaClientes = root.findViewById(R.id.lvListaClientes);
         fabNovoCliente = root.findViewById(R.id.fabNovoCliente);
         this.listaClientes = new ArrayList<Cliente>();
-        executarTaskObtancao();
+
+        MyTask<Cliente[]> task = new MyTask<Cliente[]>(Cliente[].class);
+        task.execute(Enderecos.GET_CLIENTES);
+        while(task.isTrabalhando()) ;
+        for(Cliente c : (Cliente[]) task.getDados())
+            this.listaClientes.add(c);
+
+        this.lvListaClientes.setAdapter(new ClienteArrayAdapter(
+                getActivity().getApplicationContext(), this.listaClientes
+        ));
 
         fabNovoCliente.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -74,11 +84,13 @@ public class PrincipalClientesFragment extends Fragment{
 
         return root;
     }
-    private void executarTaskObtancao()
+
+    /*private void executarTaskObtancao()
     {
         MyTask task = new MyTask();
         task.execute();
     }
+
     private ArrayList<Cliente> obterClientes()
     {
         StringRequest s = null;
@@ -125,7 +137,8 @@ public class PrincipalClientesFragment extends Fragment{
         }
         return listaClientes;
     }
-    /*private void buscarDados(String s) {
+
+    private void buscarDados(String s) {
         MyTask task = new MyTask();
         task.execute(s);
     }
@@ -158,24 +171,5 @@ public class PrincipalClientesFragment extends Fragment{
         }
 
     }*/
-    private class MyTask extends AsyncTask<String,Void,ArrayList<Cliente>>
-    {
-        @Override
-        protected void onPreExecute() {
 
-        }
-
-
-        @Override
-        protected ArrayList<Cliente> doInBackground(String... param) {//enquanto a thread está funcionando
-            return obterClientes();
-        }
-
-        @Override
-        protected void onPostExecute(ArrayList<Cliente> c) {
-            //atualizarView(s);
-            lvListaClientes.setAdapter(new ClienteArrayAdapter(getActivity().getApplicationContext(), c));
-
-        }
-    }
 }

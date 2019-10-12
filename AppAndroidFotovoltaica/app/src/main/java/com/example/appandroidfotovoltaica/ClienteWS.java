@@ -1,5 +1,7 @@
 package com.example.appandroidfotovoltaica;
 
+import android.util.Log;
+
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.IOException;
@@ -30,8 +32,10 @@ public class ClienteWS
         URL url = new URL(urlWebService);
         HttpURLConnection connection =
         (HttpURLConnection) url.openConnection();
+
         connection.setRequestMethod("GET");
         connection.setConnectTimeout(15000);
+
         //connection.setRequestProperty("login", "seulogin");
         //connection.setRequestProperty("senha", "suasenha");
         connection.connect();
