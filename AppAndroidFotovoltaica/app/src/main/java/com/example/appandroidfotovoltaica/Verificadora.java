@@ -1,5 +1,7 @@
 package com.example.appandroidfotovoltaica;
 
+import android.util.Log;
+
 public class Verificadora
 {
 	public static boolean isNomeValido(

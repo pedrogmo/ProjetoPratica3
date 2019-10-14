@@ -55,7 +55,7 @@
                     android:id="@+id/etDataNascimentoCliente"
                     android:layout_width="300dp"
                     android:layout_height="wrap_content"
-                    android:hint="dia"
+                    android:hint="dd/mm/aaaa"
                     android:inputType="date"
                     android:layout_marginTop="80dp"
                     android:layout_centerHorizontal="true"

@@ -1,5 +1,7 @@
 package com.example.appandroidfotovoltaica;
 
+import android.util.Log;
+
 import java.util.Date;
 import java.io.Serializable;
 

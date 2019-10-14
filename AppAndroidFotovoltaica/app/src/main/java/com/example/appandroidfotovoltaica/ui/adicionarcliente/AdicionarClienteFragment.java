@@ -1,8 +1,11 @@
 package com.example.appandroidfotovoltaica.ui.adicionarcliente;
 
+import com.android.volley.toolbox.StringRequest;
+import com.example.appandroidfotovoltaica.Cliente;
 import com.example.appandroidfotovoltaica.Enderecos;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,6 +29,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import org.json.JSONObject;
 
 import java.util.HashMap;
+import java.util.Map;
 
 public class AdicionarClienteFragment extends Fragment {
 
@@ -68,50 +72,15 @@ public class AdicionarClienteFragment extends Fragment {
         this.btnAdicionarCliente.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                final String nome = etNomeCliente.getText().toString().trim();
+                final String data = etDataNascimentoCliente.getText().toString();
+                final String email = etEmailCliente.getText().toString();
+                final String telefone = etTelefoneCliente.getText().toString();
+                final String cpf = etCpfCliente.getText().toString();
+
                 try
                 {
-                    String nome = etNomeCliente.getText().toString().trim();
-                    String data = etDataNascimentoCliente.getText().toString();
-                    String email = etEmailCliente.getText().toString();
-                    String telefone = etTelefoneCliente.getText().toString();
-                    String cpf = etCpfCliente.getText().toString();
-
-                    HashMap<String, String> params = new HashMap<String,String>();
-                    params.put("email", email);
-                    params.put("nome", nome);
-                    params.put("telefone", telefone);
-                    params.put("data", data);
-                    params.put("cpf", cpf);
-
-                    JsonObjectRequest jsObjRequest = new
-                        JsonObjectRequest(
-                            Request.Method.POST,
-                            Enderecos.POST_CLIENTE,
-                            new JSONObject(params),
-                            new Response.Listener<JSONObject>()
-                            {
-                                @Override
-                                public void onResponse(JSONObject response)
-                                {
-                                    Toast.makeText(
-                                        getActivity().getApplicationContext(),
-                                        "Cliente inserido",
-                                        Toast.LENGTH_SHORT).show();
-                                }
-                            },
-                            new Response.ErrorListener()
-                            {
-                                @Override
-                                public void onErrorResponse(VolleyError error)
-                                {
-                                    Toast.makeText(
-                                        getActivity().getApplicationContext(),
-                                        error.getMessage(),
-                                        Toast.LENGTH_SHORT).show();
-                                }
-                        }
-                    );
-                    QUEUE.add(jsObjRequest);
+                    Cliente c = new Cliente(0, nome, email, telefone, cpf, data);
                 }
                 catch(Exception exc)
                 {
@@ -120,6 +89,48 @@ public class AdicionarClienteFragment extends Fragment {
                             "Digite os dados corretamente",
                             Toast.LENGTH_SHORT).show();
                 }
+
+                HashMap<String, String> params = new HashMap<String,String>();
+
+                StringRequest postRequest = new StringRequest(
+                        Request.Method.POST,
+                        Enderecos.POST_CLIENTE,
+                        new Response.Listener<String>()
+                        {
+                            @Override
+                            public void onResponse(String response) {
+                                // response
+                                Toast.makeText(
+                                        getActivity().getApplicationContext(),
+                                        "Cliente inserido",
+                                        Toast.LENGTH_SHORT).show();
+                            }
+                        },
+                        new Response.ErrorListener()
+                        {
+                            @Override
+                            public void onErrorResponse(VolleyError error) {
+                                // error
+                                Toast.makeText(
+                                        getActivity().getApplicationContext(),
+                                        "Erro ao inserir cliente",
+                                        Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                ) {
+                    @Override
+                    protected Map<String, String> getParams()
+                    {
+                        Map<String, String> params = new HashMap<String, String>();
+                        params.put("email", email);
+                        params.put("nome", nome);
+                        params.put("telefone", telefone);
+                        params.put("data", data);
+                        params.put("cpf", cpf);
+                        return params;
+                    }
+                };
+                QUEUE.add(postRequest);
             }
         });
 

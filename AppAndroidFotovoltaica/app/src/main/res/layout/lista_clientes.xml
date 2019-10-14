@@ -8,19 +8,17 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_centerHorizontal="true">
-
-    <TextView
-        android:id="@+id/tvEmailCliente"
-        android:layout_width="250dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/tvNomeCliente">
-    </TextView>
-
-    <TextView
-        android:id="@+id/tvNomeCliente"
-        android:layout_width="250dp"
-        android:layout_height="wrap_content">
-    </TextView>
+        <TextView
+            android:id="@+id/tvEmailCliente"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvNomeCliente">
+        </TextView>
+        <TextView
+            android:id="@+id/tvNomeCliente"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content">
+        </TextView>
     </RelativeLayout>
 
 
