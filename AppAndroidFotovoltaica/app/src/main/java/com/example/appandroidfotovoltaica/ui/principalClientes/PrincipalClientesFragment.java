@@ -62,7 +62,8 @@ public class PrincipalClientesFragment extends Fragment{
         fabNovoCliente = root.findViewById(R.id.fabNovoCliente);
         this.listaClientes = new ArrayList<Cliente>();
 
-        MyTask<Cliente[]> task = new MyTask<Cliente[]>(Cliente[].class);
+        MyTask task = new MyTask(Cliente[].class);
+        //MyTask<Cliente[]> task = new MyTask<Cliente[]>(Cliente[].class);
         task.execute(Enderecos.GET_CLIENTES);
         while(task.isTrabalhando()) ;
         for(Cliente c : (Cliente[]) task.getDados())

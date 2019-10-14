@@ -7,15 +7,15 @@ import com.example.appandroidfotovoltaica.ui.principalClientes.ClienteArrayAdapt
 
 import java.util.ArrayList;
 
-public class MyTask<T>
+public class MyTask
         extends AsyncTask<String, Void, Object>
 {
     private boolean trabalhando = true;
     private Object dados;
-    private final Class<T> TIPO_DADO;
+    private final Class<?> TIPO_DADO;
 
     public MyTask(
-            Class<T> tipoDado)
+            Class<?> tipoDado)
     {
             TIPO_DADO = tipoDado;
     }
