@@ -246,9 +246,7 @@ public class ArvoreBinaria<T extends Comparable<T>>
 
 	public boolean isVazia()
 	{
-		return 
-			this.raiz == null ||
-			this.raiz.removido;
+		return this.qtd <= 0;
 	}
 
 	public void adicionar(
