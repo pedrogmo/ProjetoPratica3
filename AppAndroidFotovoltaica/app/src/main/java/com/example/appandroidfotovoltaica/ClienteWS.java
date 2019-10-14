@@ -36,7 +36,7 @@ public class ClienteWS
         connection.setRequestMethod("GET");
         connection.setConnectTimeout(15000);
 
-        //connection.setRequestProperty("login", "seulogin");
+        //connection.setRequestProperty("Login", "seulogin");
         //connection.setRequestProperty("senha", "suasenha");
         connection.connect();
 
@@ -64,7 +64,7 @@ public class ClienteWS
             connection.setDoOutput(true);
             connection.setUseCaches(false);
 	        connection.setConnectTimeout(15000);
-            //connection.setRequestProperty("login", "seulogin");
+            //connection.setRequestProperty("Login", "seulogin");
             //connection.setRequestProperty("senha", "suasenha");
             connection.setRequestProperty("Content-Type", "application/json");
             connection.setRequestProperty("Accept", "application/json");

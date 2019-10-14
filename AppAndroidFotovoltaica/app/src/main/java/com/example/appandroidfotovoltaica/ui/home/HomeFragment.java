@@ -35,7 +35,6 @@ public class HomeFragment extends Fragment {
     private HomeViewModel homeViewModel;
     private int indiceMes = 0;
     private ValorMensalEnergia valoresMensaisEnergia[];
-    Toolbar toolbar;
     TextView tvNumeroPlacas, tvInversor, tvInversorMais, tvInversorMenos, tvMes;
     EditText etIrradiacao, etMedia, etWatts;
     RadioGroup rgMedia;
@@ -48,6 +47,7 @@ public class HomeFragment extends Fragment {
         homeViewModel =
                 ViewModelProviders.of(this).get(HomeViewModel.class);
         View root = inflater.inflate(R.layout.fragment_calculadora, container, false);
+
         valoresMensaisEnergia = new ValorMensalEnergia[12];
         for (int i = 0; i < valoresMensaisEnergia.length; i++)
         {
