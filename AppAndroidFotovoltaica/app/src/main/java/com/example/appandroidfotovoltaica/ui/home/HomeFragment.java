@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
@@ -19,6 +21,7 @@ import android.widget.Toast;
 import android.widget.Toolbar;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 
@@ -44,9 +47,12 @@ public class HomeFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
+
+        
         homeViewModel =
                 ViewModelProviders.of(this).get(HomeViewModel.class);
         View root = inflater.inflate(R.layout.fragment_calculadora, container, false);
+
 
         valoresMensaisEnergia = new ValorMensalEnergia[12];
         for (int i = 0; i < valoresMensaisEnergia.length; i++)
@@ -187,6 +193,12 @@ public class HomeFragment extends Fragment {
         });
 
         return root;
+    }
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        setHasOptionsMenu(true);
+        inflater.inflate(R.menu.activity_main_drawer, menu);
+        super.onCreateOptionsMenu(menu,inflater);
     }
 
     private void limpar() {
