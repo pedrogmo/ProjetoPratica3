@@ -11,6 +11,7 @@ import android.widget.Button;
 import com.example.appandroidfotovoltaica.R;
 import com.example.appandroidfotovoltaica.ui.adicionarcliente.AdicionarClienteFragment;
 import com.example.appandroidfotovoltaica.ui.home.HomeFragment;
+import com.example.appandroidfotovoltaica.ui.principalClientes.PrincipalClientesFragment;
 
 public class Login extends AppCompatActivity {
 
@@ -26,6 +27,7 @@ public class Login extends AppCompatActivity {
                 fragmentTransaction.replace(R.id.activity_login, new HomeFragment());
                 fragmentTransaction.commit();
                 btnLogar.setVisibility(View.INVISIBLE);
+
 
             }
         });
