@@ -6,6 +6,7 @@ import com.example.appandroidfotovoltaica.ui.principalClientes.PrincipalClientes
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
+import android.view.MenuItem;
 import android.view.View;
 
 import androidx.fragment.app.Fragment;
@@ -23,6 +24,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.view.Menu;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
