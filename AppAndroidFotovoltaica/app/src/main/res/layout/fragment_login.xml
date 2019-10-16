@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/fragment_login"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    <EditText
+        android:id="@+id/etNomeLogin"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="100dp"
+        android:hint="Nome"></EditText>
+    <EditText
+        android:id="@+id/etSenha"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_below="@+id/etNomeLogin"
+        android:layout_centerHorizontal="true"
+        android:hint="Senha"></EditText>
+    <Button
+        android:id="@+id/btnLogar"
+        android:layout_width="100dp"
+        android:layout_height="60dp"
+        android:layout_below="@id/etSenha"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:text="Logar"></Button>
+    <TextView
+        android:id="@+id/tvCadastrarLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_toRightOf="@+id/btnLogar"
+        android:layout_below="@+id/etSenha"
+        android:layout_marginLeft="30dp"
+        android:text="Cadastrar-se"
+        android:layout_marginTop="60dp"></TextView>
+    </RelativeLayout>
+
+</FrameLayout>
