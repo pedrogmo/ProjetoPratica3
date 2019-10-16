@@ -88,6 +88,7 @@ public class AdicionarClienteFragment extends Fragment {
                             getActivity().getApplicationContext(),
                             "Digite os dados corretamente",
                             Toast.LENGTH_SHORT).show();
+                    return;
                 }
 
                 HashMap<String, String> params = new HashMap<String,String>();
