@@ -14,6 +14,7 @@ public class Cliente
     private String telefone;
     private String cpf;
     private String data;
+    private int codEmpresa;
 
     public Cliente()
     {
@@ -23,6 +24,7 @@ public class Cliente
         this.telefone = "";
         this.cpf = "";
         this.data = "";
+        this.codEmpresa = 0;
     }
 
     public Cliente(
@@ -31,7 +33,8 @@ public class Cliente
         String email,
         String telefone,
         String cpf,
-        String data) throws Exception
+        String data,
+        int codEmpresa) throws Exception
     {
         this.setCodigo(codigo);
         this.setNome(nome);
@@ -39,6 +42,7 @@ public class Cliente
         this.setTelefone(telefone);
         this.setCpf(cpf);
         this.setData(data);
+        this.setCodEmpresa(codEmpresa);
     }
 
     public Cliente(
@@ -50,6 +54,7 @@ public class Cliente
         this.telefone = "";
         this.cpf = "";
         this.data = "";
+        this.codEmpresa = 0;
     }
 
     public Cliente(
@@ -63,6 +68,7 @@ public class Cliente
         this.telefone = modelo.telefone;
         this.cpf = modelo.cpf;
         this.data = modelo.data;
+        this.codEmpresa = modelo.codEmpresa;
     }
 
     public int getCodigo()
@@ -143,6 +149,19 @@ public class Cliente
         this.data = data;
     }
 
+    public int getCodEmpresa()
+    {
+        return this.codEmpresa;
+    }
+
+    public void setCodEmpresa(
+            int codEmpresa) throws Exception
+    {
+        if (codEmpresa < 0)
+            throw new IllegalArgumentException("Cliente - setCodEmpresa: codigo negativo");
+        this.codEmpresa = codEmpresa;
+    }
+
     public String toString()
     {
         return this.codigo + " " + this.email;
@@ -157,6 +176,7 @@ public class Cliente
         ret = ret * 2 + this.telefone.hashCode();
         ret = ret * 2 + this.cpf.hashCode();
         ret = ret * 2 + this.data.hashCode();
+        ret = ret * 2 + new Integer(this.codEmpresa).hashCode();
         return ret;
     }
 
@@ -183,6 +203,8 @@ public class Cliente
         if (!this.cpf.equals(c.cpf))
             return false;
         if (!this.data.equals(c.data))
+            return false;
+        if (this.codEmpresa != c.codEmpresa)
             return false;
 
         return true;
