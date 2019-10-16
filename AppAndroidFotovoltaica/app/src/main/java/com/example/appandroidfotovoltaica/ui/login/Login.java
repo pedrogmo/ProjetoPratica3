@@ -12,15 +12,18 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.example.appandroidfotovoltaica.R;
 import com.example.appandroidfotovoltaica.ui.adicionarcliente.AdicionarClienteFragment;
 import com.example.appandroidfotovoltaica.ui.home.HomeFragment;
 import com.example.appandroidfotovoltaica.ui.home.HomeViewModel;
+import com.example.appandroidfotovoltaica.ui.login.cadastrar.Cadastrar;
 import com.example.appandroidfotovoltaica.ui.principalClientes.PrincipalClientesFragment;
 
 public class Login extends Fragment {
     private LoginViewModel loginViewModel;
+    private TextView tvCadastrarLogin;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -29,6 +32,16 @@ public class Login extends Fragment {
         loginViewModel =
                 ViewModelProviders.of(this).get(LoginViewModel.class);
         View root = inflater.inflate(R.layout.fragment_login, container, false);
+
+        tvCadastrarLogin = root.findViewById(R.id.tvCadastrarLogin);
+        tvCadastrarLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+                fragmentTransaction.replace(R.id.fragment_login, new Cadastrar());
+                fragmentTransaction.commit();
+            }
+        });
 
         final Button btnLogar = root.findViewById(R.id.btnLogar);
         btnLogar.setOnClickListener(new View.OnClickListener() {

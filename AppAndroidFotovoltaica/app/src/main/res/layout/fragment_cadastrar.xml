@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:id="@+id/fragment_cadastrar"
+    android:background="@android:color/white">
+    <TextView
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:text="ALO"
+        android:textSize="24dp"
+        android:textAlignment="center"
+        android:layout_marginTop="200dp"
+        ></TextView>
+
+</FrameLayout>

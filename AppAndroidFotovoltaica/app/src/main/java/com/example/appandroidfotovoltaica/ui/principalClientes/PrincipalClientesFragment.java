@@ -45,7 +45,7 @@ public class PrincipalClientesFragment extends Fragment {
         fabNovoCliente = root.findViewById(R.id.fabNovoCliente);
         this.listaClientes = new ArrayList<Cliente>();
 
-        try {
+
             MyTask task = new MyTask(Cliente[].class);
             //MyTask<Cliente[]> task = new MyTask<Cliente[]>(Cliente[].class);
             task.execute(Enderecos.GET_CLIENTES);
@@ -56,10 +56,7 @@ public class PrincipalClientesFragment extends Fragment {
             this.lvListaClientes.setAdapter(new ClienteArrayAdapter(
                     getActivity().getApplicationContext(), this.listaClientes
             ));
-        }
-        catch(Exception e){
-            Toast.makeText(getActivity().getApplicationContext(), "Falha ao Buscar clientes", Toast.LENGTH_SHORT);
-        }
+
         fabNovoCliente.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
