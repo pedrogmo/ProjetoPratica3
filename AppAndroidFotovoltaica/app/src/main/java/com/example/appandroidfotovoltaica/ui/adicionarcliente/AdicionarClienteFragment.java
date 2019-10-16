@@ -80,7 +80,7 @@ public class AdicionarClienteFragment extends Fragment {
 
                 try
                 {
-                    Cliente c = new Cliente(0, nome, email, telefone, cpf, data);
+                    Cliente c = new Cliente(0, nome, email, telefone, cpf, data, 2);
                 }
                 catch(Exception exc)
                 {
@@ -128,6 +128,7 @@ public class AdicionarClienteFragment extends Fragment {
                         params.put("telefone", telefone);
                         params.put("data", data);
                         params.put("cpf", cpf);
+                        params.put("codEmpresa", "2");
                         return params;
                     }
                 };

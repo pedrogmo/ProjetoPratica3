@@ -71,8 +71,9 @@ rota.post('/insert_usuario', (requisicao, resposta) => {
 
 //ROTAS CLIENTE
 
-rota.get('/clientes', (requisicao, resposta) => {
-	execSQL('SELECT * FROM ClienteSol', resposta);
+rota.get('/clientes/:codEmpresa', (requisicao, resposta) => {
+	const codEmpresa = parseInt(requisicao.params.codEmpresa);
+	execSQL('SELECT * FROM ClienteSol WHERE CODEMPRESA = ${codEmpresa}', resposta);
 })
 
 rota.get('/clientes/:codigo', (requisicao, resposta) => {
@@ -105,6 +106,7 @@ rota.post('/insert_cliente', (requisicao, resposta) => {
 	const telefone = requisicao.body.telefone;
 	const data = requisicao.body.data;
 	const cpf = requisicao.body.cpf;
-	const comando = `INSERT INTO ClienteSol VALUES('${email}', '${nome}', '${telefone}', '${data}', '${cpf}')`;
+	const codEmpresa = requisicao.body.codEmpresa;
+	const comando = `INSERT INTO ClienteSol VALUES('${email}', '${nome}', '${telefone}', '${data}', '${cpf}', ${codEmpresa})`;
 	execSQL(comando, resposta);
 })

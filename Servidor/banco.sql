@@ -29,7 +29,10 @@ create table ClienteSol(
 
 	cpf char(14) not null
 	constraint chkCpf check(cpf like 
-		'[0-9][0-9][0-9].[0-9][0-9][0-9].[0-9][0-9][0-9]-[0-9][0-9]')
+		'[0-9][0-9][0-9].[0-9][0-9][0-9].[0-9][0-9][0-9]-[0-9][0-9]'),
+
+	codEmpresa int not null
+	constraint fkClienteEmpresa foreign key(codEmpresa) references EmpresaSol(codigo)
 )
 
 insert into EmpresaSol values('PuroAr', '07.893.913/0001-23')

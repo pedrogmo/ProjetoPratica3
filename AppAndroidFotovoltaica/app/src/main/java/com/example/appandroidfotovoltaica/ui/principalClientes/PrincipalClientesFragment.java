@@ -48,7 +48,7 @@ public class PrincipalClientesFragment extends Fragment {
 
             MyTask task = new MyTask(Cliente[].class);
             //MyTask<Cliente[]> task = new MyTask<Cliente[]>(Cliente[].class);
-            task.execute(Enderecos.GET_CLIENTES);
+            task.execute(Enderecos.GET_CLIENTES + "/2");
             while (task.isTrabalhando()) ;
             for (Cliente c : (Cliente[]) task.getDados())
                 this.listaClientes.add(c);
