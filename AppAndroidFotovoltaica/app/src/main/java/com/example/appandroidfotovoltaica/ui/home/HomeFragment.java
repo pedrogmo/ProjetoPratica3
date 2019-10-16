@@ -22,7 +22,6 @@ import android.widget.Toolbar;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
-import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 
@@ -30,7 +29,6 @@ import com.example.appandroidfotovoltaica.CalculadoraFotoVoltaica;
 
 import com.example.appandroidfotovoltaica.R;
 import com.example.appandroidfotovoltaica.ValorMensalEnergia;
-import com.google.android.material.navigation.NavigationView;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -54,7 +52,6 @@ public class HomeFragment extends Fragment {
         homeViewModel =
                 ViewModelProviders.of(this).get(HomeViewModel.class);
         View root = inflater.inflate(R.layout.fragment_calculadora, container, false);
-
 
 
         valoresMensaisEnergia = new ValorMensalEnergia[12];
