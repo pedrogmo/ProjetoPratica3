@@ -96,6 +96,7 @@ public class ClienteIndividualFragment extends Fragment {
                             getActivity().getApplicationContext(),
                             exc.getMessage(),
                             Toast.LENGTH_SHORT).show();
+                    return;
                 }
 
                 StringRequest putRequest = new StringRequest(

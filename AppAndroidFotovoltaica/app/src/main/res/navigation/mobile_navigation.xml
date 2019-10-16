@@ -20,7 +20,7 @@
         android:id="@+id/nav_clientes"
         android:name="com.example.appandroidfotovoltaica.ui.principalClientes.PrincipalClientesFragment"
         android:label="@string/menu_clientes"
-        tools:layout="@layout/fragment_principalClientes" />
+        tools:layout="@layout/fragment_principalclientes" />
     <fragment
         android:id="@+id/nav_produtos"
         android:name="com.example.appandroidfotovoltaica.ui.produtos.ProdutosFragment"

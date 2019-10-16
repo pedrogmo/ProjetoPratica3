@@ -1,145 +1,85 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
+<ScrollView android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/white">
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:fillViewport="true"
-        android:layout_centerHorizontal="true">
+    android:fillViewport="true"
+    android:layout_centerHorizontal="true"
+    android:background="@android:color/white"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
         <LinearLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            tools:context=".ui.adicionarcliente.AdicionarClienteFragment"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="20dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Email: " />
+
+        <EditText
+            android:id="@+id/etEmailCliente"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Nome: " />
+
+        <EditText
+            android:id="@+id/etNomeCliente"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Telefone: " />
+
+        <EditText
+            android:id="@+id/etTelefoneCliente"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:layout_marginBottom="10dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Data: " />
+
+        <EditText
+            android:id="@+id/etDataNascimentoCliente"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="date"
+            android:hint="dd/mm/aaaa"
+            android:layout_marginBottom="10dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Cpf: " />
+
+        <EditText
+            android:id="@+id/etCpfCliente"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"/>
+
+        <Button
+            android:id="@+id/btnAdicionarCliente"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:orientation="vertical"
-            android:layout_gravity="center"
-            android:layout_marginTop="250dp">
-            <RelativeLayout
-                android:id="@+id/campoNomeCliente"
-                android:layout_width="350dp"
-                android:layout_height="150dp"
-                android:background="@drawable/retangulo">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Nome do cliente"
-                    android:layout_marginTop="20dp"
-                    android:textSize="24dp"
-                    android:layout_centerHorizontal="true"></TextView>
-                <EditText
-                    android:id="@+id/etNomeCliente"
-                    android:layout_width="300dp"
-                    android:layout_height="wrap_content"
-                    android:hint="Nome"
-                    android:layout_marginTop="80dp"
-                    android:layout_centerHorizontal="true"
-                    ></EditText>
-            </RelativeLayout>
+            android:text="Adiconar"
+            android:layout_gravity="center_horizontal"/>
 
-            <RelativeLayout
-                android:id="@+id/campoDataNascimentoCliente"
-                android:layout_width="350dp"
-                android:layout_height="150dp"
-                android:layout_marginTop="30dp"
-                android:background="@drawable/retangulo">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Data de nascimento"
-                    android:layout_marginTop="20dp"
-                    android:textSize="24dp"
-                    android:layout_centerHorizontal="true"></TextView>
-                <EditText
-                    android:id="@+id/etDataNascimentoCliente"
-                    android:layout_width="300dp"
-                    android:layout_height="wrap_content"
-                    android:hint="dd/mm/aaaa"
-                    android:inputType="date"
-                    android:layout_marginTop="80dp"
-                    android:layout_centerHorizontal="true"
-                    ></EditText>
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:id="@+id/campoEmailCliente"
-                android:layout_width="350dp"
-                android:layout_height="150dp"
-                android:layout_marginTop="30dp"
-                android:background="@drawable/retangulo">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Email do cliente"
-                    android:layout_marginTop="20dp"
-                    android:textSize="24dp"
-                    android:layout_centerHorizontal="true"></TextView>
-                <EditText
-                    android:id="@+id/etEmailCliente"
-                    android:layout_width="300dp"
-                    android:layout_height="wrap_content"
-                    android:hint="Email do cliente"
-                    android:layout_marginTop="80dp"
-                    android:layout_centerHorizontal="true"
-                    ></EditText>
-            </RelativeLayout>
-            <RelativeLayout
-                android:id="@+id/campoTelefoneCliente"
-                android:layout_width="350dp"
-                android:layout_height="150dp"
-                android:layout_marginTop="30dp"
-                android:background="@drawable/retangulo">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Telefone do cliente"
-                    android:layout_marginTop="20dp"
-                    android:textSize="24dp"
-                    android:layout_centerHorizontal="true"></TextView>
-                <EditText
-                    android:id="@+id/etTelefoneCliente"
-                    android:layout_width="300dp"
-                    android:layout_height="wrap_content"
-                    android:hint="Telefone"
-                    android:inputType="number"
-                    android:layout_marginTop="80dp"
-                    android:layout_centerHorizontal="true"
-                    ></EditText>
-            </RelativeLayout>
-            <RelativeLayout
-                android:id="@+id/campoCpfCliente"
-                android:layout_width="350dp"
-                android:layout_height="150dp"
-                android:layout_marginTop="30dp"
-                android:background="@drawable/retangulo">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="CPF do cliente"
-                    android:layout_marginTop="20dp"
-                    android:textSize="24dp"
-                    android:layout_centerHorizontal="true"></TextView>
-                <EditText
-                    android:id="@+id/etCpfCliente"
-                    android:layout_width="300dp"
-                    android:layout_height="wrap_content"
-                    android:hint="CPF"
-                    android:layout_marginTop="80dp"
-                    android:layout_centerHorizontal="true"
-                    ></EditText>
-            </RelativeLayout>
-            <Button
-                android:id="@+id/btnAdicionarCliente"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:text="Adicionar"
-                android:layout_gravity="center"></Button>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="100dp"></TextView>
-        </LinearLayout>
-    </ScrollView>
-
-</RelativeLayout>
+    </LinearLayout>
+</ScrollView>
