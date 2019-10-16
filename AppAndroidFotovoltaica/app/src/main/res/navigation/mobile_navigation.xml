@@ -20,7 +20,7 @@
         android:id="@+id/nav_clientes"
         android:name="com.example.appandroidfotovoltaica.ui.principalClientes.PrincipalClientesFragment"
         android:label="@string/menu_clientes"
-        tools:layout="@layout/fragment_clientes" />
+        tools:layout="@layout/fragment_principalClientes" />
     <fragment
         android:id="@+id/nav_produtos"
         android:name="com.example.appandroidfotovoltaica.ui.produtos.ProdutosFragment"
@@ -32,11 +32,6 @@
         android:name="com.example.appandroidfotovoltaica.ui.propostas.SlideshowFragment"
         android:label="@string/menu_propostas"
         tools:layout="@layout/fragment_slideshow" />
-    <fragment
-        android:id="@+id/nav_share"
-        android:name="com.example.appandroidfotovoltaica.ui.share.ShareFragment"
-        android:label="@string/menu_share"
-        tools:layout="@layout/fragment_propostas" />
 
     <fragment
         android:id="@+id/nav_send"
