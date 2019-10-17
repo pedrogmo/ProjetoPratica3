@@ -65,4 +65,12 @@ public class Verificadora
             return false;
         return data.matches("[0-3][0-9]/[0-1][0-9]/[0-9][0-9][0-9][0-9]");
     }
+
+    public static boolean isCnpjValido(
+        String cnpj)
+    {
+        if (cnpj == null)
+            return false;
+        return cnpj.matches("[0-9][0-9].[0-9][0-9][0-9].[0-9][0-9][0-9]/[0-9][0-9][0-9][0-9]-[0-9][0-9]");
+    }
 }

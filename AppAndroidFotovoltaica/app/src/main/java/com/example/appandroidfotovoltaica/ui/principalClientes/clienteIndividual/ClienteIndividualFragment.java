@@ -104,7 +104,8 @@ public class ClienteIndividualFragment extends Fragment {
                 task.execute(Enderecos.GET_CLIENTES + "_email/" + email);
                 while (task.isTrabalhando()) ;
                 Cliente[] resultClientes = (Cliente[]) task.getDados();
-                if (resultClientes.length > 0)
+                if (resultClientes.length > 0 &&
+                    !resultClientes[0].equals(clienteAtual))
                 {
                     Toast.makeText(
                             getActivity().getApplicationContext(),
