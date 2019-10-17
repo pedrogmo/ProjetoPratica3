@@ -48,6 +48,12 @@ rota.get('/usuarios/:codigo', (requisicao, resposta) => {
 	execSQL(`SELECT * FROM UsuarioSol WHERE CODIGO = ${codigo}`, resposta);
 })
 
+
+rota.get('/usuarios_email/:email', (requisicao, resposta) => {
+	const email = requisicao.params.email;
+	execSQL(`SELECT * FROM UsuarioSol WHERE EMAIL = '${email}'`, resposta);
+})
+
 rota.delete('/delete_usuario/:codigo', (requisicao, resposta) => {
 	const codigo = parseInt(requisicao.params.codigo);
 	execSQL(`DELETE UsuarioSol WHERE CODIGO = ${codigo}`, resposta);
