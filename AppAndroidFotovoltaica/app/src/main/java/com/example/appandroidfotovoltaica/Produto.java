@@ -64,9 +64,9 @@ public class Produto
 		String pNome) throws Exception
 	{
 		if (pNome == null)
-			throw new NullPointerException("Produto - setNome : nome nulo");
+			throw new NullPointerException("Nome do produto ausente");
 		if (pNome.equals(""))
-			throw new IllegalArgumentException("Produto - setNome : nome vazio");
+			throw new IllegalArgumentException("Digite o nome do produto");
 		this.nome = pNome;
 	}
 
@@ -79,7 +79,7 @@ public class Produto
 		float pPreco)
 	{
 		if (pPreco <= 0)
-			throw new IllegalArgumentException("Produto - setPreco : preco negativo");
+			throw new IllegalArgumentException("Preço do produto negativo");
 		this.preco = pPreco;
 	}
 
@@ -92,9 +92,9 @@ public class Produto
 		String pDescricao) throws Exception
 	{
 		if (pDescricao == null)
-			throw new NullPointerException("Produto - setDescricao : descricao nula");
+			throw new NullPointerException("Descrição do produto ausente");
 		if (pDescricao.equals(""))
-			throw new IllegalArgumentException("Produto - setDescricao : descricao vazia");
+			throw new IllegalArgumentException("Digite a descrição do produto");
 		this.descricao = pDescricao;
 	}
 

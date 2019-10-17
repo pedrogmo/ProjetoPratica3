@@ -2,8 +2,18 @@ package com.example.appandroidfotovoltaica;
 
 public class Enderecos
 {
-    public static final String POST_CLIENTE = "http://177.220.18.81:3000/insert_cliente";
-    public static final String GET_CLIENTES = "http://177.220.18.81:3000/clientes";
-    public static final String PATCH_CLIENTES = "http://177.220.18.81:3000/update_cliente";
-    public static final String DELETE_CLIENTES = "http://177.220.18.81:3000/delete_cliente";
+    private static final String IP_PORTA = "http://192.168.0.16:3000/";
+
+    public static final String POST_CLIENTES = IP_PORTA + "insert_cliente";
+    public static final String GET_CLIENTES = IP_PORTA + "clientes";
+    public static final String PATCH_CLIENTES = IP_PORTA + "update_cliente";
+    public static final String DELETE_CLIENTES = IP_PORTA + "delete_cliente";
+
+    public static final String POST_USUARIOS = IP_PORTA + "insert_usuario";
+    public static final String GET_USUARIOS = IP_PORTA + "usuarios";
+    public static final String PATCH_USUARIOS = IP_PORTA + "update_usuario";
+    public static final String DELETE_USUARIOS = IP_PORTA + "delete_usuario";
+
+    public static final String POST_EMPRESAS = IP_PORTA + "insert_empresa";
+    public static final String GET_EMPRESAS = IP_PORTA + "empresas";
 }

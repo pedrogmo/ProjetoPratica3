@@ -37,7 +37,7 @@ function execSQL(sql, resposta) {
 	.catch(erro => resposta.json(erro)); 
 }
 
-//ROTAS USUARIOSOL
+//ROTAS USUARIO
 
 rota.get('/usuarios', (requisicao, resposta) => {
 	execSQL('SELECT * FROM UsuarioSol', resposta);
@@ -73,12 +73,12 @@ rota.post('/insert_usuario', (requisicao, resposta) => {
 
 rota.get('/clientes/:codEmpresa', (requisicao, resposta) => {
 	const codEmpresa = parseInt(requisicao.params.codEmpresa);
-	execSQL('SELECT * FROM ClienteSol WHERE CODEMPRESA = ${codEmpresa}', resposta);
+	execSQL(`SELECT * FROM ClienteSol WHERE CODEMPRESA = ${codEmpresa}`, resposta);
 })
 
-rota.get('/clientes/:codigo', (requisicao, resposta) => {
-	const codigo = parseInt(requisicao.params.codigo);
-	execSQL(`SELECT * FROM ClienteSol WHERE CODIGO = ${codigo}`, resposta);
+rota.get('/clientes_email/:email', (requisicao, resposta) => {
+	const email = requisicao.params.email;
+	execSQL(`SELECT * FROM ClienteSol WHERE EMAIL = '${email}'`, resposta);
 })
 
 rota.delete('/delete_cliente/:codigo', (requisicao, resposta) => {
@@ -109,4 +109,16 @@ rota.post('/insert_cliente', (requisicao, resposta) => {
 	const codEmpresa = requisicao.body.codEmpresa;
 	const comando = `INSERT INTO ClienteSol VALUES('${email}', '${nome}', '${telefone}', '${data}', '${cpf}', ${codEmpresa})`;
 	execSQL(comando, resposta);
+})
+
+//ROTAS EMPRESA
+
+rota.get('/empresas', (requisicao, resposta) => {
+	execSQL('SELECT * FROM EmpresaSol', resposta);
+})
+
+rota.post('/insert_empresa', (requisicao, resposta) => {
+	const nome = requisicao.body.nome;
+	const cnpj = requisicao.body.cnpj;
+	execSQL(`INSERT INTO EmpresaSol VALUES('${nome}', '${cnpj}')`, resposta);
 })

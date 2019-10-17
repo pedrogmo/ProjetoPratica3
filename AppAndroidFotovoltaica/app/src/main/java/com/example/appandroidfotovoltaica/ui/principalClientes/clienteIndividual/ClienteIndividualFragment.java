@@ -25,6 +25,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.appandroidfotovoltaica.Cliente;
 import com.example.appandroidfotovoltaica.Enderecos;
+import com.example.appandroidfotovoltaica.MyTask;
 import com.example.appandroidfotovoltaica.R;
 
 import java.util.HashMap;
@@ -88,13 +89,26 @@ public class ClienteIndividualFragment extends Fragment {
 
                 try
                 {
-                    Cliente c = new Cliente(0, nome, email, telefone, cpf, data);
+                    Cliente c = new Cliente(0, nome, email, telefone, cpf, data, 2);
                 }
                 catch(Exception exc)
                 {
                     Toast.makeText(
                             getActivity().getApplicationContext(),
                             exc.getMessage(),
+                            Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                MyTask task = new MyTask(Cliente[].class);
+                task.execute(Enderecos.GET_CLIENTES + "_email/" + email);
+                while (task.isTrabalhando()) ;
+                Cliente[] resultClientes = (Cliente[]) task.getDados();
+                if (resultClientes.length > 0)
+                {
+                    Toast.makeText(
+                            getActivity().getApplicationContext(),
+                            "Email já cadastrado",
                             Toast.LENGTH_SHORT).show();
                     return;
                 }

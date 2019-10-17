@@ -46,16 +46,15 @@ public class PrincipalClientesFragment extends Fragment {
         this.listaClientes = new ArrayList<Cliente>();
 
 
-            MyTask task = new MyTask(Cliente[].class);
-            //MyTask<Cliente[]> task = new MyTask<Cliente[]>(Cliente[].class);
-            task.execute(Enderecos.GET_CLIENTES + "/2");
-            while (task.isTrabalhando()) ;
-            for (Cliente c : (Cliente[]) task.getDados())
-                this.listaClientes.add(c);
+        MyTask task = new MyTask(Cliente[].class);
+        task.execute(Enderecos.GET_CLIENTES + "/2");
+        while (task.isTrabalhando()) ;
+        for (Cliente c : (Cliente[]) task.getDados())
+            this.listaClientes.add(c);
 
-            this.lvListaClientes.setAdapter(new ClienteArrayAdapter(
-                    getActivity().getApplicationContext(), this.listaClientes
-            ));
+        this.lvListaClientes.setAdapter(new ClienteArrayAdapter(
+                getActivity().getApplicationContext(), this.listaClientes
+        ));
 
         fabNovoCliente.setOnClickListener(new View.OnClickListener() {
             @Override

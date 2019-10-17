@@ -12,8 +12,8 @@ public class Verificadora
         if (nome.length() <= 0)
             return false;
 
-        for (int i = 0; i < nome.length(); i++)
-            if (!Character.isLetter(nome.charAt(i)))
+        for(char c : nome.toCharArray())
+            if (!Character.isLetter(c) &&  c != ' ')
                 return false;
 
         return true;
@@ -51,9 +51,18 @@ public class Verificadora
     public static boolean isCpfValido(
         String cpf)
     {
+        if (cpf == null)
+            return false;
         if(!cpf.matches("[0-9]{3}[.]?[0-9]{3}[.]?[0-9]{3}[-]?[0-9]{2}"))
             return false;
         return true;
     }
 
+    public static boolean isDataValida(
+        String data)
+    {
+        if (data == null)
+            return false;
+        return data.matches("[0-3][0-9]/[0-1][0-9]/[0-9][0-9][0-9][0-9]");
+    }
 }

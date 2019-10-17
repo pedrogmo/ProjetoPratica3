@@ -93,7 +93,7 @@ public class Cliente
         String nome) throws Exception
     {
         if (!Verificadora.isNomeValido(nome))
-            throw new Exception("Cliente - setNome: nome inválido");
+            throw new Exception("Nome do cliente inválido");
         this.nome = nome;
     }
 
@@ -106,7 +106,7 @@ public class Cliente
         String email) throws Exception
     {
         if (!Verificadora.isEmailValido(email))
-            throw new Exception("Cliente - setEmail: email inválido");
+            throw new Exception("Email do cliente inválido");
         this.email = email;
     }
 
@@ -119,7 +119,7 @@ public class Cliente
         String telefone) throws Exception
     {
         if (!Verificadora.isTelefoneValido(telefone))
-            throw new Exception("Cliente - setTelefone: telefone inválido");
+            throw new Exception("Telefone do cliente inválido");
         this.telefone = telefone;
     }
 
@@ -132,7 +132,7 @@ public class Cliente
         String cpf) throws Exception
     {
         if (!Verificadora.isCpfValido(cpf))
-            throw new Exception("Cliente - setCpf: cpf inválido");
+            throw new Exception("Cpf do cliente inválido");
         this.cpf = cpf;
     }
 
@@ -144,8 +144,8 @@ public class Cliente
     public void setData(
         String data) throws Exception
     {
-        if (data == null || data.equals(""))
-            throw new Exception("Cliente - setData: data ausente");
+        if(!Verificadora.isDataValida(data))
+            throw new Exception("Data do cliente inválida");
         this.data = data;
     }
 

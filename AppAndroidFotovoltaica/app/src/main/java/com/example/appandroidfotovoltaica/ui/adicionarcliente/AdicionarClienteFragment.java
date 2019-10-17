@@ -23,6 +23,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.appandroidfotovoltaica.MyTask;
 import com.example.appandroidfotovoltaica.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -86,16 +87,30 @@ public class AdicionarClienteFragment extends Fragment {
                 {
                     Toast.makeText(
                             getActivity().getApplicationContext(),
-                            "Digite os dados corretamente",
+                            exc.getMessage(),
                             Toast.LENGTH_SHORT).show();
                     return;
                 }
+
+                MyTask task = new MyTask(Cliente[].class);
+                task.execute(Enderecos.GET_CLIENTES + "_email/" + email);
+                while (task.isTrabalhando()) ;
+                Cliente[] resultClientes = (Cliente[]) task.getDados();
+                if (resultClientes.length > 0)
+                {
+                    Toast.makeText(
+                            getActivity().getApplicationContext(),
+                            "Email já cadastrado",
+                            Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
 
                 HashMap<String, String> params = new HashMap<String,String>();
 
                 StringRequest postRequest = new StringRequest(
                         Request.Method.POST,
-                        Enderecos.POST_CLIENTE,
+                        Enderecos.POST_CLIENTES,
                         new Response.Listener<String>()
                         {
                             @Override

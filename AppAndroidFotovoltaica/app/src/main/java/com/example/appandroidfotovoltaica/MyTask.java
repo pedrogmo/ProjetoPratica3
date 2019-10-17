@@ -39,7 +39,7 @@ public class MyTask
             this.dados = resultado;
         }
         catch(Exception exc){
-            Log.d("MSG", "ERRO");
+            Log.d("ERRO", exc.getMessage());
         }
         return resultado;
     }

@@ -78,7 +78,7 @@ public class Usuario
 		String email) throws Exception
 	{
 		if (!Verificadora.isEmailValido(email))
-            throw new Exception("Usuario - setEmail: email invalido");
+            throw new Exception("Email de usuário inválido");
 		this.email = email;
 	}
 	
@@ -91,7 +91,7 @@ public class Usuario
 		String nome) throws Exception
 	{
 		if (!Verificadora.isNomeValido(nome))
-            throw new Exception("Usuario - setNome: nome invalido");
+            throw new Exception("Nome de usuário inválido");
 		this.nome = nome;
 	}
 	
@@ -104,9 +104,9 @@ public class Usuario
 		String senha) throws Exception
 	{
 		if (senha == null)
-			throw new NullPointerException("Usuario - setSenha: senha ausente");
+			throw new NullPointerException("Senha de usuário ausente");
 		if (senha.equals(""))
-			throw new IllegalArgumentException("Usuario - setSenha: senha inv�lido");
+			throw new IllegalArgumentException("Digite a senha de usuário");
 		this.senha = senha;
 	}
 
