@@ -1,4 +1,8 @@
 import java.io.*;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.pdf.PdfWriter;
 
 public class Main
 {
@@ -8,10 +12,7 @@ public class Main
 		try
 		{
 			BufferedReader teclado = new BufferedReader(
-				new InputStreamReader(
-					System.in));
-
-			
+				new InputStreamReader(System.in));
 		}
 		catch(Exception exc)
 		{
