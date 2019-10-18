@@ -46,4 +46,27 @@ create table ClienteSol(
 )
 
 insert into EmpresaSol values('PuroAr', '07.893.913/0001-23')
-insert into UsuarioSol values('gugahmeira@gmail.com', 'Gustavo Henrique de Meira', 'supermacho', 2)
+
+create table Modulo(
+	codigo int identity(1,1) primary key,
+	nome varchar(50) not null,
+	preco money not null,
+	descricao varchar(100) not null,
+	altura float not null,
+	largura float not null,
+	profundidade float not null,
+	peso float not null,
+	voltagem float not null
+)
+
+create table Inversor(
+	codigo int identity(1,1) primary key,
+	nome varchar(50) not null,
+	preco money not null,
+	descricao varchar(100) not null,
+	altura float not null,
+	largura float not null,
+	profundidade float not null,
+	peso float not null,
+	eficienciaMaxima float not null
+)
