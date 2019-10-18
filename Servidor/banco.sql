@@ -47,7 +47,7 @@ create table ClienteSol(
 
 insert into EmpresaSol values('PuroAr', '07.893.913/0001-23')
 
-create table Modulo(
+create table ModuloSol(
 	codigo int identity(1,1) primary key,
 	nome varchar(50) not null,
 	preco money not null,
@@ -59,7 +59,7 @@ create table Modulo(
 	voltagem float not null
 )
 
-create table Inversor(
+create table InversorSol(
 	codigo int identity(1,1) primary key,
 	nome varchar(50) not null,
 	preco money not null,

@@ -137,3 +137,40 @@ rota.post('/insert_empresa', (requisicao, resposta) => {
 	const cnpj = requisicao.body.cnpj;
 	execSQL(`INSERT INTO EmpresaSol VALUES('${nome}', '${cnpj}')`, resposta);
 })
+
+//ROTAS MODULO
+
+rota.get('/modulos/:codigo', (requisicao, resposta) => {
+	const codigo = parseInt(requisicao.params.codigo);
+	execSQL(`SELECT * FROM ModuloSol WHERE CODIGO = ${codigo}`, resposta);
+})
+
+rota.delete('/delete_modulo/:codigo', (requisicao, resposta) => {
+	const codigo = parseInt(requisicao.params.codigo);
+	execSQL(`DELETE ModuloSol WHERE CODIGO = ${codigo}`, resposta);
+})
+
+rota.patch('/update_modulo/:codigo', (requisicao, resposta) => {
+	const codigo = parseInt(requisicao.params.codigo);
+	const email = requisicao.body.email;
+	const nome = requisicao.body.nome;
+	const telefone = requisicao.body.telefone;
+	const data = requisicao.body.data;
+	const cpf = requisicao.body.cpf;
+	execSQL(`UPDATE ModuloSol SET email = '${email}' WHERE CODIGO = ${codigo}`, resposta);
+	execSQL(`UPDATE ModuloSol SET nome = '${nome}' WHERE CODIGO = ${codigo}`, resposta);
+	execSQL(`UPDATE ModuloSol SET telefone = '${telefone}' WHERE CODIGO = ${codigo}`, resposta);
+	execSQL(`UPDATE ModuloSol SET data = '${data}' WHERE CODIGO = ${codigo}`, resposta);
+	execSQL(`UPDATE ModuloSol SET cpf = '${cpf}' WHERE CODIGO = ${codigo}`, resposta);
+})
+
+rota.post('/insert_cliente', (requisicao, resposta) => {
+	const email = requisicao.body.email;
+	const nome = requisicao.body.nome;
+	const telefone = requisicao.body.telefone;
+	const data = requisicao.body.data;
+	const cpf = requisicao.body.cpf;
+	const codEmpresa = requisicao.body.codEmpresa;
+	const comando = `INSERT INTO ModuloSol VALUES('${email}', '${nome}', '${telefone}', '${data}', '${cpf}', ${codEmpresa})`;
+	execSQL(comando, resposta);
+})
