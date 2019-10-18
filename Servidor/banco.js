@@ -152,25 +152,48 @@ rota.delete('/delete_modulo/:codigo', (requisicao, resposta) => {
 
 rota.patch('/update_modulo/:codigo', (requisicao, resposta) => {
 	const codigo = parseInt(requisicao.params.codigo);
-	const email = requisicao.body.email;
-	const nome = requisicao.body.nome;
-	const telefone = requisicao.body.telefone;
-	const data = requisicao.body.data;
-	const cpf = requisicao.body.cpf;
-	execSQL(`UPDATE ModuloSol SET email = '${email}' WHERE CODIGO = ${codigo}`, resposta);
-	execSQL(`UPDATE ModuloSol SET nome = '${nome}' WHERE CODIGO = ${codigo}`, resposta);
-	execSQL(`UPDATE ModuloSol SET telefone = '${telefone}' WHERE CODIGO = ${codigo}`, resposta);
-	execSQL(`UPDATE ModuloSol SET data = '${data}' WHERE CODIGO = ${codigo}`, resposta);
-	execSQL(`UPDATE ModuloSol SET cpf = '${cpf}' WHERE CODIGO = ${codigo}`, resposta);
+	const preco = requisicao.body.preco;
+	execSQL(`UPDATE ModuloSol SET preco = '${preco}' WHERE CODIGO = ${codigo}`, resposta);
 })
 
-rota.post('/insert_cliente', (requisicao, resposta) => {
-	const email = requisicao.body.email;
+rota.post('/insert_modulo', (requisicao, resposta) => {
 	const nome = requisicao.body.nome;
-	const telefone = requisicao.body.telefone;
-	const data = requisicao.body.data;
-	const cpf = requisicao.body.cpf;
-	const codEmpresa = requisicao.body.codEmpresa;
-	const comando = `INSERT INTO ModuloSol VALUES('${email}', '${nome}', '${telefone}', '${data}', '${cpf}', ${codEmpresa})`;
-	execSQL(comando, resposta);
+	const preco = requisicao.body.preco;
+	const descricao = requisicao.body.descricao;
+	const altura = requisicao.body.altura;
+	const largura = requisicao.body.largura;
+	const profundidade = requisicao.body.profundidade;
+	const peso = requisicao.body.peso;
+	const voltagem = requisicao.body.voltagem;
+	execSQL(`INSERT INTO ModuloSol VALUES('${nome}', ${preco}, '${descricao}', ${altura}, ${largura}, ${profundidade}, ${peso}, ${voltagem})`, resposta);
+})
+
+//ROTAS INVERSOR
+
+rota.get('/inversores/:codigo', (requisicao, resposta) => {
+	const codigo = parseInt(requisicao.params.codigo);
+	execSQL(`SELECT * FROM InversorSol WHERE CODIGO = ${codigo}`, resposta);
+})
+
+rota.delete('/delete_inversor/:codigo', (requisicao, resposta) => {
+	const codigo = parseInt(requisicao.params.codigo);
+	execSQL(`DELETE InversorSol WHERE CODIGO = ${codigo}`, resposta);
+})
+
+rota.patch('/update_inversor/:codigo', (requisicao, resposta) => {
+	const codigo = parseInt(requisicao.params.codigo);
+	const preco = requisicao.body.preco;
+	execSQL(`UPDATE InversorSol SET preco = '${preco}' WHERE CODIGO = ${codigo}`, resposta);
+})
+
+rota.post('/insert_inversor', (requisicao, resposta) => {
+	const nome = requisicao.body.nome;
+	const preco = requisicao.body.preco;
+	const descricao = requisicao.body.descricao;
+	const altura = requisicao.body.altura;
+	const largura = requisicao.body.largura;
+	const profundidade = requisicao.body.profundidade;
+	const peso = requisicao.body.peso;
+	const eficienciaMaxima = requisicao.body.eficienciaMaxima;
+	execSQL(`INSERT INTO InversorSol VALUES('${nome}', ${preco}, '${descricao}', ${altura}, ${largura}, ${profundidade}, ${peso}, ${eficienciaMaxima})`, resposta);
 })
