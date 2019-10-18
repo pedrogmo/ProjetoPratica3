@@ -96,7 +96,9 @@ public class Cadastrar extends Fragment {
                     final String senhaConfirmada = etSenhaConfirmada.getText().toString();
                     final RequestQueue QUEUE = Volley.newRequestQueue(getActivity().getApplicationContext());
 
-                    if (!Verificadora.isNomeValido(nome))
+                    if (teveMensagensDeErro(nome))
+                        return;
+
 
 
                     try
@@ -198,6 +200,22 @@ public class Cadastrar extends Fragment {
         });
 
        return root;
+    }
+    private boolean teveMensagensDeErro(
+        String nome)
+    {
+        limparMensagens();
+        boolean retornou = false;
+        if (!Verificadora.isNomeValido(nome)){
+            tvExceptionNome.setText("Nome inválido. Números e simbolos não podem ser utilizados");
+            retornou = true;
+        }
+
+        return retornou;
+    }
+    private void limparMensagens()
+    {
+        tvExceptionNome.setText("");
     }
 
 }
