@@ -42,6 +42,14 @@ public class Produto
 		this.descricao = modelo.descricao;
 	}
 
+	public Produto()
+	{
+		this.codigo = 0;
+		this.nome = "";
+		this.descricao = "";
+		this.preco = 0.0f;
+	}
+
 	public int getCodigo()
 	{
 		return this.codigo;
