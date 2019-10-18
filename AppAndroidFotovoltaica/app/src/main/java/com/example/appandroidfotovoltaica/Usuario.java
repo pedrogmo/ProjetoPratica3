@@ -96,7 +96,7 @@ public class Usuario
 		String email) throws Exception
 	{
 		if (!Verificadora.isEmailValido(email))
-            throw new Exception("Email de usuário inválido");
+            throw new Exception("Usuario - setEmail: email invalido");
 		this.email = email;
 	}
 	
@@ -109,7 +109,7 @@ public class Usuario
 		String nome) throws Exception
 	{
 		if (!Verificadora.isNomeValido(nome))
-            throw new Exception("Nome de usuário inválido");
+            throw new Exception("Usuario - setNome: nome invalido");
 		this.nome = nome;
 	}
 	
@@ -122,9 +122,9 @@ public class Usuario
 		String senha) throws Exception
 	{
 		if (senha == null)
-			throw new NullPointerException("Senha de usuário ausente");
+			throw new NullPointerException("Usuario - setSenha: senha nula");
 		if (senha.equals(""))
-			throw new IllegalArgumentException("Digite a senha de usuário");
+			throw new IllegalArgumentException("Usuario - setSenha: senha está vazia");
 		this.senha = senha;
 	}
 
@@ -150,7 +150,7 @@ public class Usuario
         String telefone) throws Exception
     {
         if (!Verificadora.isTelefoneValido(telefone))
-            throw new Exception("Telefone do cliente inválido");
+            throw new Exception("Usuario - setTelefone: telefone invalido");
         this.telefone = telefone;
     }
 
@@ -163,7 +163,7 @@ public class Usuario
         String cpf) throws Exception
     {
         if (!Verificadora.isCpfValido(cpf))
-            throw new Exception("Cpf do cliente inválido");
+            throw new Exception("Usuario - setCpf: cpf invalido");
         this.cpf = cpf;
     }
 
@@ -176,7 +176,7 @@ public class Usuario
         String data) throws Exception
     {
         if(!Verificadora.isDataValida(data))
-            throw new Exception("Data do cliente inválida");
+            throw new Exception("Usuario - setData: data invalida");
         this.data = data;
     }
 
