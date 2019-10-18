@@ -81,7 +81,7 @@ public class AdicionarClienteFragment extends Fragment {
 
                 try
                 {
-                    Cliente c = new Cliente(0, nome, email, telefone, cpf, data, 2);
+                    Cliente c = new Cliente(0, email, nome, telefone, data, cpf, 2);
                 }
                 catch(Exception exc)
                 {

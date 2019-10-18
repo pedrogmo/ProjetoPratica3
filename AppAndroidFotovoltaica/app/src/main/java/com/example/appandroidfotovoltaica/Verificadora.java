@@ -73,4 +73,11 @@ public class Verificadora
             return false;
         return cnpj.matches("[0-9][0-9].[0-9][0-9][0-9].[0-9][0-9][0-9]/[0-9][0-9][0-9][0-9]-[0-9][0-9]");
     }
+    public static boolean isSenhaIguais(String senha1, String senha2)
+    {
+        if (senha1 == senha2)
+            return true;
+        else
+           return false;
+    }
 }

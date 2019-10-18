@@ -221,11 +221,11 @@ public class Usuario
 			return false;
 		if (this.codEmpresa != u.codEmpresa)
 			return false;
-		if (!this.telefone.equals(c.telefone))
+		if (!this.telefone.equals(u.telefone))
             return false;
-        if (!this.cpf.equals(c.cpf))
+        if (!this.cpf.equals(u.cpf))
             return false;
-        if (!this.data.equals(c.data))
+        if (!this.data.equals(u.data))
             return false;
 
 		return true;
