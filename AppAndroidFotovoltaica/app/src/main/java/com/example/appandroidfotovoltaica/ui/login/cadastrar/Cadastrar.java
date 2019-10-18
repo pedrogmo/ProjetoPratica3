@@ -22,6 +22,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.appandroidfotovoltaica.ArvoreBinaria;
 import com.example.appandroidfotovoltaica.Cliente;
 import com.example.appandroidfotovoltaica.Empresa;
 import com.example.appandroidfotovoltaica.Enderecos;
@@ -41,6 +42,9 @@ public class Cadastrar extends Fragment {
     private Empresa[] empresas;
     private Button btnCadastrarUsuario;
     private EditText etNome, etEmail, etSenhaUm, etSenhaConfirmada, etTelefone, etCpf, etDataNascimento;
+    private TextView tvExceptionNome, tvExceptionEmail, tvExceptionSenhaUm, tvExceptionSenhaConfirmada,
+            tvExceptionTelefone, tvExceptionDataNascimento, tvExceptionCpf;
+
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -50,12 +54,19 @@ public class Cadastrar extends Fragment {
                 ViewModelProviders.of(this).get(CadastrarViewModel.class);
         View root = inflater.inflate(R.layout.fragment_cadastrar, container, false);
         etNome = root.findViewById(R.id.etNomeUsuario);
+        tvExceptionNome = root.findViewById(R.id.tvExceptionNomeUsuario);
         etEmail = root.findViewById(R.id.etEmailUsuario);
+        tvExceptionEmail = root.findViewById(R.id.tvExceptionEmailUsuario);
         etSenhaUm = root.findViewById(R.id.etSenhaUmUsuario);
+        tvExceptionSenhaUm = root.findViewById(R.id.tvExceptionSenhaUmUsuario);
         etSenhaConfirmada = root.findViewById(R.id.etSenhaConfirmadaUsuario);
+        tvExceptionSenhaConfirmada = root.findViewById(R.id.tvExceptionSenhaConfirmadaUsuario);
         etTelefone = root.findViewById(R.id.etTelefoneUsuario);
+        tvExceptionTelefone = root.findViewById(R.id.tvExceptionTelefoneUsuario);
         etCpf = root.findViewById(R.id.etCpfUsuario);
+        tvExceptionCpf = root.findViewById(R.id.tvExceptionCpfUsuario);
         etDataNascimento = root.findViewById(R.id.etDataNascimentoUsuario);
+        tvExceptionDataNascimento = root.findViewById(R.id.tvExceptionDataNascimentoUsuario);
         spEmpresa = root.findViewById(R.id.spEmpresa);
         btnCadastrarUsuario = root.findViewById(R.id.btnCadastrarUsuario);
 
@@ -85,6 +96,9 @@ public class Cadastrar extends Fragment {
                     final String senhaConfirmada = etSenhaConfirmada.getText().toString();
                     final RequestQueue QUEUE = Volley.newRequestQueue(getActivity().getApplicationContext());
 
+                    if (!Verificadora.isNomeValido(nome))
+
+
                     try
                     {
                         Usuario u = new Usuario(0, email, nome, senhaConfirmada, 2, telefone, cpf, data);
@@ -98,10 +112,33 @@ public class Cadastrar extends Fragment {
                         return;
                     }
 
-                    MyTask task = new MyTask(Cliente[].class);
+                    MyTask task = new MyTask(Usuario[].class);
                     task.execute(Enderecos.GET_USUARIOS + "_email/" + email);
                     while (task.isTrabalhando()) ;
+                    //ArvoreBinaria<String> arvoreBinaria = new ArvoreBinaria<String>();
                     Usuario[] resultUsuarios = (Usuario[]) task.getDados();
+                    /*for (int i = 0; i < resultUsuarios.length; i++)
+                    {
+                        try{
+                            arvoreBinaria.adicionar(resultUsuarios[i].getEmail());
+                        }
+                        catch (Exception e){}
+                    }
+                    try{
+                        if (arvoreBinaria.buscar(email) != null)
+                        {
+                            Toast.makeText(
+                                    getActivity().getApplicationContext(),
+                                    "Email já cadastrado",
+                                    Toast.LENGTH_SHORT).show();
+                            return;
+                        }
+                    }
+                    catch(Exception e){Toast.makeText(getActivity().getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT);}
+                    */
+
+
+
                     if (resultUsuarios.length > 0)
                     {
                         Toast.makeText(
@@ -146,11 +183,11 @@ public class Cadastrar extends Fragment {
                             Map<String, String> params = new HashMap<String, String>();
                             params.put("email", email);
                             params.put("nome", nome);
-                            params.put("telefone", telefone);
-                            params.put("telefone", telefone);
-                            params.put("data", data);
-                            params.put("cpf", cpf);
+                            params.put("senha", senhaConfirmada);
                             params.put("codEmpresa", "2");
+                            params.put("telefone", telefone);
+                            params.put("cpf", cpf);
+                            params.put("data", data);
                             return params;
                         }
                     };
