@@ -63,8 +63,14 @@ rota.patch('/update_usuario/:codigo', (requisicao, resposta) => {
 	const codigo = parseInt(requisicao.params.codigo);
 	const email = requisicao.body.email;
 	const senha = requisicao.body.senha;
+	const telefone = requisicao.body.telefone;
+	const data = requisicao.body.data;
+	const cpf = requisicao.body.cpf;
 	execSQL(`UPDATE UsuarioSol SET email = '${email}' WHERE CODIGO = ${codigo}`, resposta);
 	execSQL(`UPDATE UsuarioSol SET nome = '${nome}' WHERE CODIGO = ${codigo}`, resposta);
+	execSQL(`UPDATE UsuarioSol SET telefone = '${telefone}' WHERE CODIGO = ${codigo}`, resposta);
+	execSQL(`UPDATE UsuarioSol SET data = '${data}' WHERE CODIGO = ${codigo}`, resposta);
+	execSQL(`UPDATE UsuarioSol SET cpf = '${cpf}' WHERE CODIGO = ${codigo}`, resposta);
 })
 
 rota.post('/insert_usuario', (requisicao, resposta) => {
@@ -72,7 +78,10 @@ rota.post('/insert_usuario', (requisicao, resposta) => {
 	const nome = requisicao.body.nome;
 	const senha = requisicao.body.senha;
 	const codEmpresa = parseInt(requisicao.body.codEmpresa);
-	execSQL(`INSERT INTO UsuarioSol VALUES('${email}', '${nome}', '${senha}', ${codEmpresa})`, resposta);
+	const telefone = requisicao.body.telefone;
+	const data = requisicao.body.data;
+	const cpf = requisicao.body.cpf;
+	execSQL(`INSERT INTO UsuarioSol VALUES('${email}', '${nome}', '${senha}', ${codEmpresa}, '${telefone}', '${data}', '${cpf}')`, resposta);
 })
 
 //ROTAS CLIENTE

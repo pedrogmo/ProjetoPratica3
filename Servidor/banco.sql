@@ -12,9 +12,19 @@ create table UsuarioSol(
 	email varchar(50) not null,
 	nome varchar(100) not null,
 	senha varchar(50) not null,
-	codEmpresa int not null
 
-	constraint fkUsuarioEmpresa foreign key(codEmpresa) references EmpresaSol(codigo)
+	codEmpresa int not null
+	constraint fkUsuarioEmpresa foreign key(codEmpresa) references EmpresaSol(codigo),
+
+	telefone varchar(20) not null,
+
+	data char(10) not null
+	constraint chkDataUsuario check(data like 
+		'[0-3][0-9]/[0-1][0-9]/[0-9][0-9][0-9][0-9]'),
+
+	cpf char(14) not null
+	constraint chkCpfUsuario check(cpf like 
+		'[0-9][0-9][0-9].[0-9][0-9][0-9].[0-9][0-9][0-9]-[0-9][0-9]'),
 )
 
 create table ClienteSol(

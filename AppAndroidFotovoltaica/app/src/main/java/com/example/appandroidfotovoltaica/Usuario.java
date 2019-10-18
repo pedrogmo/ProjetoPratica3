@@ -10,6 +10,9 @@ public class Usuario
 	private String nome;
 	private String senha;
 	private int codEmpresa;
+	private String telefone;
+    private String cpf;
+    private String data;
 
 	public Usuario()
 	{
@@ -17,6 +20,9 @@ public class Usuario
 		this.email = "";
 		this.nome = "";
 		this.senha = "";
+		this.telefone = "";
+        this.cpf = "";
+        this.data = "";
 		this.codEmpresa = 0;
 	}
 
@@ -25,13 +31,19 @@ public class Usuario
 		String email,
 		String nome,
 		String senha,
-		int codEmpresa) throws Exception
+		int codEmpresa,
+		String telefone,
+		String cpf,
+		String data) throws Exception
 	{
 		this.setCodigo(codigo);
 		this.setEmail(email);
 		this.setNome(nome);
 		this.setSenha(senha);
 		this.setCodEmpresa(codEmpresa);
+		this.setTelefone(telefone);
+		this.setData(data);
+        this.setCpf(cpf);
 	}
 
 	public Usuario(
@@ -42,6 +54,9 @@ public class Usuario
 		this.nome = "";
 		this.senha = "";
 		this.codEmpresa = 0;
+		this.telefone = "";
+        this.cpf = "";
+        this.data = "";
 	}
 
 	public Usuario(
@@ -54,6 +69,9 @@ public class Usuario
 		this.nome = modelo.nome;
 		this.senha = modelo.senha;
 		this.codEmpresa = modelo.codEmpresa;
+		this.telefone = modelo.telefone;
+        this.cpf = modelo.cpf;
+        this.data = modelo.data;
 	}
 
 	public int getCodigo()
@@ -121,7 +139,46 @@ public class Usuario
 		if (codEmpresa < 0)
 			throw new IllegalArgumentException("Usuario - setCodEmpresa: codigo negativo");
 		this.codEmpresa = codEmpresa;
-	}	
+	}
+
+	public String getTelefone() 
+    {
+        return this.telefone;
+    }
+
+    public void setTelefone(
+        String telefone) throws Exception
+    {
+        if (!Verificadora.isTelefoneValido(telefone))
+            throw new Exception("Telefone do cliente inválido");
+        this.telefone = telefone;
+    }
+
+    public String getCpf() 
+    {
+        return this.cpf;
+    }
+
+    public void setCpf(
+        String cpf) throws Exception
+    {
+        if (!Verificadora.isCpfValido(cpf))
+            throw new Exception("Cpf do cliente inválido");
+        this.cpf = cpf;
+    }
+
+    public String getData()
+    {
+        return this.data;
+    }
+
+    public void setData(
+        String data) throws Exception
+    {
+        if(!Verificadora.isDataValida(data))
+            throw new Exception("Data do cliente inválida");
+        this.data = data;
+    }
 
 	public String toString()
 	{
@@ -136,6 +193,9 @@ public class Usuario
 		ret = ret * 2 + this.nome.hashCode();
 		ret = ret * 2 + this.senha.hashCode();
 		ret = ret * 2 + new Integer(this.codEmpresa).hashCode();
+		ret = ret * 2 + this.telefone.hashCode();
+        ret = ret * 2 + this.cpf.hashCode();
+        ret = ret * 2 + this.data.hashCode();
 		return ret;
 	}
 
@@ -161,6 +221,12 @@ public class Usuario
 			return false;
 		if (this.codEmpresa != u.codEmpresa)
 			return false;
+		if (!this.telefone.equals(c.telefone))
+            return false;
+        if (!this.cpf.equals(c.cpf))
+            return false;
+        if (!this.data.equals(c.data))
+            return false;
 
 		return true;
 	}

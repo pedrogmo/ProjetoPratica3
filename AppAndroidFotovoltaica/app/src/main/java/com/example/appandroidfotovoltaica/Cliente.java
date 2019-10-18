@@ -29,11 +29,11 @@ public class Cliente
 
     public Cliente(
         int codigo,
-        String nome,
         String email,
+        String nome,
         String telefone,
-        String cpf,
         String data,
+        String cpf,
         int codEmpresa) throws Exception
     {
         this.setCodigo(codigo);
@@ -214,6 +214,14 @@ public class Cliente
         Cliente c)
     {
         return this.email.compareTo(c.email);
+    }
+
+    public Object clone()
+    {
+        Cliente ret = null;
+        try{ ret = new Cliente(this); }
+        catch(Exception exc){}
+        return ret;
     }
 }
 
