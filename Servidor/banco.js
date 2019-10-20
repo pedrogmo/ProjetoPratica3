@@ -140,6 +140,10 @@ rota.post('/insert_empresa', (requisicao, resposta) => {
 
 //ROTAS MODULO
 
+rota.get('/modulos', (requisicao, resposta) => {
+	execSQL(`SELECT * FROM ModuloSol`, resposta);
+})
+
 rota.get('/modulos/:codigo', (requisicao, resposta) => {
 	const codigo = parseInt(requisicao.params.codigo);
 	execSQL(`SELECT * FROM ModuloSol WHERE CODIGO = ${codigo}`, resposta);
@@ -169,6 +173,10 @@ rota.post('/insert_modulo', (requisicao, resposta) => {
 })
 
 //ROTAS INVERSOR
+
+rota.get('/inversores', (requisicao, resposta) => {
+	execSQL(`SELECT * FROM InversorSol`, resposta);
+})
 
 rota.get('/inversores/:codigo', (requisicao, resposta) => {
 	const codigo = parseInt(requisicao.params.codigo);

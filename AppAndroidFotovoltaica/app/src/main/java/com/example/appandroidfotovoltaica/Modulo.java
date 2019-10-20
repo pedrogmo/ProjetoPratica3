@@ -1,16 +1,12 @@
 package com.example.appandroidfotovoltaica;
 
-public class Modulo extends Produto
+public class Modulo extends EquipamentoFotovoltaico
 {
-    private Dimensao dimensao;
-    private float peso;
     private float voltagem;
 
     public Modulo()
     {
         super();
-        this.dimensao = new Dimensao();
-        this.peso = 0.0f;
         this.voltagem = 0.0f;
     }
 
@@ -19,7 +15,9 @@ public class Modulo extends Produto
         String nome,
         float preco,
         String descricao,
-        Dimensao dimensao,
+        float altura,
+        float largura,
+        float profundidade,
         float peso,
         float voltagem) throws Exception
     {
@@ -27,9 +25,12 @@ public class Modulo extends Produto
             codigo,
             nome,
             preco,
-            descricao);
-        this.setDimensao(dimensao);
-        this.setPeso(peso);
+            descricao,
+            altura,
+            largura,
+            profundidade,
+            peso);
+
         this.setVoltagem(voltagem);
     }
 
@@ -37,35 +38,7 @@ public class Modulo extends Produto
         Modulo modelo) throws Exception
     {
         super(modelo);
-        this.dimensao = (Dimensao) modelo.dimensao.clone();
-        this.peso = modelo.peso;
         this.voltagem = modelo.voltagem;
-    }
-
-    public Dimensao getDimensao()
-    {
-        return (Dimensao) this.dimensao.clone();
-    }
-
-    public void setDimensao(
-        Dimensao dimensao) throws Exception
-    {
-        if (dimensao == null)
-            throw new NullPointerException("Modulo - setDimensao: dimensão ausente");
-        this.dimensao = (Dimensao) dimensao.clone();
-    }
-
-    public float getPeso()
-    {
-        return this.peso;
-    }
-
-    public void setPeso(
-        float peso) throws Exception
-    {
-        if (peso < 0.0f)
-            throw new IllegalArgumentException("Modulo - setPeso: peso negativo");
-        this.peso = peso;
     }
 
     public float getVoltagem()
@@ -83,14 +56,12 @@ public class Modulo extends Produto
 
     public String toString()
     {
-        return super.toString() + this.voltagem;
+        return this.voltagem + " " + super.toString();
     }
 
     public int hashCode()
     {
         int ret = super.hashCode();
-        ret = ret * 2 + this.dimensao.hashCode();
-        ret = ret * 2 + new Float(this.peso).hashCode();
         ret = ret * 2 + new Float(this.voltagem).hashCode();
         return ret;
     }

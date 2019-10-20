@@ -59,6 +59,8 @@ create table ModuloSol(
 	voltagem float not null
 )
 
+insert into ModuloSol values('modulo1', 10.5, 'modulo 1 teste', 10, 10, 10, 20, 50)
+
 create table InversorSol(
 	codigo int identity(1,1) primary key,
 	nome varchar(50) not null,
@@ -70,3 +72,5 @@ create table InversorSol(
 	peso float not null,
 	eficienciaMaxima float not null
 )
+
+insert into InversorSol values('inversor1', 11, 'inversor 1 teste', 12, 12, 12, 25, 120)

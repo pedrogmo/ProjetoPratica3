@@ -11,15 +11,15 @@ public class Produto
 	protected String descricao;	
 
 	public Produto(
-		int pCodigo,
-		String pNome,
-		float pPreco,
-		String pDescricao) throws Exception
+		int codigo,
+		String nome,
+		float preco,
+		String descricao) throws Exception
 	{
-		this.setCodigo(pCodigo);
-		this.setNome(pNome);
-		this.setPreco(pPreco);
-		this.setDescricao(pDescricao);
+		this.setCodigo(codigo);
+		this.setNome(nome);
+		this.setPreco(preco);
+		this.setDescricao(descricao);
 	}
 
 	public Produto(
@@ -72,9 +72,9 @@ public class Produto
 		String pNome) throws Exception
 	{
 		if (pNome == null)
-			throw new NullPointerException("Nome do produto ausente");
+			throw new NullPointerException("Produto - setNome : nome nulo");
 		if (pNome.equals(""))
-			throw new IllegalArgumentException("Digite o nome do produto");
+			throw new IllegalArgumentException("Produto - setNome : nome inválido");
 		this.nome = pNome;
 	}
 
@@ -87,7 +87,7 @@ public class Produto
 		float pPreco)
 	{
 		if (pPreco <= 0)
-			throw new IllegalArgumentException("Preço do produto negativo");
+			throw new IllegalArgumentException("Produto - setPreco : preço inválido");
 		this.preco = pPreco;
 	}
 
@@ -100,15 +100,15 @@ public class Produto
 		String pDescricao) throws Exception
 	{
 		if (pDescricao == null)
-			throw new NullPointerException("Descrição do produto ausente");
+			throw new NullPointerException("Produto - setDescricao : descrição nula");
 		if (pDescricao.equals(""))
-			throw new IllegalArgumentException("Digite a descrição do produto");
+			throw new IllegalArgumentException("Produto - setDescricao : descrição inválida");
 		this.descricao = pDescricao;
 	}
 
 	public String toString()
 	{
-		return this.codigo + " - " + this.nome;
+		return this.codigo + " " + this.nome + " " + this.descricao;
 	}
 
 	public boolean equals(
