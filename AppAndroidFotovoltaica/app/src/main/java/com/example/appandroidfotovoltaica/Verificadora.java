@@ -9,7 +9,7 @@ public class Verificadora
     {
         if (nome == null)
             return false;
-        if (nome.length() <= 0)
+        if (nome.length() <= 0 || nome.length() > 50)
             return false;
 
         for(char c : nome.toCharArray())
@@ -72,6 +72,12 @@ public class Verificadora
         if (cnpj == null)
             return false;
         return cnpj.matches("[0-9][0-9].[0-9][0-9][0-9].[0-9][0-9][0-9]/[0-9][0-9][0-9][0-9]-[0-9][0-9]");
+    }
+    public static boolean isSenhaValida(String senha1)
+    {
+        if (senha1.equals("") || senha1.contains(" ") || senha1.length() < 6 || senha1.length() > 22)
+            return false;
+        return true;
     }
     public static boolean isSenhaIguais(String senha1, String senha2)
     {

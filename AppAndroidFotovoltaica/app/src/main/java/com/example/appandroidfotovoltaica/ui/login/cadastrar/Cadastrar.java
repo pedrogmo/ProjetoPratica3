@@ -96,7 +96,7 @@ public class Cadastrar extends Fragment {
                     final String senhaConfirmada = etSenhaConfirmada.getText().toString();
                     final RequestQueue QUEUE = Volley.newRequestQueue(getActivity().getApplicationContext());
 
-                    if (teveMensagensDeErro(nome))
+                    if (teveMensagensDeErro(nome, data, email, telefone, cpf, senhaUm, senhaConfirmada))
                         return;
 
 
@@ -202,20 +202,60 @@ public class Cadastrar extends Fragment {
        return root;
     }
     private boolean teveMensagensDeErro(
-        String nome)
+        String nome,
+        String data,
+        String email,
+        String telefone,
+        String cpf,
+        String senhaUm,
+        String senhaConfirmada)
     {
         limparMensagens();
-        boolean retornou = false;
+        boolean teveMensagem = false;
         if (!Verificadora.isNomeValido(nome)){
-            tvExceptionNome.setText("Nome inválido. Números e simbolos não podem ser utilizados");
-            retornou = true;
+            tvExceptionNome.setText("Nome inválido. Números e simbolos não podem ser utilizados. O tamanho do nome deve ser de 10 a 50 caracteres");
+            teveMensagem = true;
+        }
+        if (!Verificadora.isDataValida(data))
+        {
+            tvExceptionDataNascimento.setText("Data inválida. Siga o formato dd/mm/aaaa (Exemplo: 24/09/1977)");
+            teveMensagem = true;
+        }
+        if (!Verificadora.isEmailValido(email))
+        {
+            tvExceptionEmail.setText("Email inválido.");
+        }
+        if (!Verificadora.isTelefoneValido(telefone))
+        {
+            tvExceptionTelefone.setText("Telefone inválido. O número poderá ter entre 9 e 11* caracteres." +
+                    "*: código de país incluso");
+            teveMensagem = true;
+        }
+        if (!Verificadora.isCpfValido(cpf))
+        {
+            tvExceptionCpf.setText("Cpf inválido. O formato de um cpf é 000.000.000-00");
+            teveMensagem = true;
+        }
+        if (!Verificadora.isSenhaValida(senhaUm))
+        {
+            tvExceptionSenhaUm.setText("Senha inválida. A senha deve possuir de 6 a 22 caracteres e não poderá possuir espaços");
+        }
+        if (!Verificadora.isSenhaIguais(senhaUm,senhaConfirmada))
+        {
+            tvExceptionSenhaConfirmada.setText("As senhas devem ser iguais.");
         }
 
-        return retornou;
+        return teveMensagem;
     }
     private void limparMensagens()
     {
         tvExceptionNome.setText("");
+        tvExceptionDataNascimento.setText("");
+        tvExceptionEmail.setText("");
+        tvExceptionTelefone.setText("");
+        tvExceptionCpf.setText("");
+        tvExceptionSenhaUm.setText("");
+        tvExceptionSenhaConfirmada.setText("");
     }
 
 }
