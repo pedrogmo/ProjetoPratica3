@@ -1,5 +1,7 @@
 package com.example.appandroidfotovoltaica.ui.login;
 
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProviders;
 
@@ -10,13 +12,17 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.appandroidfotovoltaica.Enderecos;
+import com.example.appandroidfotovoltaica.MainActivity;
 import com.example.appandroidfotovoltaica.MyTask;
 import com.example.appandroidfotovoltaica.R;
 import com.example.appandroidfotovoltaica.Usuario;
 import com.example.appandroidfotovoltaica.ui.home.HomeFragment;
+import com.example.appandroidfotovoltaica.ui.login.cadastrar.Cadastrar;
+import android.content.Intent;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -28,6 +34,16 @@ public class LoginActivity extends AppCompatActivity {
         final EditText etEmailLogin = findViewById(R.id.etEmailLogin);
         final EditText etSenhaLogin = findViewById(R.id.etSenhaLogin);
         final Button btnLogar = findViewById(R.id.btnLogar);
+        final TextView tvCadastrarLogin = findViewById(R.id.tvCadastrarLogin);
+
+        tvCadastrarLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Fragment cadastro = new Cadastrar();
+                FragmentManager f = getSupportFragmentManager();
+                f.beginTransaction().replace(R.id.container, cadastro).commit();
+            }
+        });
 
         btnLogar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -88,9 +104,8 @@ public class LoginActivity extends AppCompatActivity {
                 }
 
                 Toast.makeText(getApplicationContext(),"Login efetuado com sucesso",Toast.LENGTH_SHORT).show();
-
-
-
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(intent);
             }
         });
 
