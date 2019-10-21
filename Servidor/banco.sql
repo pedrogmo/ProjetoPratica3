@@ -81,7 +81,10 @@ create table StringBoxSol(
 	preco money not null,
 	descricao varchar(100) not null,
 
-	tipo varchar(30) not null
+	tipo varchar(30) not null,
+	numeroPolos int not null,
+	tensaoMaxima float not null,
+	correnteNominal float not null
 )
 
 create table FixacaoSol(
