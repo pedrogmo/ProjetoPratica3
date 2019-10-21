@@ -74,3 +74,47 @@ create table InversorSol(
 )
 
 insert into InversorSol values('inversor1', 11, 'inversor 1 teste', 12, 12, 12, 25, 120)
+
+create table StringBoxSol(
+	codigo int identity(1,1) primary key,
+	nome varchar(50) not null,
+	preco money not null,
+	descricao varchar(100) not null,
+
+	tipo varchar(30) not null
+)
+
+create table FixacaoSol(
+	codigo int identity(1,1) primary key,
+	nome varchar(50) not null,
+	preco money not null,
+	descricao varchar(100) not null
+)
+
+create table BombaSolarSol(
+	codigo int identity(1,1) primary key,
+	nome varchar(50) not null,
+	preco money not null,
+	descricao varchar(100) not null,
+	altura float not null,
+	largura float not null,
+	profundidade float not null,
+	peso float not null,
+
+	tensaoAlimentacao float not null,
+	temperaturaMaxima float not null,
+	alturaMaxima float not null,
+	bombeamentoMaximoDiario float not null,
+	diametroTubo varchar(20) not null,
+)
+
+create table CaboSol(
+	codigo int identity(1,1) primary key,
+	nome varchar(50) not null,
+	preco money not null,
+	descricao varchar(100) not null,
+
+	comprimento float not null,
+	diametro float not null,
+	conducao varchar(20) not null
+)

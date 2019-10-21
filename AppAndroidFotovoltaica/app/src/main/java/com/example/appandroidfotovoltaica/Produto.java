@@ -108,7 +108,7 @@ public class Produto
 
 	public String toString()
 	{
-		return this.codigo + " " + this.nome + " " + this.descricao;
+		return "";
 	}
 
 	public boolean equals(

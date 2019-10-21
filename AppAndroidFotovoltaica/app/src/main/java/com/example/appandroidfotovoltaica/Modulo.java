@@ -56,7 +56,7 @@ public class Modulo extends EquipamentoFotovoltaico
 
     public String toString()
     {
-        return this.voltagem + " " + super.toString();
+        return "";
     }
 
     public int hashCode()

@@ -56,7 +56,7 @@ public class Inversor extends EquipamentoFotovoltaico
 
     public String toString()
     {
-        return this.eficienciaMaxima + " " + super.toString();
+        return "";
     }
 
     public int hashCode()

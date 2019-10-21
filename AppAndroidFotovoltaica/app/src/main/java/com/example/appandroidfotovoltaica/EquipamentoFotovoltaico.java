@@ -102,7 +102,7 @@ public class EquipamentoFotovoltaico extends Produto
 
     public String toString()
     {
-        return this.altura + " " + this.largura + " " + this.profundidade + " " + this.peso + " " + super.toString();
+        return "";
     }
 
     public int hashCode()
