@@ -13,7 +13,6 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.android.volley.Request;
@@ -22,16 +21,12 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.appandroidfotovoltaica.ArvoreBinaria;
-import com.example.appandroidfotovoltaica.Cliente;
 import com.example.appandroidfotovoltaica.Empresa;
 import com.example.appandroidfotovoltaica.Enderecos;
 import com.example.appandroidfotovoltaica.MyTask;
 import com.example.appandroidfotovoltaica.R;
 import com.example.appandroidfotovoltaica.Usuario;
 import com.example.appandroidfotovoltaica.Verificadora;
-import com.example.appandroidfotovoltaica.ui.home.HomeFragment;
-import com.example.appandroidfotovoltaica.ui.login.LoginViewModel;
 
 import java.util.HashMap;
 import java.util.Map;

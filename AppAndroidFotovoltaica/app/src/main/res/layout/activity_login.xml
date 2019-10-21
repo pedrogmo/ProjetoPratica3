@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context=".ui.login.LoginActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <EditText
+            android:id="@+id/etEmailLogin"
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="100dp"
+            android:hint="Email"></EditText>
+        <EditText
+            android:id="@+id/etSenhaLogin"
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:layout_below="@+id/etEmailLogin"
+            android:layout_centerHorizontal="true"
+            android:inputType="textPassword"
+            android:hint="Senha"></EditText>
+        <Button
+            android:id="@+id/btnLogar"
+            android:layout_width="100dp"
+            android:layout_height="60dp"
+            android:layout_below="@id/etSenhaLogin"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="30dp"
+            android:text="Logar"></Button>
+        <TextView
+            android:id="@+id/tvCadastrarLogin"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_toRightOf="@+id/btnLogar"
+            android:layout_below="@+id/etSenhaLogin"
+            android:layout_marginLeft="30dp"
+            android:text="Cadastrar-se"
+            android:clickable="true"
+            android:layout_marginTop="60dp"></TextView>
+    </RelativeLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
