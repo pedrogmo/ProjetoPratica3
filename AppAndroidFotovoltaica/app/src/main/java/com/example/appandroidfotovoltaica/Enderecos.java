@@ -2,7 +2,7 @@ package com.example.appandroidfotovoltaica;
 
 public class Enderecos
 {
-    private static final String IP_PORTA = "http://192.168.1.119:3000/";
+    private static final String IP_PORTA = "http://177.220.18.82:3000/";
 
     public static final String POST_CLIENTES = IP_PORTA + "insert_cliente";
     public static final String GET_CLIENTES = IP_PORTA + "clientes";
