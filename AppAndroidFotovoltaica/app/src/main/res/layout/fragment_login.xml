@@ -13,13 +13,14 @@
         android:layout_height="50dp"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="100dp"
-        android:hint="Nome"></EditText>
+        android:hint="Email"></EditText>
     <EditText
         android:id="@+id/etSenhaLogin"
         android:layout_width="300dp"
         android:layout_height="50dp"
         android:layout_below="@+id/etEmailLogin"
         android:layout_centerHorizontal="true"
+        android:inputType="textPassword"
         android:hint="Senha"></EditText>
     <Button
         android:id="@+id/btnLogar"

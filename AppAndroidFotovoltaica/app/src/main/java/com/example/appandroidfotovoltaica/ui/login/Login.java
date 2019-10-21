@@ -118,6 +118,8 @@ public class Login extends Fragment {
                 fragmentTransaction.replace(R.id.fragment_login, new HomeFragment());
                 fragmentTransaction.commit();
 
+                etEmailLogin.setText("");
+                etSenhaLogin.setText("");
 
             }
         });
