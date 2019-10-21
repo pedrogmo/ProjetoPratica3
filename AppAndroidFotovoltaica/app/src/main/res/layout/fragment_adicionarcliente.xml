@@ -24,7 +24,14 @@
         <EditText
             android:id="@+id/etEmailCliente"
             android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/tvExceptionEmailCliente"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:text=""
+            android:textColor="#c0392b"
             android:layout_marginBottom="10dp"/>
 
         <TextView
@@ -35,7 +42,14 @@
         <EditText
             android:id="@+id/etNomeCliente"
             android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/tvExceptionNomeCliente"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:text=""
+            android:textColor="#c0392b"
             android:layout_marginBottom="10dp"/>
 
         <TextView
@@ -47,7 +61,14 @@
             android:id="@+id/etTelefoneCliente"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="number"
+            android:inputType="number"/>
+
+        <TextView
+            android:id="@+id/tvExceptionTelefoneCliente"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textColor="#c0392b"
             android:layout_marginBottom="10dp"/>
 
         <TextView
@@ -60,7 +81,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="date"
-            android:hint="dd/mm/aaaa"
+            android:hint="dd/mm/aaaa"/>
+
+        <TextView
+            android:id="@+id/tvExceptionDataCliente"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textColor="#c0392b"
             android:layout_marginBottom="10dp"/>
 
         <TextView
@@ -71,7 +99,14 @@
         <EditText
             android:id="@+id/etCpfCliente"
             android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/tvExceptionCpfCliente"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:text=""
+            android:textColor="#c0392b"
             android:layout_marginBottom="10dp"/>
 
         <Button
@@ -79,7 +114,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Adiconar"
-            android:layout_gravity="center_horizontal"/>
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="50dp"/>
 
     </LinearLayout>
 </ScrollView>

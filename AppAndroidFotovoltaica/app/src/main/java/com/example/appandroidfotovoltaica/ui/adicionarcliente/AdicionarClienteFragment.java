@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -25,6 +26,7 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.appandroidfotovoltaica.MyTask;
 import com.example.appandroidfotovoltaica.R;
+import com.example.appandroidfotovoltaica.Verificadora;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import org.json.JSONObject;
@@ -42,6 +44,13 @@ public class AdicionarClienteFragment extends Fragment {
         etEmailCliente,
         etTelefoneCliente,
         etCpfCliente;
+
+    private TextView
+        tvExceptionNome,
+        tvExceptionData,
+        tvExceptionEmail,
+        tvExceptionTelefone,
+        tvExceptionCpf;
 
     private Button btnAdicionarCliente;
     private FloatingActionButton fab;
@@ -66,6 +75,12 @@ public class AdicionarClienteFragment extends Fragment {
         this.etTelefoneCliente = (EditText) root.findViewById(R.id.etTelefoneCliente);
         this.etCpfCliente = (EditText) root.findViewById(R.id.etCpfCliente);
 
+        this.tvExceptionNome = (TextView) root.findViewById(R.id.tvExceptionNomeCliente);
+        this.tvExceptionData = (TextView) root.findViewById(R.id.tvExceptionDataCliente);
+        this.tvExceptionEmail = (TextView) root.findViewById(R.id.tvExceptionEmailCliente);
+        this.tvExceptionTelefone = (TextView) root.findViewById(R.id.tvExceptionTelefoneCliente);
+        this.tvExceptionCpf = (TextView) root.findViewById(R.id.tvExceptionCpfCliente);
+
         this.btnAdicionarCliente = (Button) root.findViewById(R.id.btnAdicionarCliente);
 
         final RequestQueue QUEUE = Volley.newRequestQueue(getActivity().getApplicationContext());
@@ -79,18 +94,8 @@ public class AdicionarClienteFragment extends Fragment {
                 final String telefone = etTelefoneCliente.getText().toString();
                 final String cpf = etCpfCliente.getText().toString();
 
-                try
-                {
-                    Cliente c = new Cliente(0, email, nome, telefone, data, cpf, 2);
-                }
-                catch(Exception exc)
-                {
-                    Toast.makeText(
-                            getActivity().getApplicationContext(),
-                            exc.getMessage(),
-                            Toast.LENGTH_SHORT).show();
+                if (teveMensagensDeErro(nome, data, email, telefone, cpf))
                     return;
-                }
 
                 MyTask task = new MyTask(Cliente[].class);
                 task.execute(Enderecos.GET_CLIENTES + "_email/" + email);
@@ -152,5 +157,51 @@ public class AdicionarClienteFragment extends Fragment {
         });
 
         return root;
+    }
+
+    private void limparMensagens()
+    {
+        tvExceptionNome.setText("");
+        tvExceptionData.setText("");
+        tvExceptionEmail.setText("");
+        tvExceptionTelefone.setText("");
+        tvExceptionCpf.setText("");
+    }
+
+    private boolean teveMensagensDeErro(
+        String nome,
+        String data,
+        String email,
+        String telefone,
+        String cpf)
+    {
+        limparMensagens();
+        boolean teveMensagem = false;
+        if (!Verificadora.isNomeValido(nome)){
+            tvExceptionNome.setText("Nome inválido. Números e simbolos não podem ser utilizados. O tamanho do nome deve ser de 10 a 50 caracteres");
+            teveMensagem = true;
+        }
+        if (!Verificadora.isDataValida(data))
+        {
+            tvExceptionData.setText("Data inválida. Siga o formato dd/mm/aaaa (Exemplo: 24/09/1977)");
+            teveMensagem = true;
+        }
+        if (!Verificadora.isEmailValido(email))
+        {
+            tvExceptionEmail.setText("Email inválido.");
+        }
+        if (!Verificadora.isTelefoneValido(telefone))
+        {
+            tvExceptionTelefone.setText("Telefone inválido. O número poderá ter entre 9 e 11* caracteres." +
+                    "*: código de país incluso");
+            teveMensagem = true;
+        }
+        if (!Verificadora.isCpfValido(cpf))
+        {
+            tvExceptionCpf.setText("Cpf inválido. O formato de um cpf é 000.000.000-00");
+            teveMensagem = true;
+        }
+
+        return teveMensagem;
     }
 }

@@ -99,21 +99,6 @@ public class Cadastrar extends Fragment {
                     if (teveMensagensDeErro(nome, data, email, telefone, cpf, senhaUm, senhaConfirmada))
                         return;
 
-
-
-                    try
-                    {
-                        Usuario u = new Usuario(0, email, nome, senhaConfirmada, 2, telefone, cpf, data);
-                    }
-                    catch(Exception exc)
-                    {
-                        Toast.makeText(
-                                getActivity().getApplicationContext(),
-                                exc.getMessage(),
-                                Toast.LENGTH_SHORT).show();
-                        return;
-                    }
-
                     MyTask task = new MyTask(Usuario[].class);
                     task.execute(Enderecos.GET_USUARIOS + "_email/" + email);
                     while (task.isTrabalhando()) ;
