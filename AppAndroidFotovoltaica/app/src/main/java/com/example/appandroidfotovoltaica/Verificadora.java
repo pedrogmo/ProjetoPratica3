@@ -81,9 +81,6 @@ public class Verificadora
     }
     public static boolean isSenhaIguais(String senha1, String senha2)
     {
-        if (senha1 == senha2)
-            return true;
-        else
-           return false;
+        return senha1.equals(senha2);
     }
 }

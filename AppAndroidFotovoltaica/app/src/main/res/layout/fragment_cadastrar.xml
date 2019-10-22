@@ -134,7 +134,6 @@
             android:id="@+id/etSenhaConfirmadaUsuario"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="30dp"
             android:inputType="textPassword"/>
         <TextView
             android:id="@+id/tvExceptionSenhaConfirmadaUsuario"
