@@ -1,5 +1,6 @@
 package com.example.appandroidfotovoltaica.ui.principalClientes.clienteIndividual;
 
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProviders;
 
 import android.os.Bundle;
@@ -27,6 +28,8 @@ import com.example.appandroidfotovoltaica.Cliente;
 import com.example.appandroidfotovoltaica.Enderecos;
 import com.example.appandroidfotovoltaica.MyTask;
 import com.example.appandroidfotovoltaica.R;
+import com.example.appandroidfotovoltaica.ui.adicionarcliente.AdicionarClienteFragment;
+import com.example.appandroidfotovoltaica.ui.principalClientes.PrincipalClientesFragment;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -35,8 +38,6 @@ public class ClienteIndividualFragment extends Fragment {
 
     private ClienteIndividualViewModel mViewModel;
     private Cliente clienteAtual;
-
-    private TextView tvCodigo;
     private EditText
         etEmail,
         etNome,
@@ -56,23 +57,20 @@ public class ClienteIndividualFragment extends Fragment {
         Bundle bundle = getArguments();
         this.clienteAtual = (Cliente) bundle.getSerializable("cliente");
 
-        this.tvCodigo = (TextView) root.findViewById(R.id.tvCodigo);
-        this.etEmail = (EditText) root.findViewById(R.id.etEmail);
-        this.etNome = (EditText) root.findViewById(R.id.etNome);
-        this.etTelefone = (EditText) root.findViewById(R.id.etTelefone);
-        this.etData = (EditText) root.findViewById(R.id.etData);
-        this.etCpf = (EditText) root.findViewById(R.id.etCpf);
+        this.etEmail = (EditText) root.findViewById(R.id.etEmailClienteInd);
+        this.etNome = (EditText) root.findViewById(R.id.etNomeClienteInd);
+        this.etTelefone = (EditText) root.findViewById(R.id.etTelefoneClienteInd);
+        this.etData = (EditText) root.findViewById(R.id.etDataClienteInd);
+        this.etCpf = (EditText) root.findViewById(R.id.etCpfClienteInd);
 
-        this.tvCodigo.setText(
-                this.tvCodigo.getText().toString() + this.clienteAtual.getCodigo());
         this.etEmail.setText(this.clienteAtual.getEmail());
         this.etNome.setText(this.clienteAtual.getNome());
         this.etTelefone.setText(this.clienteAtual.getTelefone());
         this.etData.setText(this.clienteAtual.getData());
         this.etCpf.setText(this.clienteAtual.getCpf());
 
-        this.btnAlterar = (Button) root.findViewById(R.id.btnAlterar);
-        this.btnExcluir = (Button) root.findViewById(R.id.btnExcluir);
+        this.btnAlterar = (Button) root.findViewById(R.id.btnAlterarCliente);
+        this.btnExcluir = (Button) root.findViewById(R.id.btnAlterarCliente);
 
 
 
@@ -177,6 +175,9 @@ public class ClienteIndividualFragment extends Fragment {
                                         getActivity().getApplicationContext(),
                                         "Cliente excluído",
                                         Toast.LENGTH_SHORT).show();
+                                FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+                                fragmentTransaction.replace(R.id.cliente_individual_fragment, new PrincipalClientesFragment());
+                                fragmentTransaction.commit();
                             }
                         },
                         new Response.ErrorListener()

@@ -61,12 +61,12 @@ rota.delete('/delete_usuario/:codigo', (requisicao, resposta) => {
 
 rota.patch('/update_usuario/:codigo', (requisicao, resposta) => {
 	const codigo = parseInt(requisicao.params.codigo);
-	const email = requisicao.body.email;
+	const nome = requisicao.body.nome;
 	const senha = requisicao.body.senha;
 	const telefone = requisicao.body.telefone;
 	const data = requisicao.body.data;
 	const cpf = requisicao.body.cpf;
-	execSQL(`UPDATE UsuarioSol SET email = '${email}' WHERE CODIGO = ${codigo}`, resposta);
+	execSQL(`UPDATE UsuarioSol SET nome = '${nome}' WHERE CODIGO = ${codigo}`, resposta);
 	execSQL(`UPDATE UsuarioSol SET nome = '${nome}' WHERE CODIGO = ${codigo}`, resposta);
 	execSQL(`UPDATE UsuarioSol SET telefone = '${telefone}' WHERE CODIGO = ${codigo}`, resposta);
 	execSQL(`UPDATE UsuarioSol SET data = '${data}' WHERE CODIGO = ${codigo}`, resposta);
