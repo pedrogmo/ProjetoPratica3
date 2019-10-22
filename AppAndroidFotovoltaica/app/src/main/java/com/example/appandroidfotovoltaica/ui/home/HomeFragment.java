@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -41,6 +42,7 @@ public class HomeFragment extends Fragment {
     RadioButton rbTotal, rbMensal;
     Button btnCalcular;
     ImageView btnEsq, btnDir;
+    LinearLayout areaUsuario;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -183,6 +185,12 @@ public class HomeFragment extends Fragment {
                 }
 
 
+            }
+        });
+        areaUsuario.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(getApplicationContext(), "CLICOU NO LOGIN", Toast.LENGTH_SHORT);
             }
         });
 
