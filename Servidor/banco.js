@@ -14,12 +14,12 @@ sql.connect(conexaoStr)
 app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
 app.use(bodyParser.json({limit: '50mb', extended: true}));
 
-/*app.use(function(req, res, next) { 
+app.use(function(req, res, next) { 
 	res.header("Access-Control-Allow-Origin", "*"); 
 	res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept"); 
 	res.header("Access-Control-Allow-Methods", "GET, POST, HEAD, OPTIONS, PATCH, DELETE"); 
 	next(); 
-});*/
+});
 
 //definindo as rotas
 const rota = express.Router(); 
@@ -39,17 +39,17 @@ function execSQL(sql, resposta) {
 
 //ROTAS USUARIO
 
-rota.get('/usuarios', (requisicao, resposta) => {
+rota.get('/usuario', (requisicao, resposta) => {
 	execSQL('SELECT * FROM UsuarioSol', resposta);
 })
 
-rota.get('/usuarios/:codigo', (requisicao, resposta) => {
+rota.get('/usuario/:codigo', (requisicao, resposta) => {
 	const codigo = parseInt(requisicao.params.codigo);
 	execSQL(`SELECT * FROM UsuarioSol WHERE CODIGO = ${codigo}`, resposta);
 })
 
 
-rota.get('/usuarios_email/:email', (requisicao, resposta) => {
+rota.get('/usuario_email/:email', (requisicao, resposta) => {
 	const email = requisicao.params.email;
 	execSQL(`SELECT * FROM UsuarioSol WHERE EMAIL = '${email}'`, resposta);
 })
@@ -86,12 +86,12 @@ rota.post('/insert_usuario', (requisicao, resposta) => {
 
 //ROTAS CLIENTE
 
-rota.get('/clientes/:codEmpresa', (requisicao, resposta) => {
+rota.get('/cliente/:codEmpresa', (requisicao, resposta) => {
 	const codEmpresa = parseInt(requisicao.params.codEmpresa);
 	execSQL(`SELECT * FROM ClienteSol WHERE CODEMPRESA = ${codEmpresa}`, resposta);
 })
 
-rota.get('/clientes_email/:email', (requisicao, resposta) => {
+rota.get('/cliente_email/:email', (requisicao, resposta) => {
 	const email = requisicao.params.email;
 	execSQL(`SELECT * FROM ClienteSol WHERE EMAIL = '${email}'`, resposta);
 })
@@ -128,7 +128,7 @@ rota.post('/insert_cliente', (requisicao, resposta) => {
 
 //ROTAS EMPRESA
 
-rota.get('/empresas', (requisicao, resposta) => {
+rota.get('/empresa', (requisicao, resposta) => {
 	execSQL('SELECT * FROM EmpresaSol', resposta);
 })
 
@@ -140,11 +140,11 @@ rota.post('/insert_empresa', (requisicao, resposta) => {
 
 //ROTAS MODULO
 
-rota.get('/modulos', (requisicao, resposta) => {
+rota.get('/modulo', (requisicao, resposta) => {
 	execSQL(`SELECT * FROM ModuloSol`, resposta);
 })
 
-rota.get('/modulos/:codigo', (requisicao, resposta) => {
+rota.get('/modulo/:codigo', (requisicao, resposta) => {
 	const codigo = parseInt(requisicao.params.codigo);
 	execSQL(`SELECT * FROM ModuloSol WHERE CODIGO = ${codigo}`, resposta);
 })
@@ -157,7 +157,7 @@ rota.delete('/delete_modulo/:codigo', (requisicao, resposta) => {
 rota.patch('/update_modulo/:codigo', (requisicao, resposta) => {
 	const codigo = parseInt(requisicao.params.codigo);
 	const preco = requisicao.body.preco;
-	execSQL(`UPDATE ModuloSol SET preco = '${preco}' WHERE CODIGO = ${codigo}`, resposta);
+	execSQL(`UPDATE ModuloSol SET preco = ${preco} WHERE CODIGO = ${codigo}`, resposta);
 })
 
 rota.post('/insert_modulo', (requisicao, resposta) => {
@@ -174,11 +174,11 @@ rota.post('/insert_modulo', (requisicao, resposta) => {
 
 //ROTAS INVERSOR
 
-rota.get('/inversores', (requisicao, resposta) => {
+rota.get('/inversor', (requisicao, resposta) => {
 	execSQL(`SELECT * FROM InversorSol`, resposta);
 })
 
-rota.get('/inversores/:codigo', (requisicao, resposta) => {
+rota.get('/inversor/:codigo', (requisicao, resposta) => {
 	const codigo = parseInt(requisicao.params.codigo);
 	execSQL(`SELECT * FROM InversorSol WHERE CODIGO = ${codigo}`, resposta);
 })
@@ -191,7 +191,7 @@ rota.delete('/delete_inversor/:codigo', (requisicao, resposta) => {
 rota.patch('/update_inversor/:codigo', (requisicao, resposta) => {
 	const codigo = parseInt(requisicao.params.codigo);
 	const preco = requisicao.body.preco;
-	execSQL(`UPDATE InversorSol SET preco = '${preco}' WHERE CODIGO = ${codigo}`, resposta);
+	execSQL(`UPDATE InversorSol SET preco = ${preco} WHERE CODIGO = ${codigo}`, resposta);
 })
 
 rota.post('/insert_inversor', (requisicao, resposta) => {
@@ -204,4 +204,136 @@ rota.post('/insert_inversor', (requisicao, resposta) => {
 	const peso = requisicao.body.peso;
 	const eficienciaMaxima = requisicao.body.eficienciaMaxima;
 	execSQL(`INSERT INTO InversorSol VALUES('${nome}', ${preco}, '${descricao}', ${altura}, ${largura}, ${profundidade}, ${peso}, ${eficienciaMaxima})`, resposta);
+})
+
+//ROTAS STRINGBOX
+
+rota.get('/stringbox', (requisicao, resposta) => {
+	execSQL(`SELECT * FROM InversorSol`, resposta);
+})
+
+rota.get('/stringbox/:codigo', (requisicao, resposta) => {
+	const codigo = parseInt(requisicao.params.codigo);
+	execSQL(`SELECT * FROM StringBoxSol WHERE CODIGO = ${codigo}`, resposta);
+})
+
+rota.delete('/delete_stringbox/:codigo', (requisicao, resposta) => {
+	const codigo = parseInt(requisicao.params.codigo);
+	execSQL(`DELETE StringBoxSol WHERE CODIGO = ${codigo}`, resposta);
+})
+
+rota.patch('/update_stringbox/:codigo', (requisicao, resposta) => {
+	const codigo = parseInt(requisicao.params.codigo);
+	const preco = requisicao.body.preco;
+	execSQL(`UPDATE StringBoxSol SET preco = ${preco} WHERE CODIGO = ${codigo}`, resposta);
+})
+
+rota.post('/insert_stringbox', (requisicao, resposta) => {
+	const nome = requisicao.body.nome;
+	const preco = requisicao.body.preco;
+	const descricao = requisicao.body.descricao;
+	const tipo = requisicao.body.tipo;
+	const numeroPolos = requisicao.body.numeroPolos;
+	const tensaoMaxima = requisicao.body.tensaoMaxima;
+	const correnteNominal = requisicao.body.correnteNominal;
+	execSQL(`INSERT INTO StringBoxSol VALUES('${nome}', ${preco}, '${descricao}', '${tipo}', ${numeroPolos}, ${tensaoMaxima}, ${correnteNominal})`, resposta);
+})
+
+//ROTAS FIXACAO
+
+rota.get('/fixacao', (requisicao, resposta) => {
+	execSQL(`SELECT * FROM FixacaoSol`, resposta);
+})
+
+rota.get('/fixacao/:codigo', (requisicao, resposta) => {
+	const codigo = parseInt(requisicao.params.codigo);
+	execSQL(`SELECT * FROM FixacaoSol WHERE CODIGO = ${codigo}`, resposta);
+})
+
+rota.delete('/delete_fixacao/:codigo', (requisicao, resposta) => {
+	const codigo = parseInt(requisicao.params.codigo);
+	execSQL(`DELETE FixacaoSol WHERE CODIGO = ${codigo}`, resposta);
+})
+
+rota.patch('/update_fixacao/:codigo', (requisicao, resposta) => {
+	const codigo = parseInt(requisicao.params.codigo);
+	const preco = requisicao.body.preco;
+	execSQL(`UPDATE FixacaoSol SET preco = ${preco} WHERE CODIGO = ${codigo}`, resposta);
+})
+
+rota.post('/insert_fixacao', (requisicao, resposta) => {
+	const nome = requisicao.body.nome;
+	const preco = requisicao.body.preco;
+	const descricao = requisicao.body.descricao;
+	execSQL(`INSERT INTO FixacaoSol VALUES('${nome}', ${preco}, '${descricao}')`, resposta);
+})
+
+//ROTAS BOMBASOLAR
+
+rota.get('/bombasolar', (requisicao, resposta) => {
+	execSQL(`SELECT * FROM BombaSolarSol`, resposta);
+})
+
+rota.get('/bombasolar/:codigo', (requisicao, resposta) => {
+	const codigo = parseInt(requisicao.params.codigo);
+	execSQL(`SELECT * FROM BombaSolarSol WHERE CODIGO = ${codigo}`, resposta);
+})
+
+rota.delete('/delete_bombasolar/:codigo', (requisicao, resposta) => {
+	const codigo = parseInt(requisicao.params.codigo);
+	execSQL(`DELETE BombaSolarSol WHERE CODIGO = ${codigo}`, resposta);
+})
+
+rota.patch('/update_bombasolar/:codigo', (requisicao, resposta) => {
+	const codigo = parseInt(requisicao.params.codigo);
+	const preco = requisicao.body.preco;
+	execSQL(`UPDATE BombaSolarSol SET preco = ${preco} WHERE CODIGO = ${codigo}`, resposta);
+})
+
+rota.post('/insert_bombasolar', (requisicao, resposta) => {
+	const nome = requisicao.body.nome;
+	const preco = requisicao.body.preco;
+	const descricao = requisicao.body.descricao;
+	const altura = requisicao.body.altura;
+	const largura = requisicao.body.largura;
+	const profundidade = requisicao.body.profundidade;
+	const peso = requisicao.body.peso;
+	const tensaoAlimentacao = requisicao.body.tensaoAlimentacao;
+	const temperaturaMaxima = requisicao.body.temperaturaMaxima;
+	const alturaMaxima = requisicao.body.alturaMaxima;
+	const bombeamentoMaximoDiario = requisicao.body.bombeamentoMaximoDiario;
+	const diametroTubo = requisicao.body.diametroTubo;
+	execSQL(`INSERT INTO BombaSolarSol VALUES('${nome}', ${preco}, '${descricao}', ${altura}, ${largura}, ${profundidade}, ${peso}, ${tensaoAlimentacao}, ${temperaturaMaxima}, ${alturaMaxima}, ${bombeamentoMaximoDiario}, '${diametroTubo}')`, resposta);
+})
+
+//ROTAS CABOSOL
+
+rota.get('/cabo', (requisicao, resposta) => {
+	execSQL(`SELECT * FROM CaboSol`, resposta);
+})
+
+rota.get('/cabo/:codigo', (requisicao, resposta) => {
+	const codigo = parseInt(requisicao.params.codigo);
+	execSQL(`SELECT * FROM CaboSol WHERE CODIGO = ${codigo}`, resposta);
+})
+
+rota.delete('/delete_cabo/:codigo', (requisicao, resposta) => {
+	const codigo = parseInt(requisicao.params.codigo);
+	execSQL(`DELETE CaboSol WHERE CODIGO = ${codigo}`, resposta);
+})
+
+rota.patch('/update_cabo/:codigo', (requisicao, resposta) => {
+	const codigo = parseInt(requisicao.params.codigo);
+	const preco = requisicao.body.preco;
+	execSQL(`UPDATE CaboSol SET preco = ${preco} WHERE CODIGO = ${codigo}`, resposta);
+})
+
+rota.post('/insert_cabo', (requisicao, resposta) => {
+	const nome = requisicao.body.nome;
+	const preco = requisicao.body.preco;
+	const descricao = requisicao.body.descricao;
+	const comprimento = requisicao.body.comprimento;
+	const diametro = requisicao.body.diametro;
+	const conducao = requisicao.body.conducao;
+	execSQL(`INSERT INTO CaboSol VALUES('${nome}', ${preco}, '${descricao}', ${comprimento}, ${diametro}, '${conducao}')`, resposta);
 })
