@@ -23,6 +23,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.appandroidfotovoltaica.Empresa;
 import com.example.appandroidfotovoltaica.Enderecos;
+import com.example.appandroidfotovoltaica.MensagensErroUsuario;
 import com.example.appandroidfotovoltaica.MyTask;
 import com.example.appandroidfotovoltaica.R;
 import com.example.appandroidfotovoltaica.Usuario;
@@ -39,6 +40,7 @@ public class Cadastrar extends Fragment {
     private EditText etNome, etEmail, etSenhaUm, etSenhaConfirmada, etTelefone, etCpf, etDataNascimento;
     private TextView tvExceptionNome, tvExceptionEmail, tvExceptionSenhaUm, tvExceptionSenhaConfirmada,
             tvExceptionTelefone, tvExceptionDataNascimento, tvExceptionCpf;
+    private MensagensErroUsuario mensagens;
 
 
     @Override
@@ -65,6 +67,15 @@ public class Cadastrar extends Fragment {
         spEmpresa = root.findViewById(R.id.spEmpresa);
         btnCadastrarUsuario = root.findViewById(R.id.btnCadastrarUsuario);
 
+        mensagens = new MensagensErroUsuario(
+            tvExceptionNome,
+            tvExceptionDataNascimento,
+            tvExceptionEmail,
+            tvExceptionTelefone,
+            tvExceptionCpf,
+            tvExceptionSenhaUm,
+            tvExceptionSenhaConfirmada);
+
         MyTask task = new MyTask(Empresa[].class);
         task.execute(Enderecos.GET_EMPRESAS);
         while (task.isTrabalhando()) ;
@@ -82,46 +93,34 @@ public class Cadastrar extends Fragment {
             @Override
             public void onClick(View v) {
 
-                    final String nome = etNome.getText().toString().trim();
-                    final String data = etDataNascimento.getText().toString();
-                    final String email = etEmail.getText().toString();
-                    final String telefone = etTelefone.getText().toString();
-                    final String cpf = etCpf.getText().toString();
-                    final String senhaUm = etSenhaUm.getText().toString();
-                    final String senhaConfirmada = etSenhaConfirmada.getText().toString();
-                    final RequestQueue QUEUE = Volley.newRequestQueue(getActivity().getApplicationContext());
+                final String nome = etNome.getText().toString().trim();
+                final String data = etDataNascimento.getText().toString();
+                final String email = etEmail.getText().toString();
+                final String telefone = etTelefone.getText().toString();
+                final String cpf = etCpf.getText().toString();
+                final String senhaUm = etSenhaUm.getText().toString();
+                final String senhaConfirmada = etSenhaConfirmada.getText().toString();
+                final RequestQueue QUEUE = Volley.newRequestQueue(getActivity().getApplicationContext());
 
-                    if (teveMensagensDeErro(nome, data, email, telefone, cpf, senhaUm, senhaConfirmada))
-                        return;
+                if (mensagens.teveMensagensDeErro(nome, data, email, telefone, cpf, senhaUm, senhaConfirmada))
+                    return;
 
-                    MyTask task = new MyTask(Usuario[].class);
-                    task.execute(Enderecos.GET_USUARIOS + "_email/" + email);
-                    while (task.isTrabalhando()) ;
-                    //ArvoreBinaria<String> arvoreBinaria = new ArvoreBinaria<String>();
-                    Usuario[] resultUsuarios = (Usuario[]) task.getDados();
-                    /*for (int i = 0; i < resultUsuarios.length; i++)
-                    {
-                        try{
-                            arvoreBinaria.adicionar(resultUsuarios[i].getEmail());
-                        }
-                        catch (Exception e){}
-                    }
+                MyTask task = new MyTask(Usuario[].class);
+                task.execute(Enderecos.GET_USUARIOS + "_email/" + email);
+                while (task.isTrabalhando()) ;
+                Usuario[] resultUsuarios = (Usuario[]) task.getDados();
+
+                /*
+                ArvoreBinaria<String> arvoreBinaria = new ArvoreBinaria<String>();
+                for (int i = 0; i < resultUsuarios.length; i++)
+                {
                     try{
-                        if (arvoreBinaria.buscar(email) != null)
-                        {
-                            Toast.makeText(
-                                    getActivity().getApplicationContext(),
-                                    "Email já cadastrado",
-                                    Toast.LENGTH_SHORT).show();
-                            return;
-                        }
+                        arvoreBinaria.adicionar(resultUsuarios[i].getEmail());
                     }
-                    catch(Exception e){Toast.makeText(getActivity().getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT);}
-                    */
-
-
-
-                    if (resultUsuarios.length > 0)
+                    catch (Exception e){}
+                }
+                try{
+                    if (arvoreBinaria.buscar(email) != null)
                     {
                         Toast.makeText(
                                 getActivity().getApplicationContext(),
@@ -129,114 +128,67 @@ public class Cadastrar extends Fragment {
                                 Toast.LENGTH_SHORT).show();
                         return;
                     }
+                }
+                catch(Exception e){Toast.makeText(getActivity().getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT);}
+                */
+
+                if (resultUsuarios.length > 0)
+                {
+                    Toast.makeText(
+                            getActivity().getApplicationContext(),
+                            "Email já cadastrado",
+                            Toast.LENGTH_SHORT).show();
+                    return;
+                }
 
 
-                    HashMap<String, String> params = new HashMap<String,String>();
+                HashMap<String, String> params = new HashMap<String,String>();
 
-                    StringRequest postRequest = new StringRequest(
-                            Request.Method.POST,
-                            Enderecos.POST_USUARIOS,
-                            new Response.Listener<String>()
-                            {
-                                @Override
-                                public void onResponse(String response) {
-                                    // response
-                                    Toast.makeText(
-                                            getActivity().getApplicationContext(),
-                                            "Usario inserido",
-                                            Toast.LENGTH_SHORT).show();
-                                }
-                            },
-                            new Response.ErrorListener()
-                            {
-                                @Override
-                                public void onErrorResponse(VolleyError error) {
-                                    // error
-                                    Toast.makeText(
-                                            getActivity().getApplicationContext(),
-                                            "Erro ao inserir usuario",
-                                            Toast.LENGTH_SHORT).show();
-                                }
-                            }
-                    ) {
-                        @Override
-                        protected Map<String, String> getParams()
+                StringRequest postRequest = new StringRequest(
+                        Request.Method.POST,
+                        Enderecos.POST_USUARIOS,
+                        new Response.Listener<String>()
                         {
-                            Map<String, String> params = new HashMap<String, String>();
-                            params.put("email", email);
-                            params.put("nome", nome);
-                            params.put("senha", senhaConfirmada);
-                            params.put("codEmpresa", "2");
-                            params.put("telefone", telefone);
-                            params.put("cpf", cpf);
-                            params.put("data", data);
-                            return params;
+                            @Override
+                            public void onResponse(String response) {
+                                // response
+                                Toast.makeText(
+                                        getActivity().getApplicationContext(),
+                                        "Usario inserido",
+                                        Toast.LENGTH_SHORT).show();
+                            }
+                        },
+                        new Response.ErrorListener()
+                        {
+                            @Override
+                            public void onErrorResponse(VolleyError error) {
+                                // error
+                                Toast.makeText(
+                                        getActivity().getApplicationContext(),
+                                        "Erro ao inserir usuario",
+                                        Toast.LENGTH_SHORT).show();
+                            }
                         }
-                    };
-                    QUEUE.add(postRequest);
-
-
+                ) {
+                    @Override
+                    protected Map<String, String> getParams()
+                    {
+                        Map<String, String> params = new HashMap<String, String>();
+                        params.put("email", email);
+                        params.put("nome", nome);
+                        params.put("senha", senhaConfirmada);
+                        params.put("codEmpresa", "2");
+                        params.put("telefone", telefone);
+                        params.put("cpf", cpf);
+                        params.put("data", data);
+                        return params;
+                    }
+                };
+                QUEUE.add(postRequest);
             }
         });
 
        return root;
     }
-    private boolean teveMensagensDeErro(
-        String nome,
-        String data,
-        String email,
-        String telefone,
-        String cpf,
-        String senhaUm,
-        String senhaConfirmada)
-    {
-        limparMensagens();
-        boolean teveMensagem = false;
-        if (!Verificadora.isNomeValido(nome)){
-            tvExceptionNome.setText("Nome inválido. Números e simbolos não podem ser utilizados. O tamanho do nome deve ser de 10 a 50 caracteres");
-            teveMensagem = true;
-        }
-        if (!Verificadora.isDataValida(data))
-        {
-            tvExceptionDataNascimento.setText("Data inválida. Siga o formato dd/mm/aaaa (Exemplo: 24/09/1977)");
-            teveMensagem = true;
-        }
-        if (!Verificadora.isEmailValido(email))
-        {
-            tvExceptionEmail.setText("Email inválido.");
-        }
-        if (!Verificadora.isTelefoneValido(telefone))
-        {
-            tvExceptionTelefone.setText("Telefone inválido. O número poderá ter entre 9 e 11* caracteres." +
-                    "*: código de país incluso");
-            teveMensagem = true;
-        }
-        if (!Verificadora.isCpfValido(cpf))
-        {
-            tvExceptionCpf.setText("Cpf inválido. O formato de um cpf é 000.000.000-00");
-            teveMensagem = true;
-        }
-        if (!Verificadora.isSenhaValida(senhaUm))
-        {
-            tvExceptionSenhaUm.setText("Senha inválida. A senha deve possuir de 6 a 22 caracteres e não poderá possuir espaços");
-        }
-        if (!Verificadora.isSenhaIguais(senhaUm,senhaConfirmada))
-        {
-            tvExceptionSenhaConfirmada.setText("As senhas devem ser iguais.");
-        }
-
-        return teveMensagem;
-    }
-    private void limparMensagens()
-    {
-        tvExceptionNome.setText("");
-        tvExceptionDataNascimento.setText("");
-        tvExceptionEmail.setText("");
-        tvExceptionTelefone.setText("");
-        tvExceptionCpf.setText("");
-        tvExceptionSenhaUm.setText("");
-        tvExceptionSenhaConfirmada.setText("");
-    }
-
 }
 

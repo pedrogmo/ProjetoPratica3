@@ -27,6 +27,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.appandroidfotovoltaica.MainActivity;
+import com.example.appandroidfotovoltaica.MensagensErroCliente;
 import com.example.appandroidfotovoltaica.MyTask;
 import com.example.appandroidfotovoltaica.R;
 import com.example.appandroidfotovoltaica.Verificadora;
@@ -58,6 +59,7 @@ public class AdicionarClienteFragment extends Fragment {
 
     private Button btnAdicionarCliente;
     private FloatingActionButton fab;
+    private MensagensErroCliente mensagens;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -79,13 +81,20 @@ public class AdicionarClienteFragment extends Fragment {
         this.etTelefoneCliente = (EditText) root.findViewById(R.id.etTelefoneCliente);
         this.etCpfCliente = (EditText) root.findViewById(R.id.etCpfCliente);
 
-        this.tvExceptionNome = (TextView) root.findViewById(R.id.tvExceptionNomeCliente);
-        this.tvExceptionData = (TextView) root.findViewById(R.id.tvExceptionDataCliente);
-        this.tvExceptionEmail = (TextView) root.findViewById(R.id.tvExceptionEmailCliente);
-        this.tvExceptionTelefone = (TextView) root.findViewById(R.id.tvExceptionTelefoneCliente);
-        this.tvExceptionCpf = (TextView) root.findViewById(R.id.tvExceptionCpfCliente);
+        this.tvExceptionNome = (TextView) root.findViewById(R.id.tvExceptionNomeClienteAdd);
+        this.tvExceptionData = (TextView) root.findViewById(R.id.tvExceptionDataClienteAdd);
+        this.tvExceptionEmail = (TextView) root.findViewById(R.id.tvExceptionEmailClienteAdd);
+        this.tvExceptionTelefone = (TextView) root.findViewById(R.id.tvExceptionTelefoneClienteAdd);
+        this.tvExceptionCpf = (TextView) root.findViewById(R.id.tvExceptionCpfClienteAdd);
 
         this.btnAdicionarCliente = (Button) root.findViewById(R.id.btnAdicionarCliente);
+
+        this.mensagens = new MensagensErroCliente(
+            this.tvExceptionNome,
+            this.tvExceptionData,
+            this.tvExceptionEmail,
+            this.tvExceptionTelefone,
+            this.tvExceptionCpf);
 
         final RequestQueue QUEUE = Volley.newRequestQueue(getActivity().getApplicationContext());
 
@@ -98,7 +107,7 @@ public class AdicionarClienteFragment extends Fragment {
                 final String telefone = etTelefoneCliente.getText().toString();
                 final String cpf = etCpfCliente.getText().toString();
 
-                if (teveMensagensDeErro(nome, data, email, telefone, cpf))
+                if (mensagens.teveMensagensDeErro(nome, data, email, telefone, cpf))
                     return;
 
                 MyTask task = new MyTask(Cliente[].class);
@@ -156,7 +165,7 @@ public class AdicionarClienteFragment extends Fragment {
                         params.put("telefone", telefone);
                         params.put("data", data);
                         params.put("cpf", cpf);
-                        params.put("codEmpresa", "2");
+                        params.put("codEmpresa", ((MainActivity)getActivity()).getUsuario().getCodEmpresa() + "");
                         return params;
                     }
                 };
@@ -167,49 +176,5 @@ public class AdicionarClienteFragment extends Fragment {
         return root;
     }
 
-    private void limparMensagens()
-    {
-        tvExceptionNome.setText("");
-        tvExceptionData.setText("");
-        tvExceptionEmail.setText("");
-        tvExceptionTelefone.setText("");
-        tvExceptionCpf.setText("");
-    }
 
-    private boolean teveMensagensDeErro(
-        String nome,
-        String data,
-        String email,
-        String telefone,
-        String cpf)
-    {
-        limparMensagens();
-        boolean teveMensagem = false;
-        if (!Verificadora.isNomeValido(nome)){
-            tvExceptionNome.setText("Nome inválido. Números e simbolos não podem ser utilizados. O tamanho do nome deve ser de 10 a 50 caracteres");
-            teveMensagem = true;
-        }
-        if (!Verificadora.isDataValida(data))
-        {
-            tvExceptionData.setText("Data inválida. Siga o formato dd/mm/aaaa (Exemplo: 24/09/1977)");
-            teveMensagem = true;
-        }
-        if (!Verificadora.isEmailValido(email))
-        {
-            tvExceptionEmail.setText("Email inválido.");
-        }
-        if (!Verificadora.isTelefoneValido(telefone))
-        {
-            tvExceptionTelefone.setText("Telefone inválido. O número poderá ter entre 9 e 11* caracteres." +
-                    "*: código de país incluso");
-            teveMensagem = true;
-        }
-        if (!Verificadora.isCpfValido(cpf))
-        {
-            tvExceptionCpf.setText("Cpf inválido. O formato de um cpf é 000.000.000-00");
-            teveMensagem = true;
-        }
-
-        return teveMensagem;
-    }
 }

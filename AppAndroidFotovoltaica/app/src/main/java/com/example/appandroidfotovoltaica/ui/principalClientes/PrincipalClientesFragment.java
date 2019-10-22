@@ -20,6 +20,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProviders;
 
+import com.example.appandroidfotovoltaica.MainActivity;
 import com.example.appandroidfotovoltaica.MyTask;
 import com.example.appandroidfotovoltaica.R;
 import com.example.appandroidfotovoltaica.ui.adicionarcliente.AdicionarClienteFragment;
@@ -51,7 +52,7 @@ public class PrincipalClientesFragment extends Fragment {
 
 
         MyTask task = new MyTask(Cliente[].class);
-        task.execute(Enderecos.GET_CLIENTES + "/2");
+        task.execute(Enderecos.GET_CLIENTES + "/" + ((MainActivity)getActivity()).getUsuario().getCodEmpresa());
         while (task.isTrabalhando()) ;
         this.clientesTotal = (Cliente[]) task.getDados();
         for (Cliente c : this.clientesTotal)

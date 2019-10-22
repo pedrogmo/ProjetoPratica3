@@ -32,8 +32,8 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
-    Usuario logado;
-    TextView tvNomeLogado, tvEmailLogado;
+    private Usuario logado;
+    private TextView tvNomeLogado, tvEmailLogado;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,4 +89,8 @@ public class MainActivity extends AppCompatActivity {
         moveTaskToBack(false);
     }
 
+    public Usuario getUsuario()
+    {
+        return this.logado;
+    }
 }

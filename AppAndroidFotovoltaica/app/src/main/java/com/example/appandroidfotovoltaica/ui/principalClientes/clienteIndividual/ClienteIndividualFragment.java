@@ -9,7 +9,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,9 +25,9 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.appandroidfotovoltaica.Cliente;
 import com.example.appandroidfotovoltaica.Enderecos;
+import com.example.appandroidfotovoltaica.MensagensErroCliente;
 import com.example.appandroidfotovoltaica.MyTask;
 import com.example.appandroidfotovoltaica.R;
-import com.example.appandroidfotovoltaica.ui.adicionarcliente.AdicionarClienteFragment;
 import com.example.appandroidfotovoltaica.ui.principalClientes.PrincipalClientesFragment;
 
 import java.util.HashMap;
@@ -47,12 +46,19 @@ public class ClienteIndividualFragment extends Fragment {
     private Button
         btnAlterar,
         btnExcluir;
+    private TextView
+        tvExceptionNome,
+        tvExceptionData,
+        tvExceptionEmail,
+        tvExceptionTelefone,
+        tvExceptionCpf;
+    private MensagensErroCliente mensagens;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         mViewModel = ViewModelProviders.of(this).get(ClienteIndividualViewModel.class);
-        View root = inflater.inflate(R.layout.cliente_individual_fragment, container, false);
+        View root = inflater.inflate(R.layout.fragment_clienteindividual, container, false);
 
         Bundle bundle = getArguments();
         this.clienteAtual = (Cliente) bundle.getSerializable("cliente");
@@ -69,10 +75,21 @@ public class ClienteIndividualFragment extends Fragment {
         this.etData.setText(this.clienteAtual.getData());
         this.etCpf.setText(this.clienteAtual.getCpf());
 
+        this.tvExceptionNome = (TextView) root.findViewById(R.id.tvExceptionNomeClienteAlt);
+        this.tvExceptionData = (TextView) root.findViewById(R.id.tvExceptionDataClienteAlt);
+        this.tvExceptionEmail = (TextView) root.findViewById(R.id.tvExceptionEmailClienteAlt);
+        this.tvExceptionTelefone = (TextView) root.findViewById(R.id.tvExceptionTelefoneClienteAlt);
+        this.tvExceptionCpf = (TextView) root.findViewById(R.id.tvExceptionCpfClienteAlt);
+
         this.btnAlterar = (Button) root.findViewById(R.id.btnAlterarCliente);
         this.btnExcluir = (Button) root.findViewById(R.id.btnExcluirCliente);
 
-
+        this.mensagens = new MensagensErroCliente(
+            this.tvExceptionNome,
+            this.tvExceptionData,
+            this.tvExceptionEmail,
+            this.tvExceptionTelefone,
+            this.tvExceptionCpf);
 
         this.btnAlterar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -85,18 +102,8 @@ public class ClienteIndividualFragment extends Fragment {
                 final String telefone = etTelefone.getText().toString();
                 final String cpf = etCpf.getText().toString();
 
-                try
-                {
-                    Cliente c = new Cliente(0, email, nome, telefone, data, cpf, 2);
-                }
-                catch(Exception exc)
-                {
-                    Toast.makeText(
-                            getActivity().getApplicationContext(),
-                            exc.getMessage(),
-                            Toast.LENGTH_SHORT).show();
+                if (mensagens.teveMensagensDeErro(nome, data, email, telefone, cpf))
                     return;
-                }
 
                 MyTask task = new MyTask(Cliente[].class);
                 task.execute(Enderecos.GET_CLIENTES + "_email/" + email);
@@ -176,7 +183,7 @@ public class ClienteIndividualFragment extends Fragment {
                                         "Cliente excluído",
                                         Toast.LENGTH_SHORT).show();
                                 FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-                                fragmentTransaction.replace(R.id.cliente_individual_fragment, new PrincipalClientesFragment());
+                                fragmentTransaction.replace(R.id.fragment_clienteindividual, new PrincipalClientesFragment());
                                 fragmentTransaction.commit();
                             }
                         },
