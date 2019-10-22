@@ -7,9 +7,9 @@
 
     <fragment
         android:id="@+id/nav_perfil"
-        android:name=""
-        />
-
+        android:name="com.example.appandroidfotovoltaica.ui.perfil.PerfilFragment"
+        android:label="Perfil"
+        tools:layout="@layout/fragment_perfil"/>
     <fragment
         android:id="@+id/nav_calculadora"
         android:name="com.example.appandroidfotovoltaica.ui.home.HomeFragment"

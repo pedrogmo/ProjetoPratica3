@@ -70,7 +70,7 @@ public class ClienteIndividualFragment extends Fragment {
         this.etCpf.setText(this.clienteAtual.getCpf());
 
         this.btnAlterar = (Button) root.findViewById(R.id.btnAlterarCliente);
-        this.btnExcluir = (Button) root.findViewById(R.id.btnAlterarCliente);
+        this.btnExcluir = (Button) root.findViewById(R.id.btnExcluirCliente);
 
 
 

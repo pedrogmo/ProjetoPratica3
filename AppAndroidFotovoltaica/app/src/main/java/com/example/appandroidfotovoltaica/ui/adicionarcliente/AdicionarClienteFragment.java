@@ -129,6 +129,7 @@ public class AdicionarClienteFragment extends Fragment {
                                         getActivity().getApplicationContext(),
                                         "Cliente inserido",
                                         Toast.LENGTH_SHORT).show();
+
                                 FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
                                 fragmentTransaction.replace(R.id.fragment_adicionarcliente, new PrincipalClientesFragment());
                                 fragmentTransaction.commit();

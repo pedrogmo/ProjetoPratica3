@@ -30,8 +30,7 @@ public class PerfilFragment extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
         perfilViewModel =
                 ViewModelProviders.of(this).get(PerfilViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_calculadora, container, false);
-
+        View root = inflater.inflate(R.layout.fragment_perfil, container, false);
 
         return root;
     }
