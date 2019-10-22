@@ -4,6 +4,9 @@ import com.example.appandroidfotovoltaica.Cliente;
 import com.example.appandroidfotovoltaica.Enderecos;
 
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,7 +35,8 @@ public class PrincipalClientesFragment extends Fragment {
     private EditText etBuscarCliente;
     private ListView lvListaClientes;
     private FloatingActionButton fabNovoCliente;
-    private ArrayList<Cliente> listaClientes;
+    private Cliente[] clientesTotal;
+    private ArrayList<Cliente> clientesBusca;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -43,17 +47,18 @@ public class PrincipalClientesFragment extends Fragment {
         etBuscarCliente = root.findViewById(R.id.etBuscarCliente);
         lvListaClientes = root.findViewById(R.id.lvListaClientes);
         fabNovoCliente = root.findViewById(R.id.fabNovoCliente);
-        this.listaClientes = new ArrayList<Cliente>();
+        this.clientesBusca = new ArrayList<Cliente>();
 
 
         MyTask task = new MyTask(Cliente[].class);
         task.execute(Enderecos.GET_CLIENTES + "/2");
         while (task.isTrabalhando()) ;
-        for (Cliente c : (Cliente[]) task.getDados())
-            this.listaClientes.add(c);
+        this.clientesTotal = (Cliente[]) task.getDados();
+        for (Cliente c : this.clientesTotal)
+            this.clientesBusca.add(c);
 
         this.lvListaClientes.setAdapter(new ClienteArrayAdapter(
-                getActivity().getApplicationContext(), this.listaClientes
+                getActivity().getApplicationContext(), this.clientesBusca
         ));
 
         fabNovoCliente.setOnClickListener(new View.OnClickListener() {
@@ -75,11 +80,31 @@ public class PrincipalClientesFragment extends Fragment {
                     long l) {
                 FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
                 Bundle bundle = new Bundle();
-                bundle.putSerializable("cliente", listaClientes.get(i));
+                bundle.putSerializable("cliente", clientesBusca.get(i));
                 ClienteIndividualFragment fragment = new ClienteIndividualFragment();
                 fragment.setArguments(bundle);
                 fragmentTransaction.replace(R.id.fragment_principalclientes, fragment);
                 fragmentTransaction.commit();
+            }
+        });
+
+        etBuscarCliente.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                clientesBusca.clear();
+                for(Cliente c : clientesTotal)
+                    if (c.getNome().contains(charSequence))
+                        clientesBusca.add(c);
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
             }
         });
 
