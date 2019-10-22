@@ -42,46 +42,13 @@ public class LoginActivity extends AppCompatActivity {
         etSenhaLogin = findViewById(R.id.etSenhaLogin);
         btnLogar = findViewById(R.id.btnLogar);
         tvCadastrarLogin = findViewById(R.id.tvCadastrarLogin);
-        btnLogar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                MyTask task = new MyTask(Usuario[].class);
-                task.execute(Enderecos.GET_USUARIOS + "_email/" + etEmailLogin.getText().toString());
-                while (task.isTrabalhando()) ;
-                Usuario[] resultUsuarios = (Usuario[]) task.getDados();
 
-                if (resultUsuarios.length <= 0)
-                {
-                    Toast.makeText(
-                            getApplicationContext(), "Usuário não existe",
-                            Toast.LENGTH_SHORT).show();
-                    return;
-                }
+        this.arvoreUsuarios = new ArvoreBinaria<Usuario>();
 
-                else
-                {
-                    boolean loginCorreto = false;
-                    for (int i = 0; i < resultUsuarios.length; i++)
-                    {
-                        if (resultUsuarios[i].getSenha().equals(etSenhaLogin.getText().toString()))
-                            loginCorreto = true;
-                    }
-                    if (loginCorreto == false){
-                        Toast.makeText(getApplicationContext(),"Dados incorretos",Toast.LENGTH_SHORT).show();
-                        return;
-                    }
-                }
-
-                Toast.makeText(getApplicationContext(),"Login efetuado com sucesso",Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                startActivity(intent);
-            }
-        });
-
-
-        /*MyTask task = new MyTask(Usuario[].class);
+        MyTask task = new MyTask(Usuario[].class);
         task.execute(Enderecos.GET_USUARIOS);
         while (task.isTrabalhando());
+
         for(Usuario u : (Usuario[]) task.getDados())
         {
             try
@@ -109,6 +76,7 @@ public class LoginActivity extends AppCompatActivity {
 
                 final String email =  etEmailLogin.getText().toString().trim();
                 final String senha = etSenhaLogin.getText().toString().trim();
+
                 if(email.equals("") || senha.equals(""))
                 {
                     Toast.makeText(getApplicationContext(),"Digite os dados de login", Toast.LENGTH_SHORT).show();
@@ -134,50 +102,16 @@ public class LoginActivity extends AppCompatActivity {
                     return;
                 }
 
-                if (busca.getSenha().equals(senha))
+                if (!busca.getSenha().equals(senha))
                 {
-                    Toast.makeText(getApplicationContext(),"Login efetuado com sucesso",Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                    startActivity(intent);
+                    Toast.makeText(getApplicationContext(), "Senha incorreta", Toast.LENGTH_SHORT).show();
+                    return;
                 }
-                else
-                    Toast.makeText(getApplicationContext(),"Senha incorreta",Toast.LENGTH_SHORT).show();
+
+                Toast.makeText(getApplicationContext(),"Login efetuado com sucesso",Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(intent);
             }
-        });*/
+        });
     }
 }
-
-/*
-    Código anterior - vetor de usuários
-
-    MyTask task = new MyTask(Usuario[].class);
-    task.execute(Enderecos.GET_USUARIOS + "_email/" + etEmailLogin.getText().toString());
-    while (task.isTrabalhando()) ;
-    Usuario[] resultUsuarios = (Usuario[]) task.getDados();
-
-    if (resultUsuarios.length <= 0)
-    {
-        Toast.makeText(
-            getApplicationContext(),
-            Toast.LENGTH_SHORT).show();
-        return;
-    }
-
-    else
-    {
-        boolean loginCorreto = false;
-        for (int i = 0; i < resultUsuarios.length; i++)
-        {
-            if (resultUsuarios[i].getSenha() == etSenhaLogin.getText().toString())
-                loginCorreto = true;
-        }
-        if (loginCorreto == false){
-            Toast.makeText(getApplicationContext(),"Dados incorretos",Toast.LENGTH_SHORT).show();
-            return;
-        }
-    }
-
-    Toast.makeText(getApplicationContext(),"Login efetuado com sucesso",Toast.LENGTH_SHORT).show();
-    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-    startActivity(intent);
-*/
