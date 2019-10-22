@@ -132,6 +132,11 @@ rota.get('/empresa', (requisicao, resposta) => {
 	execSQL('SELECT * FROM EmpresaSol', resposta);
 })
 
+rota.get('/empresa/:codigo', (requisicao, resposta) => {
+	const codigo = parseInt(requisicao.params.codigo);
+	execSQL(`SELECT * FROM EmpresaSol WHERE CODIGO = ${codigo}`, resposta);
+})
+
 rota.post('/insert_empresa', (requisicao, resposta) => {
 	const nome = requisicao.body.nome;
 	const cnpj = requisicao.body.cnpj;
