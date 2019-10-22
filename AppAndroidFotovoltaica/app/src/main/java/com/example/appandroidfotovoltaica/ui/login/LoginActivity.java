@@ -26,6 +26,8 @@ import com.example.appandroidfotovoltaica.ui.home.HomeFragment;
 import com.example.appandroidfotovoltaica.ui.login.cadastrar.Cadastrar;
 import android.content.Intent;
 
+import java.io.Serializable;
+
 public class LoginActivity extends AppCompatActivity {
 
     private ArvoreBinaria<Usuario> arvoreUsuarios;
@@ -108,9 +110,12 @@ public class LoginActivity extends AppCompatActivity {
                     return;
                 }
 
+
                 Toast.makeText(getApplicationContext(),"Login efetuado com sucesso",Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                intent.putExtra("usuario", (Serializable) busca);
                 startActivity(intent);
+
             }
         });
     }

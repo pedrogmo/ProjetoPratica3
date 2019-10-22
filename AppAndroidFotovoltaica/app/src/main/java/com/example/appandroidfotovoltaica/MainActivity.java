@@ -1,5 +1,6 @@
 package com.example.appandroidfotovoltaica;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.example.appandroidfotovoltaica.ui.principalClientes.PrincipalClientesFragment;
@@ -25,12 +26,14 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.view.Menu;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
-    LinearLayout areaUsuario;
+    Usuario logado;
+    TextView tvNomeLogado, tvEmailLogado;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +41,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        Intent intent = getIntent();
+        logado = (Usuario)intent.getSerializableExtra("usuario");
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
@@ -67,16 +73,13 @@ public class MainActivity extends AppCompatActivity {
     public boolean onSupportNavigateUp() {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
 
-        areaUsuario = findViewById(R.id.areaUsuario);
-        areaUsuario.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-                fragmentTransaction.replace(R.id.nav_host_fragment , new PrincipalClientesFragment());
-                fragmentTransaction.commit();
+        //AQUI VEM OS CÓDIGOS PARA NOME E EMAIL DO USUÁRIO NO NAVIGATION
+        tvNomeLogado = findViewById(R.id.tvNomeLogado);
+        tvEmailLogado = findViewById(R.id.tvEmailLogado);
 
-            }
-        });
+        tvNomeLogado.setText(logado.getNome());
+        tvEmailLogado.setText(logado.getEmail());
+
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
     }
