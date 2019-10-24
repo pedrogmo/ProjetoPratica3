@@ -45,7 +45,7 @@ public class PerfilFragment extends Fragment {
 
     private PerfilViewModel perfilViewModel;
     EditText etNome, etTelefone, etData, etCpf, etSenhaUm, etSenhaConfirmada;
-    TextView tvEmail, tvEmpresa;
+    TextView tvEmail, tvEmpresa, tvExceptionNome, tvExceptionSenhaUm, tvExceptionSenhaConfirmada, tvExceptionTelefone, tvExceptionData, tvExceptionCpf;
     Button btnAlterar, btnExcluir;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -61,6 +61,12 @@ public class PerfilFragment extends Fragment {
         etSenhaConfirmada = root.findViewById(R.id.etSenhaConfirmadaPerfil);
         tvEmail = root.findViewById(R.id.tvEmailPerfil);
         tvEmpresa = root.findViewById(R.id.tvEmpresaPerfil);
+        tvExceptionNome = root.findViewById(R.id.tvExceptionNomePerfil);
+        tvExceptionTelefone = root.findViewById(R.id.tvExceptionTelefonePerfil);
+        tvExceptionCpf = root.findViewById(R.id.tvExceptionCpfPerfil);
+        tvExceptionData = root.findViewById(R.id.tvExceptionDataPerfil);
+        tvExceptionSenhaUm = root.findViewById(R.id.tvExceptionSenhaUmPerfil);
+        tvExceptionSenhaConfirmada = root.findViewById(R.id.tvExceptionSenhaConfirmadaPerfil);
         btnAlterar = root.findViewById(R.id.btnAlterarPerfil);
         btnExcluir = root.findViewById(R.id.btnExcluirPerfil);
         Intent intent = getActivity().getIntent();
