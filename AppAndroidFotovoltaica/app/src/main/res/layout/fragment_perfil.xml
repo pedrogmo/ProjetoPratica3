@@ -22,12 +22,29 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:text="Empresa: " />
+        <TextView
+            android:id="@+id/tvEmpresaPerfil"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:layout_marginBottom="10dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:text="Nome: " />
 
         <EditText
             android:id="@+id/etNomePerfil"
             android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:id="@+id/tvExceptionNomePerfil"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:text=""
+            android:textColor="#c0392b"
             android:layout_marginBottom="10dp"/>
 
         <TextView
@@ -50,7 +67,13 @@
             android:id="@+id/etTelefonePerfil"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="number"
+            android:inputType="number"/>
+        <TextView
+            android:id="@+id/tvExceptionTelefonePerfil"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textColor="#c0392b"
             android:layout_marginBottom="10dp"/>
 
         <TextView
@@ -62,7 +85,13 @@
             android:id="@+id/etDataPerfil"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="date"
+            android:inputType="date"/>
+        <TextView
+            android:id="@+id/tvExceptionDataPerfil"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textColor="#c0392b"
             android:layout_marginBottom="10dp"/>
 
         <TextView
@@ -74,7 +103,45 @@
             android:id="@+id/etCpfPerfil"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="number"
+            android:inputType="number"/>
+        <TextView
+            android:id="@+id/tvExceptionCpfPerfil"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textColor="#c0392b"
+            android:layout_marginBottom="10dp"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Senha: " />
+        <EditText
+            android:id="@+id/etSenhaUmPerfil"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"/>
+        <TextView
+            android:id="@+id/tvExceptionSenhaUmPerfil"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textColor="#c0392b"
+            android:layout_marginBottom="10dp"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Senha Confirmada: " />
+        <EditText
+            android:id="@+id/etSenhaConfirmadaPerfil"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"/>
+        <TextView
+            android:id="@+id/tvExceptionSenhaConfirmadaPerfil"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textColor="#c0392b"
             android:layout_marginBottom="10dp"/>
 
         <LinearLayout
