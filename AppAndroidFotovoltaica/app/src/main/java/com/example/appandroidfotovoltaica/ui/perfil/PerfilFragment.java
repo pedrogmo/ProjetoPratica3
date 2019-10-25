@@ -2,23 +2,16 @@ package com.example.appandroidfotovoltaica.ui.perfil;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.android.volley.Request;
@@ -27,19 +20,13 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.appandroidfotovoltaica.CalculadoraFotoVoltaica;
-import com.example.appandroidfotovoltaica.Cliente;
 import com.example.appandroidfotovoltaica.Empresa;
 import com.example.appandroidfotovoltaica.Enderecos;
-import com.example.appandroidfotovoltaica.MensagensErroAlterarPerfil;
 import com.example.appandroidfotovoltaica.MensagensErroUsuario;
 import com.example.appandroidfotovoltaica.MyTask;
 import com.example.appandroidfotovoltaica.R;
 import com.example.appandroidfotovoltaica.Usuario;
-import com.example.appandroidfotovoltaica.ValorMensalEnergia;
-import com.example.appandroidfotovoltaica.Verificadora;
 import com.example.appandroidfotovoltaica.ui.login.LoginActivity;
-import com.example.appandroidfotovoltaica.ui.principalClientes.PrincipalClientesFragment;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -97,10 +84,10 @@ public class PerfilFragment extends Fragment {
                 final String cpf = etCpf.getText().toString();
                 final String senhaUm = etSenhaUm.getText().toString();
                 final String senhaConfirmada = etSenhaConfirmada.getText().toString();
-                MensagensErroAlterarPerfil m = new MensagensErroAlterarPerfil(tvExceptionNome, tvExceptionData,
+                MensagensErroUsuario m = new MensagensErroUsuario(tvExceptionNome, tvExceptionData, null,
                         tvExceptionTelefone, tvExceptionCpf, tvExceptionSenhaUm, tvExceptionSenhaConfirmada);
 
-                if (m.teveMensagensDeErro(nome, data, telefone, cpf, senhaUm, senhaConfirmada))
+                if (m.teveMensagensDeErro(nome, data, null, telefone, cpf, senhaUm, senhaConfirmada))
                     return;
 
                 StringRequest putRequest = new StringRequest(
