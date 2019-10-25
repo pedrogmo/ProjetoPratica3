@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -27,7 +28,6 @@ import com.example.appandroidfotovoltaica.MensagensErroUsuario;
 import com.example.appandroidfotovoltaica.MyTask;
 import com.example.appandroidfotovoltaica.R;
 import com.example.appandroidfotovoltaica.Usuario;
-import com.example.appandroidfotovoltaica.Verificadora;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -41,6 +41,7 @@ public class Cadastrar extends Fragment {
     private TextView tvExceptionNome, tvExceptionEmail, tvExceptionSenhaUm, tvExceptionSenhaConfirmada,
             tvExceptionTelefone, tvExceptionDataNascimento, tvExceptionCpf;
     private MensagensErroUsuario mensagens;
+    private int indEmpresa = 0;
 
 
     @Override
@@ -77,7 +78,7 @@ public class Cadastrar extends Fragment {
             tvExceptionSenhaConfirmada);
 
         MyTask task = new MyTask(Empresa[].class);
-        task.execute(Enderecos.GET_EMPRESAS);
+        task.execute(Enderecos.GET_EMPRESA);
         while (task.isTrabalhando()) ;
         empresas = (Empresa[]) task.getDados();
         String[] nomesEmpresas = new String[empresas.length];
@@ -88,6 +89,20 @@ public class Cadastrar extends Fragment {
                 android.R.layout.simple_spinner_item, nomesEmpresas);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spEmpresa.setAdapter(adapter);
+
+        spEmpresa.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                // your code here
+                indEmpresa = position;
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parentView) {
+                // your code here
+            }
+
+        });
 
         this.btnCadastrarUsuario.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -100,6 +115,8 @@ public class Cadastrar extends Fragment {
                 final String cpf = etCpf.getText().toString();
                 final String senhaUm = etSenhaUm.getText().toString();
                 final String senhaConfirmada = etSenhaConfirmada.getText().toString();
+                final String codEmpresa = empresas[indEmpresa].getCodigo() + "";
+
                 final RequestQueue QUEUE = Volley.newRequestQueue(getActivity().getApplicationContext());
 
                 if (mensagens.teveMensagensDeErro(nome, data, email, telefone, cpf, senhaUm, senhaConfirmada))
@@ -177,7 +194,7 @@ public class Cadastrar extends Fragment {
                         params.put("email", email);
                         params.put("nome", nome);
                         params.put("senha", senhaConfirmada);
-                        params.put("codEmpresa", "2");
+                        params.put("codEmpresa", codEmpresa);
                         params.put("telefone", telefone);
                         params.put("cpf", cpf);
                         params.put("data", data);

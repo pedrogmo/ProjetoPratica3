@@ -70,7 +70,7 @@ public class PerfilFragment extends Fragment {
         etSenhaConfirmada.setText(logado.getSenha());
 
         MyTask task = new MyTask(Empresa[].class);
-        task.execute(Enderecos.GET_EMPRESAS + "/" + logado.getCodEmpresa());
+        task.execute(Enderecos.GET_EMPRESA + "/" + logado.getCodEmpresa());
         while (task.isTrabalhando()) ;
         Empresa[] resultEmpresas = (Empresa[]) task.getDados();
 

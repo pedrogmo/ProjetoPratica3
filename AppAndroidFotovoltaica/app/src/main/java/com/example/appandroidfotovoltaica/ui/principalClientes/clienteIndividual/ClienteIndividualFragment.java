@@ -106,7 +106,7 @@ public class ClienteIndividualFragment extends Fragment {
                     return;
 
                 MyTask task = new MyTask(Cliente[].class);
-                task.execute(Enderecos.GET_CLIENTES + "_email/" + email);
+                task.execute(Enderecos.GET_CLIENTE + "_email/" + email);
                 while (task.isTrabalhando()) ;
                 Cliente[] resultClientes = (Cliente[]) task.getDados();
                 if (resultClientes.length > 0 &&
@@ -121,7 +121,7 @@ public class ClienteIndividualFragment extends Fragment {
 
                 StringRequest putRequest = new StringRequest(
                         Request.Method.PATCH,
-                        Enderecos.PATCH_CLIENTES + "/" + clienteAtual.getCodigo(),
+                        Enderecos.PATCH_CLIENTE + "/" + clienteAtual.getCodigo(),
                         new Response.Listener<String>()
                         {
                             @Override
@@ -172,7 +172,7 @@ public class ClienteIndividualFragment extends Fragment {
 
                 StringRequest dr = new StringRequest(
                         Request.Method.DELETE,
-                        Enderecos.DELETE_CLIENTES + "/" + clienteAtual.getCodigo(),
+                        Enderecos.DELETE_CLIENTE + "/" + clienteAtual.getCodigo(),
                         new Response.Listener<String>()
                         {
                             @Override

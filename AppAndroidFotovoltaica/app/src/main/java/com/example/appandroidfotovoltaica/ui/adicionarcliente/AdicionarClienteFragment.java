@@ -4,9 +4,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.example.appandroidfotovoltaica.Cliente;
 import com.example.appandroidfotovoltaica.Enderecos;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,17 +22,13 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.appandroidfotovoltaica.MainActivity;
 import com.example.appandroidfotovoltaica.MensagensErroCliente;
 import com.example.appandroidfotovoltaica.MyTask;
 import com.example.appandroidfotovoltaica.R;
-import com.example.appandroidfotovoltaica.Verificadora;
 import com.example.appandroidfotovoltaica.ui.principalClientes.PrincipalClientesFragment;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-
-import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -111,7 +105,7 @@ public class AdicionarClienteFragment extends Fragment {
                     return;
 
                 MyTask task = new MyTask(Cliente[].class);
-                task.execute(Enderecos.GET_CLIENTES + "_email/" + email);
+                task.execute(Enderecos.GET_CLIENTE + "_email/" + email);
                 while (task.isTrabalhando()) ;
                 Cliente[] resultClientes = (Cliente[]) task.getDados();
                 if (resultClientes.length > 0)
@@ -128,7 +122,7 @@ public class AdicionarClienteFragment extends Fragment {
 
                 StringRequest postRequest = new StringRequest(
                         Request.Method.POST,
-                        Enderecos.POST_CLIENTES,
+                        Enderecos.POST_CLIENTE,
                         new Response.Listener<String>()
                         {
                             @Override

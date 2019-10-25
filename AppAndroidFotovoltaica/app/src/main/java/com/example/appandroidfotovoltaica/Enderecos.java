@@ -4,28 +4,28 @@ public class Enderecos
 {
     private static final String IP_PORTA = "http://177.220.18.81:3000/";
 
-    public static final String POST_CLIENTES = IP_PORTA + "insert_cliente";
-    public static final String GET_CLIENTES = IP_PORTA + "cliente";
-    public static final String PATCH_CLIENTES = IP_PORTA + "update_cliente";
-    public static final String DELETE_CLIENTES = IP_PORTA + "delete_cliente";
+    public static final String POST_CLIENTE = IP_PORTA + "insert_cliente";
+    public static final String GET_CLIENTE = IP_PORTA + "cliente";
+    public static final String PATCH_CLIENTE = IP_PORTA + "update_cliente";
+    public static final String DELETE_CLIENTE = IP_PORTA + "delete_cliente";
 
     public static final String POST_USUARIOS = IP_PORTA + "insert_usuario";
     public static final String GET_USUARIOS = IP_PORTA + "usuario";
     public static final String PATCH_USUARIOS = IP_PORTA + "update_usuario";
     public static final String DELETE_USUARIOS = IP_PORTA + "delete_usuario";
 
-    public static final String POST_EMPRESAS = IP_PORTA + "insert_empresa";
-    public static final String GET_EMPRESAS = IP_PORTA + "empresa";
+    public static final String POST_EMPRESA = IP_PORTA + "insert_empresa";
+    public static final String GET_EMPRESA = IP_PORTA + "empresa";
 
-    public static final String POST_MODULOS = IP_PORTA + "insert_modulo";
-    public static final String GET_MODULOS = IP_PORTA + "modulo";
-    public static final String PATCH_MODULOS = IP_PORTA + "update_modulo";
-    public static final String DELETE_MODULOS = IP_PORTA + "delete_modulo";
+    public static final String POST_MODULO = IP_PORTA + "insert_modulo";
+    public static final String GET_MODULO = IP_PORTA + "modulo";
+    public static final String PATCH_MODULO = IP_PORTA + "update_modulo";
+    public static final String DELETE_MODULO = IP_PORTA + "delete_modulo";
 
-    public static final String POST_INVERSORES = IP_PORTA + "insert_inversor";
-    public static final String GET_INVERSORES = IP_PORTA + "inversor";
-    public static final String PATCH_INVERSORES = IP_PORTA + "update_inversor";
-    public static final String DELETE_INVERSORES = IP_PORTA + "delete_inversor";
+    public static final String POST_INVERSOR = IP_PORTA + "insert_inversor";
+    public static final String GET_INVERSOR = IP_PORTA + "inversor";
+    public static final String PATCH_INVERSOR = IP_PORTA + "update_inversor";
+    public static final String DELETE_INVERSOR = IP_PORTA + "delete_inversor";
 
     public static final String POST_STRINGBOX = IP_PORTA + "insert_stringbox";
     public static final String GET_STRINGBOX = IP_PORTA + "stringbox";
