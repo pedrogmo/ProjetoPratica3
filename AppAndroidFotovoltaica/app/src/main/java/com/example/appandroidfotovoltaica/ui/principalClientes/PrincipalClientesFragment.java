@@ -100,7 +100,13 @@ public class PrincipalClientesFragment extends Fragment {
                 clientesBusca.clear();
                 for(Cliente c : clientesTotal)
                     if (c.getNome().toUpperCase().contains(String.valueOf(charSequence).toUpperCase()))
+                    {
                         clientesBusca.add(c);
+                    }
+
+                lvListaClientes.setAdapter(new ClienteArrayAdapter(
+                        getActivity().getApplicationContext(), clientesBusca
+                ));
             }
 
             @Override
