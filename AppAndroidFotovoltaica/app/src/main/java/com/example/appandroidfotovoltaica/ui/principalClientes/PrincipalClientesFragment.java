@@ -99,7 +99,7 @@ public class PrincipalClientesFragment extends Fragment {
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 clientesBusca.clear();
                 for(Cliente c : clientesTotal)
-                    if (c.getNome().toUpperCase().contains(charSequence))
+                    if (c.getNome().toUpperCase().contains(String.valueOf(charSequence).toUpperCase()))
                         clientesBusca.add(c);
             }
 
