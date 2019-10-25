@@ -62,11 +62,15 @@ public class PerfilFragment extends Fragment {
         Intent intent = getActivity().getIntent();
         final Usuario logado = (Usuario)intent.getSerializableExtra("usuario");
         tvEmail.setText(logado.getEmail());
+        etNome.setText(logado.getNome());
+        etCpf.setText(logado.getCpf());
+        etTelefone.setText(logado.getTelefone());
+        etData.setText(logado.getData());
         etSenhaUm.setText(logado.getSenha());
         etSenhaConfirmada.setText(logado.getSenha());
 
         MyTask task = new MyTask(Empresa[].class);
-        task.execute(Enderecos.GET_EMPRESAS + "/codigo/" + logado.getCodEmpresa());
+        task.execute(Enderecos.GET_EMPRESAS + "/" + logado.getCodEmpresa());
         while (task.isTrabalhando()) ;
         Empresa[] resultEmpresas = (Empresa[]) task.getDados();
 
