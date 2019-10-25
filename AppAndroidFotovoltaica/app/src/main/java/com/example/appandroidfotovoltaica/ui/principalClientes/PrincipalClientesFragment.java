@@ -52,7 +52,7 @@ public class PrincipalClientesFragment extends Fragment {
 
 
         MyTask task = new MyTask(Cliente[].class);
-        task.execute(Enderecos.GET_CLIENTES + "/" + ((MainActivity)getActivity()).getUsuario().getCodEmpresa());
+        task.execute(Enderecos.GET_CLIENTE + "/" + ((MainActivity)getActivity()).getUsuario().getCodEmpresa());
         while (task.isTrabalhando()) ;
         this.clientesTotal = (Cliente[]) task.getDados();
         for (Cliente c : this.clientesTotal)
@@ -99,7 +99,7 @@ public class PrincipalClientesFragment extends Fragment {
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 clientesBusca.clear();
                 for(Cliente c : clientesTotal)
-                    if (c.getNome().contains(charSequence))
+                    if (c.getNome().toUpperCase().contains(charSequence))
                         clientesBusca.add(c);
             }
 
