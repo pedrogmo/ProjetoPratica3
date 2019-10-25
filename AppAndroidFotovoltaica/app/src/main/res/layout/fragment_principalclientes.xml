@@ -6,6 +6,9 @@
     android:id="@+id/fragment_principalclientes"
     android:background="@android:color/white">
     <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="30dp"
@@ -24,21 +27,17 @@
             android:layout_centerHorizontal="true"
             android:hint="Digite o nome do cliente a ser buscado"/>
 
+    </RelativeLayout>
 
-
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/fabNovoCliente"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            app:fabCustomSize="60dp"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:layout_gravity="end|bottom"
-            android:layout_marginRight="30dp"
-            android:layout_marginTop="400dp"
-            android:visibility="visible"
-            android:src="@drawable/ic_cliente"/>
-
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabNovoCliente"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        app:fabCustomSize="60dp"
+        android:visibility="visible"
+        android:src="@drawable/ic_cliente"
+        android:layout_marginTop="400dp"
+        android:layout_marginLeft="300dp"/>
     </RelativeLayout>
 
 </FrameLayout>
