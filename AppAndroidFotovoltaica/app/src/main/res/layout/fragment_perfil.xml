@@ -55,8 +55,14 @@
         <TextView
             android:id="@+id/tvEmailPerfil"
             android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:id="@+id/tvEXceptionEmailPerfil"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"/>
+            android:layout_marginBottom="10dp"
+            android:textColor="@android:color/darker_gray"
+            android:text="O email não poderá ser alterado, crie outra conta caso desejar."/>
 
         <TextView
             android:layout_width="match_parent"

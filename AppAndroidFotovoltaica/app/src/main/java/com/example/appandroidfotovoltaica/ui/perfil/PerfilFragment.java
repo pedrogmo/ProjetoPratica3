@@ -31,11 +31,14 @@ import com.example.appandroidfotovoltaica.CalculadoraFotoVoltaica;
 import com.example.appandroidfotovoltaica.Cliente;
 import com.example.appandroidfotovoltaica.Empresa;
 import com.example.appandroidfotovoltaica.Enderecos;
+import com.example.appandroidfotovoltaica.MensagensErroAlterarPerfil;
+import com.example.appandroidfotovoltaica.MensagensErroUsuario;
 import com.example.appandroidfotovoltaica.MyTask;
 import com.example.appandroidfotovoltaica.R;
 import com.example.appandroidfotovoltaica.Usuario;
 import com.example.appandroidfotovoltaica.ValorMensalEnergia;
 import com.example.appandroidfotovoltaica.Verificadora;
+import com.example.appandroidfotovoltaica.ui.login.LoginActivity;
 import com.example.appandroidfotovoltaica.ui.principalClientes.PrincipalClientesFragment;
 
 import java.util.HashMap;
@@ -76,7 +79,7 @@ public class PerfilFragment extends Fragment {
         etSenhaConfirmada.setText(logado.getSenha());
 
         MyTask task = new MyTask(Empresa[].class);
-        task.execute(Enderecos.GET_EMPRESAS + "_codigo/" + logado.getCodEmpresa());
+        task.execute(Enderecos.GET_EMPRESAS + "/codigo/" + logado.getCodEmpresa());
         while (task.isTrabalhando()) ;
         Empresa[] resultEmpresas = (Empresa[]) task.getDados();
 
@@ -92,9 +95,13 @@ public class PerfilFragment extends Fragment {
                 final String data = etData.getText().toString();
                 final String telefone = etTelefone.getText().toString();
                 final String cpf = etCpf.getText().toString();
-                final String senha = etSenhaConfirmada.getText().toString();
+                final String senhaUm = etSenhaUm.getText().toString();
+                final String senhaConfirmada = etSenhaConfirmada.getText().toString();
+                MensagensErroAlterarPerfil m = new MensagensErroAlterarPerfil(tvExceptionNome, tvExceptionData,
+                        tvExceptionTelefone, tvExceptionCpf, tvExceptionSenhaUm, tvExceptionSenhaConfirmada);
 
-
+                if (m.teveMensagensDeErro(nome, data, telefone, cpf, senhaUm, senhaConfirmada))
+                    return;
 
                 StringRequest putRequest = new StringRequest(
                         Request.Method.PATCH,
@@ -129,7 +136,7 @@ public class PerfilFragment extends Fragment {
                     {
                         Map<String, String>  params = new HashMap<String, String>();
                         params.put("nome", nome);
-                        params.put("senha", senha);
+                        params.put("senha", senhaConfirmada);
                         params.put("telefone", telefone);
                         params.put("cpf", cpf);
                         params.put("data", data);
@@ -159,9 +166,8 @@ public class PerfilFragment extends Fragment {
                                         getActivity().getApplicationContext(),
                                         "Usuário excluído",
                                         Toast.LENGTH_SHORT).show();
-                                FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-                                //fragmentTransaction.replace(R.id.cliente_individual_fragment, new PrincipalClientesFragment());
-                                fragmentTransaction.commit();
+                                Intent i = new Intent(getActivity().getApplicationContext(), LoginActivity.class);
+                                startActivity(i);
                             }
                         },
                         new Response.ErrorListener()
