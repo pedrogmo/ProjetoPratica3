@@ -27,11 +27,16 @@ public class MensagensErroCliente
 
     public void limparMensagens()
     {
-        tvExceptionNome.setText("");
-        tvExceptionData.setText("");
-        tvExceptionEmail.setText("");
-        tvExceptionTelefone.setText("");
-        tvExceptionCpf.setText("");
+        if (tvExceptionNome != null)
+            tvExceptionNome.setText("");
+        if (tvExceptionData != null)
+            tvExceptionData.setText("");
+        if (tvExceptionEmail != null)
+            tvExceptionEmail.setText("");
+        if (tvExceptionTelefone != null)
+            tvExceptionTelefone.setText("");
+        if (tvExceptionCpf != null)
+            tvExceptionCpf.setText("");
     }
 
     public boolean teveMensagensDeErro(

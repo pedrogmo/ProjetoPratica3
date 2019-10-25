@@ -95,12 +95,19 @@ public class MensagensErroUsuario
 
     public void limparMensagens()
     {
-        tvExceptionNome.setText("");
-        tvExceptionDataNascimento.setText("");
-        tvExceptionEmail.setText("");
-        tvExceptionTelefone.setText("");
-        tvExceptionCpf.setText("");
-        tvExceptionSenhaUm.setText("");
-        tvExceptionSenhaConfirmada.setText("");
+        if (tvExceptionNome != null)
+            tvExceptionNome.setText("");
+        if (tvExceptionDataNascimento != null)
+            tvExceptionDataNascimento.setText("");
+        if (tvExceptionEmail != null)
+            tvExceptionEmail.setText("");
+        if (tvExceptionTelefone != null)
+            tvExceptionTelefone.setText("");
+        if (tvExceptionCpf != null)
+            tvExceptionCpf.setText("");
+        if (tvExceptionSenhaUm != null)
+            tvExceptionSenhaUm.setText("");
+        if (tvExceptionSenhaConfirmada != null)
+            tvExceptionSenhaConfirmada.setText("");
     }
 }
