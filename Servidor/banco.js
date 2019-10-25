@@ -214,7 +214,7 @@ rota.post('/insert_inversor', (requisicao, resposta) => {
 //ROTAS STRINGBOX
 
 rota.get('/stringbox', (requisicao, resposta) => {
-	execSQL(`SELECT * FROM InversorSol`, resposta);
+	execSQL(`SELECT * FROM StringBoxSol`, resposta);
 })
 
 rota.get('/stringbox/:codigo', (requisicao, resposta) => {
