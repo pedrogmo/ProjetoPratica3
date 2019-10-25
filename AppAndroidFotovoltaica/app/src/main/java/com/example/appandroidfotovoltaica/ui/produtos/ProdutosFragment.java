@@ -1,6 +1,7 @@
 package com.example.appandroidfotovoltaica.ui.produtos;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,7 +39,7 @@ public class ProdutosFragment extends Fragment {
 
     private static String[] opcoesSpinner =
     {
-        "", "Módulo", "Inversor", "StringBox", "Fixação", "BombaSolar", "Cabo"
+        "Módulo", "Inversor", "StringBox", "Fixação", "BombaSolar", "Cabo"
     };
 
 
@@ -57,8 +58,10 @@ public class ProdutosFragment extends Fragment {
         });*/
 
         this.spCategoria = (Spinner) root.findViewById(R.id.spCategoria);
-        this.lvProdutos = (ListView) root.findViewById(R.id.lvListaClientes);
+        this.lvProdutos = (ListView) root.findViewById(R.id.lvProdutos);
         this.btnAdicionar = (Button) root.findViewById(R.id.btnAdicionarProduto);
+
+        this.listaProdutos = new ArrayList<Produto>();
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity().getApplicationContext(),
                 android.R.layout.simple_spinner_item, opcoesSpinner);
@@ -69,17 +72,24 @@ public class ProdutosFragment extends Fragment {
                 getActivity().getApplicationContext(), this.listaProdutos
         ));
 
+        MyTask task1 = new MyTask(Modulo[].class);
+        task1.execute(Enderecos.GET_MODULO);
+        while(task1.isTrabalhando()) ;
+        Modulo[] arr1 = (Modulo[]) task1.getDados();
+        listaProdutos.clear();
+        for(Modulo m : arr1)
+            listaProdutos.add(m);
+
         this.spCategoria.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
                 // your code here
                 indOpcaoProduto = position;
+                Log.d("MSG", indOpcaoProduto + "");
 
                 switch(indOpcaoProduto)
                 {
                     case 0:
-                        break;
-                    case 1:
                         MyTask task1 = new MyTask(Modulo[].class);
                         task1.execute(Enderecos.GET_MODULO);
                         while(task1.isTrabalhando()) ;
@@ -88,7 +98,7 @@ public class ProdutosFragment extends Fragment {
                         for(Modulo m : arr1)
                             listaProdutos.add(m);
                         break;
-                    case 2:
+                    case 1:
                         MyTask task2 = new MyTask(Inversor[].class);
                         task2.execute(Enderecos.GET_INVERSOR);
                         while(task2.isTrabalhando()) ;
@@ -97,7 +107,7 @@ public class ProdutosFragment extends Fragment {
                         for(Inversor i : arr2)
                             listaProdutos.add(i);
                         break;
-                    case 3:
+                    case 2:
                         MyTask task3 = new MyTask(StringBox[].class);
                         task3.execute(Enderecos.GET_STRINGBOX);
                         while(task3.isTrabalhando()) ;
@@ -106,7 +116,7 @@ public class ProdutosFragment extends Fragment {
                         for(StringBox s : arr3)
                             listaProdutos.add(s);
                         break;
-                    case 4:
+                    case 3:
                         MyTask task4 = new MyTask(Fixacao[].class);
                         task4.execute(Enderecos.GET_FIXACAO);
                         while(task4.isTrabalhando()) ;
@@ -115,7 +125,7 @@ public class ProdutosFragment extends Fragment {
                         for(Fixacao f : arr4)
                             listaProdutos.add(f);
                         break;
-                    case 5:
+                    case 4:
                         MyTask task5 = new MyTask(BombaSolar[].class);
                         task5.execute(Enderecos.GET_BOMBASOLAR);
                         while(task5.isTrabalhando()) ;
@@ -124,7 +134,7 @@ public class ProdutosFragment extends Fragment {
                         for(BombaSolar b : arr5)
                             listaProdutos.add(b);
                         break;
-                    case 6:
+                    case 5:
                         MyTask task6 = new MyTask(Cabo[].class);
                         task6.execute(Enderecos.GET_CABO);
                         while(task6.isTrabalhando()) ;
