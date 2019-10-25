@@ -68,10 +68,6 @@ public class ProdutosFragment extends Fragment {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spCategoria.setAdapter(adapter);
 
-        this.lvProdutos.setAdapter(new ProdutoArrayAdapter(
-                getActivity().getApplicationContext(), this.listaProdutos
-        ));
-
         MyTask task1 = new MyTask(Modulo[].class);
         task1.execute(Enderecos.GET_MODULO);
         while(task1.isTrabalhando()) ;
@@ -85,7 +81,6 @@ public class ProdutosFragment extends Fragment {
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
                 // your code here
                 indOpcaoProduto = position;
-                Log.d("MSG", indOpcaoProduto + "");
 
                 switch(indOpcaoProduto)
                 {
@@ -97,6 +92,7 @@ public class ProdutosFragment extends Fragment {
                         listaProdutos.clear();
                         for(Modulo m : arr1)
                             listaProdutos.add(m);
+                        atualizaLista();
                         break;
                     case 1:
                         MyTask task2 = new MyTask(Inversor[].class);
@@ -104,8 +100,11 @@ public class ProdutosFragment extends Fragment {
                         while(task2.isTrabalhando()) ;
                         Inversor[] arr2 = (Inversor[]) task2.getDados();
                         listaProdutos.clear();
-                        for(Inversor i : arr2)
+                        for(Inversor i : arr2) {
+                            Log.d("MSG", i.getNome());
                             listaProdutos.add(i);
+                        }
+                        atualizaLista();
                         break;
                     case 2:
                         MyTask task3 = new MyTask(StringBox[].class);
@@ -115,6 +114,7 @@ public class ProdutosFragment extends Fragment {
                         listaProdutos.clear();
                         for(StringBox s : arr3)
                             listaProdutos.add(s);
+                        atualizaLista();
                         break;
                     case 3:
                         MyTask task4 = new MyTask(Fixacao[].class);
@@ -124,6 +124,7 @@ public class ProdutosFragment extends Fragment {
                         listaProdutos.clear();
                         for(Fixacao f : arr4)
                             listaProdutos.add(f);
+                        atualizaLista();
                         break;
                     case 4:
                         MyTask task5 = new MyTask(BombaSolar[].class);
@@ -133,6 +134,7 @@ public class ProdutosFragment extends Fragment {
                         listaProdutos.clear();
                         for(BombaSolar b : arr5)
                             listaProdutos.add(b);
+                        atualizaLista();
                         break;
                     case 5:
                         MyTask task6 = new MyTask(Cabo[].class);
@@ -142,6 +144,7 @@ public class ProdutosFragment extends Fragment {
                         listaProdutos.clear();
                         for(Cabo c : arr6)
                             listaProdutos.add(c);
+                        atualizaLista();
                         break;
                 }
             }
@@ -172,7 +175,17 @@ public class ProdutosFragment extends Fragment {
             }
         });
 
+        this.lvProdutos.setAdapter(new ProdutoArrayAdapter(
+                getActivity().getApplicationContext(), this.listaProdutos
+        ));
 
         return root;
+    }
+
+    private void atualizaLista()
+    {
+        this.lvProdutos.setAdapter(new ProdutoArrayAdapter(
+                getActivity().getApplicationContext(), this.listaProdutos
+        ));
     }
 }
