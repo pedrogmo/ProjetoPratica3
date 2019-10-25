@@ -67,7 +67,7 @@ rota.patch('/update_usuario/:codigo', (requisicao, resposta) => {
 	const data = requisicao.body.data;
 	const cpf = requisicao.body.cpf;
 	execSQL(`UPDATE UsuarioSol SET nome = '${nome}' WHERE CODIGO = ${codigo}`, resposta);
-	execSQL(`UPDATE UsuarioSol SET nome = '${nome}' WHERE CODIGO = ${codigo}`, resposta);
+	execSQL(`UPDATE UsuarioSol SET senha = '${senha}' WHERE CODIGO = ${codigo}`, resposta);
 	execSQL(`UPDATE UsuarioSol SET telefone = '${telefone}' WHERE CODIGO = ${codigo}`, resposta);
 	execSQL(`UPDATE UsuarioSol SET data = '${data}' WHERE CODIGO = ${codigo}`, resposta);
 	execSQL(`UPDATE UsuarioSol SET cpf = '${cpf}' WHERE CODIGO = ${codigo}`, resposta);
