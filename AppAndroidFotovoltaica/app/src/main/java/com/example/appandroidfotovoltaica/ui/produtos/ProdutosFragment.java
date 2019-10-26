@@ -1,13 +1,11 @@
 package com.example.appandroidfotovoltaica.ui.produtos;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Spinner;
 
@@ -15,16 +13,16 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 
-import com.example.appandroidfotovoltaica.BombaSolar;
-import com.example.appandroidfotovoltaica.Cabo;
-import com.example.appandroidfotovoltaica.Enderecos;
-import com.example.appandroidfotovoltaica.Fixacao;
-import com.example.appandroidfotovoltaica.Inversor;
-import com.example.appandroidfotovoltaica.Modulo;
-import com.example.appandroidfotovoltaica.MyTask;
-import com.example.appandroidfotovoltaica.Produto;
+import com.example.appandroidfotovoltaica.classes.produto.equipamento.bombasolar.BombaSolar;
+import com.example.appandroidfotovoltaica.classes.produto.cabo.Cabo;
+import com.example.appandroidfotovoltaica.classes.enderecos.Enderecos;
+import com.example.appandroidfotovoltaica.classes.produto.fixacao.Fixacao;
+import com.example.appandroidfotovoltaica.classes.produto.equipamento.inversor.Inversor;
+import com.example.appandroidfotovoltaica.classes.produto.equipamento.modulo.Modulo;
+import com.example.appandroidfotovoltaica.classes.mytask.MyTask;
+import com.example.appandroidfotovoltaica.classes.produto.Produto;
 import com.example.appandroidfotovoltaica.R;
-import com.example.appandroidfotovoltaica.StringBox;
+import com.example.appandroidfotovoltaica.classes.produto.stringbox.StringBox;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;

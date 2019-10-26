@@ -1,6 +1,4 @@
-package com.example.appandroidfotovoltaica;
-
-import android.util.Log;
+package com.example.appandroidfotovoltaica.classes.verificadora;
 
 public class Verificadora
 {

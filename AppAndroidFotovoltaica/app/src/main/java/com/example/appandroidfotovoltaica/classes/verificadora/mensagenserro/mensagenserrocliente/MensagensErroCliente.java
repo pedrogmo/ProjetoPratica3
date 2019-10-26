@@ -1,6 +1,8 @@
-package com.example.appandroidfotovoltaica;
+package com.example.appandroidfotovoltaica.classes.verificadora.mensagenserro.mensagenserrocliente;
 
 import android.widget.TextView;
+
+import com.example.appandroidfotovoltaica.classes.verificadora.Verificadora;
 
 public class MensagensErroCliente
 {

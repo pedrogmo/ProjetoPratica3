@@ -1,4 +1,6 @@
-package com.example.appandroidfotovoltaica;
+package com.example.appandroidfotovoltaica.classes.produto.cabo;
+
+import com.example.appandroidfotovoltaica.classes.produto.Produto;
 
 public class Cabo extends Produto
 {

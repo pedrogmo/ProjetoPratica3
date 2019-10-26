@@ -1,7 +1,7 @@
 package com.example.appandroidfotovoltaica.ui.principalclientes;
 
-import com.example.appandroidfotovoltaica.Cliente;
-import com.example.appandroidfotovoltaica.Enderecos;
+import com.example.appandroidfotovoltaica.classes.cliente.Cliente;
+import com.example.appandroidfotovoltaica.classes.enderecos.Enderecos;
 
 import android.os.Bundle;
 import android.text.Editable;
@@ -19,7 +19,7 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.example.appandroidfotovoltaica.MainActivity;
-import com.example.appandroidfotovoltaica.MyTask;
+import com.example.appandroidfotovoltaica.classes.mytask.MyTask;
 import com.example.appandroidfotovoltaica.R;
 import com.example.appandroidfotovoltaica.ui.adicionarcliente.AdicionarClienteFragment;
 import com.example.appandroidfotovoltaica.ui.principalclientes.clienteIndividual.ClienteIndividualFragment;

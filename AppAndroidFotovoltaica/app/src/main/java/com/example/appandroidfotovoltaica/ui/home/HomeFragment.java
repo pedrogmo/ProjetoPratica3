@@ -7,29 +7,21 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
-import android.widget.Toast;
-import android.widget.Toolbar;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 
-import com.example.appandroidfotovoltaica.CalculadoraFotoVoltaica;
+import com.example.appandroidfotovoltaica.classes.calculadora.CalculadoraFotoVoltaica;
 
 import com.example.appandroidfotovoltaica.R;
-import com.example.appandroidfotovoltaica.ValorMensalEnergia;
-
-import java.lang.reflect.Array;
-import java.util.ArrayList;
+import com.example.appandroidfotovoltaica.classes.valormensal.ValorMensalEnergia;
 
 public class HomeFragment extends Fragment {
 

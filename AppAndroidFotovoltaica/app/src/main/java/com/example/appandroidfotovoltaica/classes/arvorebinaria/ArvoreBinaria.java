@@ -1,4 +1,4 @@
-package com.example.appandroidfotovoltaica;
+package com.example.appandroidfotovoltaica.classes.arvorebinaria;
 
 import java.io.Serializable;
 import java.lang.reflect.*;

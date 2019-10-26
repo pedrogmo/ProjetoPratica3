@@ -14,12 +14,12 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.appandroidfotovoltaica.ArvoreBinaria;
-import com.example.appandroidfotovoltaica.Enderecos;
+import com.example.appandroidfotovoltaica.classes.arvorebinaria.ArvoreBinaria;
+import com.example.appandroidfotovoltaica.classes.enderecos.Enderecos;
 import com.example.appandroidfotovoltaica.MainActivity;
-import com.example.appandroidfotovoltaica.MyTask;
+import com.example.appandroidfotovoltaica.classes.mytask.MyTask;
 import com.example.appandroidfotovoltaica.R;
-import com.example.appandroidfotovoltaica.Usuario;
+import com.example.appandroidfotovoltaica.classes.usuario.Usuario;
 import com.example.appandroidfotovoltaica.ui.login.cadastrar.Cadastrar;
 import android.content.Intent;
 

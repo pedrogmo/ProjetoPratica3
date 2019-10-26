@@ -20,12 +20,12 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.appandroidfotovoltaica.Empresa;
-import com.example.appandroidfotovoltaica.Enderecos;
-import com.example.appandroidfotovoltaica.MensagensErroUsuario;
-import com.example.appandroidfotovoltaica.MyTask;
+import com.example.appandroidfotovoltaica.classes.empresa.Empresa;
+import com.example.appandroidfotovoltaica.classes.enderecos.Enderecos;
+import com.example.appandroidfotovoltaica.classes.verificadora.mensagenserro.mensagenserrousuario.MensagensErroUsuario;
+import com.example.appandroidfotovoltaica.classes.mytask.MyTask;
 import com.example.appandroidfotovoltaica.R;
-import com.example.appandroidfotovoltaica.Usuario;
+import com.example.appandroidfotovoltaica.classes.usuario.Usuario;
 import com.example.appandroidfotovoltaica.ui.login.LoginActivity;
 
 import java.util.HashMap;

@@ -1,6 +1,4 @@
-package com.example.appandroidfotovoltaica;
-
-import android.util.Log;
+package com.example.appandroidfotovoltaica.classes.clientews;
 
 import java.io.BufferedReader;
 import java.io.DataOutputStream;

@@ -1,4 +1,4 @@
-package com.example.appandroidfotovoltaica;
+package com.example.appandroidfotovoltaica.classes.produto;
 
 import java.io.Serializable;
 

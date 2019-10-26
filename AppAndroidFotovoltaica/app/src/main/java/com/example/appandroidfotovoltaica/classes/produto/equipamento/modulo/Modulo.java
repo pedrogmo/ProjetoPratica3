@@ -1,4 +1,6 @@
-package com.example.appandroidfotovoltaica;
+package com.example.appandroidfotovoltaica.classes.produto.equipamento.modulo;
+
+import com.example.appandroidfotovoltaica.classes.produto.equipamento.EquipamentoFotovoltaico;
 
 public class Modulo extends EquipamentoFotovoltaico
 {

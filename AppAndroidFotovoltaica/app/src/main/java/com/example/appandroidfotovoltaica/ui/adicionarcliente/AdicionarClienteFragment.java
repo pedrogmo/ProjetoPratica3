@@ -1,8 +1,8 @@
 package com.example.appandroidfotovoltaica.ui.adicionarcliente;
 
 import com.android.volley.toolbox.StringRequest;
-import com.example.appandroidfotovoltaica.Cliente;
-import com.example.appandroidfotovoltaica.Enderecos;
+import com.example.appandroidfotovoltaica.classes.cliente.Cliente;
+import com.example.appandroidfotovoltaica.classes.enderecos.Enderecos;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -24,8 +24,8 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.Volley;
 import com.example.appandroidfotovoltaica.MainActivity;
-import com.example.appandroidfotovoltaica.MensagensErroCliente;
-import com.example.appandroidfotovoltaica.MyTask;
+import com.example.appandroidfotovoltaica.classes.verificadora.mensagenserro.mensagenserrocliente.MensagensErroCliente;
+import com.example.appandroidfotovoltaica.classes.mytask.MyTask;
 import com.example.appandroidfotovoltaica.R;
 import com.example.appandroidfotovoltaica.ui.principalclientes.PrincipalClientesFragment;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
