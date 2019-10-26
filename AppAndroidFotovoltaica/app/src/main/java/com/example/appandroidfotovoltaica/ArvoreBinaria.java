@@ -1,10 +1,11 @@
 package com.example.appandroidfotovoltaica;
 
+import java.io.Serializable;
 import java.lang.reflect.*;
 import java.lang.Math;
 
 public class ArvoreBinaria<T extends Comparable<T>> 
-	implements Cloneable
+	implements Cloneable, Serializable
 {
 	private class No<T extends Comparable<T>> 
 		implements Cloneable, Comparable<No<T>>

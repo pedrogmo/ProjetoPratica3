@@ -105,7 +105,7 @@ public class AdicionarClienteFragment extends Fragment {
                     return;
 
                 MyTask task = new MyTask(Cliente[].class);
-                task.execute(Enderecos.GET_CLIENTE + "_email/" + email);
+                task.execute(Enderecos.GET_CLIENTE_EMAIL + email);
                 while (task.isTrabalhando()) ;
                 Cliente[] resultClientes = (Cliente[]) task.getDados();
                 if (resultClientes.length > 0)

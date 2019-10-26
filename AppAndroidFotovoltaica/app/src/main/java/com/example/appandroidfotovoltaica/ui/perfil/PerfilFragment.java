@@ -96,7 +96,7 @@ public class PerfilFragment extends Fragment {
 
                 StringRequest putRequest = new StringRequest(
                         Request.Method.PATCH,
-                        Enderecos.PATCH_USUARIOS + "/" + logado.getCodigo(),
+                        Enderecos.PATCH_USUARIO + "/" + logado.getCodigo(),
                         new Response.Listener<String>()
                         {
                             @Override
@@ -147,7 +147,7 @@ public class PerfilFragment extends Fragment {
 
                 StringRequest dr = new StringRequest(
                         Request.Method.DELETE,
-                        Enderecos.DELETE_USUARIOS + "/" + logado.getCodigo(),
+                        Enderecos.DELETE_USUARIO + "/" + logado.getCodigo(),
                         new Response.Listener<String>()
                         {
                             @Override

@@ -1,34 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/fragment_produtos"
+    android:background="@android:color/white">
 
-    <TextView
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Escolha a categoria"
-        android:layout_gravity="center_horizontal"
-        android:textAlignment="center"
-        android:textSize="20dp"
-        android:layout_marginTop="150dp"/>
-    <Spinner
-        android:id="@+id/spCategoria"
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"/>
-    
-    <ListView
-        android:id="@+id/lvProdutos"
-        android:layout_width="match_parent"
-        android:layout_height="400dp">
-    </ListView>
+        android:layout_height="match_parent">
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="30dp">
+            <ListView
+                android:id="@+id/lvListaProdutos"
+                android:layout_width="match_parent"
+                android:layout_height="400dp"
+                android:layout_marginTop="30dp"
+                android:visibility="visible"
+                android:layout_gravity="center_horizontal"
+                android:layout_below="@+id/spCategoria"/>
+            <Spinner
+                android:id="@+id/spCategoria"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:text="Escolha a cetegoria do produto"
+                android:layout_below="@+id/tvCategoria"/>
+            <TextView
+                android:id="@+id/tvCategoria"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Escolha a categoria"
+                android:layout_gravity="center_horizontal"
+                android:textAlignment="center"
+                android:textSize="20dp"/>
 
-    <Button
-        android:id="@+id/btnAdicionarProduto"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Adicionar">
-    </Button>
-</LinearLayout>
+        </RelativeLayout>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fabNovoProduto"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            app:fabCustomSize="60dp"
+            android:visibility="visible"
+            android:src="@drawable/ic_add_user"
+            android:layout_marginTop="400dp"
+            android:layout_marginLeft="300dp"/>
+    </RelativeLayout>
+
+</FrameLayout>

@@ -22,6 +22,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.appandroidfotovoltaica.ArvoreBinaria;
 import com.example.appandroidfotovoltaica.Empresa;
 import com.example.appandroidfotovoltaica.Enderecos;
 import com.example.appandroidfotovoltaica.MensagensErroUsuario;
@@ -42,6 +43,7 @@ public class Cadastrar extends Fragment {
             tvExceptionTelefone, tvExceptionDataNascimento, tvExceptionCpf;
     private MensagensErroUsuario mensagens;
     private int indEmpresa = 0;
+    private ArvoreBinaria<Usuario> usuariosCadastrados;
 
 
     @Override
@@ -76,6 +78,9 @@ public class Cadastrar extends Fragment {
             tvExceptionCpf,
             tvExceptionSenhaUm,
             tvExceptionSenhaConfirmada);
+
+        Bundle bundle = getArguments();
+        usuariosCadastrados = (ArvoreBinaria<Usuario>) bundle.getSerializable("usuarios");
 
         MyTask task = new MyTask(Empresa[].class);
         task.execute(Enderecos.GET_EMPRESA);
@@ -123,7 +128,7 @@ public class Cadastrar extends Fragment {
                     return;
 
                 MyTask task = new MyTask(Usuario[].class);
-                task.execute(Enderecos.GET_USUARIOS + "_email/" + email);
+                task.execute(Enderecos.GET_USUARIO + "_email/" + email);
                 while (task.isTrabalhando()) ;
                 Usuario[] resultUsuarios = (Usuario[]) task.getDados();
 
@@ -163,7 +168,7 @@ public class Cadastrar extends Fragment {
 
                 StringRequest postRequest = new StringRequest(
                         Request.Method.POST,
-                        Enderecos.POST_USUARIOS,
+                        Enderecos.POST_USUARIO,
                         new Response.Listener<String>()
                         {
                             @Override

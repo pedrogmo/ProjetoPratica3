@@ -2,8 +2,6 @@ package com.example.appandroidfotovoltaica.ui.login;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
-import androidx.lifecycle.ViewModelProviders;
 
 import android.os.Bundle;
 
@@ -22,7 +20,6 @@ import com.example.appandroidfotovoltaica.MainActivity;
 import com.example.appandroidfotovoltaica.MyTask;
 import com.example.appandroidfotovoltaica.R;
 import com.example.appandroidfotovoltaica.Usuario;
-import com.example.appandroidfotovoltaica.ui.home.HomeFragment;
 import com.example.appandroidfotovoltaica.ui.login.cadastrar.Cadastrar;
 import android.content.Intent;
 
@@ -48,7 +45,7 @@ public class LoginActivity extends AppCompatActivity {
         this.arvoreUsuarios = new ArvoreBinaria<Usuario>();
 
         MyTask task = new MyTask(Usuario[].class);
-        task.execute(Enderecos.GET_USUARIOS);
+        task.execute(Enderecos.GET_USUARIO);
         while (task.isTrabalhando());
 
         for(Usuario u : (Usuario[]) task.getDados())
@@ -66,7 +63,10 @@ public class LoginActivity extends AppCompatActivity {
         tvCadastrarLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("usuarios", arvoreUsuarios);
                 Fragment cadastro = new Cadastrar();
+                cadastro.setArguments(bundle);
                 FragmentManager f = getSupportFragmentManager();
                 f.beginTransaction().replace(R.id.container, cadastro).commit();
             }

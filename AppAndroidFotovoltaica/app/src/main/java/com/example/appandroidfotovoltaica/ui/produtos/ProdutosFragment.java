@@ -25,6 +25,7 @@ import com.example.appandroidfotovoltaica.MyTask;
 import com.example.appandroidfotovoltaica.Produto;
 import com.example.appandroidfotovoltaica.R;
 import com.example.appandroidfotovoltaica.StringBox;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 
@@ -33,16 +34,16 @@ public class ProdutosFragment extends Fragment {
     private ProdutosViewModel toolsViewModel;
     private ArrayList<Produto> listaProdutos;
     private ListView lvProdutos;
-    private Button btnAdicionar;
+    private FloatingActionButton fabAdicionar;
     private Spinner spCategoria;
     private int indOpcaoProduto;
 
-    private static String[] opcoesSpinner =
-    {
-        "Módulo", "Inversor", "StringBox", "Fixação", "BombaSolar", "Cabo"
-    };
-
-
+    private Modulo[] arrModulo;
+    private Inversor[] arrInversor;
+    private StringBox[] arrStringBox;
+    private Fixacao[] arrFixacao;
+    private BombaSolar[] arrBombaSolar;
+    private Cabo[] arrCabo;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -58,91 +59,71 @@ public class ProdutosFragment extends Fragment {
         });*/
 
         this.spCategoria = (Spinner) root.findViewById(R.id.spCategoria);
-        this.lvProdutos = (ListView) root.findViewById(R.id.lvProdutos);
-        this.btnAdicionar = (Button) root.findViewById(R.id.btnAdicionarProduto);
+        this.lvProdutos = (ListView) root.findViewById(R.id.lvListaProdutos);
+        this.fabAdicionar = (FloatingActionButton) root.findViewById(R.id.fabNovoProduto);
 
         this.listaProdutos = new ArrayList<Produto>();
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity().getApplicationContext(),
-                android.R.layout.simple_spinner_item, opcoesSpinner);
+                android.R.layout.simple_spinner_item, Categoria.OPCOES_SPINNER);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spCategoria.setAdapter(adapter);
 
-        MyTask task1 = new MyTask(Modulo[].class);
-        task1.execute(Enderecos.GET_MODULO);
-        while(task1.isTrabalhando()) ;
-        Modulo[] arr1 = (Modulo[]) task1.getDados();
+        fazerBuscas();
+
         listaProdutos.clear();
-        for(Modulo m : arr1)
+        for(Modulo m : arrModulo)
             listaProdutos.add(m);
+
+        this.lvProdutos.setAdapter(new ProdutoArrayAdapter(
+            getActivity().getApplicationContext(), this.listaProdutos
+        ));
 
         this.spCategoria.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
-                // your code here
                 indOpcaoProduto = position;
 
                 switch(indOpcaoProduto)
                 {
                     case 0:
-                        MyTask task1 = new MyTask(Modulo[].class);
-                        task1.execute(Enderecos.GET_MODULO);
-                        while(task1.isTrabalhando()) ;
-                        Modulo[] arr1 = (Modulo[]) task1.getDados();
                         listaProdutos.clear();
-                        for(Modulo m : arr1)
+                        for(Modulo m : arrModulo)
                             listaProdutos.add(m);
                         atualizaLista();
                         break;
+
                     case 1:
-                        MyTask task2 = new MyTask(Inversor[].class);
-                        task2.execute(Enderecos.GET_INVERSOR);
-                        while(task2.isTrabalhando()) ;
-                        Inversor[] arr2 = (Inversor[]) task2.getDados();
                         listaProdutos.clear();
-                        for(Inversor i : arr2) {
-                            Log.d("MSG", i.getNome());
+                        for(Inversor i : arrInversor)
                             listaProdutos.add(i);
-                        }
                         atualizaLista();
                         break;
+
                     case 2:
-                        MyTask task3 = new MyTask(StringBox[].class);
-                        task3.execute(Enderecos.GET_STRINGBOX);
-                        while(task3.isTrabalhando()) ;
-                        StringBox[] arr3 = (StringBox[]) task3.getDados();
                         listaProdutos.clear();
-                        for(StringBox s : arr3)
+                        for(StringBox s : arrStringBox)
                             listaProdutos.add(s);
                         atualizaLista();
                         break;
+
                     case 3:
-                        MyTask task4 = new MyTask(Fixacao[].class);
-                        task4.execute(Enderecos.GET_FIXACAO);
-                        while(task4.isTrabalhando()) ;
-                        Fixacao[] arr4 = (Fixacao[]) task4.getDados();
                         listaProdutos.clear();
-                        for(Fixacao f : arr4)
+                        for(Fixacao f : arrFixacao)
                             listaProdutos.add(f);
                         atualizaLista();
                         break;
+
                     case 4:
-                        MyTask task5 = new MyTask(BombaSolar[].class);
-                        task5.execute(Enderecos.GET_BOMBASOLAR);
-                        while(task5.isTrabalhando()) ;
-                        BombaSolar[] arr5 = (BombaSolar[]) task5.getDados();
                         listaProdutos.clear();
-                        for(BombaSolar b : arr5)
+                        for(BombaSolar b : arrBombaSolar)
                             listaProdutos.add(b);
                         atualizaLista();
                         break;
+
                     case 5:
-                        MyTask task6 = new MyTask(Cabo[].class);
-                        task6.execute(Enderecos.GET_CABO);
-                        while(task6.isTrabalhando()) ;
-                        Cabo[] arr6 = (Cabo[]) task6.getDados();
                         listaProdutos.clear();
-                        for(Cabo c : arr6)
+                        for(Cabo c : arrCabo)
                             listaProdutos.add(c);
                         atualizaLista();
                         break;
@@ -168,16 +149,12 @@ public class ProdutosFragment extends Fragment {
             }
         });
 
-        this.btnAdicionar.setOnClickListener(new View.OnClickListener() {
+        this.fabAdicionar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
             }
         });
-
-        this.lvProdutos.setAdapter(new ProdutoArrayAdapter(
-                getActivity().getApplicationContext(), this.listaProdutos
-        ));
 
         return root;
     }
@@ -185,7 +162,40 @@ public class ProdutosFragment extends Fragment {
     private void atualizaLista()
     {
         this.lvProdutos.setAdapter(new ProdutoArrayAdapter(
-                getActivity().getApplicationContext(), this.listaProdutos
+            getActivity().getApplicationContext(), this.listaProdutos
         ));
+    }
+
+    private void fazerBuscas()
+    {
+        MyTask task = new MyTask(Modulo[].class);
+        task.execute(Enderecos.GET_MODULO);
+        while(task.isTrabalhando()) ;
+        arrModulo = (Modulo[]) task.getDados();
+
+        task = new MyTask(Inversor[].class);
+        task.execute(Enderecos.GET_INVERSOR);
+        while(task.isTrabalhando()) ;
+        arrInversor = (Inversor[]) task.getDados();
+
+        task = new MyTask(StringBox[].class);
+        task.execute(Enderecos.GET_STRINGBOX);
+        while(task.isTrabalhando()) ;
+        arrStringBox = (StringBox[]) task.getDados();
+
+        task = new MyTask(Fixacao[].class);
+        task.execute(Enderecos.GET_FIXACAO);
+        while(task.isTrabalhando()) ;
+        arrFixacao = (Fixacao[]) task.getDados();
+
+        task = new MyTask(BombaSolar[].class);
+        task.execute(Enderecos.GET_BOMBASOLAR);
+        while(task.isTrabalhando()) ;
+        arrBombaSolar = (BombaSolar[]) task.getDados();
+
+        task = new MyTask(Cabo[].class);
+        task.execute(Enderecos.GET_CABO);
+        while(task.isTrabalhando()) ;
+        arrCabo = (Cabo[]) task.getDados();
     }
 }
