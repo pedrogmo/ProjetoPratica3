@@ -27,7 +27,7 @@ import com.example.appandroidfotovoltaica.MainActivity;
 import com.example.appandroidfotovoltaica.MensagensErroCliente;
 import com.example.appandroidfotovoltaica.MyTask;
 import com.example.appandroidfotovoltaica.R;
-import com.example.appandroidfotovoltaica.ui.principalClientes.PrincipalClientesFragment;
+import com.example.appandroidfotovoltaica.ui.principalclientes.PrincipalClientesFragment;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.HashMap;

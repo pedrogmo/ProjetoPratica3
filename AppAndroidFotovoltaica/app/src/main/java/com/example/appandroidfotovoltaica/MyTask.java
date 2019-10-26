@@ -3,10 +3,6 @@ package com.example.appandroidfotovoltaica;
 import android.os.AsyncTask;
 import android.util.Log;
 
-import com.example.appandroidfotovoltaica.ui.principalClientes.ClienteArrayAdapter;
-
-import java.util.ArrayList;
-
 public class MyTask
         extends AsyncTask<String, Void, Object>
 {

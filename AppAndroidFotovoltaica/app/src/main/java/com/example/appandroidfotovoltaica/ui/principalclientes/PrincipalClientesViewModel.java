@@ -1,4 +1,4 @@
-package com.example.appandroidfotovoltaica.ui.principalClientes;
+package com.example.appandroidfotovoltaica.ui.principalclientes;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;

@@ -1,4 +1,4 @@
-package com.example.appandroidfotovoltaica.ui.principalClientes.clienteIndividual;
+package com.example.appandroidfotovoltaica.ui.principalclientes.clienteIndividual;
 
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProviders;
@@ -28,7 +28,7 @@ import com.example.appandroidfotovoltaica.Enderecos;
 import com.example.appandroidfotovoltaica.MensagensErroCliente;
 import com.example.appandroidfotovoltaica.MyTask;
 import com.example.appandroidfotovoltaica.R;
-import com.example.appandroidfotovoltaica.ui.principalClientes.PrincipalClientesFragment;
+import com.example.appandroidfotovoltaica.ui.principalclientes.PrincipalClientesFragment;
 
 import java.util.HashMap;
 import java.util.Map;

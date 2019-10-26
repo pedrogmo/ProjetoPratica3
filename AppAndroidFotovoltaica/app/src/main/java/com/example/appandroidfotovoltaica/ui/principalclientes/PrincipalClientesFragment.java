@@ -1,4 +1,4 @@
-package com.example.appandroidfotovoltaica.ui.principalClientes;
+package com.example.appandroidfotovoltaica.ui.principalclientes;
 
 import com.example.appandroidfotovoltaica.Cliente;
 import com.example.appandroidfotovoltaica.Enderecos;
@@ -6,14 +6,12 @@ import com.example.appandroidfotovoltaica.Enderecos;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -24,7 +22,7 @@ import com.example.appandroidfotovoltaica.MainActivity;
 import com.example.appandroidfotovoltaica.MyTask;
 import com.example.appandroidfotovoltaica.R;
 import com.example.appandroidfotovoltaica.ui.adicionarcliente.AdicionarClienteFragment;
-import com.example.appandroidfotovoltaica.ui.principalClientes.clienteIndividual.ClienteIndividualFragment;
+import com.example.appandroidfotovoltaica.ui.principalclientes.clienteIndividual.ClienteIndividualFragment;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
