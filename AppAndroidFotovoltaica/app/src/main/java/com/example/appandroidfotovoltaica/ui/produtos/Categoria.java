@@ -6,9 +6,4 @@ public class Categoria
     {
         "Módulo", "Inversor", "StringBox", "Fixação", "BombaSolar", "Cabo"
     };
-
-    public static enum C
-    {
-        Modulo, Inversor, StringBox, Fixacao, BombaSolar, Cabo
-    }
 }

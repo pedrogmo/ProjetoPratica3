@@ -11,6 +11,8 @@ import android.widget.Spinner;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.example.appandroidfotovoltaica.classes.produto.equipamento.bombasolar.BombaSolar;
@@ -23,6 +25,7 @@ import com.example.appandroidfotovoltaica.classes.mytask.MyTask;
 import com.example.appandroidfotovoltaica.classes.produto.Produto;
 import com.example.appandroidfotovoltaica.R;
 import com.example.appandroidfotovoltaica.classes.produto.stringbox.StringBox;
+import com.example.appandroidfotovoltaica.ui.produtos.adicionarproduto.AdicionarProdutoFragment;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
@@ -150,7 +153,13 @@ public class ProdutosFragment extends Fragment {
         this.fabAdicionar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("categoria", indOpcaoProduto);
+                AdicionarProdutoFragment fragment = new AdicionarProdutoFragment();
+                fragment.setArguments(bundle);
+                fragmentTransaction.replace(R.id.fragment_produtos, fragment);
+                fragmentTransaction.commit();
             }
         });
 

@@ -69,11 +69,11 @@ public class AdicionarClienteFragment extends Fragment {
         });*/
 
         fab = root.findViewById(R.id.fabNovoCliente);
-        this.etNomeCliente = (EditText) root.findViewById(R.id.etNomeCliente);
-        this.etDataNascimentoCliente = (EditText) root.findViewById(R.id.etDataNascimentoCliente);
-        this.etEmailCliente = (EditText) root.findViewById(R.id.etEmailCliente);
-        this.etTelefoneCliente = (EditText) root.findViewById(R.id.etTelefoneCliente);
-        this.etCpfCliente = (EditText) root.findViewById(R.id.etCpfCliente);
+        this.etNomeCliente = (EditText) root.findViewById(R.id.etNomeClienteAdd);
+        this.etDataNascimentoCliente = (EditText) root.findViewById(R.id.etDataNascimentoClienteAdd);
+        this.etEmailCliente = (EditText) root.findViewById(R.id.etEmailClienteAdd);
+        this.etTelefoneCliente = (EditText) root.findViewById(R.id.etTelefoneClienteAdd);
+        this.etCpfCliente = (EditText) root.findViewById(R.id.etCpfClienteAdd);
 
         this.tvExceptionNome = (TextView) root.findViewById(R.id.tvExceptionNomeClienteAdd);
         this.tvExceptionData = (TextView) root.findViewById(R.id.tvExceptionDataClienteAdd);
