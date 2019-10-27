@@ -95,30 +95,30 @@ public class PerfilFragment extends Fragment {
                     return;
 
                 StringRequest putRequest = new StringRequest(
-                        Request.Method.PATCH,
-                        Enderecos.PATCH_USUARIO + "/" + logado.getCodigo(),
-                        new Response.Listener<String>()
-                        {
-                            @Override
-                            public void onResponse(String response) {
-                                // response
-                                Toast.makeText(
-                                        getActivity().getApplicationContext(),
-                                        "Perfil alterado",
-                                        Toast.LENGTH_SHORT).show();
-                            }
-                        },
-                        new Response.ErrorListener()
-                        {
-                            @Override
-                            public void onErrorResponse(VolleyError error) {
-                                // error
-                                Toast.makeText(
-                                        getActivity().getApplicationContext(),
-                                        "Erro ao alterar",
-                                        Toast.LENGTH_SHORT).show();
-                            }
+                    Request.Method.PATCH,
+                    Enderecos.PATCH_USUARIO + "/" + logado.getCodigo(),
+                    new Response.Listener<String>()
+                    {
+                        @Override
+                        public void onResponse(String response) {
+                            // response
+                            Toast.makeText(
+                                    getActivity().getApplicationContext(),
+                                    "Perfil alterado",
+                                    Toast.LENGTH_SHORT).show();
                         }
+                    },
+                    new Response.ErrorListener()
+                    {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            // error
+                            Toast.makeText(
+                                    getActivity().getApplicationContext(),
+                                    "Erro ao alterar",
+                                    Toast.LENGTH_SHORT).show();
+                        }
+                    }
                 )
                 {
 
@@ -146,31 +146,31 @@ public class PerfilFragment extends Fragment {
                 final RequestQueue QUEUE = Volley.newRequestQueue(getActivity().getApplicationContext());
 
                 StringRequest dr = new StringRequest(
-                        Request.Method.DELETE,
-                        Enderecos.DELETE_USUARIO + "/" + logado.getCodigo(),
-                        new Response.Listener<String>()
-                        {
-                            @Override
-                            public void onResponse(String response) {
-                                // response
-                                Toast.makeText(
-                                        getActivity().getApplicationContext(),
-                                        "Usuário excluído",
-                                        Toast.LENGTH_SHORT).show();
-                                Intent i = new Intent(getActivity().getApplicationContext(), LoginActivity.class);
-                                startActivity(i);
-                            }
-                        },
-                        new Response.ErrorListener()
-                        {
-                            @Override
-                            public void onErrorResponse(VolleyError error) {
-                                Toast.makeText(
-                                        getActivity().getApplicationContext(),
-                                        "Erro ao excluir",
-                                        Toast.LENGTH_SHORT).show();
-                            }
+                    Request.Method.DELETE,
+                    Enderecos.DELETE_USUARIO + "/" + logado.getCodigo(),
+                    new Response.Listener<String>()
+                    {
+                        @Override
+                        public void onResponse(String response) {
+                            // response
+                            Toast.makeText(
+                                    getActivity().getApplicationContext(),
+                                    "Usuário excluído",
+                                    Toast.LENGTH_SHORT).show();
+                            Intent i = new Intent(getActivity().getApplicationContext(), LoginActivity.class);
+                            startActivity(i);
                         }
+                    },
+                    new Response.ErrorListener()
+                    {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            Toast.makeText(
+                                    getActivity().getApplicationContext(),
+                                    "Erro ao excluir",
+                                    Toast.LENGTH_SHORT).show();
+                        }
+                    }
                 );
                 QUEUE.add(dr);
             }

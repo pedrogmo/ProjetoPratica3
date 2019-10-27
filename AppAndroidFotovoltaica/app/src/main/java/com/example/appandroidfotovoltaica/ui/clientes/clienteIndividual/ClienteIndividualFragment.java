@@ -1,4 +1,4 @@
-package com.example.appandroidfotovoltaica.ui.principalclientes.clienteIndividual;
+package com.example.appandroidfotovoltaica.ui.clientes.clienteIndividual;
 
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProviders;
@@ -28,7 +28,7 @@ import com.example.appandroidfotovoltaica.classes.enderecos.Enderecos;
 import com.example.appandroidfotovoltaica.classes.verificadora.mensagenserro.mensagenserrocliente.MensagensErroCliente;
 import com.example.appandroidfotovoltaica.classes.mytask.MyTask;
 import com.example.appandroidfotovoltaica.R;
-import com.example.appandroidfotovoltaica.ui.principalclientes.PrincipalClientesFragment;
+import com.example.appandroidfotovoltaica.ui.clientes.ClientesFragment;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -63,11 +63,11 @@ public class ClienteIndividualFragment extends Fragment {
         Bundle bundle = getArguments();
         this.clienteAtual = (Cliente) bundle.getSerializable("cliente");
 
-        this.etEmail = (EditText) root.findViewById(R.id.etEmailClienteInd);
-        this.etNome = (EditText) root.findViewById(R.id.etNomeClienteInd);
-        this.etTelefone = (EditText) root.findViewById(R.id.etTelefoneClienteInd);
-        this.etData = (EditText) root.findViewById(R.id.etDataClienteInd);
-        this.etCpf = (EditText) root.findViewById(R.id.etCpfClienteInd);
+        this.etEmail = (EditText) root.findViewById(R.id.etEmailClienteAlt);
+        this.etNome = (EditText) root.findViewById(R.id.etNomeClienteAlt);
+        this.etTelefone = (EditText) root.findViewById(R.id.etTelefoneClienteAlt);
+        this.etData = (EditText) root.findViewById(R.id.etDataClienteAlt);
+        this.etCpf = (EditText) root.findViewById(R.id.etCpfClienteAlt);
 
         this.etEmail.setText(this.clienteAtual.getEmail());
         this.etNome.setText(this.clienteAtual.getNome());
@@ -120,30 +120,30 @@ public class ClienteIndividualFragment extends Fragment {
                 }
 
                 StringRequest putRequest = new StringRequest(
-                        Request.Method.PATCH,
-                        Enderecos.PATCH_CLIENTE + "/" + clienteAtual.getCodigo(),
-                        new Response.Listener<String>()
-                        {
-                            @Override
-                            public void onResponse(String response) {
-                                // response
-                                Toast.makeText(
-                                        getActivity().getApplicationContext(),
-                                        "Cliente alterado",
-                                        Toast.LENGTH_SHORT).show();
-                            }
-                        },
-                        new Response.ErrorListener()
-                        {
-                            @Override
-                            public void onErrorResponse(VolleyError error) {
-                                // error
-                                Toast.makeText(
-                                        getActivity().getApplicationContext(),
-                                        "Erro ao alterar",
-                                        Toast.LENGTH_SHORT).show();
-                            }
+                    Request.Method.PATCH,
+                    Enderecos.PATCH_CLIENTE + "/" + clienteAtual.getCodigo(),
+                    new Response.Listener<String>()
+                    {
+                        @Override
+                        public void onResponse(String response) {
+                            // response
+                            Toast.makeText(
+                                    getActivity().getApplicationContext(),
+                                    "Cliente alterado",
+                                    Toast.LENGTH_SHORT).show();
                         }
+                    },
+                    new Response.ErrorListener()
+                    {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            // error
+                            Toast.makeText(
+                                    getActivity().getApplicationContext(),
+                                    "Erro ao alterar",
+                                    Toast.LENGTH_SHORT).show();
+                        }
+                    }
                 )
                 {
 
@@ -171,32 +171,32 @@ public class ClienteIndividualFragment extends Fragment {
                 final RequestQueue QUEUE = Volley.newRequestQueue(getActivity().getApplicationContext());
 
                 StringRequest dr = new StringRequest(
-                        Request.Method.DELETE,
-                        Enderecos.DELETE_CLIENTE + "/" + clienteAtual.getCodigo(),
-                        new Response.Listener<String>()
-                        {
-                            @Override
-                            public void onResponse(String response) {
-                                // response
-                                Toast.makeText(
-                                        getActivity().getApplicationContext(),
-                                        "Cliente excluído",
-                                        Toast.LENGTH_SHORT).show();
-                                FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-                                fragmentTransaction.replace(R.id.fragment_clienteindividual, new PrincipalClientesFragment());
-                                fragmentTransaction.commit();
-                            }
-                        },
-                        new Response.ErrorListener()
-                        {
-                            @Override
-                            public void onErrorResponse(VolleyError error) {
-                                Toast.makeText(
-                                        getActivity().getApplicationContext(),
-                                        "Erro ao excluir",
-                                        Toast.LENGTH_SHORT).show();
-                            }
+                    Request.Method.DELETE,
+                    Enderecos.DELETE_CLIENTE + "/" + clienteAtual.getCodigo(),
+                    new Response.Listener<String>()
+                    {
+                        @Override
+                        public void onResponse(String response) {
+                            // response
+                            Toast.makeText(
+                                    getActivity().getApplicationContext(),
+                                    "Cliente excluído",
+                                    Toast.LENGTH_SHORT).show();
+                            FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+                            fragmentTransaction.replace(R.id.fragment_clienteindividual, new ClientesFragment());
+                            fragmentTransaction.commit();
                         }
+                    },
+                    new Response.ErrorListener()
+                    {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            Toast.makeText(
+                                    getActivity().getApplicationContext(),
+                                    "Erro ao excluir",
+                                    Toast.LENGTH_SHORT).show();
+                        }
+                    }
                 );
                 QUEUE.add(dr);
             }

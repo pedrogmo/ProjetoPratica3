@@ -1,16 +1,15 @@
-package com.example.appandroidfotovoltaica.ui.adicionarcliente;
+package com.example.appandroidfotovoltaica.ui.produtos.produtoindividual;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class AdicionarClienteViewModel extends ViewModel {
-
+public class ProdutoIndividualViewModel extends ViewModel {
     private MutableLiveData<String> mText;
 
-    public AdicionarClienteViewModel() {
+    public ProdutoIndividualViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("This is clientes fragment");
+        mText.setValue("This is produtoindividual fragment");
     }
 
     public LiveData<String> getText() {

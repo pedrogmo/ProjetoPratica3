@@ -1,14 +1,14 @@
-package com.example.appandroidfotovoltaica.ui.principalclientes;
+package com.example.appandroidfotovoltaica.ui.clientes;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class PrincipalClientesViewModel extends ViewModel {
+public class ClientesViewModel extends ViewModel {
 
     private MutableLiveData<String> mText;
 
-    public PrincipalClientesViewModel() {
+    public ClientesViewModel() {
         mText = new MutableLiveData<>();
         mText.setValue("This is the main clientes fragment");
     }

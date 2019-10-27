@@ -18,9 +18,9 @@
 
     <fragment
         android:id="@+id/nav_clientes"
-        android:name="com.example.appandroidfotovoltaica.ui.principalclientes.PrincipalClientesFragment"
+        android:name="com.example.appandroidfotovoltaica.ui.clientes.ClientesFragment"
         android:label="@string/menu_clientes"
-        tools:layout="@layout/fragment_principalclientes" />
+        tools:layout="@layout/fragment_clientes" />
     <fragment
         android:id="@+id/nav_produtos"
         android:name="com.example.appandroidfotovoltaica.ui.produtos.ProdutosFragment"

@@ -1,4 +1,4 @@
-package com.example.appandroidfotovoltaica.ui.principalclientes;
+package com.example.appandroidfotovoltaica.ui.clientes;
 
 import com.example.appandroidfotovoltaica.classes.cliente.Cliente;
 import com.example.appandroidfotovoltaica.classes.enderecos.Enderecos;
@@ -21,15 +21,15 @@ import androidx.lifecycle.ViewModelProviders;
 import com.example.appandroidfotovoltaica.MainActivity;
 import com.example.appandroidfotovoltaica.classes.mytask.MyTask;
 import com.example.appandroidfotovoltaica.R;
-import com.example.appandroidfotovoltaica.ui.adicionarcliente.AdicionarClienteFragment;
-import com.example.appandroidfotovoltaica.ui.principalclientes.clienteIndividual.ClienteIndividualFragment;
+import com.example.appandroidfotovoltaica.ui.clientes.adicionarcliente.AdicionarClienteFragment;
+import com.example.appandroidfotovoltaica.ui.clientes.clienteIndividual.ClienteIndividualFragment;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 
-public class PrincipalClientesFragment extends Fragment {
+public class ClientesFragment extends Fragment {
 
-    private PrincipalClientesViewModel galleryViewModel;
+    private ClientesViewModel galleryViewModel;
 
     private EditText etBuscarCliente;
     private ListView lvListaClientes;
@@ -40,8 +40,8 @@ public class PrincipalClientesFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         galleryViewModel =
-                ViewModelProviders.of(this).get(PrincipalClientesViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_principalclientes, container, false);
+                ViewModelProviders.of(this).get(ClientesViewModel.class);
+        View root = inflater.inflate(R.layout.fragment_clientes, container, false);
 
         etBuscarCliente = root.findViewById(R.id.etBuscarCliente);
         lvListaClientes = root.findViewById(R.id.lvListaClientes);
@@ -64,7 +64,7 @@ public class PrincipalClientesFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-                fragmentTransaction.replace(R.id.fragment_principalclientes, new AdicionarClienteFragment());
+                fragmentTransaction.replace(R.id.fragment_clientes, new AdicionarClienteFragment());
                 fragmentTransaction.commit();
                 fabNovoCliente.hide();
             }
@@ -82,7 +82,7 @@ public class PrincipalClientesFragment extends Fragment {
                 bundle.putSerializable("cliente", clientesBusca.get(i));
                 ClienteIndividualFragment fragment = new ClienteIndividualFragment();
                 fragment.setArguments(bundle);
-                fragmentTransaction.replace(R.id.fragment_principalclientes, fragment);
+                fragmentTransaction.replace(R.id.fragment_clientes, fragment);
                 fragmentTransaction.commit();
             }
         });

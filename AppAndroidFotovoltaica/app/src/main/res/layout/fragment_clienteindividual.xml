@@ -17,7 +17,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            tools:context=".ui.principalclientes.clienteIndividual.ClienteIndividualFragment"
+            tools:context=".ui.clientes.clienteIndividual.ClienteIndividualFragment"
             android:layout_margin="20dp">
 
             <TextView
@@ -26,7 +26,7 @@
                 android:text="Email: " />
 
             <EditText
-                android:id="@+id/etEmailClienteInd"
+                android:id="@+id/etEmailClienteAlt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
 
@@ -44,7 +44,7 @@
                 android:text="Nome: " />
 
             <EditText
-                android:id="@+id/etNomeClienteInd"
+                android:id="@+id/etNomeClienteAlt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
 
@@ -62,7 +62,7 @@
                 android:text="Telefone: " />
 
             <EditText
-                android:id="@+id/etTelefoneClienteInd"
+                android:id="@+id/etTelefoneClienteAlt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="number"/>
@@ -81,7 +81,7 @@
                 android:text="Data: " />
 
             <EditText
-                android:id="@+id/etDataClienteInd"
+                android:id="@+id/etDataClienteAlt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="date"/>
@@ -100,7 +100,7 @@
                 android:text="Cpf: " />
 
             <EditText
-                android:id="@+id/etCpfClienteInd"
+                android:id="@+id/etCpfClienteAlt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="number"/>

@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/fragment_adicionarcliente">
+    android:id="@+id/fragment_adicionarproduto">
     <ScrollView android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fillViewport="true"
@@ -17,7 +17,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            tools:context=".ui.adicionarcliente.AdicionarProdutoFragment"
+            tools:context=".ui.clientes.adicionarcliente.AdicionarProdutoFragment"
             android:layout_gravity="center_horizontal"
             android:layout_margin="20dp">
 

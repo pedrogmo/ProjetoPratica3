@@ -17,7 +17,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="vertical"
-                    tools:context=".ui.adicionarcliente.AdicionarClienteFragment"
+                    tools:context=".ui.clientes.adicionarcliente.AdicionarClienteFragment"
                     android:layout_gravity="center_horizontal"
                     android:layout_margin="20dp">
 

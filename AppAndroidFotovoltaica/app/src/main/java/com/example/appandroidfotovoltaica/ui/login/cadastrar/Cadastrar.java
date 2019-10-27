@@ -167,30 +167,30 @@ public class Cadastrar extends Fragment {
                 HashMap<String, String> params = new HashMap<String,String>();
 
                 StringRequest postRequest = new StringRequest(
-                        Request.Method.POST,
-                        Enderecos.POST_USUARIO,
-                        new Response.Listener<String>()
-                        {
-                            @Override
-                            public void onResponse(String response) {
-                                // response
-                                Toast.makeText(
-                                        getActivity().getApplicationContext(),
-                                        "Usario inserido",
-                                        Toast.LENGTH_SHORT).show();
-                            }
-                        },
-                        new Response.ErrorListener()
-                        {
-                            @Override
-                            public void onErrorResponse(VolleyError error) {
-                                // error
-                                Toast.makeText(
-                                        getActivity().getApplicationContext(),
-                                        "Erro ao inserir usuario",
-                                        Toast.LENGTH_SHORT).show();
-                            }
+                    Request.Method.POST,
+                    Enderecos.POST_USUARIO,
+                    new Response.Listener<String>()
+                    {
+                        @Override
+                        public void onResponse(String response) {
+                            // response
+                            Toast.makeText(
+                                    getActivity().getApplicationContext(),
+                                    "Usario inserido",
+                                    Toast.LENGTH_SHORT).show();
                         }
+                    },
+                    new Response.ErrorListener()
+                    {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            // error
+                            Toast.makeText(
+                                    getActivity().getApplicationContext(),
+                                    "Erro ao inserir usuario",
+                                    Toast.LENGTH_SHORT).show();
+                        }
+                    }
                 ) {
                     @Override
                     protected Map<String, String> getParams()

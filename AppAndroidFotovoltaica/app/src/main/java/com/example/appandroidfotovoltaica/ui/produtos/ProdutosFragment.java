@@ -11,7 +11,6 @@ import android.widget.Spinner;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProviders;
 
@@ -26,6 +25,7 @@ import com.example.appandroidfotovoltaica.classes.produto.Produto;
 import com.example.appandroidfotovoltaica.R;
 import com.example.appandroidfotovoltaica.classes.produto.stringbox.StringBox;
 import com.example.appandroidfotovoltaica.ui.produtos.adicionarproduto.AdicionarProdutoFragment;
+import com.example.appandroidfotovoltaica.ui.produtos.produtoindividual.ProdutoIndividualFragment;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
@@ -146,7 +146,38 @@ public class ProdutosFragment extends Fragment {
                 int i,
                 long l)
             {
+                Produto prod = null;
 
+                switch(indOpcaoProduto)
+                {
+                    case 0:
+                        prod = arrModulo[i];
+                        break;
+                    case 1:
+                        prod = arrInversor[i];
+                        break;
+                    case 2:
+                        prod = arrStringBox[i];
+                        break;
+                    case 3:
+                        prod = arrFixacao[i];
+                        break;
+                    case 4:
+                        prod = arrBombaSolar[i];
+                        break;
+                    case 5:
+                        prod = arrCabo[i];
+                        break;
+                }
+
+                FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("produto", prod);
+                bundle.putSerializable("categoria", indOpcaoProduto);
+                ProdutoIndividualFragment fragment = new ProdutoIndividualFragment();
+                fragment.setArguments(bundle);
+                fragmentTransaction.replace(R.id.fragment_produtos, fragment);
+                fragmentTransaction.commit();
             }
         });
 

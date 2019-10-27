@@ -1,4 +1,4 @@
-package com.example.appandroidfotovoltaica.ui.adicionarcliente;
+package com.example.appandroidfotovoltaica.ui.clientes.adicionarcliente;
 
 import com.android.volley.toolbox.StringRequest;
 import com.example.appandroidfotovoltaica.classes.cliente.Cliente;
@@ -27,7 +27,7 @@ import com.example.appandroidfotovoltaica.MainActivity;
 import com.example.appandroidfotovoltaica.classes.verificadora.mensagenserro.mensagenserrocliente.MensagensErroCliente;
 import com.example.appandroidfotovoltaica.classes.mytask.MyTask;
 import com.example.appandroidfotovoltaica.R;
-import com.example.appandroidfotovoltaica.ui.principalclientes.PrincipalClientesFragment;
+import com.example.appandroidfotovoltaica.ui.clientes.ClientesFragment;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.HashMap;
@@ -121,34 +121,34 @@ public class AdicionarClienteFragment extends Fragment {
                 HashMap<String, String> params = new HashMap<String,String>();
 
                 StringRequest postRequest = new StringRequest(
-                        Request.Method.POST,
-                        Enderecos.POST_CLIENTE,
-                        new Response.Listener<String>()
-                        {
-                            @Override
-                            public void onResponse(String response) {
-                                // response
-                                Toast.makeText(
-                                        getActivity().getApplicationContext(),
-                                        "Cliente inserido",
-                                        Toast.LENGTH_SHORT).show();
+                    Request.Method.POST,
+                    Enderecos.POST_CLIENTE,
+                    new Response.Listener<String>()
+                    {
+                        @Override
+                        public void onResponse(String response) {
+                            // response
+                            Toast.makeText(
+                                    getActivity().getApplicationContext(),
+                                    "Cliente inserido",
+                                    Toast.LENGTH_SHORT).show();
 
-                                FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-                                fragmentTransaction.replace(R.id.fragment_adicionarcliente, new PrincipalClientesFragment());
-                                fragmentTransaction.commit();
-                            }
-                        },
-                        new Response.ErrorListener()
-                        {
-                            @Override
-                            public void onErrorResponse(VolleyError error) {
-                                // error
-                                Toast.makeText(
-                                        getActivity().getApplicationContext(),
-                                        "Erro ao inserir cliente",
-                                        Toast.LENGTH_SHORT).show();
-                            }
+                            FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+                            fragmentTransaction.replace(R.id.fragment_adicionarcliente, new ClientesFragment());
+                            fragmentTransaction.commit();
                         }
+                    },
+                    new Response.ErrorListener()
+                    {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            // error
+                            Toast.makeText(
+                                    getActivity().getApplicationContext(),
+                                    "Erro ao inserir cliente",
+                                    Toast.LENGTH_SHORT).show();
+                        }
+                    }
                 ) {
                     @Override
                     protected Map<String, String> getParams()

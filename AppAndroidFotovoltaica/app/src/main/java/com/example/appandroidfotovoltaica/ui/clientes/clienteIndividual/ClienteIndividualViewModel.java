@@ -1,4 +1,4 @@
-package com.example.appandroidfotovoltaica.ui.principalclientes.clienteIndividual;
+package com.example.appandroidfotovoltaica.ui.clientes.clienteIndividual;
 
 import androidx.lifecycle.ViewModel;
 
