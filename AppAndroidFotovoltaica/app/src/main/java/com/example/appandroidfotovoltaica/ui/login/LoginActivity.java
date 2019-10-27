@@ -15,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.appandroidfotovoltaica.classes.arvorebinaria.ArvoreBinaria;
+import com.example.appandroidfotovoltaica.classes.criptografia.Criptografia;
 import com.example.appandroidfotovoltaica.classes.enderecos.Enderecos;
 import com.example.appandroidfotovoltaica.MainActivity;
 import com.example.appandroidfotovoltaica.classes.mytask.MyTask;
@@ -85,6 +86,8 @@ public class LoginActivity extends AppCompatActivity {
                     return;
                 }
 
+                final String senhaCriptografada = Criptografia.criptografar(senha);
+
                 Usuario busca = null;
                 try
                 {
@@ -104,7 +107,7 @@ public class LoginActivity extends AppCompatActivity {
                     return;
                 }
 
-                if (!busca.getSenha().equals(senha))
+                if (!busca.getSenha().equals(senhaCriptografada))
                 {
                     Toast.makeText(getApplicationContext(), "Senha incorreta", Toast.LENGTH_SHORT).show();
                     return;

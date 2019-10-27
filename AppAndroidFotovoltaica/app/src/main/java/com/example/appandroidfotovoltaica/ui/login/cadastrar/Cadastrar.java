@@ -23,6 +23,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.appandroidfotovoltaica.classes.arvorebinaria.ArvoreBinaria;
+import com.example.appandroidfotovoltaica.classes.criptografia.Criptografia;
 import com.example.appandroidfotovoltaica.classes.empresa.Empresa;
 import com.example.appandroidfotovoltaica.classes.enderecos.Enderecos;
 import com.example.appandroidfotovoltaica.classes.verificadora.mensagenserro.mensagenserrousuario.MensagensErroUsuario;
@@ -127,39 +128,21 @@ public class Cadastrar extends Fragment {
                 if (mensagens.teveMensagensDeErro(nome, data, email, telefone, cpf, senhaUm, senhaConfirmada))
                     return;
 
-                MyTask task = new MyTask(Usuario[].class);
-                task.execute(Enderecos.GET_USUARIO + "_email/" + email);
-                while (task.isTrabalhando()) ;
-                Usuario[] resultUsuarios = (Usuario[]) task.getDados();
+                final String senhaCriptografada = Criptografia.criptografar(senhaConfirmada);
 
-                /*
-                ArvoreBinaria<String> arvoreBinaria = new ArvoreBinaria<String>();
-                for (int i = 0; i < resultUsuarios.length; i++)
+                Usuario u = null;
+                try
                 {
-                    try{
-                        arvoreBinaria.adicionar(resultUsuarios[i].getEmail());
-                    }
-                    catch (Exception e){}
+                    u = usuariosCadastrados.buscar(new Usuario(email));
                 }
-                try{
-                    if (arvoreBinaria.buscar(email) != null)
-                    {
-                        Toast.makeText(
-                                getActivity().getApplicationContext(),
-                                "Email já cadastrado",
-                                Toast.LENGTH_SHORT).show();
-                        return;
-                    }
-                }
-                catch(Exception e){Toast.makeText(getActivity().getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT);}
-                */
+                catch(Exception exc){}
 
-                if (resultUsuarios.length > 0)
+                if (u != null)
                 {
                     Toast.makeText(
-                            getActivity().getApplicationContext(),
-                            "Email já cadastrado",
-                            Toast.LENGTH_SHORT).show();
+                        getActivity().getApplicationContext(),
+                        "Email já cadastrado",
+                        Toast.LENGTH_SHORT).show();
                     return;
                 }
 
@@ -175,9 +158,9 @@ public class Cadastrar extends Fragment {
                         public void onResponse(String response) {
                             // response
                             Toast.makeText(
-                                    getActivity().getApplicationContext(),
-                                    "Usario inserido",
-                                    Toast.LENGTH_SHORT).show();
+                                getActivity().getApplicationContext(),
+                                "Usario inserido",
+                                Toast.LENGTH_SHORT).show();
                         }
                     },
                     new Response.ErrorListener()
@@ -186,9 +169,9 @@ public class Cadastrar extends Fragment {
                         public void onErrorResponse(VolleyError error) {
                             // error
                             Toast.makeText(
-                                    getActivity().getApplicationContext(),
-                                    "Erro ao inserir usuario",
-                                    Toast.LENGTH_SHORT).show();
+                                getActivity().getApplicationContext(),
+                                "Erro ao inserir usuario",
+                                Toast.LENGTH_SHORT).show();
                         }
                     }
                 ) {
@@ -198,7 +181,7 @@ public class Cadastrar extends Fragment {
                         Map<String, String> params = new HashMap<String, String>();
                         params.put("email", email);
                         params.put("nome", nome);
-                        params.put("senha", senhaConfirmada);
+                        params.put("senha", senhaCriptografada);
                         params.put("codEmpresa", codEmpresa);
                         params.put("telefone", telefone);
                         params.put("cpf", cpf);
