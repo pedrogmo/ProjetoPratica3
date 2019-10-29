@@ -1,6 +1,8 @@
 package com.example.appandroidfotovoltaica.ui.login.cadastrar;
 
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,7 +36,7 @@ import com.example.appandroidfotovoltaica.classes.usuario.Usuario;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Cadastrar extends Fragment {
+public class CadastrarFragment extends Fragment {
     private CadastrarViewModel cadastrarViewModel;
     private Spinner spEmpresa;
     private Empresa[] empresas;
@@ -53,7 +55,7 @@ public class Cadastrar extends Fragment {
         super.onCreate(savedInstanceState);
         cadastrarViewModel =
                 ViewModelProviders.of(this).get(CadastrarViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_cadastrar, container, false);
+        View root = inflater.inflate(R.layout.fragment_cadastrarperfil, container, false);
         etNome = root.findViewById(R.id.etNomeUsuario);
         tvExceptionNome = root.findViewById(R.id.tvExceptionNomeUsuario);
         etEmail = root.findViewById(R.id.etEmailUsuario);
@@ -67,6 +69,7 @@ public class Cadastrar extends Fragment {
         etCpf = root.findViewById(R.id.etCpfUsuario);
         tvExceptionCpf = root.findViewById(R.id.tvExceptionCpfUsuario);
         etDataNascimento = root.findViewById(R.id.etDataNascimentoUsuario);
+
         tvExceptionDataNascimento = root.findViewById(R.id.tvExceptionDataNascimentoUsuario);
         spEmpresa = root.findViewById(R.id.spEmpresa);
         btnCadastrarUsuario = root.findViewById(R.id.btnCadastrarUsuario);
@@ -116,6 +119,26 @@ public class Cadastrar extends Fragment {
 
                 final String nome = etNome.getText().toString().trim();
                 final String data = etDataNascimento.getText().toString();
+                etDataNascimento.addTextChangedListener(new TextWatcher() {
+                    @Override
+                    public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+                    }
+
+                    @Override
+                    public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                        String texto = charSequence.toString();
+                        if (texto.length() == 2 || texto.length() == 5)
+                            etDataNascimento.append("/");
+
+                        if ()
+                    }
+
+                    @Override
+                    public void afterTextChanged(Editable editable) {
+
+                    }
+                });
                 final String email = etEmail.getText().toString();
                 final String telefone = etTelefone.getText().toString();
                 final String cpf = etCpf.getText().toString();
