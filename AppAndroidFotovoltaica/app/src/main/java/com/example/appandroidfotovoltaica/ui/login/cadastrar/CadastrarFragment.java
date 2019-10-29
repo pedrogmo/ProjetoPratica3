@@ -47,6 +47,7 @@ public class CadastrarFragment extends Fragment {
     private MensagensErroUsuario mensagens;
     private int indEmpresa = 0;
     private ArvoreBinaria<Usuario> usuariosCadastrados;
+    private String textoAnterior = "";
 
 
     @Override
@@ -70,6 +71,7 @@ public class CadastrarFragment extends Fragment {
         tvExceptionCpf = root.findViewById(R.id.tvExceptionCpfUsuario);
         etDataNascimento = root.findViewById(R.id.etDataNascimentoUsuario);
         etDataNascimento.addTextChangedListener(new TextWatcher() {
+
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
@@ -78,9 +80,18 @@ public class CadastrarFragment extends Fragment {
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 String texto = charSequence.toString();
-                if (texto.length() == 2 || texto.length() == 5)
-                    etDataNascimento.append("/");
+                if (textoAnterior.length() < texto.length()){
+                    if (texto.length() == 2 || texto.length() == 5)
+                        etDataNascimento.append("/");
+                }
+                else
+                    if (texto.length() >=1 && texto.charAt(texto.length() - 1) == '/'){
+                        texto = texto.substring(0,texto.length() - 1);
+                        etDataNascimento.setText(texto);
+                        etDataNascimento.setSelection(texto.length());
+                    }
 
+                textoAnterior = texto;
             }
 
             @Override
