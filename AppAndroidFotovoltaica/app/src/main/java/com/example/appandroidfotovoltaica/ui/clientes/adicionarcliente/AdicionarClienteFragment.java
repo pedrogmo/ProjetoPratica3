@@ -5,6 +5,8 @@ import com.example.appandroidfotovoltaica.classes.cliente.Cliente;
 import com.example.appandroidfotovoltaica.classes.enderecos.Enderecos;
 
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -54,6 +56,7 @@ public class AdicionarClienteFragment extends Fragment {
     private Button btnAdicionarCliente;
     private FloatingActionButton fab;
     private MensagensErroCliente mensagens;
+    private String textoAnterior;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -71,6 +74,35 @@ public class AdicionarClienteFragment extends Fragment {
         fab = root.findViewById(R.id.fabNovoCliente);
         this.etNomeCliente = (EditText) root.findViewById(R.id.etNomeClienteAdd);
         this.etDataNascimentoCliente = (EditText) root.findViewById(R.id.etDataNascimentoClienteAdd);
+        etDataNascimentoCliente.addTextChangedListener(new TextWatcher() {
+
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                String texto = charSequence.toString();
+                if (textoAnterior.length() < texto.length()){
+                    if (texto.length() == 2 || texto.length() == 5)
+                        etDataNascimentoCliente.append("/");
+                }
+                else
+                if (texto.length() >=1 && texto.charAt(texto.length() - 1) == '/'){
+                    texto = texto.substring(0,texto.length() - 1);
+                    etDataNascimentoCliente.setText(texto);
+                    etDataNascimentoCliente.setSelection(texto.length());
+                }
+
+                textoAnterior = texto;
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
         this.etEmailCliente = (EditText) root.findViewById(R.id.etEmailClienteAdd);
         this.etTelefoneCliente = (EditText) root.findViewById(R.id.etTelefoneClienteAdd);
         this.etCpfCliente = (EditText) root.findViewById(R.id.etCpfClienteAdd);
