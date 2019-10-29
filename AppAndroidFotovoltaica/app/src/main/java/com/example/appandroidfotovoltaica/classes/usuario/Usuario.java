@@ -79,6 +79,7 @@ public class Usuario
 		this.telefone = modelo.telefone;
         this.cpf = modelo.cpf;
         this.data = modelo.data;
+        this.permissaoEmpresa = modelo.permissaoEmpresa;
 	}
 
 	public int getCodigo()
@@ -211,6 +212,7 @@ public class Usuario
 		ret = ret * 2 + this.telefone.hashCode();
         ret = ret * 2 + this.cpf.hashCode();
         ret = ret * 2 + this.data.hashCode();
+        ret = ret * 2 + new Boolean(this.permissaoEmpresa).hashCode();
 		return ret;
 	}
 
@@ -242,6 +244,8 @@ public class Usuario
             return false;
         if (!this.data.equals(u.data))
             return false;
+        if (this.permissaoEmpresa != u.permissaoEmpresa)
+        	return false;
 
 		return true;
 	}
