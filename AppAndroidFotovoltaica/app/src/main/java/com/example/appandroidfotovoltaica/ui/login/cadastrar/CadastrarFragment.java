@@ -69,6 +69,25 @@ public class CadastrarFragment extends Fragment {
         etCpf = root.findViewById(R.id.etCpfUsuario);
         tvExceptionCpf = root.findViewById(R.id.tvExceptionCpfUsuario);
         etDataNascimento = root.findViewById(R.id.etDataNascimentoUsuario);
+        etDataNascimento.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                String texto = charSequence.toString();
+                if (texto.length() == 2 || texto.length() == 5)
+                    etDataNascimento.append("/");
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
 
         tvExceptionDataNascimento = root.findViewById(R.id.tvExceptionDataNascimentoUsuario);
         spEmpresa = root.findViewById(R.id.spEmpresa);
@@ -119,25 +138,7 @@ public class CadastrarFragment extends Fragment {
 
                 final String nome = etNome.getText().toString().trim();
                 final String data = etDataNascimento.getText().toString();
-                etDataNascimento.addTextChangedListener(new TextWatcher() {
-                    @Override
-                    public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
-                    }
-
-                    @Override
-                    public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                        String texto = charSequence.toString();
-                        if (texto.length() == 2 || texto.length() == 5)
-                            etDataNascimento.append("/");
-
-                    }
-
-                    @Override
-                    public void afterTextChanged(Editable editable) {
-
-                    }
-                });
                 final String email = etEmail.getText().toString();
                 final String telefone = etTelefone.getText().toString();
                 final String cpf = etCpf.getText().toString();
