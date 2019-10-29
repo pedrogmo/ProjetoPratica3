@@ -11,7 +11,8 @@ public class Criptografia
     {
         try
         {
-            messageDigest = MessageDigest.getInstance("MD5");
+            if (messageDigest == null)
+                messageDigest = MessageDigest.getInstance("MD5");
             messageDigest.reset();
 
             byte[] digested = messageDigest.digest(str.getBytes());

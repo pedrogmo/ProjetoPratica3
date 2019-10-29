@@ -7,7 +7,8 @@
         <item
             android:id="@+id/nav_perfil"
             android:title="Perfil"
-            android:icon="@drawable/ic_man_user">
+            android:icon="@drawable/ic_man_user"
+            android:visible="false">
         </item>
         <item
             android:id="@+id/nav_calculadora"
