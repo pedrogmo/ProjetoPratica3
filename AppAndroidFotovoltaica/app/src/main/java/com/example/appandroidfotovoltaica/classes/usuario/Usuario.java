@@ -189,6 +189,12 @@ public class Usuario
 
     public boolean isPermitido(){return this.permissaoEmpresa;}
 
+    public void setPermissaoEmpresa(
+		boolean permissaoEmpresa)
+	{
+		this.permissaoEmpresa = permissaoEmpresa;
+	}
+
 	public String toString()
 	{
 		return this.codigo + " " + this.email;
