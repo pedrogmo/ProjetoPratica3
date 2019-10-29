@@ -3,6 +3,7 @@ package com.example.appandroidfotovoltaica.ui.produtos.produtoindividual;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProviders;
 
+import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -14,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,7 +28,6 @@ import com.android.volley.toolbox.Volley;
 import com.example.appandroidfotovoltaica.R;
 import com.example.appandroidfotovoltaica.classes.enderecos.Enderecos;
 import com.example.appandroidfotovoltaica.classes.produto.Produto;
-import com.example.appandroidfotovoltaica.ui.produtos.Categoria;
 import com.example.appandroidfotovoltaica.ui.produtos.ProdutosFragment;
 
 import java.util.HashMap;
@@ -72,6 +73,18 @@ public class ProdutoIndividualFragment extends Fragment {
         this.tvNome.setText(this.tvNome.getText() + produtoAtual.getNome());
         this.tvDescricao.setText(this.tvDescricao.getText() + produtoAtual.getDescricao());
         this.etPreco.setText(produtoAtual.getPreco() + "");
+
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT);
+
+        LinearLayout l = (LinearLayout) root.findViewById(R.id.llProdutoIndividual);
+        TextView txt = new TextView(getActivity().getApplicationContext());
+        txt.setLayoutParams(params);
+        txt.setText("BOM DIA MEEIRO");
+        txt.setTextSize(30);
+        txt.setTextColor(Color.BLACK);
+        l.addView(txt);
 
         this.btnAlterar.setOnClickListener(new View.OnClickListener() {
             @Override
