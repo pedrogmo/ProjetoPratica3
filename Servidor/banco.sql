@@ -25,6 +25,8 @@ create table UsuarioSol(
 	cpf char(14) not null
 	constraint chkCpfUsuario check(cpf like 
 		'[0-9][0-9][0-9].[0-9][0-9][0-9].[0-9][0-9][0-9]-[0-9][0-9]'),
+
+	permissaoEmpresa bit not null
 )
 
 create table ClienteSol(

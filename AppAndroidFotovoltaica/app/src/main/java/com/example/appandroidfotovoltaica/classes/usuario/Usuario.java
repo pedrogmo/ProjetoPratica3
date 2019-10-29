@@ -15,6 +15,7 @@ public class Usuario
 	private String telefone;
     private String cpf;
     private String data;
+	private boolean permissaoEmpresa;
 
 	public Usuario()
 	{
@@ -26,6 +27,7 @@ public class Usuario
         this.cpf = "";
         this.data = "";
 		this.codEmpresa = 0;
+		this.permissaoEmpresa = false;
 	}
 
 	public Usuario(
@@ -36,7 +38,8 @@ public class Usuario
 		int codEmpresa,
 		String telefone,
 		String cpf,
-		String data) throws Exception
+		String data,
+		boolean permissaoEmpresa) throws Exception
 	{
 		this.setCodigo(codigo);
 		this.setEmail(email);
@@ -46,6 +49,7 @@ public class Usuario
 		this.setTelefone(telefone);
 		this.setData(data);
         this.setCpf(cpf);
+        this.permissaoEmpresa = permissaoEmpresa;
 	}
 
 	public Usuario(
@@ -59,6 +63,7 @@ public class Usuario
 		this.telefone = "";
         this.cpf = "";
         this.data = "";
+		this.permissaoEmpresa = false;
 	}
 
 	public Usuario(
@@ -181,6 +186,8 @@ public class Usuario
             throw new Exception("Usuario - setData: data invalida");
         this.data = data;
     }
+
+    public boolean isPermitido(){return this.permissaoEmpresa;}
 
 	public String toString()
 	{

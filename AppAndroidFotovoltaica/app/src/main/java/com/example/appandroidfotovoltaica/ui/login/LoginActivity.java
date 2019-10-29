@@ -21,7 +21,7 @@ import com.example.appandroidfotovoltaica.MainActivity;
 import com.example.appandroidfotovoltaica.classes.mytask.MyTask;
 import com.example.appandroidfotovoltaica.R;
 import com.example.appandroidfotovoltaica.classes.usuario.Usuario;
-import com.example.appandroidfotovoltaica.ui.login.cadastrar.Cadastrar;
+import com.example.appandroidfotovoltaica.ui.login.cadastrar.CadastrarFragment;
 import android.content.Intent;
 
 import java.io.Serializable;
@@ -66,7 +66,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Bundle bundle = new Bundle();
                 bundle.putSerializable("usuarios", arvoreUsuarios);
-                Fragment cadastro = new Cadastrar();
+                Fragment cadastro = new CadastrarFragment();
                 cadastro.setArguments(bundle);
                 FragmentManager f = getSupportFragmentManager();
                 f.beginTransaction().replace(R.id.container, cadastro).commit();
@@ -101,15 +101,24 @@ public class LoginActivity extends AppCompatActivity {
                 if (busca == null)
                 {
                     Toast.makeText(
-                            getApplicationContext(),
-                            "Usuário não existe",
-                            Toast.LENGTH_SHORT).show();
+                        getApplicationContext(),
+                        "Usuário não existe",
+                        Toast.LENGTH_SHORT).show();
                     return;
                 }
 
                 if (!busca.getSenha().equals(senhaCriptografada))
                 {
                     Toast.makeText(getApplicationContext(), "Senha incorreta", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                if(!busca.isPermitido())
+                {
+                    Toast.makeText(
+                        getApplicationContext(),
+                        "Usuário ainda não aceito pela empresa",
+                        Toast.LENGTH_SHORT).show();
                     return;
                 }
 
