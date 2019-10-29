@@ -56,6 +56,13 @@
                 android:layout_marginBottom="10dp"/>
 
             <LinearLayout
+                android:id="@+id/camposExtraProduto"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:orientation="vertical">
+            </LinearLayout>
+
+            <LinearLayout
                 android:orientation="horizontal"
                 android:background="@android:drawable/bottom_bar"
                 android:paddingLeft="4.0dip"

@@ -78,7 +78,7 @@ public class ProdutoIndividualFragment extends Fragment {
                 LinearLayout.LayoutParams.MATCH_PARENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT);
 
-        LinearLayout l = (LinearLayout) root.findViewById(R.id.llProdutoIndividual);
+        LinearLayout l = (LinearLayout) root.findViewById(R.id.camposExtraProduto);
         TextView txt = new TextView(getActivity().getApplicationContext());
         txt.setLayoutParams(params);
         txt.setText("BOM DIA MEEIRO");
