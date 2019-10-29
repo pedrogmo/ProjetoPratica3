@@ -28,6 +28,13 @@ import com.android.volley.toolbox.Volley;
 import com.example.appandroidfotovoltaica.R;
 import com.example.appandroidfotovoltaica.classes.enderecos.Enderecos;
 import com.example.appandroidfotovoltaica.classes.produto.Produto;
+import com.example.appandroidfotovoltaica.classes.produto.cabo.Cabo;
+import com.example.appandroidfotovoltaica.classes.produto.equipamento.EquipamentoFotovoltaico;
+import com.example.appandroidfotovoltaica.classes.produto.equipamento.bombasolar.BombaSolar;
+import com.example.appandroidfotovoltaica.classes.produto.equipamento.inversor.Inversor;
+import com.example.appandroidfotovoltaica.classes.produto.equipamento.modulo.Modulo;
+import com.example.appandroidfotovoltaica.classes.produto.fixacao.Fixacao;
+import com.example.appandroidfotovoltaica.classes.produto.stringbox.StringBox;
 import com.example.appandroidfotovoltaica.ui.produtos.ProdutosFragment;
 
 import java.util.HashMap;
@@ -48,6 +55,8 @@ public class ProdutoIndividualFragment extends Fragment {
 
     private int categoriaProduto;
     private Produto produtoAtual;
+
+    private final int TAMANHO_FONTE = 15;
 
     public static ProdutoIndividualFragment newInstance() {
         return new ProdutoIndividualFragment();
@@ -74,17 +83,7 @@ public class ProdutoIndividualFragment extends Fragment {
         this.tvDescricao.setText(this.tvDescricao.getText() + produtoAtual.getDescricao());
         this.etPreco.setText(produtoAtual.getPreco() + "");
 
-        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.MATCH_PARENT,
-                LinearLayout.LayoutParams.WRAP_CONTENT);
-
-        LinearLayout l = (LinearLayout) root.findViewById(R.id.camposExtraProduto);
-        TextView txt = new TextView(getActivity().getApplicationContext());
-        txt.setLayoutParams(params);
-        txt.setText("BOM DIA MEEIRO");
-        txt.setTextSize(30);
-        txt.setTextColor(Color.BLACK);
-        l.addView(txt);
+        adiconarCamposExtra((LinearLayout) root.findViewById(R.id.camposExtraProduto));
 
         this.btnAlterar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -239,6 +238,165 @@ public class ProdutoIndividualFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
         mViewModel = ViewModelProviders.of(this).get(ProdutoIndividualViewModel.class);
         // TODO: Use the ViewModel
+    }
+
+    public void adiconarCamposExtra(LinearLayout l)
+    {
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT);
+
+        if (produtoAtual instanceof EquipamentoFotovoltaico)
+        {
+            EquipamentoFotovoltaico e = (EquipamentoFotovoltaico) produtoAtual;
+
+            TextView txt = new TextView(getActivity().getApplicationContext());
+            txt.setLayoutParams(params);
+            txt.setText("Altura: " + e.getAltura());
+            txt.setTextSize(TAMANHO_FONTE);
+            txt.setTextColor(Color.BLACK);
+            l.addView(txt);
+
+            txt = new TextView(getActivity().getApplicationContext());
+            txt.setLayoutParams(params);
+            txt.setText("Largura: " + e.getLargura());
+            txt.setTextSize(TAMANHO_FONTE);
+            txt.setTextColor(Color.BLACK);
+            l.addView(txt);
+
+            txt = new TextView(getActivity().getApplicationContext());
+            txt.setLayoutParams(params);
+            txt.setText("Profundiade: " + e.getProfundidade());
+            txt.setTextSize(TAMANHO_FONTE);
+            txt.setTextColor(Color.BLACK);
+            l.addView(txt);
+
+            txt = new TextView(getActivity().getApplicationContext());
+            txt.setLayoutParams(params);
+            txt.setText("Peso: " + e.getPeso());
+            txt.setTextSize(TAMANHO_FONTE);
+            txt.setTextColor(Color.BLACK);
+            l.addView(txt);
+
+            if (produtoAtual instanceof BombaSolar)
+            {
+                BombaSolar b = (BombaSolar) produtoAtual;
+
+                txt = new TextView(getActivity().getApplicationContext());
+                txt.setLayoutParams(params);
+                txt.setText("Tensão alimentação: " + b.getTensaoAlimentacao());
+                txt.setTextSize(TAMANHO_FONTE);
+                txt.setTextColor(Color.BLACK);
+                l.addView(txt);
+
+                txt = new TextView(getActivity().getApplicationContext());
+                txt.setLayoutParams(params);
+                txt.setText("Temperatura máxima: " + b.getTemperaturaMaxima());
+                txt.setTextSize(TAMANHO_FONTE);
+                txt.setTextColor(Color.BLACK);
+                l.addView(txt);
+
+                txt = new TextView(getActivity().getApplicationContext());
+                txt.setLayoutParams(params);
+                txt.setText("Altura máxima: " + b.getAlturaMaxima());
+                txt.setTextSize(TAMANHO_FONTE);
+                txt.setTextColor(Color.BLACK);
+                l.addView(txt);
+
+                txt = new TextView(getActivity().getApplicationContext());
+                txt.setLayoutParams(params);
+                txt.setText("Bombeamento máximo diário: " + b.getBombeamentoMaximoDiario());
+                txt.setTextSize(TAMANHO_FONTE);
+                txt.setTextColor(Color.BLACK);
+                l.addView(txt);
+
+                txt = new TextView(getActivity().getApplicationContext());
+                txt.setLayoutParams(params);
+                txt.setText("Diâmetro tubo: " + b.getDiametroTubo());
+                txt.setTextSize(TAMANHO_FONTE);
+                txt.setTextColor(Color.BLACK);
+                l.addView(txt);
+            }
+            else if (produtoAtual instanceof Inversor)
+            {
+                Inversor i = (Inversor) produtoAtual;
+
+                txt = new TextView(getActivity().getApplicationContext());
+                txt.setLayoutParams(params);
+                txt.setText("Eficiência máxima: " + i.getEficienciaMaxima());
+                txt.setTextSize(TAMANHO_FONTE);
+                txt.setTextColor(Color.BLACK);
+                l.addView(txt);
+            }
+            else if (produtoAtual instanceof Modulo)
+            {
+                Modulo m = (Modulo) produtoAtual;
+
+                txt = new TextView(getActivity().getApplicationContext());
+                txt.setLayoutParams(params);
+                txt.setText("Voltagem: " + m.getVoltagem());
+                txt.setTextSize(TAMANHO_FONTE);
+                txt.setTextColor(Color.BLACK);
+                l.addView(txt);
+            }
+        }
+        else if (produtoAtual instanceof Cabo)
+        {
+            Cabo c = (Cabo) produtoAtual;
+
+            TextView txt = new TextView(getActivity().getApplicationContext());
+            txt.setLayoutParams(params);
+            txt.setText("Comprimento: " + c.getComprimento());
+            txt.setTextSize(TAMANHO_FONTE);
+            txt.setTextColor(Color.BLACK);
+            l.addView(txt);
+
+            txt = new TextView(getActivity().getApplicationContext());
+            txt.setLayoutParams(params);
+            txt.setText("Diâmetro: " + c.getDiametro());
+            txt.setTextSize(TAMANHO_FONTE);
+            txt.setTextColor(Color.BLACK);
+            l.addView(txt);
+
+            txt = new TextView(getActivity().getApplicationContext());
+            txt.setLayoutParams(params);
+            txt.setText("Condução: " + c.getConducao());
+            txt.setTextSize(TAMANHO_FONTE);
+            txt.setTextColor(Color.BLACK);
+            l.addView(txt);
+        }
+        else if (produtoAtual instanceof StringBox)
+        {
+            StringBox s = (StringBox) produtoAtual;
+
+            TextView txt = new TextView(getActivity().getApplicationContext());
+            txt.setLayoutParams(params);
+            txt.setText("Tipo: " + s.getTipo());
+            txt.setTextSize(TAMANHO_FONTE);
+            txt.setTextColor(Color.BLACK);
+            l.addView(txt);
+
+            txt = new TextView(getActivity().getApplicationContext());
+            txt.setLayoutParams(params);
+            txt.setText("Número de polos: " + s.getNumeroPolos());
+            txt.setTextSize(TAMANHO_FONTE);
+            txt.setTextColor(Color.BLACK);
+            l.addView(txt);
+
+            txt = new TextView(getActivity().getApplicationContext());
+            txt.setLayoutParams(params);
+            txt.setText("Tensão máxima: " + s.getTensaoMaxima() + "v");
+            txt.setTextSize(TAMANHO_FONTE);
+            txt.setTextColor(Color.BLACK);
+            l.addView(txt);
+
+            txt = new TextView(getActivity().getApplicationContext());
+            txt.setLayoutParams(params);
+            txt.setText("Corrente nominal: " + s.getCorrenteNominal() + "A");
+            txt.setTextSize(TAMANHO_FONTE);
+            txt.setTextColor(Color.BLACK);
+            l.addView(txt);
+        }
     }
 
 }
