@@ -131,7 +131,6 @@ public class CadastrarFragment extends Fragment {
                         if (texto.length() == 2 || texto.length() == 5)
                             etDataNascimento.append("/");
 
-                        if ()
                     }
 
                     @Override
