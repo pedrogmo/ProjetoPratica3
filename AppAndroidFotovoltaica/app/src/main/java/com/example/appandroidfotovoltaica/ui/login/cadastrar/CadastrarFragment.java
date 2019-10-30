@@ -181,8 +181,6 @@ public class CadastrarFragment extends Fragment {
                 }
 
 
-                HashMap<String, String> params = new HashMap<String,String>();
-
                 StringRequest postRequest = new StringRequest(
                     Request.Method.POST,
                     Enderecos.POST_USUARIO,

@@ -143,14 +143,12 @@ public class AdicionarClienteFragment extends Fragment {
                 if (resultClientes.length > 0)
                 {
                     Toast.makeText(
-                            getActivity().getApplicationContext(),
-                            "Email já cadastrado",
-                            Toast.LENGTH_SHORT).show();
+                        getActivity().getApplicationContext(),
+                        "Email já cadastrado",
+                        Toast.LENGTH_SHORT).show();
                     return;
                 }
 
-
-                HashMap<String, String> params = new HashMap<String,String>();
 
                 StringRequest postRequest = new StringRequest(
                     Request.Method.POST,
@@ -161,9 +159,9 @@ public class AdicionarClienteFragment extends Fragment {
                         public void onResponse(String response) {
                             // response
                             Toast.makeText(
-                                    getActivity().getApplicationContext(),
-                                    "Cliente inserido",
-                                    Toast.LENGTH_SHORT).show();
+                                getActivity().getApplicationContext(),
+                                "Cliente inserido",
+                                Toast.LENGTH_SHORT).show();
 
                             FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
                             fragmentTransaction.replace(R.id.fragment_adicionarcliente, new ClientesFragment());
