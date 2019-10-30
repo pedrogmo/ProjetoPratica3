@@ -14,6 +14,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProviders;
 
+import com.example.appandroidfotovoltaica.classes.categoria.Categoria;
 import com.example.appandroidfotovoltaica.classes.produto.equipamento.bombasolar.BombaSolar;
 import com.example.appandroidfotovoltaica.classes.produto.cabo.Cabo;
 import com.example.appandroidfotovoltaica.classes.enderecos.Enderecos;
@@ -173,7 +174,6 @@ public class ProdutosFragment extends Fragment {
                 FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
                 Bundle bundle = new Bundle();
                 bundle.putSerializable("produto", prod);
-                bundle.putSerializable("categoria", indOpcaoProduto);
                 ProdutoIndividualFragment fragment = new ProdutoIndividualFragment();
                 fragment.setArguments(bundle);
                 fragmentTransaction.replace(R.id.fragment_produtos, fragment);

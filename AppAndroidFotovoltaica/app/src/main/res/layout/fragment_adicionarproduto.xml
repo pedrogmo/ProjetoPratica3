@@ -78,12 +78,21 @@
             android:textColor="#c0392b"
             android:layout_marginBottom="10dp" />
 
+        <LinearLayout
+            android:id="@+id/camposExtraProdutoAdd"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_marginBottom="20dp">
+        </LinearLayout>
+
         <Button
             android:id="@+id/btnAdicionarProduto"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="Adicionar"/>
+            android:text="Adicionar"
+            android:layout_marginBottom="50dp"/>
 
         </LinearLayout>
 

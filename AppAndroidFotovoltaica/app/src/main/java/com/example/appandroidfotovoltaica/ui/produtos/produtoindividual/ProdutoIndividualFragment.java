@@ -10,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -52,11 +53,10 @@ public class ProdutoIndividualFragment extends Fragment {
     private Button
         btnAlterar,
         btnExcluir;
+    private LinearLayout llCamposExtra;
 
-    private int categoriaProduto;
+    private Class<? extends Produto> categoriaProduto;
     private Produto produtoAtual;
-
-    private final int TAMANHO_FONTE = 15;
 
     public static ProdutoIndividualFragment newInstance() {
         return new ProdutoIndividualFragment();
@@ -69,8 +69,8 @@ public class ProdutoIndividualFragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_produtoindividual, container, false);
 
         Bundle bundle = getArguments();
-        this.categoriaProduto = (int) bundle.getSerializable("categoria");
         this.produtoAtual = (Produto) bundle.getSerializable("produto");
+        this.categoriaProduto = this.produtoAtual.getClass();
 
         this.etPreco = (EditText) root.findViewById(R.id.etPrecoProdutoAlt);
         this.tvNome = (TextView) root.findViewById(R.id.tvNomeProdutoAlt);
@@ -82,8 +82,9 @@ public class ProdutoIndividualFragment extends Fragment {
         this.tvNome.setText(this.tvNome.getText() + produtoAtual.getNome());
         this.tvDescricao.setText(this.tvDescricao.getText() + produtoAtual.getDescricao());
         this.etPreco.setText(produtoAtual.getPreco() + "");
+        this.llCamposExtra = (LinearLayout) root.findViewById(R.id.camposExtraProdutoAlt);
 
-        adiconarCamposExtra((LinearLayout) root.findViewById(R.id.camposExtraProduto));
+        this.adiconarCamposExtra();
 
         this.btnAlterar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -100,30 +101,20 @@ public class ProdutoIndividualFragment extends Fragment {
                 final RequestQueue QUEUE = Volley.newRequestQueue(getActivity().getApplicationContext());
                 final String URL;
 
-                switch(categoriaProduto)
-                {
-                    case 0:
-                        URL = Enderecos.PATCH_MODULO;
-                        break;
-                    case 1:
-                        URL = Enderecos.PATCH_INVERSOR;
-                        break;
-                    case 2:
-                        URL = Enderecos.PATCH_STRINGBOX;
-                        break;
-                    case 3:
-                        URL = Enderecos.PATCH_FIXACAO;
-                        break;
-                    case 4:
-                        URL = Enderecos.PATCH_BOMBASOLAR;
-                        break;
-                    case 5:
-                        URL = Enderecos.PATCH_CABO;
-                        break;
-                    default:
-                        URL = "";
-                        break;
-                }
+                if (categoriaProduto == Modulo.class)
+                    URL = Enderecos.PATCH_MODULO;
+                else if (categoriaProduto == Inversor.class)
+                    URL = Enderecos.PATCH_INVERSOR;
+                else if (categoriaProduto == StringBox.class)
+                    URL = Enderecos.PATCH_STRINGBOX;
+                else if (categoriaProduto == Fixacao.class)
+                    URL = Enderecos.PATCH_FIXACAO;
+                else if (categoriaProduto == BombaSolar.class)
+                    URL = Enderecos.PATCH_BOMBASOLAR;
+                else if (categoriaProduto == Cabo.class)
+                    URL = Enderecos.PATCH_CABO;
+                else
+                    URL = "";
 
                 StringRequest putRequest = new StringRequest(
                     Request.Method.PATCH,
@@ -173,30 +164,20 @@ public class ProdutoIndividualFragment extends Fragment {
                 final RequestQueue QUEUE = Volley.newRequestQueue(getActivity().getApplicationContext());
                 final String URL;
 
-                switch(categoriaProduto)
-                {
-                    case 0:
-                        URL = Enderecos.DELETE_MODULO;
-                        break;
-                    case 1:
-                        URL = Enderecos.DELETE_INVERSOR;
-                        break;
-                    case 2:
-                        URL = Enderecos.DELETE_STRINGBOX;
-                        break;
-                    case 3:
-                        URL = Enderecos.DELETE_FIXACAO;
-                        break;
-                    case 4:
-                        URL = Enderecos.DELETE_BOMBASOLAR;
-                        break;
-                    case 5:
-                        URL = Enderecos.DELETE_CABO;
-                        break;
-                    default:
-                        URL = "";
-                        break;
-                }
+                if (categoriaProduto == Modulo.class)
+                    URL = Enderecos.DELETE_MODULO;
+                else if (categoriaProduto == Inversor.class)
+                    URL = Enderecos.DELETE_INVERSOR;
+                else if (categoriaProduto == StringBox.class)
+                    URL = Enderecos.DELETE_STRINGBOX;
+                else if (categoriaProduto == Fixacao.class)
+                    URL = Enderecos.DELETE_FIXACAO;
+                else if (categoriaProduto == BombaSolar.class)
+                    URL = Enderecos.DELETE_BOMBASOLAR;
+                else if (categoriaProduto == Cabo.class)
+                    URL = Enderecos.DELETE_CABO;
+                else
+                    URL = "";
 
                 StringRequest dr = new StringRequest(
                     Request.Method.DELETE,
@@ -240,163 +221,70 @@ public class ProdutoIndividualFragment extends Fragment {
         // TODO: Use the ViewModel
     }
 
-    public void adiconarCamposExtra(LinearLayout l)
+    private void adicionarTextView(
+        String texto,
+        LinearLayout.LayoutParams params)
+    {
+        TextView txt = new TextView(getActivity().getApplicationContext());
+        txt.setLayoutParams(params);
+        txt.setText(texto);
+        this.llCamposExtra.addView(txt);
+    }
+
+    private void adiconarCamposExtra()
     {
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.MATCH_PARENT,
-                LinearLayout.LayoutParams.WRAP_CONTENT);
+            LinearLayout.LayoutParams.MATCH_PARENT,
+            LinearLayout.LayoutParams.WRAP_CONTENT);
 
-        if (produtoAtual instanceof EquipamentoFotovoltaico)
+        if (this.produtoAtual instanceof EquipamentoFotovoltaico)
         {
             EquipamentoFotovoltaico e = (EquipamentoFotovoltaico) produtoAtual;
 
-            TextView txt = new TextView(getActivity().getApplicationContext());
-            txt.setLayoutParams(params);
-            txt.setText("Altura: " + e.getAltura());
-            txt.setTextSize(TAMANHO_FONTE);
-            txt.setTextColor(Color.BLACK);
-            l.addView(txt);
+            this.adicionarTextView("Altura: " + e.getAltura() + "m", params);
+            this.adicionarTextView("Largura: " + e.getLargura() + "m", params);
+            this.adicionarTextView("Profundiade: " + e.getProfundidade() + "m", params);
+            this.adicionarTextView("Peso: " + e.getPeso() + "kg", params);
 
-            txt = new TextView(getActivity().getApplicationContext());
-            txt.setLayoutParams(params);
-            txt.setText("Largura: " + e.getLargura());
-            txt.setTextSize(TAMANHO_FONTE);
-            txt.setTextColor(Color.BLACK);
-            l.addView(txt);
-
-            txt = new TextView(getActivity().getApplicationContext());
-            txt.setLayoutParams(params);
-            txt.setText("Profundiade: " + e.getProfundidade());
-            txt.setTextSize(TAMANHO_FONTE);
-            txt.setTextColor(Color.BLACK);
-            l.addView(txt);
-
-            txt = new TextView(getActivity().getApplicationContext());
-            txt.setLayoutParams(params);
-            txt.setText("Peso: " + e.getPeso());
-            txt.setTextSize(TAMANHO_FONTE);
-            txt.setTextColor(Color.BLACK);
-            l.addView(txt);
-
-            if (produtoAtual instanceof BombaSolar)
+            if (this.categoriaProduto == BombaSolar.class)
             {
                 BombaSolar b = (BombaSolar) produtoAtual;
 
-                txt = new TextView(getActivity().getApplicationContext());
-                txt.setLayoutParams(params);
-                txt.setText("Tensão alimentação: " + b.getTensaoAlimentacao());
-                txt.setTextSize(TAMANHO_FONTE);
-                txt.setTextColor(Color.BLACK);
-                l.addView(txt);
-
-                txt = new TextView(getActivity().getApplicationContext());
-                txt.setLayoutParams(params);
-                txt.setText("Temperatura máxima: " + b.getTemperaturaMaxima());
-                txt.setTextSize(TAMANHO_FONTE);
-                txt.setTextColor(Color.BLACK);
-                l.addView(txt);
-
-                txt = new TextView(getActivity().getApplicationContext());
-                txt.setLayoutParams(params);
-                txt.setText("Altura máxima: " + b.getAlturaMaxima());
-                txt.setTextSize(TAMANHO_FONTE);
-                txt.setTextColor(Color.BLACK);
-                l.addView(txt);
-
-                txt = new TextView(getActivity().getApplicationContext());
-                txt.setLayoutParams(params);
-                txt.setText("Bombeamento máximo diário: " + b.getBombeamentoMaximoDiario());
-                txt.setTextSize(TAMANHO_FONTE);
-                txt.setTextColor(Color.BLACK);
-                l.addView(txt);
-
-                txt = new TextView(getActivity().getApplicationContext());
-                txt.setLayoutParams(params);
-                txt.setText("Diâmetro tubo: " + b.getDiametroTubo());
-                txt.setTextSize(TAMANHO_FONTE);
-                txt.setTextColor(Color.BLACK);
-                l.addView(txt);
+                this.adicionarTextView("Tensão alimentação: " + b.getTensaoAlimentacao()  + "v", params);
+                this.adicionarTextView("Temperatura máxima: " + b.getTemperaturaMaxima() + "°C", params);
+                this.adicionarTextView("Altura máxima: " + b.getAlturaMaxima() + "m", params);
+                this.adicionarTextView("Bombeamento máximo diário: " + b.getBombeamentoMaximoDiario() + "L", params);
+                this.adicionarTextView("Diâmetro tubo: " + b.getDiametroTubo() + "mm", params);
             }
-            else if (produtoAtual instanceof Inversor)
+            else if (this.categoriaProduto == Inversor.class)
             {
                 Inversor i = (Inversor) produtoAtual;
 
-                txt = new TextView(getActivity().getApplicationContext());
-                txt.setLayoutParams(params);
-                txt.setText("Eficiência máxima: " + i.getEficienciaMaxima());
-                txt.setTextSize(TAMANHO_FONTE);
-                txt.setTextColor(Color.BLACK);
-                l.addView(txt);
+                this.adicionarTextView("Eficiência máxima: " + i.getEficienciaMaxima(), params);
             }
-            else if (produtoAtual instanceof Modulo)
+            else if (this.categoriaProduto == Modulo.class)
             {
                 Modulo m = (Modulo) produtoAtual;
 
-                txt = new TextView(getActivity().getApplicationContext());
-                txt.setLayoutParams(params);
-                txt.setText("Voltagem: " + m.getVoltagem());
-                txt.setTextSize(TAMANHO_FONTE);
-                txt.setTextColor(Color.BLACK);
-                l.addView(txt);
+                this.adicionarTextView("Voltagem: " + m.getVoltagem() + "v", params);
             }
         }
-        else if (produtoAtual instanceof Cabo)
+        else if (this.categoriaProduto == Cabo.class)
         {
             Cabo c = (Cabo) produtoAtual;
 
-            TextView txt = new TextView(getActivity().getApplicationContext());
-            txt.setLayoutParams(params);
-            txt.setText("Comprimento: " + c.getComprimento());
-            txt.setTextSize(TAMANHO_FONTE);
-            txt.setTextColor(Color.BLACK);
-            l.addView(txt);
-
-            txt = new TextView(getActivity().getApplicationContext());
-            txt.setLayoutParams(params);
-            txt.setText("Diâmetro: " + c.getDiametro());
-            txt.setTextSize(TAMANHO_FONTE);
-            txt.setTextColor(Color.BLACK);
-            l.addView(txt);
-
-            txt = new TextView(getActivity().getApplicationContext());
-            txt.setLayoutParams(params);
-            txt.setText("Condução: " + c.getConducao());
-            txt.setTextSize(TAMANHO_FONTE);
-            txt.setTextColor(Color.BLACK);
-            l.addView(txt);
+            this.adicionarTextView("Comprimento: " + c.getComprimento() + "m", params);
+            this.adicionarTextView("Diâmetro: " + c.getDiametro() + "mm", params);
+            this.adicionarTextView("Condução: " + c.getConducao() + "v", params);
         }
-        else if (produtoAtual instanceof StringBox)
+        else if (this.categoriaProduto == StringBox.class)
         {
             StringBox s = (StringBox) produtoAtual;
 
-            TextView txt = new TextView(getActivity().getApplicationContext());
-            txt.setLayoutParams(params);
-            txt.setText("Tipo: " + s.getTipo());
-            txt.setTextSize(TAMANHO_FONTE);
-            txt.setTextColor(Color.BLACK);
-            l.addView(txt);
-
-            txt = new TextView(getActivity().getApplicationContext());
-            txt.setLayoutParams(params);
-            txt.setText("Número de polos: " + s.getNumeroPolos());
-            txt.setTextSize(TAMANHO_FONTE);
-            txt.setTextColor(Color.BLACK);
-            l.addView(txt);
-
-            txt = new TextView(getActivity().getApplicationContext());
-            txt.setLayoutParams(params);
-            txt.setText("Tensão máxima: " + s.getTensaoMaxima() + "v");
-            txt.setTextSize(TAMANHO_FONTE);
-            txt.setTextColor(Color.BLACK);
-            l.addView(txt);
-
-            txt = new TextView(getActivity().getApplicationContext());
-            txt.setLayoutParams(params);
-            txt.setText("Corrente nominal: " + s.getCorrenteNominal() + "A");
-            txt.setTextSize(TAMANHO_FONTE);
-            txt.setTextColor(Color.BLACK);
-            l.addView(txt);
+            this.adicionarTextView("Tipo: " + s.getTipo(), params);
+            this.adicionarTextView("Número de polos: " + s.getNumeroPolos(), params);
+            this.adicionarTextView("Tensão máxima: " + s.getTensaoMaxima() + "v", params);
+            this.adicionarTextView("Corrente nominal: " + s.getCorrenteNominal() + "A", params);
         }
     }
-
 }
