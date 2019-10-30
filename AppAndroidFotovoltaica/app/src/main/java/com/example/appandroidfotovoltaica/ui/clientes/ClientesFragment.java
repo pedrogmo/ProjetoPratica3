@@ -3,6 +3,7 @@ package com.example.appandroidfotovoltaica.ui.clientes;
 import com.example.appandroidfotovoltaica.classes.cliente.Cliente;
 import com.example.appandroidfotovoltaica.classes.enderecos.Enderecos;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -12,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -46,7 +48,10 @@ public class ClientesFragment extends Fragment {
         etBuscarCliente = root.findViewById(R.id.etBuscarCliente);
         lvListaClientes = root.findViewById(R.id.lvListaClientes);
         fabNovoCliente = root.findViewById(R.id.fabNovoCliente);
+
+        fabNovoCliente.show();
         this.clientesBusca = new ArrayList<Cliente>();
+
 
 
         MyTask task = new MyTask(Cliente[].class);
@@ -64,9 +69,7 @@ public class ClientesFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-                fragmentTransaction.replace(R.id.fragment_clientes, new AdicionarClienteFragment());
-                fragmentTransaction.commit();
-                fabNovoCliente.hide();
+                fragmentTransaction.replace(R.id.fragment_clientes, new AdicionarClienteFragment(), "FragmentAC").addToBackStack("pc-ac").commit();
             }
         });
 

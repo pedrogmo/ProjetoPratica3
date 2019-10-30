@@ -71,6 +71,8 @@ public class AdicionarClienteFragment extends Fragment {
             }
         });*/
 
+        Toast.makeText(getActivity().getApplicationContext(), getActivity().getIntent().getExtras().getString("FragmentAtivo"), Toast.LENGTH_SHORT).show();
+
         fab = root.findViewById(R.id.fabNovoCliente);
         this.etNomeCliente = (EditText) root.findViewById(R.id.etNomeClienteAdd);
         this.etDataNascimentoCliente = (EditText) root.findViewById(R.id.etDataNascimentoClienteAdd);

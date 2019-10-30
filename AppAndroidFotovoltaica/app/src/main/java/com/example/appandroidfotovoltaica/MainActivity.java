@@ -3,12 +3,17 @@ package com.example.appandroidfotovoltaica;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import com.example.appandroidfotovoltaica.classes.usuario.Usuario;
+import com.example.appandroidfotovoltaica.ui.clientes.ClientesFragment;
+import com.example.appandroidfotovoltaica.ui.clientes.adicionarcliente.AdicionarClienteFragment;
 import com.google.android.material.navigation.NavigationView;
 
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -18,12 +23,14 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.view.Menu;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
     private Usuario logado;
     private TextView tvNomeLogado, tvEmailLogado;
+    private Intent intent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,8 +39,10 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        Intent intent = getIntent();
+        intent = getIntent();
         logado = (Usuario)intent.getSerializableExtra("usuario");
+
+
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
@@ -76,16 +85,13 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        moveTaskToBack(false);
 
-        /*int count = getSupportFragmentManager().getBackStackEntryCount();
-
-        if (count == 0) {
-            super.onBackPressed();
-            //additional code
+        FragmentManager fm = getSupportFragmentManager();
+        if (fm.findFragmentByTag("FragmentAC") != null) {
+            fm.popBackStack("pc-ac", 0); // Pops everything up to "first"
         } else {
-            getSupportFragmentManager().popBackStack();
-        }*/
+            super.onBackPressed(); // Pops backstack like normal or leaves App if at base.
+        }
 
     }
 
