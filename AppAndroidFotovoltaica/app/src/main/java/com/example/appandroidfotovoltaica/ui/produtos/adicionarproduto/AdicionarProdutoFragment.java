@@ -38,6 +38,7 @@ import com.example.appandroidfotovoltaica.classes.produto.equipamento.modulo.Mod
 import com.example.appandroidfotovoltaica.classes.produto.fixacao.Fixacao;
 import com.example.appandroidfotovoltaica.classes.produto.stringbox.StringBox;
 import com.example.appandroidfotovoltaica.classes.categoria.Categoria;
+import com.example.appandroidfotovoltaica.classes.verificadora.mensagenserro.mensagenserroproduto.MensagensErroProduto;
 import com.example.appandroidfotovoltaica.ui.produtos.ProdutosFragment;
 
 import org.w3c.dom.Text;
@@ -66,6 +67,8 @@ public class AdicionarProdutoFragment extends Fragment {
 
     private Class<? extends Produto> categoriaProduto;
 
+    private MensagensErroProduto mensagensErroProduto;
+
     public static AdicionarProdutoFragment newInstance() {
         return new AdicionarProdutoFragment();
     }
@@ -91,8 +94,16 @@ public class AdicionarProdutoFragment extends Fragment {
         this.tvExcDescricao = (TextView) root.findViewById(R.id.tvExceptionDescricaoProdutoAdd);
         this.btnAdicionar = (Button) root.findViewById(R.id.btnAdicionarProduto);
 
+        this.mensagensErroProduto = new MensagensErroProduto(
+            tvExcNome,
+            tvExcPreco,
+            tvExcDescricao,
+            categoriaProduto,
+            tvExcCampos);
+
         this.llCamposExtra = (LinearLayout) root.findViewById(R.id.camposExtraProdutoAdd);
         this.adiconarCamposExtra();
+
 
         this.btnAdicionar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -102,6 +113,9 @@ public class AdicionarProdutoFragment extends Fragment {
                 final String nome = etNome.getText().toString().trim();
                 final String preco = etPreco.getText().toString().trim();
                 final String descricao = etDescricao.getText().toString().trim();
+
+                if (mensagensErroProduto.teveMensagensDeErro(nome, preco, descricao, etCampos))
+                    return;
 
                 if (categoriaProduto == Modulo.class)
                     URL = Enderecos.POST_MODULO;
@@ -117,8 +131,6 @@ public class AdicionarProdutoFragment extends Fragment {
                     URL = Enderecos.POST_CABO;
                 else
                     URL = "";
-
-                HashMap<String, String> p = new HashMap<String,String>();
 
                 StringRequest postRequest = new StringRequest(
                     Request.Method.POST,
@@ -228,7 +240,7 @@ public class AdicionarProdutoFragment extends Fragment {
         EditText et = new EditText(getActivity().getApplicationContext());
         et.setLayoutParams(params);
         if (numerico)
-            et.setInputType(InputType.TYPE_CLASS_NUMBER);
+            et.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
         this.llCamposExtra.addView(et);
         this.etCampos.add(et);
     }
