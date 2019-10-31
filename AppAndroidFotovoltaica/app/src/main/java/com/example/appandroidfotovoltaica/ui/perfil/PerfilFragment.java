@@ -88,13 +88,28 @@ public class PerfilFragment extends Fragment {
                 final String senhaUm = etSenhaUm.getText().toString();
                 final String senhaConfirmada = etSenhaConfirmada.getText().toString();
 
-                MensagensErroUsuario m = new MensagensErroUsuario(tvExceptionNome, tvExceptionData, null,
+                final String senhaUpdate;
+
+                MensagensErroUsuario m;
+
+                if (senhaUm.equals("") && senhaConfirmada.equals(""))
+                {
+                    m = new MensagensErroUsuario(tvExceptionNome, tvExceptionData, null,
+                        tvExceptionTelefone, tvExceptionCpf, null, null);
+                    senhaUpdate = logado.getSenha();
+
+                }
+                else
+                    {
+                    m = new MensagensErroUsuario(tvExceptionNome, tvExceptionData, null,
                         tvExceptionTelefone, tvExceptionCpf, tvExceptionSenhaUm, tvExceptionSenhaConfirmada);
+                    senhaUpdate = Criptografia.criptografar(senhaConfirmada);
+                }
+
+
 
                 if (m.teveMensagensDeErro(nome, data, null, telefone, cpf, senhaUm, senhaConfirmada))
                     return;
-
-                final String senhaCriptografada = Criptografia.criptografar(senhaConfirmada);
 
                 StringRequest putRequest = new StringRequest(
                     Request.Method.PATCH,
@@ -108,6 +123,14 @@ public class PerfilFragment extends Fragment {
                                     getActivity().getApplicationContext(),
                                     "Perfil alterado",
                                     Toast.LENGTH_SHORT).show();
+                            try {
+                                logado.setNome(nome);
+                                logado.setTelefone(telefone);
+                                logado.setData(data);
+                                logado.setCpf(cpf);
+                                logado.setSenha(senhaUpdate);
+                            }
+                            catch (Exception exc){}
                         }
                     },
                     new Response.ErrorListener()
@@ -129,7 +152,7 @@ public class PerfilFragment extends Fragment {
                     {
                         Map<String, String>  params = new HashMap<String, String>();
                         params.put("nome", nome);
-                        params.put("senha", senhaCriptografada);
+                        params.put("senha", senhaUpdate);
                         params.put("telefone", telefone);
                         params.put("cpf", cpf);
                         params.put("data", data);
