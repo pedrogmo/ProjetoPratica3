@@ -32,6 +32,18 @@ public class MainActivity extends AppCompatActivity {
     private TextView tvNomeLogado, tvEmailLogado;
     private Intent intent;
 
+    public static final String F_ADICIONAR_CLIENTE = "FragmentAC";
+    public static final String M_ADICIONAR_CLIENTE = "pc-ac";
+
+    public static final String F_CLIENTE_INDIVIDUAL = "FragmentCI";
+    public static final String M_CLIENTE_INDIVIDUAL = "pc-ci";
+
+    public static final String F_ADICIONAR_PRODUTO = "FragmentAP";
+    public static final String M_ADICIONAR_PRODUTO = "pp-ap";
+
+    public static final String F_PRODUTO_INDIVIDUAL = "FragmentPI";
+    public static final String M_PRODUTO_INDIVIDUAL = "pp-pi";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -87,12 +99,21 @@ public class MainActivity extends AppCompatActivity {
     public void onBackPressed() {
 
         FragmentManager fm = getSupportFragmentManager();
-        if (fm.findFragmentByTag("FragmentAC") != null) {
-            fm.popBackStack("pc-ac", 0); // Pops everything up to "first"
-        } else {
-            super.onBackPressed(); // Pops backstack like normal or leaves App if at base.
-        }
 
+        if (fm.findFragmentByTag(F_ADICIONAR_CLIENTE) != null)
+            fm.popBackStack(M_ADICIONAR_CLIENTE, 0);
+
+        else if (fm.findFragmentByTag(F_CLIENTE_INDIVIDUAL) != null)
+            fm.popBackStack(M_CLIENTE_INDIVIDUAL, 0);
+
+        else if (fm.findFragmentByTag(F_ADICIONAR_PRODUTO) != null)
+            fm.popBackStack(M_ADICIONAR_PRODUTO, 0);
+
+        else if (fm.findFragmentByTag(F_PRODUTO_INDIVIDUAL) != null)
+            fm.popBackStack(M_PRODUTO_INDIVIDUAL, 0);
+
+        else
+            super.onBackPressed();
     }
 
     public Usuario getUsuario()

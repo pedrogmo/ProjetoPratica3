@@ -20,6 +20,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.appandroidfotovoltaica.classes.criptografia.Criptografia;
 import com.example.appandroidfotovoltaica.classes.empresa.Empresa;
 import com.example.appandroidfotovoltaica.classes.enderecos.Enderecos;
 import com.example.appandroidfotovoltaica.classes.verificadora.mensagenserro.mensagenserrousuario.MensagensErroUsuario;
@@ -66,8 +67,6 @@ public class PerfilFragment extends Fragment {
         etCpf.setText(logado.getCpf());
         etTelefone.setText(logado.getTelefone());
         etData.setText(logado.getData());
-        etSenhaUm.setText(logado.getSenha());
-        etSenhaConfirmada.setText(logado.getSenha());
 
         MyTask task = new MyTask(Empresa[].class);
         task.execute(Enderecos.GET_EMPRESA + "/" + logado.getCodEmpresa());
@@ -88,11 +87,14 @@ public class PerfilFragment extends Fragment {
                 final String cpf = etCpf.getText().toString();
                 final String senhaUm = etSenhaUm.getText().toString();
                 final String senhaConfirmada = etSenhaConfirmada.getText().toString();
+
                 MensagensErroUsuario m = new MensagensErroUsuario(tvExceptionNome, tvExceptionData, null,
                         tvExceptionTelefone, tvExceptionCpf, tvExceptionSenhaUm, tvExceptionSenhaConfirmada);
 
                 if (m.teveMensagensDeErro(nome, data, null, telefone, cpf, senhaUm, senhaConfirmada))
                     return;
+
+                final String senhaCriptografada = Criptografia.criptografar(senhaConfirmada);
 
                 StringRequest putRequest = new StringRequest(
                     Request.Method.PATCH,
@@ -127,7 +129,7 @@ public class PerfilFragment extends Fragment {
                     {
                         Map<String, String>  params = new HashMap<String, String>();
                         params.put("nome", nome);
-                        params.put("senha", senhaConfirmada);
+                        params.put("senha", senhaCriptografada);
                         params.put("telefone", telefone);
                         params.put("cpf", cpf);
                         params.put("data", data);

@@ -69,7 +69,7 @@ public class ClientesFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-                fragmentTransaction.replace(R.id.fragment_clientes, new AdicionarClienteFragment(), "FragmentAC").addToBackStack("pc-ac").commit();
+                fragmentTransaction.replace(R.id.fragment_clientes, new AdicionarClienteFragment(), MainActivity.F_ADICIONAR_CLIENTE).addToBackStack(MainActivity.M_ADICIONAR_CLIENTE).commit();
             }
         });
 
@@ -85,8 +85,7 @@ public class ClientesFragment extends Fragment {
                 bundle.putSerializable("cliente", clientesBusca.get(i));
                 ClienteIndividualFragment fragment = new ClienteIndividualFragment();
                 fragment.setArguments(bundle);
-                fragmentTransaction.replace(R.id.fragment_clientes, fragment);
-                fragmentTransaction.commit();
+                fragmentTransaction.replace(R.id.fragment_clientes, fragment, MainActivity.F_CLIENTE_INDIVIDUAL).addToBackStack(MainActivity.M_CLIENTE_INDIVIDUAL).commit();
             }
         });
 
