@@ -69,7 +69,7 @@ public class LoginActivity extends AppCompatActivity {
                 Fragment cadastro = new CadastrarFragment();
                 cadastro.setArguments(bundle);
                 FragmentManager f = getSupportFragmentManager();
-                f.beginTransaction().replace(R.id.container, cadastro).commit();
+                f.beginTransaction().replace(R.id.container, cadastro, MainActivity.F_CADASTRO).addToBackStack(MainActivity.M_CADASTRO).commit();
             }
         });
 

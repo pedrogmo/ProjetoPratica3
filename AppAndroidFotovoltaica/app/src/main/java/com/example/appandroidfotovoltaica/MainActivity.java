@@ -44,6 +44,9 @@ public class MainActivity extends AppCompatActivity {
     public static final String F_PRODUTO_INDIVIDUAL = "FragmentPI";
     public static final String M_PRODUTO_INDIVIDUAL = "pp-pi";
 
+    public static final String F_CADASTRO = "FragmentC";
+    public static final String M_CADASTRO = "lo-ca";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -111,6 +114,9 @@ public class MainActivity extends AppCompatActivity {
 
         else if (fm.findFragmentByTag(F_PRODUTO_INDIVIDUAL) != null)
             fm.popBackStack(M_PRODUTO_INDIVIDUAL, 0);
+
+        else if (fm.findFragmentByTag(F_CADASTRO) != null)
+            fm.popBackStack(M_CADASTRO, 0);
 
         else
             super.onBackPressed();
