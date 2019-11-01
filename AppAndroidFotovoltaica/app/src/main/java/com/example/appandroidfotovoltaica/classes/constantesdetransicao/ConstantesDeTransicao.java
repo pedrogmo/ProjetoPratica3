@@ -15,9 +15,12 @@ public class ConstantesDeTransicao
     public static final String F_PRODUTO_INDIVIDUAL = "FragmentPI";
     public static final String M_PRODUTO_INDIVIDUAL = "pp-pi";
 
-    public static final String F_CADASTRO = "FragmentC";
-    public static final String M_CADASTRO = "lo-ca";
+    public static final String F_CADASTRO_USUARIO = "FragmentCDU";
+    public static final String M_CADASTRO_USUARIO = "lu-cdu";
 
     public static final String F_TELAEMPRESA = "FragmentE";
-    public static final String M_TELAEMPRESA = "lo-em";
+    public static final String M_TELAEMPRESA = "lu-em";
+
+    public static final String F_CADASTRO_EMPRESA = "FragmentCDE";
+    public static final String M_CADASTRO_EMPRESA = "le-cde";
 }

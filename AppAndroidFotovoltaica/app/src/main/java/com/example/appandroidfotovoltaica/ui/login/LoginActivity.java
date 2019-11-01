@@ -73,7 +73,7 @@ public class LoginActivity extends AppCompatActivity {
                 Fragment cadastro = new CadastrarUsuarioFragment();
                 cadastro.setArguments(bundle);
                 FragmentManager f = getSupportFragmentManager();
-                f.beginTransaction().replace(R.id.containerTelaLogin, cadastro, ConstantesDeTransicao.F_CADASTRO).addToBackStack( ConstantesDeTransicao.M_CADASTRO).commit();
+                f.beginTransaction().replace(R.id.containerTelaLogin, cadastro, ConstantesDeTransicao.F_CADASTRO_USUARIO).addToBackStack( ConstantesDeTransicao.M_CADASTRO_USUARIO).commit();
             }
         });
         tvTelaEmpresa.setOnClickListener(new View.OnClickListener() {

@@ -3,9 +3,7 @@ package com.example.appandroidfotovoltaica;
 import android.content.Intent;
 import android.os.Bundle;
 
-import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -13,8 +11,6 @@ import androidx.navigation.ui.NavigationUI;
 
 import com.example.appandroidfotovoltaica.classes.constantesdetransicao.ConstantesDeTransicao;
 import com.example.appandroidfotovoltaica.classes.usuario.Usuario;
-import com.example.appandroidfotovoltaica.ui.clientes.ClientesFragment;
-import com.example.appandroidfotovoltaica.ui.clientes.adicionarcliente.AdicionarClienteFragment;
 import com.google.android.material.navigation.NavigationView;
 
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -24,7 +20,6 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.view.Menu;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -103,8 +98,8 @@ public class MainActivity extends AppCompatActivity {
         else if (fm.findFragmentByTag(ConstantesDeTransicao.F_PRODUTO_INDIVIDUAL) != null)
             fm.popBackStack(ConstantesDeTransicao.M_PRODUTO_INDIVIDUAL, 0);
 
-        else if (fm.findFragmentByTag(ConstantesDeTransicao.F_CADASTRO) != null)
-            fm.popBackStack(ConstantesDeTransicao.M_CADASTRO, 0);
+        else if (fm.findFragmentByTag(ConstantesDeTransicao.F_CADASTRO_USUARIO) != null)
+            fm.popBackStack(ConstantesDeTransicao.M_CADASTRO_USUARIO, 0);
 
         else
             super.onBackPressed();
