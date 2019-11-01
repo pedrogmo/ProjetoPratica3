@@ -21,7 +21,7 @@ import com.example.appandroidfotovoltaica.MainActivity;
 import com.example.appandroidfotovoltaica.classes.mytask.MyTask;
 import com.example.appandroidfotovoltaica.R;
 import com.example.appandroidfotovoltaica.classes.usuario.Usuario;
-import com.example.appandroidfotovoltaica.ui.login.cadastrar.CadastrarFragment;
+import com.example.appandroidfotovoltaica.ui.login.cadastrarusuario.CadastrarUsuarioFragment;
 import android.content.Intent;
 
 import java.io.Serializable;
@@ -66,7 +66,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Bundle bundle = new Bundle();
                 bundle.putSerializable("usuarios", arvoreUsuarios);
-                Fragment cadastro = new CadastrarFragment();
+                Fragment cadastro = new CadastrarUsuarioFragment();
                 cadastro.setArguments(bundle);
                 FragmentManager f = getSupportFragmentManager();
                 f.beginTransaction().replace(R.id.container, cadastro, MainActivity.F_CADASTRO).addToBackStack(MainActivity.M_CADASTRO).commit();

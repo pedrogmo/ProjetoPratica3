@@ -1,5 +1,6 @@
-package com.example.appandroidfotovoltaica.ui.login.cadastrar;
+package com.example.appandroidfotovoltaica.ui.login.cadastrarusuario;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -32,12 +33,13 @@ import com.example.appandroidfotovoltaica.classes.verificadora.mensagenserro.men
 import com.example.appandroidfotovoltaica.classes.mytask.MyTask;
 import com.example.appandroidfotovoltaica.R;
 import com.example.appandroidfotovoltaica.classes.usuario.Usuario;
+import com.example.appandroidfotovoltaica.ui.login.LoginActivity;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class CadastrarFragment extends Fragment {
-    private CadastrarViewModel cadastrarViewModel;
+public class CadastrarUsuarioFragment extends Fragment {
+    private CadastrarUsuarioViewModel cadastrarUsuarioViewModel;
     private Spinner spEmpresa;
     private Empresa[] empresas;
     private Button btnCadastrarUsuario;
@@ -54,9 +56,9 @@ public class CadastrarFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        cadastrarViewModel =
-                ViewModelProviders.of(this).get(CadastrarViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_cadastrarperfil, container, false);
+        cadastrarUsuarioViewModel =
+                ViewModelProviders.of(this).get(CadastrarUsuarioViewModel.class);
+        View root = inflater.inflate(R.layout.fragment_cadastrarusuario, container, false);
         etNome = root.findViewById(R.id.etNomeUsuario);
         tvExceptionNome = root.findViewById(R.id.tvExceptionNomeUsuario);
         etEmail = root.findViewById(R.id.etEmailUsuario);
@@ -193,6 +195,9 @@ public class CadastrarFragment extends Fragment {
                                 getActivity().getApplicationContext(),
                                 "Usario inserido",
                                 Toast.LENGTH_SHORT).show();
+
+                            Intent i = new Intent(getActivity().getApplicationContext(), LoginActivity.class);
+                            startActivity(i);
                         }
                     },
                     new Response.ErrorListener()

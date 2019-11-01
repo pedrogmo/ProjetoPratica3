@@ -1,14 +1,14 @@
-package com.example.appandroidfotovoltaica.ui.login.cadastrar;
+package com.example.appandroidfotovoltaica.ui.login.cadastrarusuario;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class CadastrarViewModel extends ViewModel {
+public class CadastrarUsuarioViewModel extends ViewModel {
 
     private MutableLiveData<String> mText;
 
-    public CadastrarViewModel() {
+    public CadastrarUsuarioViewModel() {
         mText = new MutableLiveData<>();
         mText.setValue("This is cadastrar fragment");
     }
