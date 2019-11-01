@@ -99,10 +99,10 @@ public class ClienteIndividualFragment extends Fragment {
                 final RequestQueue QUEUE = Volley.newRequestQueue(getActivity().getApplicationContext());
 
                 final String nome = etNome.getText().toString().trim();
-                final String data = etData.getText().toString();
-                final String email = etEmail.getText().toString();
-                final String telefone = etTelefone.getText().toString();
-                final String cpf = etCpf.getText().toString();
+                final String data = etData.getText().toString().trim();
+                final String email = etEmail.getText().toString().trim();
+                final String telefone = etTelefone.getText().toString().trim();
+                final String cpf = etCpf.getText().toString().trim();
 
                 if (mensagens.teveMensagensDeErro(nome, data, email, telefone, cpf))
                     return;

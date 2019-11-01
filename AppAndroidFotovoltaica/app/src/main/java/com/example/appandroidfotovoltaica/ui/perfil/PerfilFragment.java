@@ -84,9 +84,9 @@ public class PerfilFragment extends Fragment {
                 final RequestQueue QUEUE = Volley.newRequestQueue(getActivity().getApplicationContext());
 
                 final String nome = etNome.getText().toString().trim();
-                final String data = etData.getText().toString();
-                final String telefone = etTelefone.getText().toString();
-                final String cpf = etCpf.getText().toString();
+                final String data = etData.getText().toString().trim();
+                final String telefone = etTelefone.getText().toString().trim();
+                final String cpf = etCpf.getText().toString().trim();
                 final String senhaUm = etSenhaUm.getText().toString();
                 final String senhaConfirmada = etSenhaConfirmada.getText().toString();
 

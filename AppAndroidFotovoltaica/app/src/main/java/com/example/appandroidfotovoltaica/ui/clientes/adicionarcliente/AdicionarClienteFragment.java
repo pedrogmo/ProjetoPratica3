@@ -128,10 +128,10 @@ public class AdicionarClienteFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 final String nome = etNomeCliente.getText().toString().trim();
-                final String data = etDataNascimentoCliente.getText().toString();
-                final String email = etEmailCliente.getText().toString();
-                final String telefone = etTelefoneCliente.getText().toString();
-                final String cpf = etCpfCliente.getText().toString();
+                final String data = etDataNascimentoCliente.getText().toString().trim();
+                final String email = etEmailCliente.getText().toString().trim();
+                final String telefone = etTelefoneCliente.getText().toString().trim();
+                final String cpf = etCpfCliente.getText().toString().trim();
 
                 if (mensagens.teveMensagensDeErro(nome, data, email, telefone, cpf))
                     return;
