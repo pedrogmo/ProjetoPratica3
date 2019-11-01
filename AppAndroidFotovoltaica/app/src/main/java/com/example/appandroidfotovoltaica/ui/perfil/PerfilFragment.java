@@ -1,5 +1,7 @@
 package com.example.appandroidfotovoltaica.ui.perfil;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -168,36 +170,60 @@ public class PerfilFragment extends Fragment {
         this.btnExcluir.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final RequestQueue QUEUE = Volley.newRequestQueue(getActivity().getApplicationContext());
+                AlertDialog.Builder builder1 = new AlertDialog.Builder(getContext());
+                builder1.setMessage("Deseja mesmo excluir?");
+                builder1.setCancelable(true);
 
-                StringRequest dr = new StringRequest(
-                    Request.Method.DELETE,
-                    Enderecos.DELETE_USUARIO + "/" + logado.getCodigo(),
-                    new Response.Listener<String>()
-                    {
-                        @Override
-                        public void onResponse(String response) {
-                            // response
-                            Toast.makeText(
-                                    getActivity().getApplicationContext(),
-                                    "Usuário excluído",
-                                    Toast.LENGTH_SHORT).show();
-                            Intent i = new Intent(getActivity().getApplicationContext(), LoginActivity.class);
-                            startActivity(i);
-                        }
-                    },
-                    new Response.ErrorListener()
-                    {
-                        @Override
-                        public void onErrorResponse(VolleyError error) {
-                            Toast.makeText(
-                                    getActivity().getApplicationContext(),
-                                    "Erro ao excluir",
-                                    Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                );
-                QUEUE.add(dr);
+                builder1.setPositiveButton(
+                        "Sim",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                final RequestQueue QUEUE = Volley.newRequestQueue(getActivity().getApplicationContext());
+
+                                StringRequest dr = new StringRequest(
+                                        Request.Method.DELETE,
+                                        Enderecos.DELETE_USUARIO + "/" + logado.getCodigo(),
+                                        new Response.Listener<String>()
+                                        {
+                                            @Override
+                                            public void onResponse(String response) {
+                                                // response
+                                                Toast.makeText(
+                                                        getActivity().getApplicationContext(),
+                                                        "Usuário excluído",
+                                                        Toast.LENGTH_SHORT).show();
+                                                Intent i = new Intent(getActivity().getApplicationContext(), LoginActivity.class);
+                                                startActivity(i);
+                                            }
+                                        },
+                                        new Response.ErrorListener()
+                                        {
+                                            @Override
+                                            public void onErrorResponse(VolleyError error) {
+                                                Toast.makeText(
+                                                        getActivity().getApplicationContext(),
+                                                        "Erro ao excluir",
+                                                        Toast.LENGTH_SHORT).show();
+                                            }
+                                        }
+                                );
+                                QUEUE.add(dr);
+
+                                dialog.cancel();
+                            }
+                        });
+
+                builder1.setNegativeButton(
+                        "Não",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                dialog.cancel();
+                            }
+                        });
+
+                AlertDialog alert11 = builder1.create();
+                alert11.show();
+
             }
         });
 

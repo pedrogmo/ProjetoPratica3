@@ -10,15 +10,18 @@ public class Empresa implements
     private int codigo;
     private String nome;
     private String cnpj;
+    private String senha;
 
     public Empresa(
         int codigo,
         String nome,
-        String cnpj) throws Exception
+        String cnpj,
+        String senha) throws Exception
     {
         this.setCodigo(codigo);
         this.setNome(nome);
         this.setCnpj(cnpj);
+        this.setSenha(senha);
     }
 
     public Empresa()
@@ -68,9 +71,9 @@ public class Empresa implements
         String nome) throws Exception
     {
         if (nome == null)
-            throw new NullPointerException("Nome de empresa ausente");
+            throw new NullPointerException("Empresa - setNome: nome de empresa ausente");
         if (nome.equals(""))
-            throw new IllegalArgumentException("Digite o nome da empresa");
+            throw new IllegalArgumentException("Empresa - setNome: nome da empresa vazio");
         this.nome = nome;
     }
 
@@ -83,8 +86,20 @@ public class Empresa implements
             String cnpj) throws Exception
     {
         if (!Verificadora.isCnpjValido(cnpj))
-            throw new IllegalArgumentException("Cnpj da empresa inválido");
+            throw new IllegalArgumentException("Empresa - setCnpj: cnpj da empresa inválido");
         this.cnpj = cnpj;
+    }
+
+    public String getSenha(){return this.senha;}
+
+    public void setSenha(
+            String senha) throws Exception
+    {
+        if (nome == null)
+            throw new NullPointerException("Empresa - setSenha: senha de empresa ausente");
+        if (nome.equals(""))
+            throw new IllegalArgumentException("Empresa - setSenha: senha de empresa vazio");
+        this.senha = senha;
     }
 
     public String toString()
@@ -108,6 +123,8 @@ public class Empresa implements
             return false;
         if (!this.cnpj.equals(e.cnpj))
             return false;
+        if (!this.senha.equals(e.senha))
+            return false;
         return true;
     }
 
@@ -117,6 +134,7 @@ public class Empresa implements
         ret = ret * 2 + new Integer(this.codigo).hashCode();
         ret = ret * 2 + this.nome.hashCode();
         ret = ret * 2 + this.cnpj.hashCode();
+        ret = ret * 2 + this.senha.hashCode();
         return ret;
     }
 

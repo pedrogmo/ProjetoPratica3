@@ -3,6 +3,8 @@ package com.example.appandroidfotovoltaica.ui.produtos.produtoindividual;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProviders;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.graphics.Color;
 import android.os.Bundle;
 
@@ -161,53 +163,76 @@ public class ProdutoIndividualFragment extends Fragment {
         this.btnExcluir.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                final RequestQueue QUEUE = Volley.newRequestQueue(getActivity().getApplicationContext());
-                final String URL;
+                AlertDialog.Builder builder1 = new AlertDialog.Builder(getContext());
+                builder1.setMessage("Deseja mesmo excluir?");
+                builder1.setCancelable(true);
 
-                if (categoriaProduto == Modulo.class)
-                    URL = Enderecos.DELETE_MODULO;
-                else if (categoriaProduto == Inversor.class)
-                    URL = Enderecos.DELETE_INVERSOR;
-                else if (categoriaProduto == StringBox.class)
-                    URL = Enderecos.DELETE_STRINGBOX;
-                else if (categoriaProduto == Fixacao.class)
-                    URL = Enderecos.DELETE_FIXACAO;
-                else if (categoriaProduto == BombaSolar.class)
-                    URL = Enderecos.DELETE_BOMBASOLAR;
-                else if (categoriaProduto == Cabo.class)
-                    URL = Enderecos.DELETE_CABO;
-                else
-                    URL = "";
+                builder1.setPositiveButton(
+                        "Sim",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                final RequestQueue QUEUE = Volley.newRequestQueue(getActivity().getApplicationContext());
+                                final String URL;
 
-                StringRequest dr = new StringRequest(
-                    Request.Method.DELETE,
-                    URL + "/" + produtoAtual.getCodigo(),
-                    new Response.Listener<String>()
-                    {
-                        @Override
-                        public void onResponse(String response) {
-                            // response
-                            Toast.makeText(
-                                getActivity().getApplicationContext(),
-                                "Produto excluído",
-                                Toast.LENGTH_SHORT).show();
-                            FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-                            fragmentTransaction.replace(R.id.fragment_produtoindividual, new ProdutosFragment());
-                            fragmentTransaction.commit();
-                        }
-                    },
-                    new Response.ErrorListener()
-                    {
-                        @Override
-                        public void onErrorResponse(VolleyError error) {
-                            Toast.makeText(
-                                getActivity().getApplicationContext(),
-                                "Erro ao excluir",
-                                Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                );
-                QUEUE.add(dr);
+                                if (categoriaProduto == Modulo.class)
+                                    URL = Enderecos.DELETE_MODULO;
+                                else if (categoriaProduto == Inversor.class)
+                                    URL = Enderecos.DELETE_INVERSOR;
+                                else if (categoriaProduto == StringBox.class)
+                                    URL = Enderecos.DELETE_STRINGBOX;
+                                else if (categoriaProduto == Fixacao.class)
+                                    URL = Enderecos.DELETE_FIXACAO;
+                                else if (categoriaProduto == BombaSolar.class)
+                                    URL = Enderecos.DELETE_BOMBASOLAR;
+                                else if (categoriaProduto == Cabo.class)
+                                    URL = Enderecos.DELETE_CABO;
+                                else
+                                    URL = "";
+
+                                StringRequest dr = new StringRequest(
+                                        Request.Method.DELETE,
+                                        URL + "/" + produtoAtual.getCodigo(),
+                                        new Response.Listener<String>()
+                                        {
+                                            @Override
+                                            public void onResponse(String response) {
+                                                // response
+                                                Toast.makeText(
+                                                        getActivity().getApplicationContext(),
+                                                        "Produto excluído",
+                                                        Toast.LENGTH_SHORT).show();
+                                                FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+                                                fragmentTransaction.replace(R.id.fragment_produtoindividual, new ProdutosFragment());
+                                                fragmentTransaction.commit();
+                                            }
+                                        },
+                                        new Response.ErrorListener()
+                                        {
+                                            @Override
+                                            public void onErrorResponse(VolleyError error) {
+                                                Toast.makeText(
+                                                        getActivity().getApplicationContext(),
+                                                        "Erro ao excluir",
+                                                        Toast.LENGTH_SHORT).show();
+                                            }
+                                        }
+                                );
+                                QUEUE.add(dr);
+
+                                dialog.cancel();
+                            }
+                        });
+
+                builder1.setNegativeButton(
+                        "Não",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                dialog.cancel();
+                            }
+                        });
+
+                AlertDialog alert11 = builder1.create();
+                alert11.show();
             }
         });
 
