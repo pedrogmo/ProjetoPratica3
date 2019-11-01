@@ -15,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.appandroidfotovoltaica.classes.arvorebinaria.ArvoreBinaria;
+import com.example.appandroidfotovoltaica.classes.constantesdetransicao.ConstantesDeTransicao;
 import com.example.appandroidfotovoltaica.classes.criptografia.Criptografia;
 import com.example.appandroidfotovoltaica.classes.enderecos.Enderecos;
 import com.example.appandroidfotovoltaica.MainActivity;
@@ -22,6 +23,8 @@ import com.example.appandroidfotovoltaica.classes.mytask.MyTask;
 import com.example.appandroidfotovoltaica.R;
 import com.example.appandroidfotovoltaica.classes.usuario.Usuario;
 import com.example.appandroidfotovoltaica.ui.login.cadastrarusuario.CadastrarUsuarioFragment;
+import com.example.appandroidfotovoltaica.ui.login.telaEmpresa.TelaEmpresaFragment;
+
 import android.content.Intent;
 
 import java.io.Serializable;
@@ -31,7 +34,7 @@ public class LoginActivity extends AppCompatActivity {
     private ArvoreBinaria<Usuario> arvoreUsuarios;
     private EditText etEmailLogin, etSenhaLogin;
     private Button btnLogar;
-    private TextView tvCadastrarLogin;
+    private TextView tvCadastrarLogin, tvTelaEmpresa;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -42,6 +45,7 @@ public class LoginActivity extends AppCompatActivity {
         etSenhaLogin = findViewById(R.id.etSenhaLogin);
         btnLogar = findViewById(R.id.btnLogar);
         tvCadastrarLogin = findViewById(R.id.tvCadastrarLogin);
+        tvTelaEmpresa = findViewById(R.id.tvTelaEmpresa);
 
         this.arvoreUsuarios = new ArvoreBinaria<Usuario>();
 
@@ -69,7 +73,14 @@ public class LoginActivity extends AppCompatActivity {
                 Fragment cadastro = new CadastrarUsuarioFragment();
                 cadastro.setArguments(bundle);
                 FragmentManager f = getSupportFragmentManager();
-                f.beginTransaction().replace(R.id.container, cadastro, MainActivity.F_CADASTRO).addToBackStack(MainActivity.M_CADASTRO).commit();
+                f.beginTransaction().replace(R.id.containerTelaLogin, cadastro, ConstantesDeTransicao.F_CADASTRO).addToBackStack( ConstantesDeTransicao.M_CADASTRO).commit();
+            }
+        });
+        tvTelaEmpresa.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FragmentManager f = getSupportFragmentManager();
+                f.beginTransaction().replace(R.id.containerTelaLogin, new TelaEmpresaFragment(), ConstantesDeTransicao.F_TELAEMPRESA).addToBackStack(ConstantesDeTransicao.M_TELAEMPRESA).commit();
             }
         });
 

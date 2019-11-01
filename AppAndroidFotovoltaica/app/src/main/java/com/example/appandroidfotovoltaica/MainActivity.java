@@ -11,6 +11,7 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+import com.example.appandroidfotovoltaica.classes.constantesdetransicao.ConstantesDeTransicao;
 import com.example.appandroidfotovoltaica.classes.usuario.Usuario;
 import com.example.appandroidfotovoltaica.ui.clientes.ClientesFragment;
 import com.example.appandroidfotovoltaica.ui.clientes.adicionarcliente.AdicionarClienteFragment;
@@ -32,20 +33,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView tvNomeLogado, tvEmailLogado;
     private Intent intent;
 
-    public static final String F_ADICIONAR_CLIENTE = "FragmentAC";
-    public static final String M_ADICIONAR_CLIENTE = "pc-ac";
 
-    public static final String F_CLIENTE_INDIVIDUAL = "FragmentCI";
-    public static final String M_CLIENTE_INDIVIDUAL = "pc-ci";
-
-    public static final String F_ADICIONAR_PRODUTO = "FragmentAP";
-    public static final String M_ADICIONAR_PRODUTO = "pp-ap";
-
-    public static final String F_PRODUTO_INDIVIDUAL = "FragmentPI";
-    public static final String M_PRODUTO_INDIVIDUAL = "pp-pi";
-
-    public static final String F_CADASTRO = "FragmentC";
-    public static final String M_CADASTRO = "lo-ca";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -103,20 +91,20 @@ public class MainActivity extends AppCompatActivity {
 
         FragmentManager fm = getSupportFragmentManager();
 
-        if (fm.findFragmentByTag(F_ADICIONAR_CLIENTE) != null)
-            fm.popBackStack(M_ADICIONAR_CLIENTE, 0);
+        if (fm.findFragmentByTag(ConstantesDeTransicao.F_ADICIONAR_CLIENTE) != null)
+            fm.popBackStack(ConstantesDeTransicao.M_ADICIONAR_CLIENTE, 0);
 
-        else if (fm.findFragmentByTag(F_CLIENTE_INDIVIDUAL) != null)
-            fm.popBackStack(M_CLIENTE_INDIVIDUAL, 0);
+        else if (fm.findFragmentByTag(ConstantesDeTransicao.F_CLIENTE_INDIVIDUAL) != null)
+            fm.popBackStack(ConstantesDeTransicao.M_CLIENTE_INDIVIDUAL, 0);
 
-        else if (fm.findFragmentByTag(F_ADICIONAR_PRODUTO) != null)
-            fm.popBackStack(M_ADICIONAR_PRODUTO, 0);
+        else if (fm.findFragmentByTag(ConstantesDeTransicao.F_ADICIONAR_PRODUTO) != null)
+            fm.popBackStack(ConstantesDeTransicao.M_ADICIONAR_PRODUTO, 0);
 
-        else if (fm.findFragmentByTag(F_PRODUTO_INDIVIDUAL) != null)
-            fm.popBackStack(M_PRODUTO_INDIVIDUAL, 0);
+        else if (fm.findFragmentByTag(ConstantesDeTransicao.F_PRODUTO_INDIVIDUAL) != null)
+            fm.popBackStack(ConstantesDeTransicao.M_PRODUTO_INDIVIDUAL, 0);
 
-        else if (fm.findFragmentByTag(F_CADASTRO) != null)
-            fm.popBackStack(M_CADASTRO, 0);
+        else if (fm.findFragmentByTag(ConstantesDeTransicao.F_CADASTRO) != null)
+            fm.popBackStack(ConstantesDeTransicao.M_CADASTRO, 0);
 
         else
             super.onBackPressed();

@@ -55,6 +55,15 @@ public class Verificadora
             return false;
         return true;
     }
+    public static boolean isCNPJValido(
+            String cnpj)
+    {
+        if (cnpj == null)
+            return false;
+        if(!cnpj.matches("[0-9]{2}[.]?[0-9]{3}[.]?[0-9]{3}[/]?[0-9]{4}[-]?[0-9]{2}"))
+            return false;
+        return true;
+    }
 
     public static boolean isDataValida(
         String data)
