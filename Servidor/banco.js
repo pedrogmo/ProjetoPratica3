@@ -145,7 +145,8 @@ rota.get('/empresa/:codigo', (requisicao, resposta) => {
 rota.post('/insert_empresa', (requisicao, resposta) => {
 	const nome = requisicao.body.nome;
 	const cnpj = requisicao.body.cnpj;
-	execSQL(`INSERT INTO EmpresaSol VALUES('${nome}', '${cnpj}')`, resposta);
+	const senha = requisicao.body.senha;
+	execSQL(`INSERT INTO EmpresaSol VALUES('${nome}', '${cnpj}', '${senha}')`, resposta);
 })
 
 //ROTAS MODULO
