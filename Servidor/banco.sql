@@ -7,6 +7,21 @@ create table EmpresaSol(
 		'[0-9][0-9].[0-9][0-9][0-9].[0-9][0-9][0-9]/[0-9][0-9][0-9][0-9]-[0-9][0-9]')
 )
 
+create trigger delete_empresa_tg on EmpresaSol instead of delete
+as
+begin
+
+	declare @codEmpresa int
+	select @codEmpresa = codigo from Deleted
+
+	delete from UsuarioSol where codEmpresa = @codEmpresa
+	delete from ClienteSol where codEmpresa = @codEmpresa
+	delete from EmpresaSol where codigo = @codEmpresa
+
+end
+
+insert into EmpresaSol values('PuroAr', '07.893.913/0001-23')
+
 create table UsuarioSol(
 	codigo int identity(1,1) primary key,
 	email varchar(50) not null,
@@ -47,7 +62,7 @@ create table ClienteSol(
 	constraint fkClienteEmpresa foreign key(codEmpresa) references EmpresaSol(codigo)
 )
 
-insert into EmpresaSol values('PuroAr', '07.893.913/0001-23')
+
 
 create table ModuloSol(
 	codigo int identity(1,1) primary key,
