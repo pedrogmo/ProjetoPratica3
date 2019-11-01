@@ -29,6 +29,7 @@ public class Empresa implements
         this.codigo = 0;
         this.nome = "";
         this.cnpj = "";
+        this.senha = "";
     }
 
     public Empresa(
@@ -37,6 +38,7 @@ public class Empresa implements
         this.codigo = 0;
         this.nome = "";
         this.setCnpj(cnpj);
+        this.senha = "";
     }
 
     public Empresa(
