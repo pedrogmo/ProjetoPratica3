@@ -12,6 +12,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.android.volley.Request;
@@ -109,8 +110,9 @@ public class CadastrarEmpresaFragment extends Fragment {
                                         "Empresa inserida",
                                         Toast.LENGTH_SHORT).show();
 
-                                FragmentManager f = getFragmentManager();
-                                f.popBackStack(ConstantesDeTransicao.M_CADASTRO_EMPRESA, 0);
+                                FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+                                fragmentTransaction.replace(R.id.fragment_cadastrarempresa, new TelaEmpresaFragment());
+                                fragmentTransaction.commit();
                             }
                         },
                         new Response.ErrorListener()

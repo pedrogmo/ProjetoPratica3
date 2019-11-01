@@ -16,6 +16,7 @@ import androidx.lifecycle.ViewModelProviders;
 
 import com.example.appandroidfotovoltaica.MainActivity;
 import com.example.appandroidfotovoltaica.classes.categoria.Categoria;
+import com.example.appandroidfotovoltaica.classes.constantesdetransicao.ConstantesDeTransicao;
 import com.example.appandroidfotovoltaica.classes.produto.equipamento.bombasolar.BombaSolar;
 import com.example.appandroidfotovoltaica.classes.produto.cabo.Cabo;
 import com.example.appandroidfotovoltaica.classes.enderecos.Enderecos;
@@ -177,7 +178,7 @@ public class ProdutosFragment extends Fragment {
                 bundle.putSerializable("produto", prod);
                 ProdutoIndividualFragment fragment = new ProdutoIndividualFragment();
                 fragment.setArguments(bundle);
-                fragmentTransaction.replace(R.id.fragment_produtos, fragment, MainActivity.F_PRODUTO_INDIVIDUAL).addToBackStack(MainActivity.M_PRODUTO_INDIVIDUAL).commit();
+                fragmentTransaction.replace(R.id.fragment_produtos, fragment, ConstantesDeTransicao.F_PRODUTO_INDIVIDUAL).addToBackStack(ConstantesDeTransicao.M_PRODUTO_INDIVIDUAL).commit();
             }
         });
 
@@ -189,7 +190,7 @@ public class ProdutosFragment extends Fragment {
                 bundle.putSerializable("categoria", indOpcaoProduto);
                 AdicionarProdutoFragment fragment = new AdicionarProdutoFragment();
                 fragment.setArguments(bundle);
-                fragmentTransaction.replace(R.id.fragment_produtos, fragment, MainActivity.F_ADICIONAR_PRODUTO).addToBackStack(MainActivity.M_ADICIONAR_PRODUTO).commit();
+                fragmentTransaction.replace(R.id.fragment_produtos, fragment, ConstantesDeTransicao.F_ADICIONAR_PRODUTO).addToBackStack(ConstantesDeTransicao.M_ADICIONAR_PRODUTO).commit();
             }
         });
 

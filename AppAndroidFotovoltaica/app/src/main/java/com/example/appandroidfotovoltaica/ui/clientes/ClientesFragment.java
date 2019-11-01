@@ -1,6 +1,7 @@
 package com.example.appandroidfotovoltaica.ui.clientes;
 
 import com.example.appandroidfotovoltaica.classes.cliente.Cliente;
+import com.example.appandroidfotovoltaica.classes.constantesdetransicao.ConstantesDeTransicao;
 import com.example.appandroidfotovoltaica.classes.enderecos.Enderecos;
 
 import android.content.Intent;
@@ -69,7 +70,7 @@ public class ClientesFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-                fragmentTransaction.replace(R.id.fragment_clientes, new AdicionarClienteFragment(), MainActivity.F_ADICIONAR_CLIENTE).addToBackStack(MainActivity.M_ADICIONAR_CLIENTE).commit();
+                fragmentTransaction.replace(R.id.fragment_clientes, new AdicionarClienteFragment(), ConstantesDeTransicao.F_ADICIONAR_CLIENTE).addToBackStack(ConstantesDeTransicao.M_ADICIONAR_CLIENTE).commit();
             }
         });
 
@@ -85,7 +86,7 @@ public class ClientesFragment extends Fragment {
                 bundle.putSerializable("cliente", clientesBusca.get(i));
                 ClienteIndividualFragment fragment = new ClienteIndividualFragment();
                 fragment.setArguments(bundle);
-                fragmentTransaction.replace(R.id.fragment_clientes, fragment, MainActivity.F_CLIENTE_INDIVIDUAL).addToBackStack(MainActivity.M_CLIENTE_INDIVIDUAL).commit();
+                fragmentTransaction.replace(R.id.fragment_clientes, fragment, ConstantesDeTransicao.F_CLIENTE_INDIVIDUAL).addToBackStack(ConstantesDeTransicao.M_CLIENTE_INDIVIDUAL).commit();
             }
         });
 
