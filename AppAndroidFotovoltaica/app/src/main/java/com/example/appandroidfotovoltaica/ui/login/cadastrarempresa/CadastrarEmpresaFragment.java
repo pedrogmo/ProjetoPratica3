@@ -49,6 +49,7 @@ public class CadastrarEmpresaFragment extends Fragment {
         cadastrarUsuarioViewModel =
                 ViewModelProviders.of(this).get(CadastrarEmpresaViewModel.class);
         View root = inflater.inflate(R.layout.fragment_cadastrarempresa, container, false);
+
         etNomeEmpresa = root.findViewById(R.id.etNomeEmpresaCadastrar);
         etCNPJEmpresa = root.findViewById(R.id.etCNPJEmpresaCadastrar);
         etSenhaUm = root.findViewById(R.id.etSenhaUmEmpresa);

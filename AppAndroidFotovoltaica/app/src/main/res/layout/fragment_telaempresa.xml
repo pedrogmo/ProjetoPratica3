@@ -16,17 +16,17 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <EditText
-            android:id="@+id/etCNPJEmpresa"
+            android:id="@+id/etCNPJEmpresaLogin"
             android:layout_width="300dp"
             android:layout_height="50dp"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="100dp"
             android:hint="CNPJ"></EditText>
         <EditText
-            android:id="@+id/etSenhaEmpresa"
+            android:id="@+id/etSenhaEmpresaLogin"
             android:layout_width="300dp"
             android:layout_height="50dp"
-            android:layout_below="@+id/etCNPJEmpresa"
+            android:layout_below="@+id/etCNPJEmpresaLogin"
             android:layout_centerHorizontal="true"
             android:inputType="textPassword"
             android:hint="Senha"></EditText>
@@ -34,7 +34,7 @@
             android:id="@+id/btnLogarEmpresa"
             android:layout_width="100dp"
             android:layout_height="60dp"
-            android:layout_below="@id/etSenhaEmpresa"
+            android:layout_below="@id/etSenhaEmpresaLogin"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="30dp"
             android:text="Logar"></Button>
@@ -43,7 +43,7 @@
             android:layout_width="wrap_content"
             android:layout_height="40dp"
             android:layout_toRightOf="@+id/btnLogarEmpresa"
-            android:layout_below="@+id/etSenhaEmpresa"
+            android:layout_below="@+id/etSenhaEmpresaLogin"
             android:layout_marginLeft="30dp"
             android:text="Cadastrar Empresa"
             android:clickable="true"

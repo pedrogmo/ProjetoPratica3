@@ -48,8 +48,8 @@ public class TelaEmpresaFragment extends Fragment {
                 ViewModelProviders.of(this).get(TelaEmpresaViewModel.class);
         View root = inflater.inflate(R.layout.fragment_telaempresa, container, false);
 
-        etCNPJEmpresa = root.findViewById(R.id.etCNPJEmpresa);
-        etSenhaEmpresa = root.findViewById(R.id.etSenhaEmpresa);
+        etCNPJEmpresa = root.findViewById(R.id.etCNPJEmpresaLogin);
+        etSenhaEmpresa = root.findViewById(R.id.etSenhaEmpresaLogin);
         tvCadastrarEmpresa = root.findViewById(R.id.tvCadastrarEmpresa);
         this.arvoreEmpresas = new ArvoreBinaria<Empresa>();
 
