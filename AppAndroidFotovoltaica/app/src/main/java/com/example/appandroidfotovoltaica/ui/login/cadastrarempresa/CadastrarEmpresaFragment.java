@@ -11,7 +11,6 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProviders;
 
@@ -23,12 +22,11 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.appandroidfotovoltaica.R;
 import com.example.appandroidfotovoltaica.classes.arvorebinaria.ArvoreBinaria;
-import com.example.appandroidfotovoltaica.classes.constantesdetransicao.ConstantesDeTransicao;
 import com.example.appandroidfotovoltaica.classes.criptografia.Criptografia;
 import com.example.appandroidfotovoltaica.classes.empresa.Empresa;
 import com.example.appandroidfotovoltaica.classes.enderecos.Enderecos;
 import com.example.appandroidfotovoltaica.classes.verificadora.mensagenserro.mensagenserroempresa.MensagensErroEmpresa;
-import com.example.appandroidfotovoltaica.ui.login.telaEmpresa.TelaEmpresaFragment;
+import com.example.appandroidfotovoltaica.ui.login.telaempresa.TelaEmpresaFragment;
 
 import java.util.HashMap;
 import java.util.Map;

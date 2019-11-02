@@ -1,6 +1,5 @@
-package com.example.appandroidfotovoltaica.ui.login.telaEmpresa;
+package com.example.appandroidfotovoltaica.ui.login.telaempresa;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -16,7 +15,6 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.ViewModelProviders;
 
-import com.example.appandroidfotovoltaica.MainActivity;
 import com.example.appandroidfotovoltaica.R;
 import com.example.appandroidfotovoltaica.classes.arvorebinaria.ArvoreBinaria;
 import com.example.appandroidfotovoltaica.classes.constantesdetransicao.ConstantesDeTransicao;
@@ -24,10 +22,7 @@ import com.example.appandroidfotovoltaica.classes.criptografia.Criptografia;
 import com.example.appandroidfotovoltaica.classes.empresa.Empresa;
 import com.example.appandroidfotovoltaica.classes.enderecos.Enderecos;
 import com.example.appandroidfotovoltaica.classes.mytask.MyTask;
-import com.example.appandroidfotovoltaica.classes.usuario.Usuario;
 import com.example.appandroidfotovoltaica.ui.login.cadastrarempresa.CadastrarEmpresaFragment;
-
-import java.io.Serializable;
 
 public class TelaEmpresaFragment extends Fragment {
 
@@ -96,9 +91,7 @@ public class TelaEmpresaFragment extends Fragment {
                     busca = arvoreEmpresas.buscar(new Empresa(cnpj));
                 }
                 catch(Exception exc)
-                {
-                    Log.d("ERRO", exc.getMessage());
-                }
+                { }
 
                 if (busca == null)
                 {

@@ -1,4 +1,4 @@
-package com.example.appandroidfotovoltaica.ui.login.telaEmpresa;
+package com.example.appandroidfotovoltaica.ui.login.telaempresa;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;

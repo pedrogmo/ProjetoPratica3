@@ -49,6 +49,7 @@ public class Empresa implements
         this.codigo = modelo.codigo;
         this.nome = modelo.nome;
         this.cnpj = modelo.cnpj;
+        this.senha = modelo.senha;
     }
 
     public int getCodigo()

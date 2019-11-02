@@ -23,7 +23,7 @@ import com.example.appandroidfotovoltaica.classes.mytask.MyTask;
 import com.example.appandroidfotovoltaica.R;
 import com.example.appandroidfotovoltaica.classes.usuario.Usuario;
 import com.example.appandroidfotovoltaica.ui.login.cadastrarusuario.CadastrarUsuarioFragment;
-import com.example.appandroidfotovoltaica.ui.login.telaEmpresa.TelaEmpresaFragment;
+import com.example.appandroidfotovoltaica.ui.login.telaempresa.TelaEmpresaFragment;
 
 import android.content.Intent;
 
