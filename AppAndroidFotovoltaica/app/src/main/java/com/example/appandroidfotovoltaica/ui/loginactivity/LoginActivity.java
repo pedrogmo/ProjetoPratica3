@@ -142,4 +142,25 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
     }
+
+    /*@Override
+    public void onBackPressed() {
+
+        FragmentManager fm = getSupportFragmentManager();
+
+        if (fm.findFragmentByTag(ConstantesDeTransicao.F_USUARIO_EMPRESA) != null)
+            fm.popBackStack(ConstantesDeTransicao.M_USUARIO_EMPRESA, 0);
+
+        else if (fm.findFragmentByTag(ConstantesDeTransicao.F_EMPRESA_INDIVIDUAL) != null)
+            fm.popBackStack(ConstantesDeTransicao.M_EMPRESA_INDIVIDUAL, 0);
+
+        else if (fm.findFragmentByTag(ConstantesDeTransicao.F_TELAEMPRESA) != null)
+            fm.popBackStack(ConstantesDeTransicao.M_TELAEMPRESA, 0);
+
+        else if (fm.findFragmentByTag(ConstantesDeTransicao.F_CADASTRO_EMPRESA) != null)
+            fm.popBackStack(ConstantesDeTransicao.M_CADASTRO_EMPRESA, 0);
+
+        else
+            super.onBackPressed();
+    }*/
 }

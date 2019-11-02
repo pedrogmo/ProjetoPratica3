@@ -73,9 +73,14 @@ rota.patch('/update_usuario/:codigo', (requisicao, resposta) => {
 	execSQL(`UPDATE UsuarioSol SET cpf = '${cpf}' WHERE CODIGO = ${codigo}`, resposta);
 })
 
-rota.patch('/permitir_usuario/:codigo', (requisicao, resposta) => {
+rota.patch('/associar_usuario/:codigo', (requisicao, resposta) => {
 	const codigo = parseInt(requisicao.params.codigo);
 	execSQL(`UPDATE UsuarioSol SET permissaoEmpresa = 1 WHERE CODIGO = ${codigo}`, resposta);
+})
+
+rota.patch('/desassociar_usuario/:codigo', (requisicao, resposta) => {
+	const codigo = parseInt(requisicao.params.codigo);
+	execSQL(`UPDATE UsuarioSol SET permissaoEmpresa = 0 WHERE CODIGO = ${codigo}`, resposta);
 })
 
 rota.post('/insert_usuario', (requisicao, resposta) => {

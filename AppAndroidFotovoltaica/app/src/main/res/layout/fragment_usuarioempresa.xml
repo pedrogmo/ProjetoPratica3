@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    android:id="@+id/fragment_usuarioempresa"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:layout_centerHorizontal="true"
+    android:background="@android:color/white"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:layout_centerHorizontal="true"
+        android:background="@android:color/white">
+
+        <LinearLayout
+            android:id="@+id/llUsuarioEmpresa"
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="20dp">
+
+            <TextView
+                android:id="@+id/tvEmailUsuarioEmpresa"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="20dp"
+                android:layout_marginBottom="10dp">
+            </TextView>
+
+            <TextView
+                android:id="@+id/tvNomeUsuarioEmpresa"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="20dp"
+                android:layout_marginBottom="10dp">
+            </TextView>
+
+            <TextView
+                android:id="@+id/tvTelefoneUsuarioEmpresa"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="20dp"
+                android:layout_marginBottom="10dp">
+            </TextView>
+
+            <TextView
+                android:id="@+id/tvCpfUsuarioEmpresa"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="20dp"
+                android:layout_marginBottom="10dp">
+            </TextView>
+
+            <TextView
+                android:id="@+id/tvDataUsuarioEmpresa"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="20dp"
+                android:layout_marginBottom="30dp">
+            </TextView>
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</FrameLayout>

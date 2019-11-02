@@ -14,7 +14,8 @@ public class Enderecos
     public static final String GET_USUARIO_EMAIL = GET_USUARIO + "_email";
     public static final String POST_USUARIO = IP_PORTA + "insert_usuario";
     public static final String PATCH_USUARIO = IP_PORTA + "update_usuario";
-    public static final String PERMITIR_USUARIO = IP_PORTA + "permitir_usuario";
+    public static final String ASSOCIAR_USUARIO = IP_PORTA + "associar_usuario";
+    public static final String DESASSOCIAR_USUARIO = IP_PORTA + "desassociar_usuario";
     public static final String DELETE_USUARIO = IP_PORTA + "delete_usuario";
 
     public static final String GET_EMPRESA = IP_PORTA + "empresa";

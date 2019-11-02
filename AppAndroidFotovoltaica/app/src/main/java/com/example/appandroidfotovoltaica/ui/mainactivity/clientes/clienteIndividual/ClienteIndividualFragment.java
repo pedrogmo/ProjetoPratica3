@@ -171,7 +171,7 @@ public class ClienteIndividualFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 AlertDialog.Builder builder1 = new AlertDialog.Builder(getContext());
-                builder1.setMessage("Deseja mesmo excluir?.");
+                builder1.setMessage("Deseja mesmo excluir?");
                 builder1.setCancelable(true);
 
                 builder1.setPositiveButton(

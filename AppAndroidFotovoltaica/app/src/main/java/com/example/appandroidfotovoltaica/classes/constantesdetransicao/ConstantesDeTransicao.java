@@ -26,4 +26,7 @@ public class ConstantesDeTransicao
 
     public static final String F_EMPRESA_INDIVIDUAL = "FragmentEI";
     public static final String M_EMPRESA_INDIVIDUAL = "le-ei";
+
+    public static final String F_USUARIO_EMPRESA = "FragmentUE";
+    public static final String M_USUARIO_EMPRESA = "ei-ue";
 }
