@@ -57,15 +57,43 @@ public class EmpresaIndividualFragment extends Fragment {
 
         this.listaUsuarios = new ArrayList<Usuario>();
         for(Usuario u : usuariosTotal)
-            if (this.empresaAtual.getCodigo() == u.getCodEmpresa())
+            if (this.empresaAtual.getCodigo() == u.getCodEmpresa() &&
+                u.isPermitido())
+            {
                 this.listaUsuarios.add(u);
+            }
 
-        this.lvListaUsuarios.setAdapter(
-            new UsuarioArrayAdapter(
-                getActivity().getApplicationContext(), this.listaUsuarios)
-        );
+        atualizaLista();
+
+        this.chkTipoUsuario.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                boolean exibirNaoConfirmados = ((CheckBox) view).isChecked();
+
+                listaUsuarios.clear();
+                for(Usuario u : usuariosTotal)
+                    if (empresaAtual.getCodigo() == u.getCodEmpresa())
+                    {
+                        if (exibirNaoConfirmados && !u.isPermitido())
+                            listaUsuarios.add(u);
+
+                        else if (!exibirNaoConfirmados && u.isPermitido())
+                            listaUsuarios.add(u);
+                    }
+
+                atualizaLista();
+            }
+        });
 
         return root;
+    }
+
+    private void atualizaLista()
+    {
+        this.lvListaUsuarios.setAdapter(
+            new UsuarioArrayAdapter(
+                    getActivity().getApplicationContext(), this.listaUsuarios)
+        );
     }
 
     @Override
