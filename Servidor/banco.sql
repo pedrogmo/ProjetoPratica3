@@ -20,8 +20,6 @@ begin
 
 end
 
-insert into EmpresaSol values('PuroAr', '07.893.913/0001-23')
-
 create table UsuarioSol(
 	codigo int identity(1,1) primary key,
 	email varchar(50) not null,
@@ -76,8 +74,6 @@ create table ModuloSol(
 	voltagem float not null
 )
 
-insert into ModuloSol values('modulo1', 10.5, 'modulo 1 teste', 10, 10, 10, 20, 50)
-
 create table InversorSol(
 	codigo int identity(1,1) primary key,
 	nome varchar(50) not null,
@@ -89,8 +85,6 @@ create table InversorSol(
 	peso float not null,
 	eficienciaMaxima float not null
 )
-
-insert into InversorSol values('inversor1', 11, 'inversor 1 teste', 12, 12, 12, 25, 120)
 
 create table StringBoxSol(
 	codigo int identity(1,1) primary key,

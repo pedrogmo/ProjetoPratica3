@@ -2,7 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/containerTelaLogin"
+    android:id="@+id/fragment_loginempresa"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingLeft="@dimen/activity_horizontal_margin"
@@ -16,46 +16,36 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <EditText
-            android:id="@+id/etEmailLogin"
+            android:id="@+id/etCNPJEmpresaLogin"
             android:layout_width="300dp"
             android:layout_height="50dp"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="100dp"
-            android:hint="Email"></EditText>
+            android:hint="CNPJ"></EditText>
         <EditText
-            android:id="@+id/etSenhaLogin"
+            android:id="@+id/etSenhaEmpresaLogin"
             android:layout_width="300dp"
             android:layout_height="50dp"
-            android:layout_below="@+id/etEmailLogin"
+            android:layout_below="@+id/etCNPJEmpresaLogin"
             android:layout_centerHorizontal="true"
             android:inputType="textPassword"
             android:hint="Senha"></EditText>
         <Button
-            android:id="@+id/btnLogar"
+            android:id="@+id/btnLogarEmpresa"
             android:layout_width="100dp"
             android:layout_height="60dp"
-            android:layout_below="@id/etSenhaLogin"
+            android:layout_below="@id/etSenhaEmpresaLogin"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="30dp"
             android:text="Logar"></Button>
         <TextView
-            android:id="@+id/tvCadastrarLogin"
-            android:layout_width="wrap_content"
-            android:layout_height="30dp"
-            android:layout_toRightOf="@+id/btnLogar"
-            android:layout_below="@+id/etSenhaLogin"
-            android:layout_marginLeft="30dp"
-            android:text="Cadastrar-se"
-            android:clickable="true"
-            android:layout_marginTop="60dp"></TextView>
-        <TextView
-            android:id="@+id/tvTelaEmpresa"
+            android:id="@+id/tvCadastrarEmpresa"
             android:layout_width="wrap_content"
             android:layout_height="40dp"
-            android:layout_toLeftOf="@+id/btnLogar"
-            android:layout_below="@+id/etSenhaLogin"
+            android:layout_toRightOf="@+id/btnLogarEmpresa"
+            android:layout_below="@+id/etSenhaEmpresaLogin"
             android:layout_marginLeft="30dp"
-            android:text="Acessar Empresa"
+            android:text="Cadastrar Empresa"
             android:clickable="true"
             android:layout_marginTop="50dp"></TextView>
     </RelativeLayout>

@@ -23,4 +23,7 @@ public class ConstantesDeTransicao
 
     public static final String F_CADASTRO_EMPRESA = "FragmentCDE";
     public static final String M_CADASTRO_EMPRESA = "le-cde";
+
+    public static final String F_EMPRESA_INDIVIDUAL = "FragmentEI";
+    public static final String M_EMPRESA_INDIVIDUAL = "le-ei";
 }

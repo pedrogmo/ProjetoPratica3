@@ -7,35 +7,35 @@
 
     <fragment
         android:id="@+id/nav_perfil"
-        android:name="com.example.appandroidfotovoltaica.ui.perfil.PerfilFragment"
+        android:name="com.example.appandroidfotovoltaica.ui.mainactivity.perfil.PerfilFragment"
         android:label="Perfil"
         tools:layout="@layout/fragment_perfil"/>
     <fragment
         android:id="@+id/nav_calculadora"
-        android:name="com.example.appandroidfotovoltaica.ui.home.HomeFragment"
+        android:name="com.example.appandroidfotovoltaica.ui.mainactivity.home.HomeFragment"
         android:label="@string/menu_calculadora"
         tools:layout="@layout/fragment_calculadora" />
 
     <fragment
         android:id="@+id/nav_clientes"
-        android:name="com.example.appandroidfotovoltaica.ui.clientes.ClientesFragment"
+        android:name="com.example.appandroidfotovoltaica.ui.mainactivity.clientes.ClientesFragment"
         android:label="@string/menu_clientes"
         tools:layout="@layout/fragment_clientes" />
     <fragment
         android:id="@+id/nav_produtos"
-        android:name="com.example.appandroidfotovoltaica.ui.produtos.ProdutosFragment"
+        android:name="com.example.appandroidfotovoltaica.ui.mainactivity.produtos.ProdutosFragment"
         android:label="@string/menu_produtos"
         tools:layout="@layout/fragment_produtos" />
 
     <fragment
         android:id="@+id/nav_propostas"
-        android:name="com.example.appandroidfotovoltaica.ui.propostas.SlideshowFragment"
+        android:name="com.example.appandroidfotovoltaica.ui.mainactivity.propostas.SlideshowFragment"
         android:label="@string/menu_propostas"
         tools:layout="@layout/fragment_slideshow" />
 
     <fragment
         android:id="@+id/nav_send"
-        android:name="com.example.appandroidfotovoltaica.ui.send.SendFragment"
+        android:name="com.example.appandroidfotovoltaica.ui.mainactivity.send.SendFragment"
         android:label="@string/menu_send"
         tools:layout="@layout/fragment_produtos" />
 </navigation>

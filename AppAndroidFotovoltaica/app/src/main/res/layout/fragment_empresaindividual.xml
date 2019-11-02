@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    android:id="@+id/fragment_empresaindividual"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:layout_centerHorizontal="true"
+    android:background="@android:color/white"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:layout_centerHorizontal="true"
+        android:background="@android:color/white">
+
+        <LinearLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="20dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Usuários associados à empresa">
+            </TextView>
+
+            <CheckBox
+                android:id="@+id/chkTipoUsuario"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="Exibir pendentes"/>
+
+            <ListView
+                android:id="@+id/lvListaUsuarios"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="20dp">
+            </ListView>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</FrameLayout>
