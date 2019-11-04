@@ -13,8 +13,7 @@
         <activity
             android:name=".ui.loginactivity.LoginActivity"
             android:label="Login"
-            android:launchMode="standard"
-            android:noHistory="true">
+            android:launchMode="standard">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -73,14 +73,14 @@ public class LoginActivity extends AppCompatActivity {
                 Fragment cadastro = new CadastrarUsuarioFragment();
                 cadastro.setArguments(bundle);
                 FragmentManager f = getSupportFragmentManager();
-                f.beginTransaction().replace(R.id.containerTelaLogin, cadastro, ConstantesDeTransicao.F_CADASTRO_USUARIO).addToBackStack( ConstantesDeTransicao.M_CADASTRO_USUARIO).commit();
+                f.beginTransaction().replace(R.id.fragment_telaLogin, cadastro, ConstantesDeTransicao.F_CADASTRO_USUARIO).addToBackStack( ConstantesDeTransicao.M_CADASTRO_USUARIO).commit();
             }
         });
         tvTelaEmpresa.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 FragmentManager f = getSupportFragmentManager();
-                f.beginTransaction().replace(R.id.containerTelaLogin, new LoginEmpresaFragment(), ConstantesDeTransicao.F_TELAEMPRESA).addToBackStack(ConstantesDeTransicao.M_TELAEMPRESA).commit();
+                f.beginTransaction().replace(R.id.fragment_telaLogin, new LoginEmpresaFragment(), ConstantesDeTransicao.F_TELAEMPRESA).addToBackStack(ConstantesDeTransicao.M_TELAEMPRESA).commit();
             }
         });
 
@@ -143,24 +143,33 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
-    /*@Override
+    @Override
     public void onBackPressed()
     {
         FragmentManager fm = getSupportFragmentManager();
 
-        if (fm.findFragmentByTag(ConstantesDeTransicao.F_USUARIO_EMPRESA) != null)
-            fm.popBackStack(ConstantesDeTransicao.M_USUARIO_EMPRESA, 0);
-
-        else if (fm.findFragmentByTag(ConstantesDeTransicao.F_EMPRESA_INDIVIDUAL) != null)
-            fm.popBackStack(ConstantesDeTransicao.M_EMPRESA_INDIVIDUAL, 0);
-
-        else if (fm.findFragmentByTag(ConstantesDeTransicao.F_TELAEMPRESA) != null)
-            fm.popBackStack(ConstantesDeTransicao.M_TELAEMPRESA, 0);
-
-        else if (fm.findFragmentByTag(ConstantesDeTransicao.F_CADASTRO_EMPRESA) != null)
-            fm.popBackStack(ConstantesDeTransicao.M_CADASTRO_EMPRESA, 0);
-
-        else
+        if (fm.findFragmentByTag(ConstantesDeTransicao.F_CADASTRO_USUARIO) != null)
+        {
             super.onBackPressed();
-    }*/
+        }
+        else if (fm.findFragmentByTag(ConstantesDeTransicao.F_USUARIO_EMPRESA) != null){
+            Toast.makeText(this, "Usuario Empresa", Toast.LENGTH_SHORT).show();
+            //fm.popBackStack(ConstantesDeTransicao.M_USUARIO_EMPRESA, 0);
+            super.onBackPressed();
+        }
+        else if (fm.findFragmentByTag(ConstantesDeTransicao.F_EMPRESA_INDIVIDUAL) != null){
+            Toast.makeText(this, "Empresa Individual", Toast.LENGTH_SHORT).show();
+            super.onBackPressed();
+        }
+        else if (fm.findFragmentByTag(ConstantesDeTransicao.F_TELAEMPRESA) != null)
+        {
+            Toast.makeText(this, "Tela Empresa", Toast.LENGTH_SHORT).show();
+            super.onBackPressed();
+        }
+        else if (fm.findFragmentByTag(ConstantesDeTransicao.F_CADASTRO_EMPRESA) != null){
+            Toast.makeText(this, "Cadastro Empresa", Toast.LENGTH_SHORT).show();
+            fm.popBackStack(ConstantesDeTransicao.M_CADASTRO_EMPRESA, 0);
+        }
+
+    }
 }
