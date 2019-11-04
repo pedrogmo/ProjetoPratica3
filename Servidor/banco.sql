@@ -132,3 +132,84 @@ create table CaboSol(
 	diametro float not null,
 	conducao varchar(20) not null
 )
+
+create table KitSol(
+	codigo int identity(1,1) primary key,
+	codEmpresa int not null,
+	nome varchar(50) not null
+
+	constraint fkKitEmpresa foreign key(codEmpresa) references EmpresaSol(codigo)
+)
+
+create table KitModuloSol(
+	codigo int identity(1,1) primary key,
+	
+	codKit int not null
+	constraint fkKitModulo foreign key(codKit) references KitSol(codigo),
+
+	codProduto int not null
+	constraint fkModulo foreign key(codProduto) references ModuloSol(codigo)
+)
+
+create table KitInversorSol(
+	codigo int identity(1,1) primary key,
+	
+	codKit int not null
+	constraint fkKitInversor foreign key(codKit) references KitSol(codigo),
+
+	codProduto int not null
+	constraint fkInversor foreign key(codProduto) references InversorSol(codigo)
+)
+
+create table KitStringBoxSol(
+	codigo int identity(1,1) primary key,
+	
+	codKit int not null
+	constraint fkKitStringBox foreign key(codKit) references KitSol(codigo),
+
+	codProduto int not null
+	constraint fkStringBox foreign key(codProduto) references StringBoxSol(codigo)
+)
+
+create table KitFixacaoSol(
+	codigo int identity(1,1) primary key,
+	
+	codKit int not null
+	constraint fkKitFixacao foreign key(codKit) references KitSol(codigo),
+
+	codProduto int not null
+	constraint fkFixacao foreign key(codProduto) references FixacaoSol(codigo)
+)
+
+create table KitBombaSolarSol(
+	codigo int identity(1,1) primary key,
+	
+	codKit int not null
+	constraint fkKitBombaSolar foreign key(codKit) references KitSol(codigo),
+
+	codProduto int not null
+	constraint fkBombaSolar foreign key(codProduto) references BombaSolarSol(codigo)
+)
+
+create table KitCaboSol(
+	codigo int identity(1,1) primary key,
+	
+	codKit int not null
+	constraint fkKitCabo foreign key(codKit) references KitSol(codigo),
+
+	codProduto int not null
+	constraint fkCabo foreign key(codProduto) references CaboSol(codigo)
+)
+
+create table PropostaSol(
+	codigo int identity(1,1) primary key,
+	codUsuario int not null,
+	codEmpresa int not null,
+	codCliente int not null,
+	codKit int not null,
+
+	constraint fkUsuarioProposta foreign key(codUsuario) references UsuarioSol(codigo),
+	constraint fkEmpresaProposta foreign key(codEmpresa) references EmpresaSol(codigo),
+	constraint fkClienteProposta foreign key(codCliente) references ClienteSol(codigo),
+	constraint fkKitProposta foreign key(codKit) references KitSol(codigo)
+)
