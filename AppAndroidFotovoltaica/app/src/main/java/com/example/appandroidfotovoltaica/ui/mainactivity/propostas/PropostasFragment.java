@@ -1,7 +1,9 @@
 package com.example.appandroidfotovoltaica.ui.mainactivity.propostas;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
@@ -15,6 +17,7 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
+import androidx.core.content.FileProvider;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
@@ -24,6 +27,7 @@ import com.itextpdf.text.Document;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfWriter;
 
+import java.io.File;
 import java.io.FileOutputStream;
 import java.text.SimpleDateFormat;
 import java.util.Locale;
@@ -96,6 +100,16 @@ public class PropostasFragment extends Fragment {
                 getActivity().getApplicationContext(),
                 fileName + ".pdf saved to \n " + filePath,
                 Toast.LENGTH_SHORT).show();
+
+            /*Intent sendIntent = new Intent(Intent.ACTION_SEND);
+            //Uri uri = FileProvider.getUriForFile(this, "  ", (File)doc).parse(filePath);
+
+            sendIntent.putExtra(Intent.EXTRA_STREAM, uri);
+            sendIntent.setType("message/rfc822");
+
+
+            Intent shareIntent = Intent.createChooser(sendIntent, null);
+            startActivity(shareIntent);*/
         }
         catch(Exception exc)
         {
