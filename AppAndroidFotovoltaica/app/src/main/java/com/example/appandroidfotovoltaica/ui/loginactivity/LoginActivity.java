@@ -153,21 +153,16 @@ public class LoginActivity extends AppCompatActivity {
             super.onBackPressed();
         }
         else if (fm.findFragmentByTag(ConstantesDeTransicao.F_USUARIO_EMPRESA) != null){
-            Toast.makeText(this, "Usuario Empresa", Toast.LENGTH_SHORT).show();
-            //fm.popBackStack(ConstantesDeTransicao.M_USUARIO_EMPRESA, 0);
             super.onBackPressed();
         }
         else if (fm.findFragmentByTag(ConstantesDeTransicao.F_EMPRESA_INDIVIDUAL) != null){
-            Toast.makeText(this, "Empresa Individual", Toast.LENGTH_SHORT).show();
             super.onBackPressed();
         }
         else if (fm.findFragmentByTag(ConstantesDeTransicao.F_TELAEMPRESA) != null)
         {
-            Toast.makeText(this, "Tela Empresa", Toast.LENGTH_SHORT).show();
             super.onBackPressed();
         }
         else if (fm.findFragmentByTag(ConstantesDeTransicao.F_CADASTRO_EMPRESA) != null){
-            Toast.makeText(this, "Cadastro Empresa", Toast.LENGTH_SHORT).show();
             fm.popBackStack(ConstantesDeTransicao.M_CADASTRO_EMPRESA, 0);
         }
 
