@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
 
-        //ABAIXO SÂO OS COMANDOS PARA TORNAR OS ITENS CLICÀVEIS
+        //ABAIXO SÂO OS COMANDOS PARA TORNAR OS ITENS CLICÁVEIS
         mAppBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.nav_calculadora, R.id.nav_clientes, R.id.nav_propostas,
                 R.id.nav_produtos, R.id.nav_send)

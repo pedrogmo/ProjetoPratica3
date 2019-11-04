@@ -144,8 +144,8 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     /*@Override
-    public void onBackPressed() {
-
+    public void onBackPressed()
+    {
         FragmentManager fm = getSupportFragmentManager();
 
         if (fm.findFragmentByTag(ConstantesDeTransicao.F_USUARIO_EMPRESA) != null)
