@@ -29,7 +29,7 @@
 
     <fragment
         android:id="@+id/nav_propostas"
-        android:name="com.example.appandroidfotovoltaica.ui.mainactivity.propostas.SlideshowFragment"
+        android:name="com.example.appandroidfotovoltaica.ui.mainactivity.propostas.PropostasFragment"
         android:label="@string/menu_propostas"
         tools:layout="@layout/fragment_slideshow" />
 </navigation>
