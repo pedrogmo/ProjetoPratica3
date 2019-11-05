@@ -204,12 +204,10 @@ create table KitCaboSol(
 create table PropostaSol(
 	codigo int identity(1,1) primary key,
 	codUsuario int not null,
-	codEmpresa int not null,
 	codCliente int not null,
 	codKit int not null,
 
 	constraint fkUsuarioProposta foreign key(codUsuario) references UsuarioSol(codigo),
-	constraint fkEmpresaProposta foreign key(codEmpresa) references EmpresaSol(codigo),
 	constraint fkClienteProposta foreign key(codCliente) references ClienteSol(codigo),
 	constraint fkKitProposta foreign key(codKit) references KitSol(codigo)
 )
