@@ -445,8 +445,9 @@ rota.get('/proposta', (requisicao, resposta) => {
 })
 
 rota.post('/insert_proposta', (requisicao, resposta) => {
+	const nome = requisicao.body.nome;
 	const codUsuario = requisicao.body.codUsuario;
 	const codCliente = requisicao.body.codCliente;
 	const codKit = requisicao.body.codKit;
-	execSQL(`INSERT INTO PropostaSol VALUES(${codUsuario}, ${codCliente}, ${codKit})`, resposta);
+	execSQL(`INSERT INTO PropostaSol VALUES('${nome}', ${codUsuario}, ${codCliente}, ${codKit})`, resposta);
 })

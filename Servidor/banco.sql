@@ -203,6 +203,7 @@ create table KitCaboSol(
 
 create table PropostaSol(
 	codigo int identity(1,1) primary key,
+	nome varchar(50) not null,
 	codUsuario int not null,
 	codCliente int not null,
 	codKit int not null,

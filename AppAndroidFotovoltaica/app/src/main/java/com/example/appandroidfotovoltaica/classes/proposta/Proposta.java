@@ -3,6 +3,7 @@ package com.example.appandroidfotovoltaica.classes.proposta;
 public class Proposta
 {
     private int codigo;
+    private String nome;
     private int codUsuario;
     private int codCliente;
     private int codKit;
@@ -11,6 +12,7 @@ public class Proposta
     public Proposta()
     {
         this.codigo = 0;
+        this.nome = "";
         this.codKit = 0;
         this.codCliente = 0;
         this.codUsuario = 0;
@@ -18,11 +20,13 @@ public class Proposta
 
     public Proposta(
         int codigo,
+        String nome,
         int codKit,
         int codCliente,
         int codUsuario) throws Exception
     {
         this.setCodigo(codigo);
+        this.setNome(nome);
         this.setCodKit(codKit);
         this.setCodCliente(codCliente);
         this.setCodUsuario(codUsuario);
@@ -34,6 +38,7 @@ public class Proposta
         if (modelo == null)
             throw new NullPointerException("Proposta - construtor de copia: modelo nulo");
         this.codigo = modelo.codigo;
+        this.nome = modelo.nome;
         this.codKit = modelo.codKit;
         this.codCliente = modelo.codCliente;
         this.codUsuario = modelo.codUsuario;
@@ -91,10 +96,23 @@ public class Proposta
         this.codCliente = codCliente;
     }
 
+    public String getNome() { return nome; }
+
+    public void setNome(
+        String nome)
+    {
+        if (nome == null)
+            throw new NullPointerException("Proposta - setNome: nome nulo");
+        if (nome.equals(""))
+            throw new IllegalArgumentException("Proposta - setNome: nome vazio");
+        this.nome = nome;
+    }
+
     public int hashCode()
     {
         int ret = 1;
         ret = ret * 2 + new Integer(this.codigo).hashCode();
+        ret = ret * 2 + this.nome.hashCode();
         ret = ret * 2 + new Integer(this.codKit).hashCode();
         ret = ret * 2 + new Integer(this.codCliente).hashCode();
         ret = ret * 2 + new Integer(this.codUsuario).hashCode();
@@ -119,6 +137,8 @@ public class Proposta
         Proposta k = (Proposta) obj;
 
         if (this.codigo != k.codigo)
+            return false;
+        if (this.nome.equals(k.nome))
             return false;
         if (this.codKit != k.codKit)
             return false;
