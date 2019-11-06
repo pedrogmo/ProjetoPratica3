@@ -45,7 +45,7 @@ public class PropostasFragment extends Fragment {
         this.propostasViewModel = ViewModelProviders.of(this).get(PropostasViewModel.class);
         View root = inflater.inflate(R.layout.fragment_propostas, container, false);
 
-        this.btnGerar = (Button) root.findViewById(R.id.btnGerarProposta);
+        this.btnGerar = (Button) root.findViewById(R.id.btnGerarPDF);
 
         this.btnGerar.setOnClickListener(new View.OnClickListener() {
             @Override

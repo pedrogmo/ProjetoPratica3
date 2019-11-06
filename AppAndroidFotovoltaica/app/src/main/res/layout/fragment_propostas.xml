@@ -1,14 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_height="match_parent">
+
+    <EditText
+        android:id="@+id/etBuscarProposta"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="80dp"/>
+
+    <ListView
+        android:id="@+id/lvPropostas"
+        android:layout_height="300dp"
+        android:layout_width="300dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:layout_below="@+id/etBuscarProposta"/>
 
     <Button
-        android:id="@+id/btnGerarProposta"
+        android:id="@+id/btnGerarPDF"
+        android:layout_height="wrap_content"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-    </Button>
+        android:text="Gerar"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/lvPropostas"
+        android:layout_marginTop="20dp"/>
 
-</LinearLayout>
+</RelativeLayout>
