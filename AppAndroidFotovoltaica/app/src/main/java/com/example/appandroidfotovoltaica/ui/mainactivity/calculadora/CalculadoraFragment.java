@@ -7,11 +7,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -21,19 +23,30 @@ import androidx.lifecycle.ViewModelProviders;
 import com.example.appandroidfotovoltaica.classes.calculadora.CalculadoraFotoVoltaica;
 
 import com.example.appandroidfotovoltaica.R;
+import com.example.appandroidfotovoltaica.classes.cliente.Cliente;
+import com.example.appandroidfotovoltaica.classes.enderecos.Enderecos;
+import com.example.appandroidfotovoltaica.classes.kit.Kit;
+import com.example.appandroidfotovoltaica.classes.mytask.MyTask;
 import com.example.appandroidfotovoltaica.classes.valormensal.ValorMensalEnergia;
+import com.example.appandroidfotovoltaica.ui.mainactivity.MainActivity;
+
+import java.util.ArrayList;
 
 public class CalculadoraFragment extends Fragment {
 
     private CalculadoraViewModel calculadoraViewModel;
     private int indiceMes = 0;
     private ValorMensalEnergia valoresMensaisEnergia[];
-    TextView tvNumeroPlacas, tvInversor, tvInversorMais, tvInversorMenos, tvMes;
-    EditText etIrradiacao, etMedia, etWatts;
-    RadioGroup rgMedia;
-    RadioButton rbTotal, rbMensal;
-    Button btnCalcular;
-    ImageView btnEsq, btnDir;
+    private Kit[] kits;
+    private Cliente[] clientes;
+
+    private TextView tvNumeroPlacas, tvInversor, tvInversorMais, tvInversorMenos, tvMes;
+    private EditText etIrradiacao, etMedia;
+    private RadioGroup rgMedia;
+    private RadioButton rbTotal, rbMensal;
+    private Button btnCalcular;
+    private ImageView btnEsq, btnDir;
+    private Spinner spKit, spCliente;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -47,6 +60,42 @@ public class CalculadoraFragment extends Fragment {
             valoresMensaisEnergia[i] = new ValorMensalEnergia((i + 1) + "°");
         }
 
+        spKit = root.findViewById(R.id.spCalculadoraKit);
+
+        MyTask task = new MyTask(Kit[].class);
+        task.execute(Enderecos.GET_KIT);
+        while(task.isTrabalhando()) ;
+        kits = (Kit[]) task.getDados();
+
+        ArrayList<String> alNomeKits = new ArrayList<String>();
+        for(Kit k : kits)
+            alNomeKits.add(k.getNome());
+
+        spKit.setAdapter(
+            new ArrayAdapter<String>(
+                getActivity().getApplicationContext(),
+                0,
+                alNomeKits)
+        );
+
+        spCliente = root.findViewById(R.id.spCalculadoraCliente);
+
+        task = new MyTask(Cliente[].class);
+        task.execute(Enderecos.GET_CLIENTE + "/" + ((MainActivity)getActivity()).getUsuario().getCodEmpresa());
+        while(task.isTrabalhando()) ;
+        clientes = (Cliente[]) task.getDados();
+
+        ArrayList<String> alNomeClientes = new ArrayList<String>();
+        for(Cliente c : clientes)
+            alNomeClientes.add(c.getNome());
+
+        spCliente.setAdapter(
+            new ArrayAdapter<String>(
+                getActivity().getApplicationContext(),
+                0,
+                alNomeClientes)
+        );
+
         tvNumeroPlacas = root.findViewById(R.id.tvNumeroPlacas);
         tvInversor = root.findViewById(R.id.tvInversor);
         tvInversorMais = root.findViewById(R.id.tvInversorMais);
@@ -54,13 +103,10 @@ public class CalculadoraFragment extends Fragment {
         tvMes = root.findViewById(R.id.tvMes);
         etIrradiacao = root.findViewById(R.id.etIrradiacao);
         etMedia = root.findViewById(R.id.etMedia);
-        etWatts = root.findViewById(R.id.etWatts);
-
 
         rbTotal = root.findViewById(R.id.rbTotal);
         rbTotal.setChecked(true);// inicia em true
         rbMensal = root.findViewById(R.id.rbMensal);
-
 
         btnEsq = root.findViewById(R.id.btnEsq);
         btnEsq.setOnClickListener(new View.OnClickListener() {
@@ -149,7 +195,6 @@ public class CalculadoraFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 try {
-                    etWatts.onEditorAction(EditorInfo.IME_ACTION_DONE);
                     etIrradiacao.onEditorAction(EditorInfo.IME_ACTION_DONE);
                     etMedia.onEditorAction(EditorInfo.IME_ACTION_DONE);
                     limpar();
@@ -160,9 +205,11 @@ public class CalculadoraFragment extends Fragment {
                         media = CalculadoraFotoVoltaica.media(valoresMensaisEnergia);
                     }
 
+                    double watts = 0.0;
+
                     tvNumeroPlacas.setText(tvNumeroPlacas.getText().toString() + CalculadoraFotoVoltaica.numeroPlacas(media,
                             Float.parseFloat(etIrradiacao.getText().toString()),
-                            Double.parseDouble(etWatts.getText().toString())) + "");
+                            watts) + "");
                     tvInversor.setText(tvInversor.getText().toString() + CalculadoraFotoVoltaica.inversor(media,
                             Double.parseDouble(etIrradiacao.getText().toString())) + "");
                     tvInversorMais.setText(tvInversorMais.getText().toString() + CalculadoraFotoVoltaica.inversorMais(media,
