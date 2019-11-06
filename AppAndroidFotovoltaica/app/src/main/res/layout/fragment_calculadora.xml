@@ -13,7 +13,7 @@
         android:fillViewport="true"
         >
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_margin="30dp"
@@ -21,6 +21,7 @@
             tools:context=".ui.mainactivity.MainActivity">
 
             <RelativeLayout
+                android:id="@+id/campoMedia"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
                 android:orientation="vertical"
@@ -105,11 +106,13 @@
 
 
             <RelativeLayout
+                android:id="@+id/campoIrradiacao"
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
                 android:layout_marginTop="20dp"
                 android:orientation="horizontal"
-                android:background="@drawable/retangulo">
+                android:background="@drawable/retangulo"
+                android:layout_below="@+id/campoMedia">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -134,11 +137,13 @@
             </RelativeLayout>
 
             <RelativeLayout
+                android:id="@+id/campoKit"
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
                 android:layout_marginTop="30dp"
                 android:orientation="horizontal"
-                android:background="@drawable/retangulo">
+                android:background="@drawable/retangulo"
+                android:layout_below="@+id/campoIrradiacao">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -168,7 +173,8 @@
                 android:layout_height="50dp"
                 android:layout_margin="20dp"
                 android:text="Calcular"
-                android:background="#f1c40f"/>
+                android:background="#f1c40f"
+                android:layout_below="@+id/campoKit"/>
 
             <TextView
                 android:id="@+id/tvNumeroPlacas"
@@ -176,7 +182,8 @@
                 android:layout_height="30dp"
                 android:layout_margin="10dp"
                 android:text="Número Placas:"
-                android:textSize="20dp" />
+                android:textSize="20dp"
+                android:layout_below="@+id/btnCalcular" />
 
             <TextView
                 android:id="@+id/tvInversor"
@@ -184,7 +191,8 @@
                 android:layout_height="30dp"
                 android:layout_margin="10dp"
                 android:text="Inversor:"
-                android:textSize="20dp" />
+                android:textSize="20dp"
+                android:layout_below="@+id/tvNumeroPlacas" />
 
             <TextView
                 android:id="@+id/tvInversorMais"
@@ -192,7 +200,8 @@
                 android:layout_height="30dp"
                 android:layout_margin="10dp"
                 android:text="Inversor Mais:"
-                android:textSize="20dp" />
+                android:textSize="20dp"
+                android:layout_below="@+id/tvInversor" />
 
             <TextView
                 android:id="@+id/tvInversorMenos"
@@ -201,7 +210,8 @@
                 android:layout_margin="10dp"
                 android:text="Inversor Menos:"
                 android:textSize="20dp"
-                android:layout_marginBottom="10dp"/>
+                android:layout_marginBottom="10dp"
+                android:layout_below="@+id/tvInversorMais"/>
 
             <Button
                 android:id="@+id/btnCriarProposta"
@@ -209,17 +219,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:centerHorizontal="true"
-                android:layout_marginBottom="50dp">
+                android:layout_marginBottom="50dp"
+                android:layout_below="@+id/tvInversorMenos">
             </Button>
 
-
-        </LinearLayout>
+        </RelativeLayout>
     </ScrollView>
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_begin="20dp" />
 </FrameLayout>
