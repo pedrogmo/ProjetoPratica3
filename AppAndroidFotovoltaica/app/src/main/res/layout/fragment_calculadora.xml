@@ -218,8 +218,8 @@
                 android:text="Criar Proposta"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:centerHorizontal="true"
                 android:layout_marginBottom="50dp"
+                android:layout_centerHorizontal="true"
                 android:layout_below="@+id/tvInversorMenos">
             </Button>
 
