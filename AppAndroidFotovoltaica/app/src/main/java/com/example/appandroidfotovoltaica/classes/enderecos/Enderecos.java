@@ -50,4 +50,28 @@ public class Enderecos
     public static final String POST_CABO = IP_PORTA + "insert_cabo";
     public static final String PATCH_CABO = IP_PORTA + "update_cabo";
     public static final String DELETE_CABO = IP_PORTA + "delete_cabo";
+
+    public static final String GET_KIT = IP_PORTA + "kit";
+    public static final String POST_KIT = IP_PORTA + "insert_kit";
+
+    public static final String GET_KITMODULO = IP_PORTA + "kitmodulo";
+    public static final String POST_KITMODULO = IP_PORTA + "insert_kitmodulo";
+
+    public static final String GET_KITINVERSOR = IP_PORTA + "kitinversor";
+    public static final String POST_KITINVERSOR = IP_PORTA + "insert_kitinversor";
+
+    public static final String GET_KITSTRINGBOX = IP_PORTA + "kitstringbox";
+    public static final String POST_KITSTRINGBOX = IP_PORTA + "insert_kitstringbox";
+
+    public static final String GET_KITFIXACAO = IP_PORTA + "kitfixacao";
+    public static final String POST_KITFIXACAO = IP_PORTA + "insert_kitfixacao";
+
+    public static final String GET_KITBOMBASOLAR = IP_PORTA + "kitbombasolar";
+    public static final String POST_KITBOMBASOLAR = IP_PORTA + "insert_kitbombasolar";
+
+    public static final String GET_KITCABO = IP_PORTA + "kitcabo";
+    public static final String POST_KITCABO = IP_PORTA + "insert_kitcabo";
+
+    public static final String GET_PROPOSTA = IP_PORTA + "proposta";
+    public static final String POST_PROPOSTA = IP_PORTA + "insert_proposta";
 }

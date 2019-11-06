@@ -12,7 +12,7 @@
         android:layout_marginTop="80dp"/>
 
     <ListView
-        android:id="@+id/lvPropostas"
+        android:id="@+id/lvListaPropostas"
         android:layout_height="300dp"
         android:layout_width="300dp"
         android:layout_centerHorizontal="true"
@@ -25,7 +25,7 @@
         android:layout_width="wrap_content"
         android:text="Gerar"
         android:layout_centerHorizontal="true"
-        android:layout_below="@+id/lvPropostas"
+        android:layout_below="@+id/lvListaPropostas"
         android:layout_marginTop="20dp"/>
 
 </RelativeLayout>

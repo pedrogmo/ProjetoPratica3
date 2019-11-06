@@ -1,35 +1,33 @@
 package com.example.appandroidfotovoltaica.ui.mainactivity.propostas;
 
 import android.Manifest;
-import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.TextView;
+import android.widget.ListView;
 import android.widget.Toast;
 
-import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
-import androidx.core.content.FileProvider;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.example.appandroidfotovoltaica.R;
+import com.example.appandroidfotovoltaica.classes.enderecos.Enderecos;
+import com.example.appandroidfotovoltaica.classes.mytask.MyTask;
+import com.example.appandroidfotovoltaica.classes.proposta.Proposta;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfWriter;
 
-import java.io.File;
 import java.io.FileOutputStream;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Locale;
 
 public class PropostasFragment extends Fragment {
@@ -39,6 +37,7 @@ public class PropostasFragment extends Fragment {
     private PropostasViewModel propostasViewModel;
 
     private Button btnGerar;
+    private ListView lvProposta;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -46,6 +45,23 @@ public class PropostasFragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_propostas, container, false);
 
         this.btnGerar = (Button) root.findViewById(R.id.btnGerarPDF);
+        this.lvProposta = (ListView) root.findViewById(R.id.lvListaPropostas);
+
+        MyTask task = new MyTask(Proposta[].class);
+        task.execute(Enderecos.GET_PROPOSTA);
+        while(task.isTrabalhando()) ;
+        Proposta[] arrProposta = (Proposta[]) task.getDados();
+
+        ArrayList<String> alNomes = new ArrayList<String>();
+        for(Proposta p : arrProposta)
+            alNomes.add(p.getNome());
+
+        this.lvProposta.setAdapter(
+            new ArrayAdapter<String>(
+                getActivity().getApplicationContext(),
+                0,
+                alNomes)
+        );
 
         this.btnGerar.setOnClickListener(new View.OnClickListener() {
             @Override
