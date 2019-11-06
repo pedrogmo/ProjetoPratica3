@@ -1,4 +1,4 @@
-package com.example.appandroidfotovoltaica.ui.mainactivity.home;
+package com.example.appandroidfotovoltaica.ui.mainactivity.calculadora;
 
 import android.os.Bundle;
 import android.text.Editable;
@@ -23,9 +23,9 @@ import com.example.appandroidfotovoltaica.classes.calculadora.CalculadoraFotoVol
 import com.example.appandroidfotovoltaica.R;
 import com.example.appandroidfotovoltaica.classes.valormensal.ValorMensalEnergia;
 
-public class HomeFragment extends Fragment {
+public class CalculadoraFragment extends Fragment {
 
-    private HomeViewModel homeViewModel;
+    private CalculadoraViewModel calculadoraViewModel;
     private int indiceMes = 0;
     private ValorMensalEnergia valoresMensaisEnergia[];
     TextView tvNumeroPlacas, tvInversor, tvInversorMais, tvInversorMenos, tvMes;
@@ -37,8 +37,8 @@ public class HomeFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        homeViewModel =
-                ViewModelProviders.of(this).get(HomeViewModel.class);
+        calculadoraViewModel =
+                ViewModelProviders.of(this).get(CalculadoraViewModel.class);
         View root = inflater.inflate(R.layout.fragment_calculadora, container, false);
 
         valoresMensaisEnergia = new ValorMensalEnergia[12];
@@ -52,8 +52,6 @@ public class HomeFragment extends Fragment {
         tvInversorMais = root.findViewById(R.id.tvInversorMais);
         tvInversorMenos = root.findViewById(R.id.tvInversorMenos);
         tvMes = root.findViewById(R.id.tvMes);
-        /*toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);*/
         etIrradiacao = root.findViewById(R.id.etIrradiacao);
         etMedia = root.findViewById(R.id.etMedia);
         etWatts = root.findViewById(R.id.etWatts);
