@@ -21,6 +21,7 @@ import com.github.barteksc.pdfviewer.PDFView;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.Paragraph;
 
+import java.io.File;
 import java.io.FileOutputStream;
 import java.text.SimpleDateFormat;
 import java.util.Locale;
@@ -40,7 +41,9 @@ public class VisualizarPropostaFragment extends Fragment {
 
         pdfView = root.findViewById(R.id.pdfView);
 
-        pdfView.fromAsset("teste.pdf").load();
+
+
+        //pdfView.fromBytes().load();
 
         return root;
     }
