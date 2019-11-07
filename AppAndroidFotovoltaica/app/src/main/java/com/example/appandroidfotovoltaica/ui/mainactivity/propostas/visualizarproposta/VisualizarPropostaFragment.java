@@ -26,7 +26,9 @@ import com.example.appandroidfotovoltaica.classes.proposta.Proposta;
 import com.github.barteksc.pdfviewer.source.DocumentSource;
 import com.github.barteksc.pdfviewer.util.FileUtils;
 import com.github.barteksc.pdfviewer.PDFView;
+import com.itextpdf.text.Chunk;
 import com.itextpdf.text.Document;
+import com.itextpdf.text.PageSize;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfWriter;
 
@@ -77,7 +79,7 @@ public class VisualizarPropostaFragment extends Fragment {
 
     private void savePdf()
     {
-        Document doc = new Document();
+        Document doc = new Document(PageSize.LETTER, 0.75F, 0.75F, 0.75F, 0.75F);
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         String fileName = new SimpleDateFormat(
                 "yyyyMMdd_HHmmss",
@@ -87,8 +89,9 @@ public class VisualizarPropostaFragment extends Fragment {
 
         try
         {
-            PdfWriter.getInstance(doc, byteArrayOutputStream);
+            /*PdfWriter.getInstance(doc, byteArrayOutputStream);
             doc.open();
+            doc.add(new Chunk(""));
             String text = "O MEEIRO TEM UM GRANDE CORAÇÃO...";
 
             doc.addAuthor("Gustavo de Meira");
@@ -98,12 +101,15 @@ public class VisualizarPropostaFragment extends Fragment {
             doc.add(new Paragraph(text));
 
             doc.close();
+
             pdfView.fromBytes(byteArrayOutputStream.toByteArray()).load();
 
             Toast.makeText(
                     getActivity().getApplicationContext(),
                     fileName + ".pdf saved to \n " + filePath,
                     Toast.LENGTH_SHORT).show();
+                    */
+
 
 
 
