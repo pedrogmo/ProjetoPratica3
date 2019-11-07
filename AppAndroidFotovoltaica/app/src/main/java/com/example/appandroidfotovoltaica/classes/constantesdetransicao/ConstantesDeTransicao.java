@@ -29,4 +29,7 @@ public class ConstantesDeTransicao
 
     public static final String F_USUARIO_EMPRESA = "FragmentUE";
     public static final String M_USUARIO_EMPRESA = "ei-ue";
+
+    public static final String F_PROPOSTAS_VISUALIZAR = "FragmentPV";
+    public static final String M_PROPOSTAS_VISUALIZAR = "pr-vp";
 }

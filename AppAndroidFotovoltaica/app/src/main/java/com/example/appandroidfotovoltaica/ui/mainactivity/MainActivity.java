@@ -101,6 +101,8 @@ public class MainActivity extends AppCompatActivity {
 
         else if (fm.findFragmentByTag(ConstantesDeTransicao.F_CADASTRO_USUARIO) != null)
             fm.popBackStack(ConstantesDeTransicao.M_CADASTRO_USUARIO, 0);
+        else if (fm.findFragmentByTag(ConstantesDeTransicao.F_PROPOSTAS_VISUALIZAR) != null)
+            fm.popBackStack(ConstantesDeTransicao.M_PROPOSTAS_VISUALIZAR, 0);
 
         else
             super.onBackPressed();
