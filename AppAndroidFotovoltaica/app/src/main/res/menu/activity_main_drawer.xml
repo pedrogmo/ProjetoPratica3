@@ -25,7 +25,10 @@
             android:id="@+id/nav_propostas"
             android:icon="@drawable/ic_proposta"
             android:title="Propostas" />
-
+        <item
+            android:id="@+id/nav_monitoramento"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="Monitoramento"/>
     </group>
 
 </menu>

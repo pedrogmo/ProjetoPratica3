@@ -27,6 +27,7 @@ import com.example.appandroidfotovoltaica.classes.mytask.MyTask;
 import com.example.appandroidfotovoltaica.classes.proposta.Proposta;
 import com.example.appandroidfotovoltaica.ui.mainactivity.clientes.adicionarcliente.AdicionarClienteFragment;
 import com.example.appandroidfotovoltaica.ui.mainactivity.propostas.visualizarproposta.VisualizarPropostaFragment;
+import com.github.barteksc.pdfviewer.source.DocumentSource;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfWriter;
@@ -125,6 +126,10 @@ public class PropostasFragment extends Fragment {
                 getActivity().getApplicationContext(),
                 fileName + ".pdf saved to \n " + filePath,
                 Toast.LENGTH_SHORT).show();
+
+
+
+            //i.putExtra("pdfEscolhido",() doc);
 
             /*Intent sendIntent = new Intent(Intent.ACTION_SEND);
             //Uri uri = FileProvider.getUriForFile(this, "  ", (File)doc).parse(filePath);
