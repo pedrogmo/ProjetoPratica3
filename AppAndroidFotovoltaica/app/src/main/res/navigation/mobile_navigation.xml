@@ -35,7 +35,7 @@
 
     <fragment
         android:id="@+id/nav_monitoramento"
-        android:name="com.example.appandroidfotovoltaica.ui.mainactivity.propostas.PropostasFragment"
-        android:label="@string/menu_propostas"
-        tools:layout="@layout/fragment_propostas" />
+        android:name="com.example.appandroidfotovoltaica.ui.mainactivity.monitoramento.MonitoramentoFragment"
+        android:label="Monitoramento"
+        tools:layout="@layout/fragment_monitoramento" />
 </navigation>
