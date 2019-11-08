@@ -289,7 +289,7 @@ public class ProdutoIndividualFragment extends Fragment {
             {
                 Modulo m = (Modulo) produtoAtual;
 
-                this.adicionarTextView("Potência: " + m.getPotencia() + "v", params);
+                this.adicionarTextView("Potência: " + m.getPotencia() + "w", params);
             }
         }
         else if (this.categoriaProduto == Cabo.class)

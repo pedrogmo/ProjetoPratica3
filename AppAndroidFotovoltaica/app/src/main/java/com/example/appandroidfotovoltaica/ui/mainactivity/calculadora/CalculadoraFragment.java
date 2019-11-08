@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -26,7 +27,9 @@ import com.example.appandroidfotovoltaica.R;
 import com.example.appandroidfotovoltaica.classes.cliente.Cliente;
 import com.example.appandroidfotovoltaica.classes.enderecos.Enderecos;
 import com.example.appandroidfotovoltaica.classes.kit.Kit;
+import com.example.appandroidfotovoltaica.classes.kitproduto.KitProduto;
 import com.example.appandroidfotovoltaica.classes.mytask.MyTask;
+import com.example.appandroidfotovoltaica.classes.produto.equipamento.modulo.Modulo;
 import com.example.appandroidfotovoltaica.classes.valormensal.ValorMensalEnergia;
 import com.example.appandroidfotovoltaica.ui.mainactivity.MainActivity;
 
@@ -39,6 +42,7 @@ public class CalculadoraFragment extends Fragment {
     private ValorMensalEnergia valoresMensaisEnergia[];
     private Kit[] kits;
     private Cliente[] clientes;
+    private int indKit, indCliente;
 
     private TextView tvNumeroPlacas, tvInversor, tvInversorMais, tvInversorMenos, tvMes;
     private EditText etIrradiacao, etMedia;
@@ -107,6 +111,34 @@ public class CalculadoraFragment extends Fragment {
         rbTotal = root.findViewById(R.id.rbTotal);
         rbTotal.setChecked(true);// inicia em true
         rbMensal = root.findViewById(R.id.rbMensal);
+
+        spKit.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                // your code here
+                indKit = position;
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parentView) {
+                // your code here
+            }
+
+        });
+
+        spCliente.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                // your code here
+                indCliente = position;
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parentView) {
+                // your code here
+            }
+
+        });
 
         btnEsq = root.findViewById(R.id.btnEsq);
         btnEsq.setOnClickListener(new View.OnClickListener() {
@@ -194,7 +226,20 @@ public class CalculadoraFragment extends Fragment {
         btnCalcular.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                try {
+                try
+                {
+                    MyTask task = new MyTask(KitProduto[].class);
+                    task.execute(Enderecos.GET_KITMODULO);
+                    while(task.isTrabalhando()) ;
+                    KitProduto[] kitmodulo = (KitProduto[]) task.getDados();
+
+                    task = new MyTask(Modulo[].class);
+                    task.execute(Enderecos.GET_MODULO + kitmodulo[0].getCodProduto());
+                    while(task.isTrabalhando()) ;
+                    Modulo[] modulo = (Modulo[]) task.getDados();
+
+                    float watts = modulo[0].getPotencia();
+
                     etIrradiacao.onEditorAction(EditorInfo.IME_ACTION_DONE);
                     etMedia.onEditorAction(EditorInfo.IME_ACTION_DONE);
                     limpar();
@@ -204,8 +249,6 @@ public class CalculadoraFragment extends Fragment {
                     } else if (rbMensal.isChecked()) {
                         media = CalculadoraFotoVoltaica.media(valoresMensaisEnergia);
                     }
-
-                    double watts = 0.0;
 
                     tvNumeroPlacas.setText(tvNumeroPlacas.getText().toString() + CalculadoraFotoVoltaica.numeroPlacas(media,
                             Float.parseFloat(etIrradiacao.getText().toString()),
