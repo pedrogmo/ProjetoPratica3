@@ -3,6 +3,7 @@ package com.example.appandroidfotovoltaica.ui.mainactivity.calculadora;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -84,10 +85,11 @@ public class CalculadoraFragment extends Fragment {
 
         spCliente = root.findViewById(R.id.spCalculadoraCliente);
 
-        task = new MyTask(Cliente[].class);
-        task.execute(Enderecos.GET_CLIENTE + "/" + ((MainActivity)getActivity()).getUsuario().getCodEmpresa());
-        while(task.isTrabalhando()) ;
-        clientes = (Cliente[]) task.getDados();
+        MyTask task2 = new MyTask(Cliente[].class);
+        int codEmp = ((MainActivity)getActivity()).getUsuario().getCodEmpresa();
+        task2.execute(Enderecos.GET_CLIENTE + "/" + codEmp);
+        while(task2.isTrabalhando()) ;
+        clientes = (Cliente[]) task2.getDados();
 
         ArrayList<String> alNomeClientes = new ArrayList<String>();
         for(Cliente c : clientes)

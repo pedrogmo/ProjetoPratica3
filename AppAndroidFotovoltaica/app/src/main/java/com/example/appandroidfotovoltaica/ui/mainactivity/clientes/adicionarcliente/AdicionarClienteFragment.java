@@ -56,7 +56,7 @@ public class AdicionarClienteFragment extends Fragment {
     private Button btnAdicionarCliente;
     private FloatingActionButton fab;
     private MensagensErroCliente mensagens;
-    private String textoAnterior;
+    private String textoAnterior = "";
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -137,7 +137,7 @@ public class AdicionarClienteFragment extends Fragment {
                     return;
 
                 MyTask task = new MyTask(Cliente[].class);
-                task.execute(Enderecos.GET_CLIENTE_EMAIL + email);
+                task.execute(Enderecos.GET_CLIENTE_EMAIL + "/" + email);
                 while (task.isTrabalhando()) ;
                 Cliente[] resultClientes = (Cliente[]) task.getDados();
                 if (resultClientes.length > 0)
