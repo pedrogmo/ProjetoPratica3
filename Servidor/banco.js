@@ -184,8 +184,8 @@ rota.post('/insert_modulo', (requisicao, resposta) => {
 	const largura = requisicao.body.largura;
 	const profundidade = requisicao.body.profundidade;
 	const peso = requisicao.body.peso;
-	const voltagem = requisicao.body.voltagem;
-	execSQL(`INSERT INTO ModuloSol VALUES('${nome}', ${preco}, '${descricao}', ${altura}, ${largura}, ${profundidade}, ${peso}, ${voltagem})`, resposta);
+	const potencia = requisicao.body.potencia;
+	execSQL(`INSERT INTO ModuloSol VALUES('${nome}', ${preco}, '${descricao}', ${altura}, ${largura}, ${profundidade}, ${peso}, ${potencia})`, resposta);
 })
 
 //ROTAS INVERSOR

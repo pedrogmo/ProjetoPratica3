@@ -4,12 +4,12 @@ import com.example.appandroidfotovoltaica.classes.produto.equipamento.Equipament
 
 public class Modulo extends EquipamentoFotovoltaico
 {
-    private float voltagem;
+    private float potencia;
 
     public Modulo()
     {
         super();
-        this.voltagem = 0.0f;
+        this.potencia = 0.0f;
     }
 
     public Modulo(
@@ -21,7 +21,7 @@ public class Modulo extends EquipamentoFotovoltaico
         float largura,
         float profundidade,
         float peso,
-        float voltagem) throws Exception
+        float potencia) throws Exception
     {
         super(
             codigo,
@@ -33,27 +33,27 @@ public class Modulo extends EquipamentoFotovoltaico
             profundidade,
             peso);
 
-        this.setVoltagem(voltagem);
+        this.setPotencia(potencia);
     }
 
     public Modulo(
         Modulo modelo) throws Exception
     {
         super(modelo);
-        this.voltagem = modelo.voltagem;
+        this.potencia = modelo.potencia;
     }
 
-    public float getVoltagem()
+    public float getPotencia()
     {
-        return this.voltagem;
+        return this.potencia;
     }
 
-    public void setVoltagem(
-        float voltagem) throws Exception
+    public void setPotencia(
+        float potencia) throws Exception
     {
-        if (voltagem < 0.0f)
-            throw new IllegalArgumentException("Modulo - setVoltagem: voltagem negativa");
-        this.voltagem = voltagem;
+        if (potencia < 0.0f)
+            throw new IllegalArgumentException("Modulo - setPotencia: potencia negativa");
+        this.potencia = potencia;
     }
 
     public String toString()
@@ -64,7 +64,7 @@ public class Modulo extends EquipamentoFotovoltaico
     public int hashCode()
     {
         int ret = super.hashCode();
-        ret = ret * 2 + new Float(this.voltagem).hashCode();
+        ret = ret * 2 + new Float(this.potencia).hashCode();
         return ret;
     }
 

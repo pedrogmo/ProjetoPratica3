@@ -187,7 +187,7 @@ public class AdicionarProdutoFragment extends Fragment {
                                 params.put("eficienciaMaxima", etCampos.get(4).getText().toString().trim());
 
                             else if (categoriaProduto == Modulo.class)
-                                params.put("voltagem", etCampos.get(4).getText().toString().trim());
+                                params.put("potencia", etCampos.get(4).getText().toString().trim());
                         }
                         else if (categoriaProduto == StringBox.class)
                         {
@@ -307,7 +307,7 @@ public class AdicionarProdutoFragment extends Fragment {
             }
             else if (this.categoriaProduto == Modulo.class)
             {
-                this.adicionarTextView("Voltagem (v):", params);
+                this.adicionarTextView("Potência (w):", params);
                 this.adicionarEditText(params, true);
                 this.adicionarTxtExc(params);
             }

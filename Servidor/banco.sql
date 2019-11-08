@@ -71,7 +71,7 @@ create table ModuloSol(
 	largura float not null,
 	profundidade float not null,
 	peso float not null,
-	voltagem float not null
+	potencia float not null
 )
 
 create table InversorSol(
