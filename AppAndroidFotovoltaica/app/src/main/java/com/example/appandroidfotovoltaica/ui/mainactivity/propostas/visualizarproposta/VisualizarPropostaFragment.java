@@ -89,7 +89,7 @@ public class VisualizarPropostaFragment extends Fragment {
 
         try
         {
-            /*PdfWriter.getInstance(doc, byteArrayOutputStream);
+            PdfWriter.getInstance(doc, byteArrayOutputStream);
             doc.open();
             doc.add(new Chunk(""));
             String text = "O MEEIRO TEM UM GRANDE CORAÇÃO...";
@@ -108,7 +108,7 @@ public class VisualizarPropostaFragment extends Fragment {
                     getActivity().getApplicationContext(),
                     fileName + ".pdf saved to \n " + filePath,
                     Toast.LENGTH_SHORT).show();
-                    */
+
 
 
 
