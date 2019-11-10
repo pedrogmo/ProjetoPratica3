@@ -8,13 +8,15 @@ public class Fixacao extends Produto
         int codigo,
         String nome,
         float preco,
-        String descricao) throws Exception
+        String descricao,
+        int codEmpresa) throws Exception
     {
         super(
             codigo,
             nome,
             preco,
-            descricao);
+            descricao,
+            codEmpresa);
     }
 
     public Fixacao()

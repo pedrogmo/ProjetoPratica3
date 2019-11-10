@@ -40,7 +40,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Preco: " />
+                android:text="Preco (R$): " />
 
             <EditText
                 android:id="@+id/etPrecoProdutoAlt"

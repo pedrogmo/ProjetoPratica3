@@ -14,6 +14,7 @@ public class EquipamentoFotovoltaico extends Produto
         String nome,
         float preco,
         String descricao,
+        int codEmpresa,
         float altura,
         float largura,
         float profundidade,
@@ -23,7 +24,8 @@ public class EquipamentoFotovoltaico extends Produto
             codigo,
             nome,
             preco,
-            descricao);
+            descricao,
+            codEmpresa);
 
         this.setAltura(altura);
         this.setLargura(largura);
@@ -110,10 +112,10 @@ public class EquipamentoFotovoltaico extends Produto
     public int hashCode()
     {
         int ret = super.hashCode();
-        ret += ret * 2 + new Float(this.altura).hashCode();
-        ret += ret * 2 + new Float(this.largura).hashCode();
-        ret += ret * 2 + new Float(this.profundidade).hashCode();
-        ret += ret * 2 + new Float(this.peso).hashCode();
+        ret = ret * 2 + new Float(this.altura).hashCode();
+        ret = ret * 2 + new Float(this.largura).hashCode();
+        ret = ret * 2 + new Float(this.profundidade).hashCode();
+        ret = ret * 2 + new Float(this.peso).hashCode();
         return ret;
     }
 

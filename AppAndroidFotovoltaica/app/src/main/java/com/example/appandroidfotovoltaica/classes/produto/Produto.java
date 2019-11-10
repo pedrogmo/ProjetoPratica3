@@ -8,27 +8,31 @@ public class Produto
 	protected int codigo;
 	protected String nome;
 	protected float preco;
-	protected String descricao;	
+	protected String descricao;
+	protected int codEmpresa;
 
 	public Produto(
 		int codigo,
 		String nome,
 		float preco,
-		String descricao) throws Exception
+		String descricao,
+		int codEmpresa) throws Exception
 	{
 		this.setCodigo(codigo);
 		this.setNome(nome);
 		this.setPreco(preco);
 		this.setDescricao(descricao);
+		this.setCodEmpresa(codEmpresa);
 	}
 
 	public Produto(
-		String pNome) throws Exception
+		String nome) throws Exception
 	{
 		this.codigo = 0;
-		this.setNome(pNome);
+		this.setNome(nome);
 		this.preco = 0.0f;
 		this.descricao = "";
+		this.codEmpresa = 0;
 	}
 
 	public Produto(
@@ -40,6 +44,7 @@ public class Produto
 		this.nome = modelo.nome;
 		this.preco = modelo.preco;
 		this.descricao = modelo.descricao;
+		this.codEmpresa = modelo.codEmpresa;
 	}
 
 	public Produto()
@@ -48,6 +53,7 @@ public class Produto
 		this.nome = "";
 		this.descricao = "";
 		this.preco = 0.0f;
+		this.codEmpresa = 0;
 	}
 
 	public int getCodigo()
@@ -106,6 +112,19 @@ public class Produto
 		this.descricao = pDescricao;
 	}
 
+	public int getCodEmpresa()
+	{
+		return this.codEmpresa;
+	}
+
+	protected void setCodEmpresa(
+		int codEmpresa) throws Exception
+	{
+		if (codEmpresa < 0)
+			throw new IllegalArgumentException("Produto - setCodEmpresa : codigo negativo");
+		this.codEmpresa = codEmpresa;
+	}
+
 	public String toString()
 	{
 		return "";
@@ -129,16 +148,19 @@ public class Produto
 			return false;
 		if (!this.descricao.equals(p.descricao))
 			return false;
+		if (this.codEmpresa != p.codEmpresa)
+			return false;
 		return true;
 	}
 
 	public int hashCode()
 	{
 		int ret = 1;
-		ret += 2 * ret + new Integer(this.codigo).hashCode();
-		ret += 2 * ret + this.nome.hashCode();
-		ret += 2 * ret + new Float(this.preco).hashCode();
-		ret += 2 * ret + this.descricao.hashCode();
+		ret = 2 * ret + new Integer(this.codigo).hashCode();
+		ret = 2 * ret + this.nome.hashCode();
+		ret = 2 * ret + new Float(this.preco).hashCode();
+		ret = 2 * ret + this.descricao.hashCode();
+		ret = 2 * ret + new Integer(this.codEmpresa).hashCode();
 		return ret;		
 	}
 

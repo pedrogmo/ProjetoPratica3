@@ -23,6 +23,7 @@ public class StringBox extends Produto
         String nome,
         float preco,
         String descricao,
+        int codEmpresa,
         String tipo,
         int numeroPolos,
         float tensaoMaxima,
@@ -32,7 +33,8 @@ public class StringBox extends Produto
             codigo,
             nome,
             preco,
-            descricao);
+            descricao,
+            codEmpresa);
 
         this.setTipo(tipo);
         this.setNumeroPolos(numeroPolos);

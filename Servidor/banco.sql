@@ -7,19 +7,6 @@ create table EmpresaSol(
 		'[0-9][0-9].[0-9][0-9][0-9].[0-9][0-9][0-9]/[0-9][0-9][0-9][0-9]-[0-9][0-9]')
 )
 
-create trigger delete_empresa_tg on EmpresaSol instead of delete
-as
-begin
-
-	declare @codEmpresa int
-	select @codEmpresa = codigo from Deleted
-
-	delete from UsuarioSol where codEmpresa = @codEmpresa
-	delete from ClienteSol where codEmpresa = @codEmpresa
-	delete from EmpresaSol where codigo = @codEmpresa
-
-end
-
 create table UsuarioSol(
 	codigo int identity(1,1) primary key,
 	email varchar(50) not null,
@@ -71,7 +58,9 @@ create table ModuloSol(
 	largura float not null,
 	profundidade float not null,
 	peso float not null,
-	potencia float not null
+	potencia float not null,
+	codEmpresa int not null
+	constraint fkModuloEmpresa foreign key(codEmpresa) references EmpresaSol(codigo)
 )
 
 create table InversorSol(
@@ -83,7 +72,9 @@ create table InversorSol(
 	largura float not null,
 	profundidade float not null,
 	peso float not null,
-	eficienciaMaxima float not null
+	eficienciaMaxima float not null,
+	codEmpresa int not null
+	constraint fkInversorEmpresa foreign key(codEmpresa) references EmpresaSol(codigo)
 )
 
 create table StringBoxSol(
@@ -95,14 +86,18 @@ create table StringBoxSol(
 	tipo varchar(30) not null,
 	numeroPolos int not null,
 	tensaoMaxima float not null,
-	correnteNominal float not null
+	correnteNominal float not null,
+	codEmpresa int not null
+	constraint fkStringBoxEmpresa foreign key(codEmpresa) references EmpresaSol(codigo)
 )
 
 create table FixacaoSol(
 	codigo int identity(1,1) primary key,
 	nome varchar(50) not null,
 	preco money not null,
-	descricao varchar(100) not null
+	descricao varchar(100) not null,
+	codEmpresa int not null
+	constraint fkFixacaoEmpresa foreign key(codEmpresa) references EmpresaSol(codigo)
 )
 
 create table BombaSolarSol(
@@ -120,6 +115,8 @@ create table BombaSolarSol(
 	alturaMaxima float not null,
 	bombeamentoMaximoDiario float not null,
 	diametroTubo varchar(20) not null,
+	codEmpresa int not null
+	constraint fkBombaSolarEmpresa foreign key(codEmpresa) references EmpresaSol(codigo)
 )
 
 create table CaboSol(
@@ -130,7 +127,9 @@ create table CaboSol(
 
 	comprimento float not null,
 	diametro float not null,
-	conducao varchar(20) not null
+	conducao varchar(20) not null,
+	codEmpresa int not null
+	constraint fkCaboEmpresa foreign key(codEmpresa) references EmpresaSol(codigo)
 )
 
 create table KitSol(
@@ -212,3 +211,130 @@ create table PropostaSol(
 	constraint fkClienteProposta foreign key(codCliente) references ClienteSol(codigo),
 	constraint fkKitProposta foreign key(codKit) references KitSol(codigo)
 )
+
+--TRIGGERS
+
+alter trigger delete_empresa_tg on EmpresaSol instead of delete
+as
+begin
+
+	declare @codEmpresa int
+	select @codEmpresa = codigo from Deleted
+
+	delete from UsuarioSol where codEmpresa = @codEmpresa
+	delete from ClienteSol where codEmpresa = @codEmpresa
+	delete from KitSol where codEmpresa = @codEmpresa
+	delete from ModuloSol where codEmpresa = @codEmpresa
+	delete from InversorSol where codEmpresa = @codEmpresa
+	delete from StringBoxSol where codEmpresa = @codEmpresa
+	delete from FixacaoSol where codEmpresa = @codEmpresa
+	delete from BombaSolarSol where codEmpresa = @codEmpresa
+	delete from CaboSol where codEmpresa = @codEmpresa
+	delete from EmpresaSol where codigo = @codEmpresa
+
+end
+
+alter trigger delete_usuario_tg on UsuarioSol instead of delete
+as
+begin
+
+	declare @codUsuario int
+	select @codUsuario = codigo from Deleted
+
+	delete from PropostaSol where codUsuario = @codUsuario
+	delete from UsuarioSol where codigo = @codUsuario
+end
+
+alter trigger delete_cliente_tg on ClienteSol instead of delete
+as
+begin
+
+	declare @codCliente int
+	select @codCliente = codigo from Deleted
+
+	delete from PropostaSol where codCliente = @codCliente
+	delete from ClienteSol where codigo = @codCliente
+end
+
+alter trigger delete_kit_tg on KitSol instead of delete
+as
+begin
+
+	declare @codKit int
+	select @codKit = codigo from Deleted
+
+	delete from PropostaSol where codKit = @codKit
+	delete from KitModuloSol where codKit = @codKit
+	delete from KitInversorSol where codKit = @codKit
+	delete from KitStringBoxSol where codKit = @codKit
+	delete from KitFixacaoSol where codKit = @codKit
+	delete from KitBombaSolarSol where codKit = @codKit
+	delete from KitCaboSol where codKit = @codKit
+	delete from KitSol where codigo = @codKit
+end
+
+alter trigger delete_modulo_tg on ModuloSol instead of delete
+as
+begin
+
+	declare @codModulo int
+	select @codModulo = codigo from Deleted
+
+	delete from KitModuloSol where codProduto = @codModulo
+	delete from ModuloSol where codigo = @codModulo
+end
+
+alter trigger delete_inversor_tg on InversorSol instead of delete
+as
+begin
+
+	declare @codInversor int
+	select @codInversor = codigo from Deleted
+
+	delete from KitInversorSol where codProduto = @codInversor
+	delete from InversorSol where codigo = @codInversor
+end
+
+alter trigger delete_stringbox_tg on StringBoxSol instead of delete
+as
+begin
+
+	declare @codStringBox int
+	select @codStringBox = codigo from Deleted
+
+	delete from KitStringBoxSol where codProduto = @codStringBox
+	delete from StringBoxSol where codigo = @codStringBox
+end
+
+alter trigger delete_fixacao_tg on FixacaoSol instead of delete
+as
+begin
+
+	declare @codFixacao int
+	select @codFixacao = codigo from Deleted
+
+	delete from KitFixacaoSol where codProduto = @codFixacao
+	delete from FixacaoSol where codigo = @codFixacao
+end
+
+alter trigger delete_bombasolar_tg on BombaSolarSol instead of delete
+as
+begin
+
+	declare @codBombaSolar int
+	select @codBombaSolar = codigo from Deleted
+
+	delete from KitBombaSolarSol where codProduto = @codBombaSolar
+	delete from BombaSolarSol where codigo = @codBombaSolar
+end
+
+alter trigger delete_cabo_tg on CaboSol instead of delete
+as
+begin
+
+	declare @codCabo int
+	select @codCabo = codigo from Deleted
+
+	delete from KitCaboSol where codProduto = @codCabo
+	delete from CaboSol where codigo = @codCabo
+end

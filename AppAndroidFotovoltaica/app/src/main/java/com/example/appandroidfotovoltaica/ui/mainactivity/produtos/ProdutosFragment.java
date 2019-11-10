@@ -26,6 +26,7 @@ import com.example.appandroidfotovoltaica.classes.mytask.MyTask;
 import com.example.appandroidfotovoltaica.classes.produto.Produto;
 import com.example.appandroidfotovoltaica.R;
 import com.example.appandroidfotovoltaica.classes.produto.stringbox.StringBox;
+import com.example.appandroidfotovoltaica.ui.mainactivity.MainActivity;
 import com.example.appandroidfotovoltaica.ui.mainactivity.produtos.adicionarproduto.AdicionarProdutoFragment;
 import com.example.appandroidfotovoltaica.ui.mainactivity.produtos.produtoindividual.ProdutoIndividualFragment;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -205,33 +206,35 @@ public class ProdutosFragment extends Fragment {
 
     private void fazerBuscas()
     {
+        int codEmpresa = ((MainActivity) getActivity()).getUsuario().getCodEmpresa();
+
         MyTask task = new MyTask(Modulo[].class);
-        task.execute(Enderecos.GET_MODULO);
+        task.execute(Enderecos.GET_MODULO + "/" + codEmpresa);
         while(task.isTrabalhando()) ;
         arrModulo = (Modulo[]) task.getDados();
 
         task = new MyTask(Inversor[].class);
-        task.execute(Enderecos.GET_INVERSOR);
+        task.execute(Enderecos.GET_INVERSOR + "/" + codEmpresa);
         while(task.isTrabalhando()) ;
         arrInversor = (Inversor[]) task.getDados();
 
         task = new MyTask(StringBox[].class);
-        task.execute(Enderecos.GET_STRINGBOX);
+        task.execute(Enderecos.GET_STRINGBOX + "/" + codEmpresa);
         while(task.isTrabalhando()) ;
         arrStringBox = (StringBox[]) task.getDados();
 
         task = new MyTask(Fixacao[].class);
-        task.execute(Enderecos.GET_FIXACAO);
+        task.execute(Enderecos.GET_FIXACAO + "/" + codEmpresa);
         while(task.isTrabalhando()) ;
         arrFixacao = (Fixacao[]) task.getDados();
 
         task = new MyTask(BombaSolar[].class);
-        task.execute(Enderecos.GET_BOMBASOLAR);
+        task.execute(Enderecos.GET_BOMBASOLAR + "/" + codEmpresa);
         while(task.isTrabalhando()) ;
         arrBombaSolar = (BombaSolar[]) task.getDados();
 
         task = new MyTask(Cabo[].class);
-        task.execute(Enderecos.GET_CABO);
+        task.execute(Enderecos.GET_CABO + "/" + codEmpresa);
         while(task.isTrabalhando()) ;
         arrCabo = (Cabo[]) task.getDados();
     }

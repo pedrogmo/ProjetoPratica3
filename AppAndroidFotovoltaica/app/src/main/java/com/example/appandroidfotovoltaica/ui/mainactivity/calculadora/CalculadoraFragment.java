@@ -254,6 +254,15 @@ public class CalculadoraFragment extends Fragment {
                     while(task.isTrabalhando()) ;
                     Modulo[] modulo = (Modulo[]) task.getDados();
 
+                    if (modulo.length == 0)
+                    {
+                        Toast.makeText(
+                            getActivity().getApplicationContext(),
+                            "Esse kit não possui módulo",
+                            Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+
                     float watts = modulo[0].getPotencia();
 
                     etIrradiacao.onEditorAction(EditorInfo.IME_ACTION_DONE);

@@ -21,6 +21,7 @@ public class Cabo extends Produto
         String nome,
         float preco,
         String descricao,
+        int codEmpresa,
         float comprimento,
         float diametro,
         String conducao) throws Exception
@@ -29,7 +30,8 @@ public class Cabo extends Produto
             codigo,
             nome,
             preco,
-            descricao);
+            descricao,
+            codEmpresa);
 
         this.setComprimento(comprimento);
         this.setDiametro(diametro);

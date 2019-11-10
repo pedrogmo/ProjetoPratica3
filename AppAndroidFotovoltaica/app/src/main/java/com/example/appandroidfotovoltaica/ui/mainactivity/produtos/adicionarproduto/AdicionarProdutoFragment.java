@@ -37,6 +37,7 @@ import com.example.appandroidfotovoltaica.classes.produto.fixacao.Fixacao;
 import com.example.appandroidfotovoltaica.classes.produto.stringbox.StringBox;
 import com.example.appandroidfotovoltaica.classes.categoria.Categoria;
 import com.example.appandroidfotovoltaica.classes.verificadora.mensagenserro.mensagenserroproduto.MensagensErroProduto;
+import com.example.appandroidfotovoltaica.ui.mainactivity.MainActivity;
 import com.example.appandroidfotovoltaica.ui.mainactivity.produtos.ProdutosFragment;
 
 import java.util.HashMap;
@@ -165,6 +166,8 @@ public class AdicionarProdutoFragment extends Fragment {
                         params.put("nome", nome);
                         params.put("preco", preco);
                         params.put("descricao", descricao);
+                        params.put("codEmpresa", ((MainActivity)getActivity()).getUsuario().getCodEmpresa() + "");
+
                         if (categoriaProduto == BombaSolar.class ||
                             categoriaProduto == Inversor.class ||
                             categoriaProduto == Modulo.class)
@@ -328,7 +331,7 @@ public class AdicionarProdutoFragment extends Fragment {
         }
         else if (this.categoriaProduto == StringBox.class)
         {
-            this.adicionarTextView("Tipo:", params);
+            this.adicionarTextView("Tipo (CA/CC):", params);
             this.adicionarEditText(params, false);
             this.adicionarTxtExc(params);
 

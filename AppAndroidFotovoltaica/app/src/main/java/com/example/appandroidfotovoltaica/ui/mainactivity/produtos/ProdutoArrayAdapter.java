@@ -49,7 +49,7 @@ public class ProdutoArrayAdapter extends ArrayAdapter<Produto>
 
             TextView tvPrecoProduto =
                     (TextView) viewAtual.findViewById(R.id.tvPrecoProduto);
-            tvPrecoProduto.setText(produto.getPreco() + "");
+            tvPrecoProduto.setText(produto.getPreco() + "R$");
         }
         return viewAtual;
     }
