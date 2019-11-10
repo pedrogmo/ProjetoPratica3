@@ -1,7 +1,12 @@
 package com.example.appandroidfotovoltaica.ui.mainactivity.calculadora;
 
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.InputType;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -17,11 +22,18 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.example.appandroidfotovoltaica.classes.calculadora.CalculadoraFotoVoltaica;
 
 import com.example.appandroidfotovoltaica.R;
@@ -35,6 +47,8 @@ import com.example.appandroidfotovoltaica.classes.valormensal.ValorMensalEnergia
 import com.example.appandroidfotovoltaica.ui.mainactivity.MainActivity;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class CalculadoraFragment extends Fragment {
 
@@ -277,7 +291,100 @@ public class CalculadoraFragment extends Fragment {
         btnCriar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                
+                AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                builder.setTitle("Digite o nome da proposta");
+
+                final EditText input = new EditText(getContext());
+
+
+                input.setInputType(InputType.TYPE_CLASS_TEXT);
+                builder.setView(input);
+
+                builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        final String nome = input.getText().toString().trim();
+
+
+                        if (nome == null || nome.equals(""))
+                        {
+                            Toast.makeText(
+                                getActivity().getApplicationContext(),
+                                "Nome vazio",
+                                Toast.LENGTH_SHORT).show();
+                            return;
+                        }
+
+                        if (kits.length == 0)
+                        {
+                            Toast.makeText(
+                                getActivity().getApplicationContext(),
+                                "Não há kits para relacionar",
+                                Toast.LENGTH_SHORT).show();
+                            return;
+                        }
+
+                        if (clientes.length == 0)
+                        {
+                            Toast.makeText(
+                                getActivity().getApplicationContext(),
+                                "Não há clientes para relacionar",
+                                Toast.LENGTH_SHORT).show();
+                            return;
+                        }
+
+                        final RequestQueue QUEUE = Volley.newRequestQueue(getActivity().getApplicationContext());
+                        StringRequest postRequest = new StringRequest(
+                            Request.Method.POST,
+                            Enderecos.POST_USUARIO,
+                            new Response.Listener<String>()
+                            {
+                                @Override
+                                public void onResponse(String response) {
+                                    // response
+                                    Toast.makeText(
+                                        getActivity().getApplicationContext(),
+                                        "Proposta criada",
+                                        Toast.LENGTH_SHORT).show();
+                            }
+                            },
+                            new Response.ErrorListener()
+                            {
+                                @Override
+                                public void onErrorResponse(VolleyError error) {
+                                    // error
+                                    Toast.makeText(
+                                            getActivity().getApplicationContext(),
+                                        "Erro ao criar proposta",
+                                        Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        ) {
+                            @Override
+                            protected Map<String, String> getParams()
+                            {
+                                Map<String, String> params = new HashMap<String, String>();
+                                params.put("nome", nome);
+                                params.put("codUsuario", ((MainActivity) getActivity()).getUsuario().getCodigo() + "");
+                                params.put("codCliente", clientes[indCliente].getCodigo() + "");
+                                params.put("codKit", kits[indKit].getCodigo() + "");
+                                return params;
+                            }
+                        };
+                        QUEUE.add(postRequest);
+
+                        dialog.cancel();
+                    }
+                });
+
+                builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+
+                builder.show();
             }
         });
 
