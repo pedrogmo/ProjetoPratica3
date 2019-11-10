@@ -49,7 +49,7 @@ public class CalculadoraFragment extends Fragment {
     private EditText etIrradiacao, etMedia;
     private RadioGroup rgMedia;
     private RadioButton rbTotal, rbMensal;
-    private Button btnCalcular;
+    private Button btnCalcular, btnCriar;
     private ImageView btnEsq, btnDir;
     private Spinner spKit, spCliente;
 
@@ -76,31 +76,31 @@ public class CalculadoraFragment extends Fragment {
         for(Kit k : kits)
             alNomeKits.add(k.getNome());
 
-        spKit.setAdapter(
-            new ArrayAdapter<String>(
+        ArrayAdapter<String> adapterKit = new ArrayAdapter<String>(
                 getActivity().getApplicationContext(),
-                0,
-                alNomeKits)
-        );
+                android.R.layout.simple_spinner_item,
+                alNomeKits);
+        adapterKit.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spKit.setAdapter(adapterKit);
 
         spCliente = root.findViewById(R.id.spCalculadoraCliente);
 
-        MyTask task2 = new MyTask(Cliente[].class);
+        task = new MyTask(Cliente[].class);
         int codEmp = ((MainActivity)getActivity()).getUsuario().getCodEmpresa();
-        task2.execute(Enderecos.GET_CLIENTE + "/" + codEmp);
-        while(task2.isTrabalhando()) ;
-        clientes = (Cliente[]) task2.getDados();
+        task.execute(Enderecos.GET_CLIENTE + "/" + codEmp);
+        while(task.isTrabalhando()) ;
+        clientes = (Cliente[]) task.getDados();
 
         ArrayList<String> alNomeClientes = new ArrayList<String>();
         for(Cliente c : clientes)
             alNomeClientes.add(c.getNome());
 
-        spCliente.setAdapter(
-            new ArrayAdapter<String>(
+        ArrayAdapter<String> adapterCliente = new ArrayAdapter<String>(
                 getActivity().getApplicationContext(),
-                0,
-                alNomeClientes)
-        );
+                android.R.layout.simple_spinner_item,
+                alNomeClientes);
+        adapterKit.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spCliente.setAdapter(adapterCliente);
 
         tvNumeroPlacas = root.findViewById(R.id.tvNumeroPlacas);
         tvInversor = root.findViewById(R.id.tvInversor);
@@ -261,11 +261,23 @@ public class CalculadoraFragment extends Fragment {
                             Double.parseDouble(etIrradiacao.getText().toString())) + "");
                     tvInversorMenos.setText(tvInversorMenos.getText().toString() + CalculadoraFotoVoltaica.inversorMenos(media,
                             Double.parseDouble(etIrradiacao.getText().toString())) + "");
+
+                    btnCriar.setVisibility(View.VISIBLE);
                 } catch (Exception e) {
 
                 }
 
 
+            }
+        });
+
+        btnCriar = root.findViewById(R.id.btnCriarProposta);
+        btnCriar.setVisibility(View.INVISIBLE);
+
+        btnCriar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                
             }
         });
 
