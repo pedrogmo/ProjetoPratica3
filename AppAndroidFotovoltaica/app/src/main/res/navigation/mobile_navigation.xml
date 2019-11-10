@@ -21,10 +21,17 @@
         android:name="com.example.appandroidfotovoltaica.ui.mainactivity.clientes.ClientesFragment"
         android:label="@string/menu_clientes"
         tools:layout="@layout/fragment_clientes" />
+
     <fragment
         android:id="@+id/nav_produtos"
         android:name="com.example.appandroidfotovoltaica.ui.mainactivity.produtos.ProdutosFragment"
         android:label="@string/menu_produtos"
+        tools:layout="@layout/fragment_produtos" />
+
+    <fragment
+        android:id="@+id/nav_kits"
+        android:name="com.example.appandroidfotovoltaica.ui.mainactivity.kits.KitsFragment"
+        android:label="Kit"
         tools:layout="@layout/fragment_produtos" />
 
     <fragment

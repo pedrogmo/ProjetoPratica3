@@ -21,6 +21,12 @@
             android:id="@+id/nav_produtos"
             android:icon="@drawable/ic_menu_manage"
             android:title="Produtos" />
+
+        <item
+            android:id="@+id/nav_kits"
+            android:icon="@drawable/ic_menu_share"
+            android:title="Kits" />
+
         <item
             android:id="@+id/nav_propostas"
             android:icon="@drawable/ic_proposta"

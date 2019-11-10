@@ -2,7 +2,12 @@ package com.example.appandroidfotovoltaica.classes.enderecos;
 
 public class Enderecos
 {
-    private static final String IP_PORTA = "http://192.168.0.16:3000/";
+    private static final String CASA_PEDRO = "http://192.168.0.16:3000/";
+    private static final String CASA_MEIRA = "http://192.168.1.113:3000/";
+    private static final String DINALVA_02 = "http://177.220.18.81";
+    private static final String DINALVA_03 = "http://177.220.18.82";
+
+    private static final String IP_PORTA = DINALVA_03;
 
     public static final String GET_CLIENTE = IP_PORTA + "cliente";
     public static final String GET_CLIENTE_EMAIL = GET_CLIENTE + "_email";
