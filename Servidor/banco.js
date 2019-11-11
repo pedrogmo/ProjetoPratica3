@@ -338,8 +338,9 @@ rota.post('/insert_cabo', (requisicao, resposta) => {
 
 //ROTAS KITSOL
 
-rota.get('/kit', (requisicao, resposta) => {
-	execSQL(`SELECT * FROM KitSol`, resposta);
+rota.get('/kit/:codEmpresa', (requisicao, resposta) => {
+	const codEmpresa = requisicao.params.codEmpresa;
+	execSQL(`SELECT * FROM KitSol WHERE CODEMPRESA = ${codEmpresa}`, resposta);
 })
 
 rota.post('/insert_kit', (requisicao, resposta) => {

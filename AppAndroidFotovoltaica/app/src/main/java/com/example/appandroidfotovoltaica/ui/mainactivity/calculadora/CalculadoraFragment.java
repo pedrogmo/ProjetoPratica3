@@ -113,7 +113,7 @@ public class CalculadoraFragment extends Fragment {
                 getActivity().getApplicationContext(),
                 android.R.layout.simple_spinner_item,
                 alNomeClientes);
-        adapterKit.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        adapterCliente.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spCliente.setAdapter(adapterCliente);
 
         tvNumeroPlacas = root.findViewById(R.id.tvNumeroPlacas);
