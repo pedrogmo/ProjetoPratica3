@@ -81,8 +81,10 @@ public class CalculadoraFragment extends Fragment {
 
         spKit = root.findViewById(R.id.spCalculadoraKit);
 
+        int codEmpresa = ((MainActivity) getActivity()).getUsuario().getCodEmpresa();
+
         MyTask task = new MyTask(Kit[].class);
-        task.execute(Enderecos.GET_KIT);
+        task.execute(Enderecos.GET_KIT + "/" + codEmpresa);
         while(task.isTrabalhando()) ;
         kits = (Kit[]) task.getDados();
 
@@ -100,8 +102,7 @@ public class CalculadoraFragment extends Fragment {
         spCliente = root.findViewById(R.id.spCalculadoraCliente);
 
         task = new MyTask(Cliente[].class);
-        int codEmp = ((MainActivity)getActivity()).getUsuario().getCodEmpresa();
-        task.execute(Enderecos.GET_CLIENTE + "/" + codEmp);
+        task.execute(Enderecos.GET_CLIENTE + "/" + codEmpresa);
         while(task.isTrabalhando()) ;
         clientes = (Cliente[]) task.getDados();
 
