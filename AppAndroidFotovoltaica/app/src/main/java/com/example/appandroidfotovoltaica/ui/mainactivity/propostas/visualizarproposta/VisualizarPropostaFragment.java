@@ -3,6 +3,7 @@ package com.example.appandroidfotovoltaica.ui.mainactivity.propostas.visualizarp
 import android.Manifest;
 import android.content.pm.PackageManager;
 import android.content.res.AssetManager;
+import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
@@ -11,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.TableLayout;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -26,11 +28,19 @@ import com.example.appandroidfotovoltaica.classes.proposta.Proposta;
 import com.github.barteksc.pdfviewer.source.DocumentSource;
 import com.github.barteksc.pdfviewer.util.FileUtils;
 import com.github.barteksc.pdfviewer.PDFView;
+import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Chunk;
 import com.itextpdf.text.Document;
+import com.itextpdf.text.Font;
 import com.itextpdf.text.PageSize;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfWriter;
+import com.itextpdf.text.pdf.PdfPCell;
+import com.itextpdf.text.pdf.PdfPTable;
+import com.itextpdf.text.Phrase;
+import com.itextpdf.text.Element;
+
+import org.w3c.dom.Text;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -53,6 +63,7 @@ public class VisualizarPropostaFragment extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
         this.propostasViewModel = ViewModelProviders.of(this).get(VisualizarPropostaViewModel.class);
         View root = inflater.inflate(R.layout.fragment_visualizarproposta, container, false);
+        pdfView = root.findViewById(R.id.pdfView);
 
         if (Build.VERSION.SDK_INT > Build.VERSION_CODES.M)
         {
@@ -81,15 +92,12 @@ public class VisualizarPropostaFragment extends Fragment {
     {
         Document doc = new Document(PageSize.LETTER, 0.75F, 0.75F, 0.75F, 0.75F);
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-        String fileName = new SimpleDateFormat(
-                "yyyyMMdd_HHmmss",
-                Locale.getDefault()).format(System.currentTimeMillis());
+        String fileName = "Proposta Meira";
 
         String filePath = Environment.getExternalStorageDirectory() + "/" + fileName + ".pdf";
 
         try
         {
-            //PdfWriter.getInstance(doc, new FileOutputStream(filePath));
             PdfWriter.getInstance(doc, byteArrayOutputStream);
             doc.open();
             doc.add(new Chunk(""));
@@ -99,18 +107,53 @@ public class VisualizarPropostaFragment extends Fragment {
 
             doc.addTitle("Pdf do Meira");
 
-            doc.add(new Paragraph(text));
+            Paragraph paragrafoInicial = new Paragraph(text, new Font(Font.FontFamily.HELVETICA, 24, Font.NORMAL, BaseColor.BLACK));
 
+
+
+            doc.add(paragrafoInicial);
+
+            PdfPTable table = new PdfPTable(3);
+            PdfPCell cell = new PdfPCell(new Phrase("Cell with colspan 3"));
+            cell.setColspan(3);
+            cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+            table.addCell(cell);
+            cell = new PdfPCell(new Phrase("Cell with rowspan 2"));
+            cell.setRowspan(2);
+            cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
+            table.addCell(cell);
+            table.addCell("Cell 1.1");
+            cell = new PdfPCell();
+            cell.addElement(new Phrase("Cell 1.2"));
+            table.addCell(cell);
+            cell = new PdfPCell(new Phrase("Cell 2.1"));
+            cell.setPadding(5);
+            cell.setUseAscender(true);
+            cell.setUseDescender(true);
+            cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+            table.addCell(cell);
+            cell = new PdfPCell();
+            cell.setPadding(5);
+            cell.setUseAscender(true);
+            cell.setUseDescender(true);
+            Paragraph p = new Paragraph("Cell 2.2");
+            p.setAlignment(Element.ALIGN_CENTER);
+            cell.addElement(p);
+            table.addCell(cell);
+            doc.add(table);
             doc.close();
 
-            //pdfView.fromBytes(byteArrayOutputStream.toByteArray()).load();
-            //pdfView.fromFile()
-            File f = new File(filePath);
 
-            Toast.makeText(
+            pdfView.fromBytes(byteArrayOutputStream.toByteArray()).load();
+            //pdfView.fromFile()
+            //File f = new File(filePath);
+
+            //pdfView.fromFile(new File(filePath)).load();
+
+            /*Toast.makeText(
                     getActivity().getApplicationContext(),
                     fileName + ".pdf saved to \n " + filePath,
-                    Toast.LENGTH_SHORT).show();
+                    Toast.LENGTH_SHORT).show();*/
 
 
 
