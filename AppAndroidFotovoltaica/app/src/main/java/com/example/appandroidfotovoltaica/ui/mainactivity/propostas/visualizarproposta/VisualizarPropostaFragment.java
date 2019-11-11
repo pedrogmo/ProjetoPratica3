@@ -7,6 +7,7 @@ import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -108,6 +109,7 @@ public class VisualizarPropostaFragment extends Fragment {
             doc.addTitle("Pdf do Meira");
 
             Paragraph paragrafoInicial = new Paragraph(text, new Font(Font.FontFamily.HELVETICA, 24, Font.NORMAL, BaseColor.BLACK));
+            paragrafoInicial.setAlignment(Element.ALIGN_CENTER);
 
 
 
