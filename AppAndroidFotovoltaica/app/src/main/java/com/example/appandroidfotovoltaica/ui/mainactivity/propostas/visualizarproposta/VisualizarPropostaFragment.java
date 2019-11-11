@@ -89,6 +89,7 @@ public class VisualizarPropostaFragment extends Fragment {
 
         try
         {
+            //PdfWriter.getInstance(doc, new FileOutputStream(filePath));
             PdfWriter.getInstance(doc, byteArrayOutputStream);
             doc.open();
             doc.add(new Chunk(""));
@@ -102,7 +103,9 @@ public class VisualizarPropostaFragment extends Fragment {
 
             doc.close();
 
-            pdfView.fromBytes(byteArrayOutputStream.toByteArray()).load();
+            //pdfView.fromBytes(byteArrayOutputStream.toByteArray()).load();
+            //pdfView.fromFile()
+            File f = new File(filePath);
 
             Toast.makeText(
                     getActivity().getApplicationContext(),
