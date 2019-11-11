@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/fragment_kitindividual">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:background="@android:color/white">
+
+        <LinearLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="20dp">
+
+            <TextView
+                android:id="@+id/tvNomeKit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Nome: "
+                android:layout_marginBottom="10dp"/>
+
+            <ListView
+                android:id="@+id/lvListaProdutosKits"
+                android:layout_width="200dp"
+                android:layout_height="400dp">
+            </ListView>
+        
+            <Button
+                android:id="@+id/btnExcluirKit"
+                android:layout_width="0.0dip"
+                android:layout_height="fill_parent"
+                android:text="Excluir"
+                android:layout_weight="1.0"
+                android:layout_gravity="center"/>
+
+        </LinearLayout>
+
+    </ScrollView>
+</FrameLayout>

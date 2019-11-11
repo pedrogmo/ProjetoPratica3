@@ -32,4 +32,10 @@ public class ConstantesDeTransicao
 
     public static final String F_PROPOSTAS_VISUALIZAR = "FragmentPV";
     public static final String M_PROPOSTAS_VISUALIZAR = "pr-vp";
+
+    public static final String F_KIT_INDIVIDUAL = "FragmentKI";
+    public static final String M_KIT_INDIVIDUAL = "pk-ki";
+
+    public static final String F_ADICIONAR_KIT = "FragmentAK";
+    public static final String M_ADICIONAR_KIT = "pk-ak";
 }

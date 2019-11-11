@@ -54,7 +54,6 @@ public class AdicionarClienteFragment extends Fragment {
         tvExceptionCpf;
 
     private Button btnAdicionarCliente;
-    private FloatingActionButton fab;
     private MensagensErroCliente mensagens;
     private String textoAnterior = "";
 
@@ -71,7 +70,6 @@ public class AdicionarClienteFragment extends Fragment {
             }
         });*/
 
-        fab = root.findViewById(R.id.fabNovoCliente);
         this.etNomeCliente = (EditText) root.findViewById(R.id.etNomeClienteAdd);
         this.etDataNascimentoCliente = (EditText) root.findViewById(R.id.etDataNascimentoClienteAdd);
         etDataNascimentoCliente.addTextChangedListener(new TextWatcher() {
