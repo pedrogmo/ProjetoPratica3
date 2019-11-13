@@ -5,4 +5,92 @@
     android:id="@+id/fragment_adicionarkit"
     android:background="@android:color/white">
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="30dp">
+
+        <TextView
+            android:id="@+id/tvAdicionarProdutoKit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Adicionar um produto"
+            android:layout_gravity="center_horizontal"
+            android:textAlignment="center"
+            android:textSize="20dp"/>
+
+        <Spinner
+            android:id="@+id/spCategoriaKit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:text="Escolha a cetegoria do produto"
+            android:layout_below="@+id/tvAdicionarProdutoKit"/>
+
+        <AutoCompleteTextView
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/actvProdutoKit"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/spCategoriaKit"
+            android:layout_marginTop="30dp"/>
+
+        <NumberPicker
+            android:id="@+id/npQuantidade"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/actvProdutoKit"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp">
+        </NumberPicker>
+
+        <Button
+            android:id="@+id/btnAdicionarProdutoKit"
+            android:text="Adicionar Produto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/npQuantidade"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="30dp">
+        </Button>
+
+        <TextView
+            android:id="@+id/tvNomeKitAdicionar"
+            android:text="Nome do kit:"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/btnAdicionarProdutoKit"
+            android:layout_marginTop="50dp">
+        </TextView>
+
+        <EditText
+            android:id="@+id/etNomeKitAdicionar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvNomeKitAdicionar">
+        </EditText>
+
+        <Button
+            android:id="@+id/btnConcluirKit"
+            android:text="Concluir Kit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/etNomeKitAdicionar"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="100dp"
+            android:layout_marginBottom="50dp">
+        </Button>
+
+    </RelativeLayout>
+
+    </ScrollView>
+
 </FrameLayout>

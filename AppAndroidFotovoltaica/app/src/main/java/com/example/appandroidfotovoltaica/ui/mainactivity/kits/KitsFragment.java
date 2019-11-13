@@ -100,5 +100,4 @@ public class KitsFragment extends Fragment {
         mViewModel = ViewModelProviders.of(this).get(KitsViewModel.class);
         // TODO: Use the ViewModel
     }
-
 }

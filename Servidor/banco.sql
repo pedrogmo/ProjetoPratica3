@@ -140,6 +140,7 @@ create table KitSol(
 	constraint fkKitEmpresa foreign key(codEmpresa) references EmpresaSol(codigo)
 )
 
+
 create table KitModuloSol(
 	codigo int identity(1,1) primary key,
 	
@@ -147,7 +148,9 @@ create table KitModuloSol(
 	constraint fkKitModulo foreign key(codKit) references KitSol(codigo),
 
 	codProduto int not null
-	constraint fkModulo foreign key(codProduto) references ModuloSol(codigo)
+	constraint fkModulo foreign key(codProduto) references ModuloSol(codigo),
+
+	quantidade int not null
 )
 
 create table KitInversorSol(
@@ -157,7 +160,9 @@ create table KitInversorSol(
 	constraint fkKitInversor foreign key(codKit) references KitSol(codigo),
 
 	codProduto int not null
-	constraint fkInversor foreign key(codProduto) references InversorSol(codigo)
+	constraint fkInversor foreign key(codProduto) references InversorSol(codigo),
+
+	quantidade int not null
 )
 
 create table KitStringBoxSol(
@@ -167,7 +172,9 @@ create table KitStringBoxSol(
 	constraint fkKitStringBox foreign key(codKit) references KitSol(codigo),
 
 	codProduto int not null
-	constraint fkStringBox foreign key(codProduto) references StringBoxSol(codigo)
+	constraint fkStringBox foreign key(codProduto) references StringBoxSol(codigo),
+
+	quantidade int not null
 )
 
 create table KitFixacaoSol(
@@ -177,7 +184,9 @@ create table KitFixacaoSol(
 	constraint fkKitFixacao foreign key(codKit) references KitSol(codigo),
 
 	codProduto int not null
-	constraint fkFixacao foreign key(codProduto) references FixacaoSol(codigo)
+	constraint fkFixacao foreign key(codProduto) references FixacaoSol(codigo),
+
+	quantidade int not null
 )
 
 create table KitBombaSolarSol(
@@ -187,7 +196,9 @@ create table KitBombaSolarSol(
 	constraint fkKitBombaSolar foreign key(codKit) references KitSol(codigo),
 
 	codProduto int not null
-	constraint fkBombaSolar foreign key(codProduto) references BombaSolarSol(codigo)
+	constraint fkBombaSolar foreign key(codProduto) references BombaSolarSol(codigo),
+
+	quantidade int not null
 )
 
 create table KitCaboSol(
@@ -197,7 +208,9 @@ create table KitCaboSol(
 	constraint fkKitCabo foreign key(codKit) references KitSol(codigo),
 
 	codProduto int not null
-	constraint fkCabo foreign key(codProduto) references CaboSol(codigo)
+	constraint fkCabo foreign key(codProduto) references CaboSol(codigo),
+
+	quantidade int not null
 )
 
 create table PropostaSol(

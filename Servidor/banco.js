@@ -358,7 +358,8 @@ rota.get('/kitmodulo', (requisicao, resposta) => {
 rota.post('/insert_kitmodulo', (requisicao, resposta) => {
 	const codKit = requisicao.body.codKit;
 	const codModulo = requisicao.body.codModulo;
-	execSQL(`INSERT INTO KitModuloSol VALUES(${codKit}, ${codModulo})`, resposta);
+	const qtd = requisicao.body.quantidade;
+	execSQL(`INSERT INTO KitModuloSol VALUES(${codKit}, ${codModulo}, ${qtd})`, resposta);
 })
 
 //ROTAS KITINVERSORSOL
@@ -370,7 +371,8 @@ rota.get('/kitinversor', (requisicao, resposta) => {
 rota.post('/insert_kitinversor', (requisicao, resposta) => {
 	const codKit = requisicao.body.codKit;
 	const codInversor = requisicao.body.codInversor;
-	execSQL(`INSERT INTO KitInversorSol VALUES(${codKit}, ${codInversor})`, resposta);
+	const qtd = requisicao.body.quantidade;
+	execSQL(`INSERT INTO KitInversorSol VALUES(${codKit}, ${codInversor}, ${qtd})`, resposta);
 })
 
 //ROTAS KITSTRINGBOXSOL
@@ -382,7 +384,8 @@ rota.get('/kitstringbox', (requisicao, resposta) => {
 rota.post('/insert_kitstringbox', (requisicao, resposta) => {
 	const codKit = requisicao.body.codKit;
 	const codStringBox = requisicao.body.codStringBox;
-	execSQL(`INSERT INTO KitStringBoxSol VALUES(${codKit}, ${codStringBox})`, resposta);
+	const qtd = requisicao.body.quantidade;
+	execSQL(`INSERT INTO KitStringBoxSol VALUES(${codKit}, ${codStringBox}, ${qtd})`, resposta);
 })
 
 //ROTAS KITFIXACAOSOL
@@ -394,7 +397,8 @@ rota.get('/kitfixacao', (requisicao, resposta) => {
 rota.post('/insert_kitfixacao', (requisicao, resposta) => {
 	const codKit = requisicao.body.codKit;
 	const codFixacao = requisicao.body.codFixacao;
-	execSQL(`INSERT INTO KitFixacaoSol VALUES(${codKit}, ${codFixacao})`, resposta);
+	const qtd = requisicao.body.quantidade;
+	execSQL(`INSERT INTO KitFixacaoSol VALUES(${codKit}, ${codFixacao}, ${qtd})`, resposta);
 })
 
 //ROTAS KITBOMBASOLARSOL
@@ -406,7 +410,8 @@ rota.get('/kitbombasolar', (requisicao, resposta) => {
 rota.post('/insert_kitbombasolar', (requisicao, resposta) => {
 	const codKit = requisicao.body.codKit;
 	const codBombaSolar = requisicao.body.codBombaSolar;
-	execSQL(`INSERT INTO KitBombaSolar VALUES(${codKit}, ${codBombaSolar})`, resposta);
+	const qtd = requisicao.body.quantidade;
+	execSQL(`INSERT INTO KitBombaSolar VALUES(${codKit}, ${codBombaSolar}, ${qtd})`, resposta);
 })
 
 //ROTAS KITCABOSOL
@@ -418,7 +423,8 @@ rota.get('/kitcabo', (requisicao, resposta) => {
 rota.post('/insert_kitcabo', (requisicao, resposta) => {
 	const codKit = requisicao.body.codKit;
 	const codCabo = requisicao.body.codCabo;
-	execSQL(`INSERT INTO KitCaboSol VALUES(${codKit}, ${codCabo})`, resposta);
+	const qtd = requisicao.body.quantidade;
+	execSQL(`INSERT INTO KitCaboSol VALUES(${codKit}, ${codCabo}, ${qtd})`, resposta);
 })
 
 //ROTAS PROPOSTASOL

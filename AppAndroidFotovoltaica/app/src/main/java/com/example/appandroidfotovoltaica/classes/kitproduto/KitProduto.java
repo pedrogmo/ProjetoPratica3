@@ -8,22 +8,26 @@ public class KitProduto
     private int codigo;
     private int codKit;
     private int codProduto;
+    private int quantidade;
 
     public KitProduto()
     {
         this.codigo = 0;
         this.codKit = 0;
         this.codProduto = 0;
+        this.quantidade = 0;
     }
 
     public KitProduto(
         int codigo,
         int codKit,
-        int codProduto) throws Exception
+        int codProduto,
+        int quantidade) throws Exception
     {
         this.setCodigo(codigo);
         this.setCodKit(codKit);
         this.setCodProduto(codProduto);
+        this.setQuantidade(quantidade);
     }
 
     public KitProduto(
@@ -34,6 +38,7 @@ public class KitProduto
         this.codigo = modelo.codigo;
         this.codKit = modelo.codKit;
         this.codProduto = modelo.codProduto;
+        this.quantidade = modelo.quantidade;
     }
 
     public int getCodigo()
@@ -75,12 +80,26 @@ public class KitProduto
         this.codProduto = codProduto;
     }
 
+    public int getQuantidade()
+    {
+        return quantidade;
+    }
+
+    public void setQuantidade(
+            int quantidade) throws Exception
+    {
+        if (quantidade < 0)
+            throw new IllegalArgumentException("KitProduto - setQuantidade: quantidade negativa");
+        this.quantidade = quantidade;
+    }
+
     public int hashCode()
     {
         int ret = 1;
         ret = ret * 2 + new Integer(this.codigo).hashCode();
         ret = ret * 2 + new Integer(this.codKit).hashCode();
         ret = ret * 2 + new Integer(this.codProduto).hashCode();
+        ret = ret * 2 + new Integer(this.quantidade).hashCode();
         return ret;
     }
 
@@ -106,6 +125,8 @@ public class KitProduto
         if (this.codKit != k.codKit)
             return false;
         if (this.codProduto != k.codProduto)
+            return false;
+        if (this.quantidade != k.quantidade)
             return false;
 
         return true;

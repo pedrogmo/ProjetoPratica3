@@ -346,7 +346,7 @@ public class CalculadoraFragment extends Fragment {
                         final RequestQueue QUEUE = Volley.newRequestQueue(getActivity().getApplicationContext());
                         StringRequest postRequest = new StringRequest(
                             Request.Method.POST,
-                            Enderecos.POST_USUARIO,
+                            Enderecos.POST_PROPOSTA,
                             new Response.Listener<String>()
                             {
                                 @Override
