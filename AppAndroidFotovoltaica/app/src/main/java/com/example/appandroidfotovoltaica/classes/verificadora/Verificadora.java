@@ -90,4 +90,11 @@ public class Verificadora
     {
         return senha1.equals(senha2);
     }
+    public static boolean isQtdValida(int qtd)
+    {
+        if (qtd >= 9999999 || qtd <= 0)
+        return false;
+
+        return true;
+    }
 }
