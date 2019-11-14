@@ -5,8 +5,8 @@
 #define PINO_SENSOR_TEMPERATURA A1
 
 SoftwareSerial esp8266(8,9);
-const char* ssid = "PedroCel";
-const char* pass = "987654321";
+const char* ssid = "Solarium";
+const char* pass = "papaicris";
 int status = WL_IDLE_STATUS;
 
 WiFiEspServer server(80);

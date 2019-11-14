@@ -4,7 +4,9 @@ create table EmpresaSol(
 	cnpj varchar(18) not null
 
 	constraint chkCnpj check(cnpj like 
-		'[0-9][0-9].[0-9][0-9][0-9].[0-9][0-9][0-9]/[0-9][0-9][0-9][0-9]-[0-9][0-9]')
+		'[0-9][0-9].[0-9][0-9][0-9].[0-9][0-9][0-9]/[0-9][0-9][0-9][0-9]-[0-9][0-9]'),
+
+	senha varchar(50) not null
 )
 
 create table UsuarioSol(

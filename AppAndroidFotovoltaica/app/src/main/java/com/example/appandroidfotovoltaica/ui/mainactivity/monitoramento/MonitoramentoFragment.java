@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.appandroidfotovoltaica.R;
 
@@ -30,6 +31,7 @@ public class MonitoramentoFragment extends Fragment {
     private MonitoramentoViewModel mViewModel;
 
     private TextView tvConexao, tvLuz, tvTemperatura;
+    private int cont = 0;
 
     private static String SERVER_IP = "192.168.43.138";
     private static int SERVER_PORT = 80;
@@ -55,8 +57,10 @@ public class MonitoramentoFragment extends Fragment {
 
         tvConexao.setText("Conectando com arduino...");
 
-        if (socket == null)
+
+        if (socket == null) {
             new ConexaoThread().start();
+        }
 
         else
         {
@@ -93,16 +97,14 @@ public class MonitoramentoFragment extends Fragment {
             try
             {
                 InetAddress serverAddr = InetAddress.getByName(SERVER_IP);
-
                 socket = new Socket(serverAddr, SERVER_PORT);
                 rodando = true;
-                output = new PrintWriter(new BufferedWriter(
-                        new OutputStreamWriter(socket.getOutputStream())),
+                output = new PrintWriter(
+                        socket.getOutputStream(),
                         true);
                 input = new BufferedReader(new InputStreamReader(socket.getInputStream()));
                 new EnviadorThread().start();
                 new ReceptorThread().start();
-                tvConexao.setText("Conectado");
             }
             catch (UnknownHostException e1)
             {
