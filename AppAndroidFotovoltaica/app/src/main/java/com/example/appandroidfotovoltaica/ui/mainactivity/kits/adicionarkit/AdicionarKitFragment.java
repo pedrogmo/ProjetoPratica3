@@ -8,6 +8,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,6 +32,7 @@ import com.example.appandroidfotovoltaica.classes.produto.equipamento.inversor.I
 import com.example.appandroidfotovoltaica.classes.produto.equipamento.modulo.Modulo;
 import com.example.appandroidfotovoltaica.classes.produto.fixacao.Fixacao;
 import com.example.appandroidfotovoltaica.classes.produto.stringbox.StringBox;
+import com.example.appandroidfotovoltaica.classes.verificadora.Verificadora;
 import com.example.appandroidfotovoltaica.ui.mainactivity.MainActivity;
 import com.example.appandroidfotovoltaica.ui.mainactivity.kits.kitindividual.KitIndividualViewModel;
 
@@ -75,19 +78,20 @@ public class AdicionarKitFragment extends Fragment {
         btnMais = root.findViewById(R.id.btnMais);
         btnMenos = root.findViewById(R.id.btnMenos);
 
+        if (Integer.parseInt(etQtd.getText().toString()) > 1)
+            btnMenos.setVisibility(View.VISIBLE);
         btnMais.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 try{
                     int qtd = Integer.parseInt(etQtd.getText().toString());
-                    if (qtd >= Integer.MAX_VALUE){
-                        btnMais.setVisibility(View.INVISIBLE);
-                    }
-                    else{
-                        qtd++;
+
+                    qtd++;
+                    if (Verificadora.isQtdValida(qtd))
+                    {
                         etQtd.setText(new Integer(qtd).toString());
-                        btnMenos.setVisibility(View.VISIBLE);
                     }
+
                 }catch(Exception e){}
             }
         });
@@ -96,14 +100,47 @@ public class AdicionarKitFragment extends Fragment {
             public void onClick(View view) {
                 try {
                     int qtd = Integer.parseInt(etQtd.getText().toString());
-                    if (qtd <= 1) {
-                        btnMais.setVisibility(View.INVISIBLE);
-                    } else {
-                        qtd--;
+                    qtd--;
+                    if (Verificadora.isQtdValida(qtd))
+                    {
                         etQtd.setText(new Integer(qtd).toString());
-                        btnMais.setVisibility(View.VISIBLE);
                     }
-                } catch (Exception e){}
+                }catch (Exception e){}
+            }
+        });
+
+        etQtd.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                int qtd;
+                try{
+                    qtd = Integer.parseInt(charSequence.toString());
+                }
+                catch (Exception e){
+                    qtd = 0;
+                }
+                
+                if (qtd==1)
+                    btnMenos.setVisibility(View.INVISIBLE);
+                else
+                    if (qtd==9999999)
+                        btnMais.setVisibility(View.INVISIBLE);
+                    else{
+                        btnMais.setVisibility(View.VISIBLE);
+                        btnMenos.setVisibility(View.VISIBLE);
+                    }
+
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
             }
         });
 
