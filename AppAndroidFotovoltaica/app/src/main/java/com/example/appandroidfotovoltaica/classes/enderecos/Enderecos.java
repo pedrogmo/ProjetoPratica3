@@ -7,7 +7,7 @@ public class Enderecos
     private static final String DINALVA_02 = "http://177.220.18.81:3000/";
     private static final String DINALVA_03 = "http://177.220.18.82:3000/";
 
-    private static final String IP_PORTA = DINALVA_03;
+    private static final String IP_PORTA = DINALVA_02;
 
     public static final String GET_CLIENTE = IP_PORTA + "cliente";
     public static final String GET_CLIENTE_EMAIL = GET_CLIENTE + "_email";

@@ -39,35 +39,61 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/spCategoriaKit"
             android:layout_marginTop="30dp"/>
-
-        <NumberPicker
-            android:id="@+id/npQuantidade"
+        <RelativeLayout
+            android:id="@+id/campoQtdProduto"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/actvProdutoKit"
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp">
-        </NumberPicker>
+            android:orientation="horizontal"
+            android:layout_below="@+id/actvProdutoKit">
+            <RelativeLayout
+                android:id="@+id/rlQtd"
+                android:layout_height="50dp"
+                android:layout_width="200dp">
+                <ImageButton
+                    android:id="@+id/btnMenos"
+                    android:layout_width="20dp"
+                    android:layout_height="25dp"
+                    android:background="@drawable/ic_negative_sign"
+                    android:layout_toLeftOf="@+id/etQtd"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="10dp"
+                    android:visibility="invisible"/>
+                <EditText
+                    android:id="@+id/etQtd"
+                    android:layout_width="wrap_content"
+                    android:textSize="25dp"
+                    android:text="1"
+                    android:layout_height="50dp"
+                    android:inputType="number"
+                    android:layout_centerHorizontal="true"
+                    android:textAlignment="center"/>
+                <ImageButton
+                    android:id="@+id/btnMais"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_marginLeft="20dp"
+                    android:background="@drawable/ic_add"
+                    android:layout_marginTop="10dp"
+                    android:layout_toRightOf="@+id/etQtd"/>
+            </RelativeLayout>
+            <Button
+                android:id="@+id/btnAdicionarProdutoKit"
+                android:text="Adicionar"
+                android:layout_width="150dp"
+                android:layout_height="50dp"
+                android:layout_centerHorizontal="true"
+                android:layout_toRightOf="@+id/rlQtd">
+            </Button>
+        </RelativeLayout>
 
-        <Button
-            android:id="@+id/btnAdicionarProdutoKit"
-            android:text="Adicionar Produto"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/npQuantidade"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="30dp">
-        </Button>
+
 
         <TextView
             android:id="@+id/tvNomeKitAdicionar"
             android:text="Nome do kit:"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/btnAdicionarProdutoKit"
+            android:layout_below="@+id/campoQtdProduto"
             android:layout_marginTop="50dp">
         </TextView>
 

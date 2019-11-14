@@ -16,6 +16,7 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.NumberPicker;
 import android.widget.Spinner;
 
@@ -40,10 +41,11 @@ public class AdicionarKitFragment extends Fragment {
 
     private Spinner spCategoria;
     private AutoCompleteTextView actvProduto;
-    private NumberPicker npQuantidade;
+    private EditText etQtd;
     private Button btnAdicionarProduto;
     private EditText etNomeKit;
     private Button btnConcluir;
+    private ImageButton btnMais, btnMenos;
 
     private Modulo[] modulos;
     private Inversor[] inversores;
@@ -66,13 +68,45 @@ public class AdicionarKitFragment extends Fragment {
 
         spCategoria = root.findViewById(R.id.spCategoriaKit);
         actvProduto = root.findViewById(R.id.actvProdutoKit);
-        npQuantidade = root.findViewById(R.id.npQuantidade);
+        etQtd = root.findViewById(R.id.etQtd);
         btnAdicionarProduto = root.findViewById(R.id.btnAdicionarProduto);
         etNomeKit = root.findViewById(R.id.etNomeKitAdicionar);
         btnConcluir = root.findViewById(R.id.btnConcluirKit);
+        btnMais = root.findViewById(R.id.btnMais);
+        btnMenos = root.findViewById(R.id.btnMenos);
 
-        npQuantidade.setMinValue(1);
-        npQuantidade.setMinValue(100);
+        btnMais.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                try{
+                    int qtd = Integer.parseInt(etQtd.getText().toString());
+                    if (qtd >= Integer.MAX_VALUE){
+                        btnMais.setVisibility(View.INVISIBLE);
+                    }
+                    else{
+                        qtd++;
+                        etQtd.setText(new Integer(qtd).toString());
+                        btnMenos.setVisibility(View.VISIBLE);
+                    }
+                }catch(Exception e){}
+            }
+        });
+        btnMenos.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                try {
+                    int qtd = Integer.parseInt(etQtd.getText().toString());
+                    if (qtd <= 1) {
+                        btnMais.setVisibility(View.INVISIBLE);
+                    } else {
+                        qtd--;
+                        etQtd.setText(new Integer(qtd).toString());
+                        btnMais.setVisibility(View.VISIBLE);
+                    }
+                } catch (Exception e){}
+            }
+        });
+
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity().getApplicationContext(),
                 android.R.layout.simple_spinner_item, Categoria.OPCOES_SPINNER);
