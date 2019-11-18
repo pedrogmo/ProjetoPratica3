@@ -120,8 +120,6 @@ public class AdicionarClienteFragment extends Fragment {
             this.tvExceptionTelefone,
             this.tvExceptionCpf);
 
-        final RequestQueue QUEUE = Volley.newRequestQueue(getActivity().getApplicationContext());
-
         this.btnAdicionarCliente.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -147,7 +145,7 @@ public class AdicionarClienteFragment extends Fragment {
                     return;
                 }
 
-
+                final RequestQueue QUEUE = Volley.newRequestQueue(getActivity().getApplicationContext());
                 StringRequest postRequest = new StringRequest(
                     Request.Method.POST,
                     Enderecos.POST_CLIENTE,

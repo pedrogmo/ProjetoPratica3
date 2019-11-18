@@ -54,7 +54,7 @@ void loop()
         luz = analogRead(PINO_SENSOR_LUZ);
         Serial.print("Luz: ");
         Serial.println(luz);
-        client.print(temperatura);
+        client.print(luz);
 
         client.print("|");
         
@@ -62,6 +62,8 @@ void loop()
         Serial.print("Temperatura: ");
         Serial.println(temperatura);
         client.print(temperatura);
+
+        client.print("|");
         
         if (buf.endsWith("\r\n\r\n"))
         {
