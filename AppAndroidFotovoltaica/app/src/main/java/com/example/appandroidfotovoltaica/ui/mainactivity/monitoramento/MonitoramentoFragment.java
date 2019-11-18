@@ -58,25 +58,19 @@ public class MonitoramentoFragment extends Fragment {
         tvConexao.setText("Conectando com arduino...");
 
 
-        if (socket == null) {
-            new ConexaoThread().start();
-        }
-
-        else
-        {
-            if (!socket.isClosed())
-            {
-                try
-                {
-                    socket.close();
-                }
-                catch (IOException e)
-                {
-                    e.printStackTrace();
-                }
-            }
-            new ConexaoThread().start();
-        }
+        if (socket != null && !socket.isClosed())
+    	{
+    		try
+    		{
+    			socket.close();
+    		}
+    		catch(Exception exc)
+    		{
+    			exc.printStackTrace();
+    		}
+    	}
+	
+	   new ConexaoThread().start();
 
 
         return root;
@@ -100,8 +94,10 @@ public class MonitoramentoFragment extends Fragment {
                 socket = new Socket(serverAddr, SERVER_PORT);
                 rodando = true;
                 output = new PrintWriter(
-                        socket.getOutputStream(),
-                        true);
+			         new BufferedWriter(
+        				new OutputStreamWriter(socket.getOutputStream()),
+        				true)
+        		);
                 input = new BufferedReader(new InputStreamReader(socket.getInputStream()));
                 new EnviadorThread().start();
                 new ReceptorThread().start();
@@ -128,12 +124,19 @@ public class MonitoramentoFragment extends Fragment {
                     final String message = input.readLine();
                     if (message != null)
                     {
-                        String[] dados = message.split("|");
-                        float luz = Float.parseFloat(dados[0]);
-                        float temperatura = Float.parseFloat(dados[1]);
+                        runOnUiThread(new Runnable()
+                        {
+                            @Override
+                            public void run()
+                            {
+                                String[] dados = message.split("|");
+                                float luz = Float.parseFloat(dados[0]);
+                                float temperatura = Float.parseFloat(dados[1]);
 
-                        tvLuz.setText("Luz: " + luz);
-                        tvTemperatura.setText("Temperatura: " + temperatura);
+                                tvLuz.setText("Luz: " + luz);
+                                tvTemperatura.setText("Temperatura: " + temperatura);
+                            }
+                        });
                     }
                 }
                 catch (IOException e)
