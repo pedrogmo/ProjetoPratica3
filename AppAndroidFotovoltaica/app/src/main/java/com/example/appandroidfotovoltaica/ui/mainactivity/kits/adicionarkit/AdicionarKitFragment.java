@@ -21,7 +21,6 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.NumberPicker;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -47,7 +46,6 @@ import com.example.appandroidfotovoltaica.classes.produtoquantidade.ProdutoQuant
 import com.example.appandroidfotovoltaica.classes.verificadora.Verificadora;
 import com.example.appandroidfotovoltaica.ui.mainactivity.MainActivity;
 import com.example.appandroidfotovoltaica.ui.mainactivity.kits.KitsFragment;
-import com.example.appandroidfotovoltaica.ui.mainactivity.kits.kitindividual.KitIndividualViewModel;
 
 import java.util.ArrayList;
 import java.util.HashMap;
