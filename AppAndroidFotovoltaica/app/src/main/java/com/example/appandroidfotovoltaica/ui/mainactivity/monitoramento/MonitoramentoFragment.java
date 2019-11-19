@@ -95,8 +95,8 @@ public class MonitoramentoFragment extends Fragment {
                 rodando = true;
                 output = new PrintWriter(
 			         new BufferedWriter(
-        				new OutputStreamWriter(socket.getOutputStream()),
-        				true)
+        				new OutputStreamWriter(socket.getOutputStream())),
+        				true
         		);
                 input = new BufferedReader(new InputStreamReader(socket.getInputStream()));
                 new EnviadorThread().start();
@@ -113,7 +113,8 @@ public class MonitoramentoFragment extends Fragment {
         }
     }
 
-    private class ReceptorThread extends Thread {
+    private class ReceptorThread extends Thread
+    {
         @Override
         public void run()
         {
@@ -124,7 +125,7 @@ public class MonitoramentoFragment extends Fragment {
                     final String message = input.readLine();
                     if (message != null)
                     {
-                        runOnUiThread(new Runnable()
+                        getActivity().runOnUiThread(new Runnable()
                         {
                             @Override
                             public void run()
