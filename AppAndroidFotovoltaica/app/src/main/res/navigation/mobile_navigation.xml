@@ -32,7 +32,7 @@
         android:id="@+id/nav_kits"
         android:name="com.example.appandroidfotovoltaica.ui.mainactivity.kits.KitsFragment"
         android:label="Kit"
-        tools:layout="@layout/fragment_produtos" />
+        tools:layout="@layout/fragment_kits" />
 
     <fragment
         android:id="@+id/nav_propostas"
