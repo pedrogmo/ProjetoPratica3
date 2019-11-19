@@ -279,7 +279,7 @@ public class AdicionarKitFragment extends Fragment {
                 }
 
                 if (p == null) {
-                    Toast.makeText(getActivity().getApplicationContext(), "Produto não existe", Toast.LENGTH_SHORT);
+                    Toast.makeText(getActivity().getApplicationContext(), "Produto não existe", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
@@ -287,6 +287,8 @@ public class AdicionarKitFragment extends Fragment {
                 try{pq = new ProdutoQuantidade(p, qtd);}
                 catch(Exception exc){}
                 produtosAdicionados.add(pq);
+
+                Toast.makeText(getActivity().getApplicationContext(), "Produto adicionado", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -309,6 +311,88 @@ public class AdicionarKitFragment extends Fragment {
                         {
                             @Override
                             public void onResponse(String response) {
+                                MyTask task = new MyTask(Kit[].class);
+                                task.execute(Enderecos.GET_KIT + "/" + codEmpresa);
+                                while(task.isTrabalhando()) ;
+                                Kit[] kits = (Kit[]) task.getDados();
+
+                                final Kit kitAdicionado = buscaKit(nome, kits);
+                                if (kitAdicionado == null)
+                                {
+                                    Toast.makeText(getActivity().getApplicationContext(), "Kit não foi pego", Toast.LENGTH_SHORT).show();
+                                    return;
+                                }
+
+                                for(final ProdutoQuantidade pq : produtosAdicionados)
+                                {
+                                    String urlPostProduto = "";
+
+                                    Class<? extends Produto> categoria = pq.getProduto().getClass();
+
+                                    if (categoria == Modulo.class)
+                                        urlPostProduto = Enderecos.POST_KITMODULO;
+
+                                    else if (categoria == Inversor.class)
+                                        urlPostProduto = Enderecos.POST_KITINVERSOR;
+
+                                    else if (categoria == StringBox.class)
+                                        urlPostProduto = Enderecos.POST_KITSTRINGBOX;
+
+                                    else if (categoria == Fixacao.class)
+                                        urlPostProduto = Enderecos.POST_KITFIXACAO;
+
+                                    else if (categoria == BombaSolar.class)
+                                        urlPostProduto = Enderecos.POST_KITBOMBASOLAR;
+
+                                    else if (categoria == Cabo.class)
+                                        urlPostProduto = Enderecos.POST_KITCABO;
+
+                                    Log.d("MSG", urlPostProduto);
+
+
+                                    StringRequest postRequest2 = new StringRequest(
+                                            Request.Method.POST,
+                                            urlPostProduto,
+                                            new Response.Listener<String>()
+                                            {
+                                                @Override
+                                                public void onResponse(String response) {
+                                                    Log.d("MSG", pq.getProduto().getNome());
+                                                }
+                                            },
+                                            new Response.ErrorListener()
+                                            {
+                                                @Override
+                                                public void onErrorResponse(VolleyError error) {
+                                                    // error
+                                                    Toast.makeText(
+                                                            getActivity().getApplicationContext(),
+                                                            "Erro ao produto kit",
+                                                            Toast.LENGTH_SHORT).show();
+                                                }
+                                            }
+                                    ) {
+                                        @Override
+                                        protected Map<String, String> getParams()
+                                        {
+                                            Map<String, String> params = new HashMap<String, String>();
+                                            params.put("codKit", kitAdicionado.getCodigo() + "");
+                                            params.put("codProduto", pq.getProduto().getCodigo() + "");
+                                            params.put("quantidade", pq.getQuantidade() + "");
+                                            return params;
+                                        }
+                                    };
+                                    QUEUE.add(postRequest2);
+                                }
+
+                                Toast.makeText(
+                                        getActivity().getApplicationContext(),
+                                        "Kit concluído",
+                                        Toast.LENGTH_SHORT).show();
+
+                                FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+                                fragmentTransaction.replace(R.id.fragment_adicionarkit, new KitsFragment());
+                                fragmentTransaction.commit();
                             }
                         },
                         new Response.ErrorListener()
@@ -317,9 +401,9 @@ public class AdicionarKitFragment extends Fragment {
                             public void onErrorResponse(VolleyError error) {
                                 // error
                                 Toast.makeText(
-                                        getActivity().getApplicationContext(),
-                                        "Erro ao inserir kit",
-                                        Toast.LENGTH_SHORT).show();
+                                    getActivity().getApplicationContext(),
+                                    "Erro ao inserir kit",
+                                    Toast.LENGTH_SHORT).show();
                             }
                         }
                 ) {
@@ -333,91 +417,6 @@ public class AdicionarKitFragment extends Fragment {
                     }
                 };
                 QUEUE.add(postRequest);
-
-                MyTask task = new MyTask(Kit[].class);
-                task.execute(Enderecos.GET_KIT + "/" + codEmpresa);
-                while(task.isTrabalhando()) ;
-                Kit[] kits = (Kit[]) task.getDados();
-
-                final Kit kitAdicionado = buscaKit(nome, kits);
-                if (kitAdicionado == null)
-                {
-                    Toast.makeText(getActivity().getApplicationContext(), "Kit não foi pego", Toast.LENGTH_SHORT);
-                    return;
-                }
-
-                for(final ProdutoQuantidade pq : produtosAdicionados)
-                {
-                    String urlPostProduto = "";
-
-                    Class<? extends Produto> categoria = pq.getProduto().getClass();
-
-                    if (categoria == Modulo.class)
-                        urlPostProduto = Enderecos.POST_KITMODULO;
-
-                    else if (categoria == Inversor.class)
-                        urlPostProduto = Enderecos.POST_KITINVERSOR;
-
-                    else if (categoria == StringBox.class)
-                        urlPostProduto = Enderecos.POST_KITSTRINGBOX;
-
-                    else if (categoria == Fixacao.class)
-                        urlPostProduto = Enderecos.POST_KITFIXACAO;
-
-                    else if (categoria == BombaSolar.class)
-                        urlPostProduto = Enderecos.POST_KITBOMBASOLAR;
-
-                    else if (categoria == Cabo.class)
-                        urlPostProduto = Enderecos.POST_KITCABO;
-
-                    Log.d("MSG", urlPostProduto);
-
-
-                    final RequestQueue QUEUE2 = Volley.newRequestQueue(getActivity().getApplicationContext());
-                    StringRequest postRequest2 = new StringRequest(
-                            Request.Method.POST,
-                            urlPostProduto,
-                            new Response.Listener<String>()
-                            {
-                                @Override
-                                public void onResponse(String response) {
-                                    Log.d("MSG", pq.getProduto().getNome());
-                                }
-                            },
-                            new Response.ErrorListener()
-                            {
-                                @Override
-                                public void onErrorResponse(VolleyError error) {
-                                    // error
-                                    Toast.makeText(
-                                        getActivity().getApplicationContext(),
-                                        "Erro ao produto kit",
-                                        Toast.LENGTH_SHORT).show();
-                                }
-                            }
-                    ) {
-                        @Override
-                        protected Map<String, String> getParams()
-                        {
-                            Map<String, String> params = new HashMap<String, String>();
-                            params.put("codKit", kitAdicionado.getCodigo() + "");
-                            params.put("codProduto", pq.getProduto().getCodigo() + "");
-                            params.put("quantidade", pq.getQuantidade() + "");
-                            return params;
-                        }
-                    };
-                    QUEUE2.add(postRequest);
-
-                }
-
-                Toast.makeText(
-                        getActivity().getApplicationContext(),
-                        "Kit concluído",
-                        Toast.LENGTH_SHORT).show();
-
-                FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-                fragmentTransaction.replace(R.id.fragment_adicionarkit, new KitsFragment());
-                fragmentTransaction.commit();
             }
         });
 
