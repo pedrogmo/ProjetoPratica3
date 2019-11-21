@@ -127,12 +127,19 @@ public class MonitoramentoFragment extends Fragment {
                             @Override
                             public void run()
                             {
-                                String[] dados = message.split("|");
-                                //float luz = Float.parseFloat(dados[0]);
-                                //float temperatura = Float.parseFloat(dados[1]);
+                                try {
+                                    String[] dados = message.split("|");
+                                    //float luz = Float.parseFloat(dados[0]);
+                                    //float temperatura = Float.parseFloat(dados[1]);
 
-                                tvLuz.setText("Luz: " + dados[0]);
-                                tvTemperatura.setText("Temperatura: " + dados[1]);
+                                    tvLuz.setText("Luz: " + dados[0]);
+                                    tvTemperatura.setText("Temperatura: " + dados[1]);
+                                }
+                                catch(Exception exc)
+                                {
+                                    tvLuz.setText("Luz: [ERRO]");
+                                    tvTemperatura.setText("Temperatura: [ERRO]");
+                                }
                             }
                         });
                     }
