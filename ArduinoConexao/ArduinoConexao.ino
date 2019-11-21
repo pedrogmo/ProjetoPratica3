@@ -83,10 +83,12 @@ void loop()
         Serial.println(temperatura);
 
         sendHttpResponse(client, luz, temperatura);
-        
-        Serial.println("Fechando"); 
-        break;
-        
+
+        if (buf.endsWith("\r\n\r\n")
+        {
+          Serial.println("Fechando"); 
+          break;
+        }
       }
     } // while
     client.stop();
