@@ -39,9 +39,22 @@ void sendHttpResponse(
     float luz,
     float temperatura)
 {
+  client.println("HTTP/1.1 200 OK"); 
+  client.println("Content-type:text/html");
+  client.println("Connection: close");
+  client.println();
+
+  client.println("<!DOCTYPE HTML><html>");
+  client.println("<head>");
+  client.println("<title>Monitoramento</title>");
+  client.println("</head>");
+  client.println("<body>");
   client.print(luz);
   client.print("|");
-  client.println(temperatura);
+  client.print(temperatura);
+
+  client.println("</body></html>");
+  client.println();
 }
 
 void loop() 
