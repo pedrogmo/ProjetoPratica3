@@ -99,7 +99,7 @@ public class MonitoramentoFragment extends Fragment {
         				true
         		);
                 input = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-                new EnviadorThread().start();
+                new ReceptorThread().start();
 
             }
             catch (Exception e)
@@ -152,7 +152,6 @@ public class MonitoramentoFragment extends Fragment {
         {
             output.write(mensagem);
             output.flush();
-            new ReceptorThread().start();
         }
     }
 }
