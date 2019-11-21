@@ -71,26 +71,22 @@ void loop()
         char c = client.read();
         buf.push(c);
 
-        client.print("|");
+        float luz;
+        float temperatura;
+
+        luz = analogRead(PINO_SENSOR_LUZ);
+        Serial.print("Luz: ");
+        Serial.println(luz);
         
-        if (buf.endsWith("\r\n\r\n"))
-        {
-          float luz;
-          float temperatura;
+        temperatura = (float(analogRead(PINO_SENSOR_TEMPERATURA))*5/(1023))/0.01;
+        Serial.print("Temperatura: ");
+        Serial.println(temperatura);
 
-          luz = analogRead(PINO_SENSOR_LUZ);
-          Serial.print("Luz: ");
-          Serial.println(luz);
-          
-          temperatura = (float(analogRead(PINO_SENSOR_TEMPERATURA))*5/(1023))/0.01;
-          Serial.print("Temperatura: ");
-          Serial.println(temperatura);
-
-          sendHttpResponse(client, luz, temperatura);
-          
-          Serial.println("Fechando"); 
-          break;
-        }
+        sendHttpResponse(client, luz, temperatura);
+        
+        Serial.println("Fechando"); 
+        break;
+        
       }
     } // while
     client.stop();

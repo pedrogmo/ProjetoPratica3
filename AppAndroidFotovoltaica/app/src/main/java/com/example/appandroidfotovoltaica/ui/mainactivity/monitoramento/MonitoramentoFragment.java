@@ -39,7 +39,7 @@ public class MonitoramentoFragment extends Fragment {
     private boolean rodando;
     private BufferedReader input;
     private PrintWriter output;
-    private String mensagem;
+    private String mensagem = "\r\n\r\n";
 
     public static MonitoramentoFragment newInstance() {
         return new MonitoramentoFragment();
@@ -99,17 +99,14 @@ public class MonitoramentoFragment extends Fragment {
         				true
         		);
                 input = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-                //new EnviadorThread().start();
-                new ReceptorThread().start();
+                new EnviadorThread().start();
+
             }
-            catch (UnknownHostException e1)
+            catch (Exception e)
             {
-                e1.printStackTrace();
+                tvConexao.setText(e.getMessage());
             }
-            catch (IOException e1)
-            {
-                e1.printStackTrace();
-            }
+
         }
     }
 
@@ -131,11 +128,11 @@ public class MonitoramentoFragment extends Fragment {
                             public void run()
                             {
                                 String[] dados = message.split("|");
-                                float luz = Float.parseFloat(dados[0]);
-                                float temperatura = Float.parseFloat(dados[1]);
+                                //float luz = Float.parseFloat(dados[0]);
+                                //float temperatura = Float.parseFloat(dados[1]);
 
-                                tvLuz.setText("Luz: " + luz);
-                                tvTemperatura.setText("Temperatura: " + temperatura);
+                                tvLuz.setText("Luz: " + dados[0]);
+                                tvTemperatura.setText("Temperatura: " + dados[1]);
                             }
                         });
                     }
@@ -155,6 +152,7 @@ public class MonitoramentoFragment extends Fragment {
         {
             output.write(mensagem);
             output.flush();
+            new ReceptorThread().start();
         }
     }
 }
