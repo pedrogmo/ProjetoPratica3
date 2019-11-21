@@ -34,6 +34,29 @@ void setup()
   pinMode(PINO_SENSOR_TEMPERATURA, INPUT);
 }
 
+void sendHttpResponse(
+    WiFiEspClient client,
+    float luz,
+    float temperatura)
+{
+  client.println("HTTP/1.1 200 OK"); 
+  client.println("Content-type:text/html");
+  client.println("Connection: close");
+  client.println();
+
+  client.println("<!DOCTYPE HTML><html>");
+  client.println("<head>");
+  client.println("<title>Monitoramento</title>");
+  client.println("</head>");
+  client.println("<body>");
+  client.print(luz);
+  client.print("|");
+  client.print(temperatura);
+
+  client.println("</body></html>");
+  client.println();
+}
+
 void loop() 
 {
   WiFiEspClient client = server.available();
@@ -45,28 +68,26 @@ void loop()
     {
       if (client.available())
       {
-        float luz;
-        float temperatura;
-        
         char c = client.read();
         buf.push(c);
-
-        luz = analogRead(PINO_SENSOR_LUZ);
-        Serial.print("Luz: ");
-        Serial.println(luz);
-        client.print(luz);
-
-        client.print("|");
-        
-        temperatura = (float(analogRead(PINO_SENSOR_TEMPERATURA))*5/(1023))/0.01;
-        Serial.print("Temperatura: ");
-        Serial.println(temperatura);
-        client.print(temperatura);
 
         client.print("|");
         
         if (buf.endsWith("\r\n\r\n"))
         {
+          float luz;
+          float temperatura;
+
+          luz = analogRead(PINO_SENSOR_LUZ);
+          Serial.print("Luz: ");
+          Serial.println(luz);
+          
+          temperatura = (float(analogRead(PINO_SENSOR_TEMPERATURA))*5/(1023))/0.01;
+          Serial.print("Temperatura: ");
+          Serial.println(temperatura);
+
+          sendHttpResponse(client, luz, temperatura);
+          
           Serial.println("Fechando"); 
           break;
         }

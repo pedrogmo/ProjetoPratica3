@@ -99,7 +99,7 @@ public class MonitoramentoFragment extends Fragment {
         				true
         		);
                 input = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-                new EnviadorThread().start();
+                //new EnviadorThread().start();
                 new ReceptorThread().start();
             }
             catch (UnknownHostException e1)
