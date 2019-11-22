@@ -143,8 +143,18 @@ public class MonitoramentoFragment extends Fragment {
                         {
                             try
                             {
-                                tvLuz.setText("Luz: " + luz);
-                                tvTemperatura.setText("Temperatura: " + temp);
+                                String qualidade = "";
+                                float lf = Float.parseFloat(luz);
+
+                                if (lf < 100.0f)
+                                    qualidade = " (Pouca luminosidade)";
+                                else if (lf < 200.0f)
+                                    qualidade = " (Luminosidade boa)";
+                                else
+                                    qualidade = " (Luminosidade ótima)";
+
+                                tvLuz.setText("Luz: " + luz + qualidade);
+                                tvTemperatura.setText("Temperatura: " + temp + "ºC");
                             }
                             catch(Exception exc)
                             {
