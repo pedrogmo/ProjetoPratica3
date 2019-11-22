@@ -22,9 +22,11 @@ import androidx.lifecycle.ViewModelProviders;
 
 import com.example.appandroidfotovoltaica.R;
 import com.example.appandroidfotovoltaica.classes.constantesdetransicao.ConstantesDeTransicao;
+import com.example.appandroidfotovoltaica.classes.empresa.Empresa;
 import com.example.appandroidfotovoltaica.classes.enderecos.Enderecos;
 import com.example.appandroidfotovoltaica.classes.mytask.MyTask;
 import com.example.appandroidfotovoltaica.classes.proposta.Proposta;
+import com.example.appandroidfotovoltaica.classes.usuario.Usuario;
 import com.example.appandroidfotovoltaica.ui.mainactivity.clientes.adicionarcliente.AdicionarClienteFragment;
 import com.example.appandroidfotovoltaica.ui.mainactivity.propostas.visualizarproposta.VisualizarPropostaFragment;
 import com.github.barteksc.pdfviewer.source.DocumentSource;
@@ -46,6 +48,7 @@ public class PropostasFragment extends Fragment {
     private Button btnGerar;
     private ListView lvProposta;
 
+
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         this.propostasViewModel = ViewModelProviders.of(this).get(PropostasViewModel.class);
@@ -54,6 +57,9 @@ public class PropostasFragment extends Fragment {
         this.btnGerar = (Button) root.findViewById(R.id.btnGerarPDF);
         this.lvProposta = (ListView) root.findViewById(R.id.lvListaPropostas);
 
+
+
+        /* BUSCA A PROPOSTA*/
         MyTask task = new MyTask(Proposta[].class);
         task.execute(Enderecos.GET_PROPOSTA);
         while(task.isTrabalhando()) ;
@@ -82,7 +88,6 @@ public class PropostasFragment extends Fragment {
                     }
                     else
                     {
-                        savePdf();
                         FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
                         fragmentTransaction.replace(R.id.fragment_propostas, new VisualizarPropostaFragment(), ConstantesDeTransicao.F_PROPOSTAS_VISUALIZAR).addToBackStack(ConstantesDeTransicao.M_PROPOSTAS_VISUALIZAR).commit();
                     }
@@ -97,57 +102,6 @@ public class PropostasFragment extends Fragment {
 
         });
         return root;
-    }
-
-    private void savePdf()
-    {
-        Document doc = new Document();
-        String fileName = new SimpleDateFormat(
-            "yyyyMMdd_HHmmss",
-            Locale.getDefault()).format(System.currentTimeMillis());
-
-        String filePath = Environment.getExternalStorageDirectory() + "/" + fileName + ".pdf";
-
-        try
-        {
-            PdfWriter.getInstance(doc, new FileOutputStream(filePath));
-            doc.open();
-            String text = "O MEEIRO TEM UM GRANDE CORAÇÃO...";
-
-            doc.addAuthor("Gustavo de Meira");
-
-            doc.addTitle("Pdf do Meira");
-
-            doc.add(new Paragraph(text));
-
-            doc.close();
-
-            Toast.makeText(
-                getActivity().getApplicationContext(),
-                fileName + ".pdf saved to \n " + filePath,
-                Toast.LENGTH_SHORT).show();
-
-
-
-            //i.putExtra("pdfEscolhido",() doc);
-
-            /*Intent sendIntent = new Intent(Intent.ACTION_SEND);
-            //Uri uri = FileProvider.getUriForFile(this, "  ", (File)doc).parse(filePath);
-
-            sendIntent.putExtra(Intent.EXTRA_STREAM, uri);
-            sendIntent.setType("message/rfc822");
-
-
-            Intent shareIntent = Intent.createChooser(sendIntent, null);
-            startActivity(shareIntent);*/
-        }
-        catch(Exception exc)
-        {
-            Toast.makeText(
-                getActivity().getApplicationContext(),
-                exc.toString(),
-                Toast.LENGTH_SHORT).show();
-        }
     }
 
     @Override

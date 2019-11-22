@@ -23,9 +23,11 @@ import androidx.lifecycle.ViewModelProviders;
 
 import com.example.appandroidfotovoltaica.R;
 import com.example.appandroidfotovoltaica.classes.constantesdetransicao.ConstantesDeTransicao;
+import com.example.appandroidfotovoltaica.classes.empresa.Empresa;
 import com.example.appandroidfotovoltaica.classes.enderecos.Enderecos;
 import com.example.appandroidfotovoltaica.classes.mytask.MyTask;
 import com.example.appandroidfotovoltaica.classes.proposta.Proposta;
+import com.example.appandroidfotovoltaica.classes.usuario.Usuario;
 import com.github.barteksc.pdfviewer.source.DocumentSource;
 import com.github.barteksc.pdfviewer.util.FileUtils;
 import com.github.barteksc.pdfviewer.PDFView;
@@ -59,12 +61,24 @@ public class VisualizarPropostaFragment extends Fragment {
 
     private com.github.barteksc.pdfviewer.PDFView pdfView;
     private static final int STORAGE_CODE = 1000;
+    private Usuario logado;
+    private String nomeEmpresa;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         this.propostasViewModel = ViewModelProviders.of(this).get(VisualizarPropostaViewModel.class);
         View root = inflater.inflate(R.layout.fragment_visualizarproposta, container, false);
         pdfView = root.findViewById(R.id.pdfView);
+
+        logado = (Usuario)getActivity().getIntent().getSerializableExtra("usuario");
+
+
+        MyTask task = new MyTask(Empresa[].class);
+        task.execute(Enderecos.GET_EMPRESA + "/" + logado.getCodEmpresa());
+        while (task.isTrabalhando()) ;
+        Empresa[] resultEmpresas = (Empresa[]) task.getDados();
+
+        nomeEmpresa = resultEmpresas[0].getNome();
 
         if (Build.VERSION.SDK_INT > Build.VERSION_CODES.M)
         {
@@ -102,6 +116,9 @@ public class VisualizarPropostaFragment extends Fragment {
             PdfWriter.getInstance(doc, byteArrayOutputStream);
             doc.open();
             doc.add(new Chunk(""));
+            String nomeAutorProposta = logado.getNome();
+            String nomeEmpresaProposta = nomeEmpresa;
+            String nomeClient;
             String text = "O MEEIRO TEM UM GRANDE CORAÇÃO...";
 
             doc.addAuthor("Gustavo de Meira");
