@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -32,10 +33,9 @@ public class MonitoramentoFragment extends Fragment {
     private MonitoramentoViewModel mViewModel;
 
     private TextView tvConexao, tvLuz, tvTemperatura;
+    private EditText etIp;
     private Button btnConectar;
-    private int cont = 0;
 
-    private static String SERVER_IP = "192.168.43.138";
     private static int SERVER_PORT = 80;
     private Socket socket;
     private boolean rodando = true;
@@ -56,6 +56,7 @@ public class MonitoramentoFragment extends Fragment {
         tvConexao = root.findViewById(R.id.tvConexaoArduino);
         tvLuz = root.findViewById(R.id.tvLuzArduino);
         tvTemperatura = root.findViewById(R.id.tvTemperaturaArduino);
+        etIp = root.findViewById(R.id.etIpArduino);
         btnConectar = root.findViewById(R.id.btnConectarArduino);
 
         btnConectar.setOnClickListener(new View.OnClickListener() {
@@ -96,7 +97,9 @@ public class MonitoramentoFragment extends Fragment {
             {
                 tvConexao.setText("Conectando com arduino...");
 
-                InetAddress serverAddr = InetAddress.getByName(SERVER_IP);
+                final String IP = etIp.getText().toString().trim();
+
+                InetAddress serverAddr = InetAddress.getByName(IP);
                 socket = new Socket(serverAddr, SERVER_PORT);
                 rodando = true;
                 output = new PrintWriter(
@@ -108,7 +111,6 @@ public class MonitoramentoFragment extends Fragment {
 
                 tvConexao.setText("Conectado");
 
-                rodando = true;
                 new EnviadorThread().start();
                 while(rodando) ;
 
@@ -116,7 +118,7 @@ public class MonitoramentoFragment extends Fragment {
             }
             catch (Exception e)
             {
-                tvConexao.setText(e.getMessage());
+                tvConexao.setText("Erro ao conectar");
             }
 
         }
