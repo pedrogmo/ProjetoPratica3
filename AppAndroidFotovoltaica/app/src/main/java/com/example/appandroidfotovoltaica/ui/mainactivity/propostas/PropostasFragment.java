@@ -60,7 +60,7 @@ public class PropostasFragment extends Fragment {
 
 
         /* BUSCA A PROPOSTA*/
-        MyTask task = new MyTask(Proposta[].class);
+        /*MyTask task = new MyTask(Proposta[].class);
         task.execute(Enderecos.GET_PROPOSTA);
         while(task.isTrabalhando()) ;
         Proposta[] arrProposta = (Proposta[]) task.getDados();
@@ -100,7 +100,7 @@ public class PropostasFragment extends Fragment {
             }
 
 
-        });
+        });*/
         return root;
     }
 
