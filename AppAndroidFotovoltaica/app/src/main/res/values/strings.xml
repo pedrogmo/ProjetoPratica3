@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">AppAndroidFotovoltaica</string>
+    <string name="app_name">Solarium</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="nav_header_title">Android Studio</string>
@@ -13,7 +13,7 @@
     <string name="menu_propostas">Propostas</string>
     <string name="menu_share">Share</string>
     <string name="menu_send">Send</string>
-    <string name="title_activity_login">Login</string>
+    <string name="title_activity_login">Solarium</string>
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password</string>
     <string name="action_sign_in">Sign in or register</string>
