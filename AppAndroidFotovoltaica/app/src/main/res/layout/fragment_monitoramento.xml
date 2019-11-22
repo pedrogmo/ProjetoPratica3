@@ -1,21 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <TextView
-        android:layout_width="match_parent"
+        android:id="@+id/tvIp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="IP: "
+        android:text="IP : "
         android:textSize="20dp"
-        android:layout_marginBottom="10dp">
+        android:textColor="@android:color/black"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:layout_toLeftOf="@+id/etIpArduino">
     </TextView>
 
     <EditText
         android:id="@+id/etIpArduino"
-        android:layout_width="match_parent"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:textSize="20dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
         android:layout_marginBottom="20dp">
     </EditText>
 
@@ -24,7 +30,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Conectar"
-        android:layout_marginBottom="20dp">
+        android:layout_marginBottom="20dp"
+        android:layout_below="@+id/etIpArduino"
+        android:layout_centerHorizontal="true">
     </Button>
 
     <TextView
@@ -32,7 +40,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="20dp"
-        android:textSize="20dp">
+        android:layout_centerHorizontal="true"
+        android:textSize="20dp"
+        android:layout_below="@+id/btnConectarArduino">
     </TextView>
 
     <TextView
@@ -40,7 +50,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="20dp"
-        android:textSize="20dp">
+        android:layout_centerHorizontal="true"
+        android:textSize="20dp"
+        android:layout_below="@+id/tvConexaoArduino">
     </TextView>
 
     <TextView
@@ -48,7 +60,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="20dp"
-        android:textSize="20dp">
+        android:layout_centerHorizontal="true"
+        android:textSize="20dp"
+        android:layout_below="@+id/tvLuzArduino">
     </TextView>
 
-</LinearLayout>
+</RelativeLayout>
