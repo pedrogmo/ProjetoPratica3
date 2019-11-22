@@ -36,7 +36,7 @@ public class MonitoramentoFragment extends Fragment {
     private EditText etIp;
     private Button btnConectar;
 
-    private static int SERVER_PORT = 80;
+    private static final int SERVER_PORT = 80;
     private Socket socket;
     private boolean rodando = true;
     private BufferedReader input;
