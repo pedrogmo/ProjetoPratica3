@@ -1,6 +1,9 @@
 package com.example.appandroidfotovoltaica.classes.valormensal;
 
+import java.io.Serializable;
+
 public class ValorMensalEnergia
+    implements Cloneable, Serializable
 {
     private String mes;
     private double valor;

@@ -2,8 +2,10 @@ package com.example.appandroidfotovoltaica.classes.produtoquantidade;
 
 import com.example.appandroidfotovoltaica.classes.produto.Produto;
 
+import java.io.Serializable;
+
 public class ProdutoQuantidade
-    implements Cloneable
+    implements Cloneable, Serializable
 {
     private Produto produto;
     private int quantidade;

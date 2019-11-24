@@ -2,7 +2,6 @@ package com.example.appandroidfotovoltaica.classes.constantesdetransicao;
 
 public class ConstantesDeTransicao
 {
-
     public static final String F_ADICIONAR_CLIENTE = "FragmentAC";
     public static final String M_ADICIONAR_CLIENTE = "pc-ac";
 

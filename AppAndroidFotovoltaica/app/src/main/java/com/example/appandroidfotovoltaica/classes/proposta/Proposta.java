@@ -1,6 +1,9 @@
 package com.example.appandroidfotovoltaica.classes.proposta;
 
+import java.io.Serializable;
+
 public class Proposta
+    implements Cloneable, Serializable
 {
     private int codigo;
     private String nome;
