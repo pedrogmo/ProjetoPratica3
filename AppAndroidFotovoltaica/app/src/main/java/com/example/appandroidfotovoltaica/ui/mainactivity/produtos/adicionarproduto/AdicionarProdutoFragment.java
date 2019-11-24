@@ -106,7 +106,6 @@ public class AdicionarProdutoFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 final RequestQueue QUEUE = Volley.newRequestQueue(getActivity().getApplicationContext());
-                final String URL;
                 final String nome = etNome.getText().toString().trim();
                 final String preco = etPreco.getText().toString().trim();
                 final String descricao = etDescricao.getText().toString().trim();
@@ -114,20 +113,7 @@ public class AdicionarProdutoFragment extends Fragment {
                 if (mensagensErroProduto.teveMensagensDeErro(nome, preco, descricao, etCampos))
                     return;
 
-                if (categoriaProduto == Modulo.class)
-                    URL = Enderecos.POST_MODULO;
-                else if (categoriaProduto == Inversor.class)
-                    URL = Enderecos.POST_INVERSOR;
-                else if (categoriaProduto == StringBox.class)
-                    URL = Enderecos.POST_STRINGBOX;
-                else if (categoriaProduto == Fixacao.class)
-                    URL = Enderecos.POST_FIXACAO;
-                else if (categoriaProduto == BombaSolar.class)
-                    URL = Enderecos.POST_BOMBASOLAR;
-                else if (categoriaProduto == Cabo.class)
-                    URL = Enderecos.POST_CABO;
-                else
-                    URL = "";
+                final String URL = Categoria.ROTAS_POST_PRODUTO[Categoria.getIndice(categoriaProduto)];
 
                 StringRequest postRequest = new StringRequest(
                     Request.Method.POST,

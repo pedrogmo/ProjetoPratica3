@@ -17,6 +17,7 @@ import android.widget.CheckBox;
 import android.widget.ListView;
 
 import com.example.appandroidfotovoltaica.R;
+import com.example.appandroidfotovoltaica.classes.adapters.usuarioarrayadapter.UsuarioArrayAdapter;
 import com.example.appandroidfotovoltaica.classes.constantesdetransicao.ConstantesDeTransicao;
 import com.example.appandroidfotovoltaica.classes.empresa.Empresa;
 import com.example.appandroidfotovoltaica.classes.enderecos.Enderecos;

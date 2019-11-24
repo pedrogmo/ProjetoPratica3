@@ -164,7 +164,7 @@ public class AdicionarKitFragment extends Fragment {
 
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity().getApplicationContext(),
-                android.R.layout.simple_spinner_item, Categoria.OPCOES_SPINNER);
+                android.R.layout.simple_spinner_item, Categoria.NOMES_CATEGORIAS);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spCategoria.setAdapter(adapter);
 
@@ -323,30 +323,8 @@ public class AdicionarKitFragment extends Fragment {
 
                                 for(final ProdutoQuantidade pq : produtosAdicionados)
                                 {
-                                    String urlPostProduto = "";
-
-                                    Class<? extends Produto> categoria = pq.getProduto().getClass();
-
-                                    if (categoria == Modulo.class)
-                                        urlPostProduto = Enderecos.POST_KITMODULO;
-
-                                    else if (categoria == Inversor.class)
-                                        urlPostProduto = Enderecos.POST_KITINVERSOR;
-
-                                    else if (categoria == StringBox.class)
-                                        urlPostProduto = Enderecos.POST_KITSTRINGBOX;
-
-                                    else if (categoria == Fixacao.class)
-                                        urlPostProduto = Enderecos.POST_KITFIXACAO;
-
-                                    else if (categoria == BombaSolar.class)
-                                        urlPostProduto = Enderecos.POST_KITBOMBASOLAR;
-
-                                    else if (categoria == Cabo.class)
-                                        urlPostProduto = Enderecos.POST_KITCABO;
-
-                                    Log.d("MSG", urlPostProduto);
-
+                                    final Class<? extends Produto> categoria = pq.getProduto().getClass();
+                                    final String urlPostProduto = Categoria.ROTAS_POST_KITPRODUTO[Categoria.getIndice(categoria)];
 
                                     StringRequest postRequest2 = new StringRequest(
                                             Request.Method.POST,

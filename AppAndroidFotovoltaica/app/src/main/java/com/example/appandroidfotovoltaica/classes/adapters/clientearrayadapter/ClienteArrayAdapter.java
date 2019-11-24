@@ -1,4 +1,4 @@
-package com.example.appandroidfotovoltaica.ui.loginactivity.empresaindividual;
+package com.example.appandroidfotovoltaica.classes.adapters.clientearrayadapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -7,49 +7,49 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import com.example.appandroidfotovoltaica.classes.cliente.Cliente;
 import com.example.appandroidfotovoltaica.R;
-import com.example.appandroidfotovoltaica.classes.usuario.Usuario;
 
 import java.util.ArrayList;
 
-public class UsuarioArrayAdapter extends ArrayAdapter<Usuario>
-{
-    private ArrayList<Usuario> listaUsuarios;
+public class ClienteArrayAdapter extends ArrayAdapter<Cliente> {
+
+    private ArrayList<Cliente> listaClientes;
     private Context context;
 
-    public UsuarioArrayAdapter(
-        Context context,
-        ArrayList<Usuario> listaUsuarios)
+    public ClienteArrayAdapter(
+            Context context,
+            ArrayList<Cliente> listaClientes)
     {
         super(
                 context,
                 0,
-                listaUsuarios);
+                listaClientes);
 
         this.context = context;
-        this.listaUsuarios = listaUsuarios;
+        this.listaClientes = listaClientes;
     }
 
     @Override
     public View getView(
-        int position,
-        View viewAtual,
-        ViewGroup parent)
+            int position,
+            View viewAtual,
+            ViewGroup parent)
     {
-        Usuario usuario = listaUsuarios.get(position);
+        Cliente cliente = listaClientes.get(position);
 
         if(viewAtual==null)
         {
             viewAtual =
                     LayoutInflater.from(context).inflate(R.layout.lista_pessoas, null);
 
-            TextView tvEmailUsuario =
+            TextView tvEmailCliente =
                     (TextView) viewAtual.findViewById(R.id.tvEmailPessoa);
-            tvEmailUsuario.setText(usuario.getEmail());
+            tvEmailCliente.setText(cliente.getEmail());
 
-            TextView tvNomeUsuario =
+            TextView tvNomeCliente =
                     (TextView) viewAtual.findViewById(R.id.tvNomePessoa);
-            tvNomeUsuario.setText(usuario.getNome());
+            tvNomeCliente.setText(cliente.getNome());
         }
         return viewAtual;
     }

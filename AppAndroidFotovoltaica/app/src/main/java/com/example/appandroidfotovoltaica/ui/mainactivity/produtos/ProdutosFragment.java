@@ -14,6 +14,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProviders;
 
+import com.example.appandroidfotovoltaica.classes.adapters.produtoarrayadapter.ProdutoArrayAdapter;
 import com.example.appandroidfotovoltaica.classes.categoria.Categoria;
 import com.example.appandroidfotovoltaica.classes.constantesdetransicao.ConstantesDeTransicao;
 import com.example.appandroidfotovoltaica.classes.produto.equipamento.bombasolar.BombaSolar;
@@ -54,13 +55,6 @@ public class ProdutosFragment extends Fragment {
         toolsViewModel =
                 ViewModelProviders.of(this).get(ProdutosViewModel.class);
         View root = inflater.inflate(R.layout.fragment_produtos, container, false);
-        /*final TextView textView = root.findViewById(R.id.text_tools);
-        toolsViewModel.getText().observe(this, new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
-            }
-        });*/
 
         this.spCategoria = (Spinner) root.findViewById(R.id.spCategoria);
         this.lvProdutos = (ListView) root.findViewById(R.id.lvListaProdutos);
@@ -69,7 +63,7 @@ public class ProdutosFragment extends Fragment {
         this.listaProdutos = new ArrayList<Produto>();
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity().getApplicationContext(),
-                android.R.layout.simple_spinner_item, Categoria.OPCOES_SPINNER);
+                android.R.layout.simple_spinner_item, Categoria.NOMES_CATEGORIAS);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spCategoria.setAdapter(adapter);
 

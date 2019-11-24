@@ -11,18 +11,46 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.appandroidfotovoltaica.R;
+import com.example.appandroidfotovoltaica.classes.adapters.produtoarrayadapter.ProdutoArrayAdapter;
+import com.example.appandroidfotovoltaica.classes.adapters.produtoquantidadearrayadpter.ProdutoQuantidadeArrayAdapter;
+import com.example.appandroidfotovoltaica.classes.categoria.Categoria;
+import com.example.appandroidfotovoltaica.classes.enderecos.Enderecos;
 import com.example.appandroidfotovoltaica.classes.kit.Kit;
+import com.example.appandroidfotovoltaica.classes.kitproduto.KitProduto;
+import com.example.appandroidfotovoltaica.classes.mytask.MyTask;
+import com.example.appandroidfotovoltaica.classes.produto.Produto;
+import com.example.appandroidfotovoltaica.classes.produto.cabo.Cabo;
+import com.example.appandroidfotovoltaica.classes.produto.equipamento.bombasolar.BombaSolar;
+import com.example.appandroidfotovoltaica.classes.produto.equipamento.inversor.Inversor;
+import com.example.appandroidfotovoltaica.classes.produto.equipamento.modulo.Modulo;
+import com.example.appandroidfotovoltaica.classes.produto.fixacao.Fixacao;
+import com.example.appandroidfotovoltaica.classes.produto.stringbox.StringBox;
+import com.example.appandroidfotovoltaica.classes.produtoquantidade.ProdutoQuantidade;
+import com.example.appandroidfotovoltaica.ui.mainactivity.MainActivity;
+
+import java.util.ArrayList;
 
 public class KitIndividualFragment extends Fragment {
 
     private KitIndividualViewModel mViewModel;
 
     private TextView tvNome;
+    private ListView lvProdutos;
+    private Button btnExcluir;
 
     private Kit kitAtual;
+
+    private Modulo[] arrModulo;
+    private Inversor[] arrInversor;
+    private StringBox[] arrStringBox;
+    private Fixacao[] arrFixacao;
+    private BombaSolar[] arrBombaSolar;
+    private Cabo[] arrCabo;
 
     public static KitIndividualFragment newInstance() {
         return new KitIndividualFragment();
@@ -35,11 +63,25 @@ public class KitIndividualFragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_kitindividual, container, false);
 
         tvNome = root.findViewById(R.id.tvNomeKit);
+        lvProdutos = root.findViewById(R.id.lvListaProdutosKits);
+        btnExcluir = root.findViewById(R.id.btnExcluirKit);
 
         Bundle bundle = getArguments();
         kitAtual = (Kit) bundle.getSerializable("kit");
-
         tvNome.setText(kitAtual.getNome());
+
+        fazerBuscas();
+
+        this.lvProdutos.setAdapter(new ProdutoQuantidadeArrayAdapter(
+                getActivity().getApplicationContext(), produtosDoKit()
+        ));
+
+        btnExcluir.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
 
         return root;
     }
@@ -51,4 +93,76 @@ public class KitIndividualFragment extends Fragment {
         // TODO: Use the ViewModel
     }
 
+    private void fazerBuscas()
+    {
+        int codEmpresa = ((MainActivity) getActivity()).getUsuario().getCodEmpresa();
+
+        MyTask task = new MyTask(Modulo[].class);
+        task.execute(Enderecos.GET_MODULO + "/" + codEmpresa);
+        while(task.isTrabalhando()) ;
+        arrModulo = (Modulo[]) task.getDados();
+
+        task = new MyTask(Inversor[].class);
+        task.execute(Enderecos.GET_INVERSOR + "/" + codEmpresa);
+        while(task.isTrabalhando()) ;
+        arrInversor = (Inversor[]) task.getDados();;
+
+        task = new MyTask(StringBox[].class);
+        task.execute(Enderecos.GET_STRINGBOX + "/" + codEmpresa);
+        while(task.isTrabalhando()) ;
+        arrStringBox = (StringBox[]) task.getDados();
+
+        task = new MyTask(Fixacao[].class);
+        task.execute(Enderecos.GET_FIXACAO + "/" + codEmpresa);
+        while(task.isTrabalhando()) ;
+        arrFixacao = (Fixacao[]) task.getDados();
+
+        task = new MyTask(BombaSolar[].class);
+        task.execute(Enderecos.GET_BOMBASOLAR + "/" + codEmpresa);
+        while(task.isTrabalhando()) ;
+        arrBombaSolar = (BombaSolar[]) task.getDados();
+
+        task = new MyTask(Cabo[].class);
+        task.execute(Enderecos.GET_CABO + "/" + codEmpresa);
+        while(task.isTrabalhando()) ;
+        arrCabo = (Cabo[]) task.getDados();
+    }
+
+    private ArrayList<ProdutoQuantidade> produtosDoKit()
+    {
+        ArrayList<ProdutoQuantidade> ret = new ArrayList<ProdutoQuantidade>();
+
+        for(int i=0; i<6; ++i)
+        {
+            KitProduto[] kitProdutos;
+            MyTask task = new MyTask(KitProduto[].class);
+            task.execute(Categoria.ROTAS_GET_KITPRODUTO[i] + "/" + kitAtual.getCodigo());
+            while (task.isTrabalhando()) ;
+            kitProdutos = (KitProduto[]) task.getDados();
+
+            for (KitProduto kp : kitProdutos)
+            {
+                Produto p = produtoCodigo(arrModulo, kp.getCodProduto());
+                if (p != null)
+                {
+                    try
+                    {
+                        ret.add(new ProdutoQuantidade(p, kp.getQuantidade()));
+                    }
+                    catch (Exception exc) {}
+                }
+            }
+        }
+        return ret;
+    }
+
+    private Produto produtoCodigo(
+        Produto[] produtos,
+        int codigo)
+    {
+        for(Produto p : produtos)
+            if (p.getCodigo() == codigo)
+                return p;
+        return null;
+    }
 }

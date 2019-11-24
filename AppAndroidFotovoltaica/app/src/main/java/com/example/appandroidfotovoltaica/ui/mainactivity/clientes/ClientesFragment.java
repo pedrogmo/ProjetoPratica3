@@ -1,5 +1,6 @@
 package com.example.appandroidfotovoltaica.ui.mainactivity.clientes;
 
+import com.example.appandroidfotovoltaica.classes.adapters.clientearrayadapter.ClienteArrayAdapter;
 import com.example.appandroidfotovoltaica.classes.cliente.Cliente;
 import com.example.appandroidfotovoltaica.classes.constantesdetransicao.ConstantesDeTransicao;
 import com.example.appandroidfotovoltaica.classes.enderecos.Enderecos;

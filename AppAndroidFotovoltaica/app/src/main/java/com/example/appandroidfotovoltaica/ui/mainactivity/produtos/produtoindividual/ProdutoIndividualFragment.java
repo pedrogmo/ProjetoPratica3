@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.view.CollapsibleActionView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,6 +28,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.appandroidfotovoltaica.R;
+import com.example.appandroidfotovoltaica.classes.categoria.Categoria;
 import com.example.appandroidfotovoltaica.classes.enderecos.Enderecos;
 import com.example.appandroidfotovoltaica.classes.produto.Produto;
 import com.example.appandroidfotovoltaica.classes.produto.cabo.Cabo;
@@ -99,22 +101,7 @@ public class ProdutoIndividualFragment extends Fragment {
                 }
 
                 final RequestQueue QUEUE = Volley.newRequestQueue(getActivity().getApplicationContext());
-                final String URL;
-
-                if (categoriaProduto == Modulo.class)
-                    URL = Enderecos.PATCH_MODULO;
-                else if (categoriaProduto == Inversor.class)
-                    URL = Enderecos.PATCH_INVERSOR;
-                else if (categoriaProduto == StringBox.class)
-                    URL = Enderecos.PATCH_STRINGBOX;
-                else if (categoriaProduto == Fixacao.class)
-                    URL = Enderecos.PATCH_FIXACAO;
-                else if (categoriaProduto == BombaSolar.class)
-                    URL = Enderecos.PATCH_BOMBASOLAR;
-                else if (categoriaProduto == Cabo.class)
-                    URL = Enderecos.PATCH_CABO;
-                else
-                    URL = "";
+                final String URL = Categoria.ROTAS_PATCH_PRODUTO[Categoria.getIndice(categoriaProduto)];
 
                 StringRequest putRequest = new StringRequest(
                     Request.Method.PATCH,
@@ -170,22 +157,7 @@ public class ProdutoIndividualFragment extends Fragment {
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
                                 final RequestQueue QUEUE = Volley.newRequestQueue(getActivity().getApplicationContext());
-                                final String URL;
-
-                                if (categoriaProduto == Modulo.class)
-                                    URL = Enderecos.DELETE_MODULO;
-                                else if (categoriaProduto == Inversor.class)
-                                    URL = Enderecos.DELETE_INVERSOR;
-                                else if (categoriaProduto == StringBox.class)
-                                    URL = Enderecos.DELETE_STRINGBOX;
-                                else if (categoriaProduto == Fixacao.class)
-                                    URL = Enderecos.DELETE_FIXACAO;
-                                else if (categoriaProduto == BombaSolar.class)
-                                    URL = Enderecos.DELETE_BOMBASOLAR;
-                                else if (categoriaProduto == Cabo.class)
-                                    URL = Enderecos.DELETE_CABO;
-                                else
-                                    URL = "";
+                                final String URL = Categoria.ROTAS_DELETE_PRODUTO[Categoria.getIndice(categoriaProduto)];
 
                                 StringRequest dr = new StringRequest(
                                         Request.Method.DELETE,

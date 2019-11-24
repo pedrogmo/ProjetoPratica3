@@ -1,4 +1,4 @@
-package com.example.appandroidfotovoltaica.ui.mainactivity.produtos;
+package com.example.appandroidfotovoltaica.classes.adapters.produtoarrayadapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
