@@ -12,7 +12,6 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
-import androidx.lifecycle.ViewModelProviders;
 
 import com.example.appandroidfotovoltaica.R;
 import com.example.appandroidfotovoltaica.classes.arvorebinaria.ArvoreBinaria;

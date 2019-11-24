@@ -1,7 +1,6 @@
 package com.example.appandroidfotovoltaica.ui.loginactivity.empresaindividual;
 
 import androidx.fragment.app.FragmentTransaction;
-import androidx.lifecycle.ViewModelProviders;
 
 import android.os.Bundle;
 

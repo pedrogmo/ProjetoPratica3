@@ -102,8 +102,7 @@
             <EditText
                 android:id="@+id/etCpfClienteAlt"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="number"/>
+                android:layout_height="wrap_content" />
 
             <TextView
                 android:id="@+id/tvExceptionCpfClienteAlt"
