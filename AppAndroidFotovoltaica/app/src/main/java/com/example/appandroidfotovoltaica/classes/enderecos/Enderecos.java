@@ -59,6 +59,7 @@ public class Enderecos
 
     public static final String GET_KIT = IP_PORTA + "kit";
     public static final String POST_KIT = IP_PORTA + "insert_kit";
+    public static final String DELETE_KIT = IP_PORTA + "delete_kit";
 
     public static final String GET_KITMODULO = IP_PORTA + "kitmodulo";
     public static final String POST_KITMODULO = IP_PORTA + "insert_kitmodulo";

@@ -1,20 +1,31 @@
 package com.example.appandroidfotovoltaica.ui.mainactivity.kits.kitindividual;
 
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProviders;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.example.appandroidfotovoltaica.R;
 import com.example.appandroidfotovoltaica.classes.adapters.produtoarrayadapter.ProdutoArrayAdapter;
 import com.example.appandroidfotovoltaica.classes.adapters.produtoquantidadearrayadpter.ProdutoQuantidadeArrayAdapter;
@@ -32,6 +43,7 @@ import com.example.appandroidfotovoltaica.classes.produto.fixacao.Fixacao;
 import com.example.appandroidfotovoltaica.classes.produto.stringbox.StringBox;
 import com.example.appandroidfotovoltaica.classes.produtoquantidade.ProdutoQuantidade;
 import com.example.appandroidfotovoltaica.ui.mainactivity.MainActivity;
+import com.example.appandroidfotovoltaica.ui.mainactivity.kits.KitsFragment;
 
 import java.util.ArrayList;
 
@@ -79,7 +91,61 @@ public class KitIndividualFragment extends Fragment {
         btnExcluir.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                AlertDialog.Builder builder1 = new AlertDialog.Builder(getContext());
+                builder1.setMessage("Deseja mesmo excluir?");
+                builder1.setCancelable(true);
 
+                builder1.setPositiveButton(
+                    "Sim",
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            final RequestQueue QUEUE = Volley.newRequestQueue(getActivity().getApplicationContext());
+
+                            StringRequest dr = new StringRequest(
+                                    Request.Method.DELETE,
+                                    Enderecos.DELETE_KIT + "/" + kitAtual.getCodigo(),
+                                    new Response.Listener<String>()
+                                    {
+                                        @Override
+                                        public void onResponse(String response) {
+                                            // response
+                                            Toast.makeText(
+                                                    getActivity().getApplicationContext(),
+                                                    "Kit excluído",
+                                                    Toast.LENGTH_SHORT).show();
+
+                                            FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+                                            fragmentTransaction.replace(R.id.fragment_kitindividual, new KitsFragment());
+                                            fragmentTransaction.commit();
+                                        }
+                                    },
+                                    new Response.ErrorListener()
+                                    {
+                                        @Override
+                                        public void onErrorResponse(VolleyError error) {
+                                            Toast.makeText(
+                                                getActivity().getApplicationContext(),
+                                                "Erro ao excluir",
+                                                Toast.LENGTH_SHORT).show();
+                                        }
+                                    }
+                            );
+                            QUEUE.add(dr);
+
+                            dialog.cancel();
+                        }
+                    });
+
+                builder1.setNegativeButton(
+                        "Não",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                dialog.cancel();
+                            }
+                        });
+
+                AlertDialog alert11 = builder1.create();
+                alert11.show();
             }
         });
 
