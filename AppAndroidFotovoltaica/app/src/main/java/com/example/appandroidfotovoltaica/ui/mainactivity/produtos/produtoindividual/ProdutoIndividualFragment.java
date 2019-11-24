@@ -11,7 +11,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import android.view.CollapsibleActionView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,14 +28,12 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.appandroidfotovoltaica.R;
 import com.example.appandroidfotovoltaica.classes.categoria.Categoria;
-import com.example.appandroidfotovoltaica.classes.enderecos.Enderecos;
 import com.example.appandroidfotovoltaica.classes.produto.Produto;
 import com.example.appandroidfotovoltaica.classes.produto.cabo.Cabo;
 import com.example.appandroidfotovoltaica.classes.produto.equipamento.EquipamentoFotovoltaico;
 import com.example.appandroidfotovoltaica.classes.produto.equipamento.bombasolar.BombaSolar;
 import com.example.appandroidfotovoltaica.classes.produto.equipamento.inversor.Inversor;
 import com.example.appandroidfotovoltaica.classes.produto.equipamento.modulo.Modulo;
-import com.example.appandroidfotovoltaica.classes.produto.fixacao.Fixacao;
 import com.example.appandroidfotovoltaica.classes.produto.stringbox.StringBox;
 import com.example.appandroidfotovoltaica.ui.mainactivity.produtos.ProdutosFragment;
 

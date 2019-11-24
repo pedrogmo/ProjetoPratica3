@@ -1,7 +1,6 @@
 package com.example.appandroidfotovoltaica.classes.cliente;
 
 import com.example.appandroidfotovoltaica.classes.verificadora.Verificadora;
-
 import java.io.Serializable;
 
 public class Cliente

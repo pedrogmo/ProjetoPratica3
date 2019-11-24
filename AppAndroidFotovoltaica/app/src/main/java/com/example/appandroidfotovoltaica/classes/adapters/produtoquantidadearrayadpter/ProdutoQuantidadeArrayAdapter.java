@@ -6,12 +6,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
-
 import com.example.appandroidfotovoltaica.R;
 import com.example.appandroidfotovoltaica.classes.categoria.Categoria;
-import com.example.appandroidfotovoltaica.classes.produto.Produto;
 import com.example.appandroidfotovoltaica.classes.produtoquantidade.ProdutoQuantidade;
-
 import java.util.ArrayList;
 
 public class ProdutoQuantidadeArrayAdapter extends ArrayAdapter<ProdutoQuantidade>

@@ -11,7 +11,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,7 +26,6 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.appandroidfotovoltaica.R;
-import com.example.appandroidfotovoltaica.classes.adapters.produtoarrayadapter.ProdutoArrayAdapter;
 import com.example.appandroidfotovoltaica.classes.adapters.produtoquantidadearrayadpter.ProdutoQuantidadeArrayAdapter;
 import com.example.appandroidfotovoltaica.classes.categoria.Categoria;
 import com.example.appandroidfotovoltaica.classes.enderecos.Enderecos;

@@ -30,7 +30,6 @@ import com.example.appandroidfotovoltaica.classes.verificadora.mensagenserro.men
 import com.example.appandroidfotovoltaica.classes.mytask.MyTask;
 import com.example.appandroidfotovoltaica.R;
 import com.example.appandroidfotovoltaica.ui.mainactivity.clientes.ClientesFragment;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.HashMap;
 import java.util.Map;

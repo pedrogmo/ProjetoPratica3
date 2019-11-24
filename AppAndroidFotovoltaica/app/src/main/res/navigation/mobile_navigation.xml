@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+<navigation
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
@@ -13,31 +14,31 @@
     <fragment
         android:id="@+id/nav_calculadora"
         android:name="com.example.appandroidfotovoltaica.ui.mainactivity.calculadora.CalculadoraFragment"
-        android:label="@string/menu_calculadora"
+        android:label="Calculadora"
         tools:layout="@layout/fragment_calculadora" />
 
     <fragment
         android:id="@+id/nav_clientes"
         android:name="com.example.appandroidfotovoltaica.ui.mainactivity.clientes.ClientesFragment"
-        android:label="@string/menu_clientes"
+        android:label="Clientes"
         tools:layout="@layout/fragment_clientes" />
 
     <fragment
         android:id="@+id/nav_produtos"
         android:name="com.example.appandroidfotovoltaica.ui.mainactivity.produtos.ProdutosFragment"
-        android:label="@string/menu_produtos"
+        android:label="Produtos"
         tools:layout="@layout/fragment_produtos" />
 
     <fragment
         android:id="@+id/nav_kits"
         android:name="com.example.appandroidfotovoltaica.ui.mainactivity.kits.KitsFragment"
-        android:label="Kit"
+        android:label="Kits"
         tools:layout="@layout/fragment_kits" />
 
     <fragment
         android:id="@+id/nav_propostas"
         android:name="com.example.appandroidfotovoltaica.ui.mainactivity.propostas.PropostasFragment"
-        android:label="@string/menu_propostas"
+        android:label="Propostas"
         tools:layout="@layout/fragment_propostas" />
 
     <fragment

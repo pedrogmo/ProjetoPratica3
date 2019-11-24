@@ -2,17 +2,13 @@ package com.example.appandroidfotovoltaica.classes.verificadora.mensagenserro.me
 
 import android.widget.EditText;
 import android.widget.TextView;
-
-import com.example.appandroidfotovoltaica.classes.categoria.Categoria;
 import com.example.appandroidfotovoltaica.classes.produto.Produto;
 import com.example.appandroidfotovoltaica.classes.produto.cabo.Cabo;
-import com.example.appandroidfotovoltaica.classes.produto.equipamento.EquipamentoFotovoltaico;
 import com.example.appandroidfotovoltaica.classes.produto.equipamento.bombasolar.BombaSolar;
 import com.example.appandroidfotovoltaica.classes.produto.equipamento.inversor.Inversor;
 import com.example.appandroidfotovoltaica.classes.produto.equipamento.modulo.Modulo;
 import com.example.appandroidfotovoltaica.classes.produto.stringbox.StringBox;
 import com.example.appandroidfotovoltaica.classes.verificadora.Verificadora;
-
 import java.util.Vector;
 
 public class MensagensErroProduto

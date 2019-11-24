@@ -8,7 +8,6 @@ public class Proposta
     private int codCliente;
     private int codKit;
 
-
     public Proposta()
     {
         this.codigo = 0;

@@ -6,10 +6,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
-
 import com.example.appandroidfotovoltaica.classes.cliente.Cliente;
 import com.example.appandroidfotovoltaica.R;
-
 import java.util.ArrayList;
 
 public class ClienteArrayAdapter extends ArrayAdapter<Cliente> {

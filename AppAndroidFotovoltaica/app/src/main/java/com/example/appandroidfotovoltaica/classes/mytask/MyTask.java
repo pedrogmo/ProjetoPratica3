@@ -2,7 +2,6 @@ package com.example.appandroidfotovoltaica.classes.mytask;
 
 import android.os.AsyncTask;
 import android.util.Log;
-
 import com.example.appandroidfotovoltaica.classes.clientews.ClienteWS;
 
 public class MyTask

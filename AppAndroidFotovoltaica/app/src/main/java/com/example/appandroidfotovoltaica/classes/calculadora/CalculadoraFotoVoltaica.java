@@ -1,7 +1,6 @@
 package com.example.appandroidfotovoltaica.classes.calculadora;
 
 import com.example.appandroidfotovoltaica.classes.valormensal.ValorMensalEnergia;
-
 import java.text.DecimalFormat;
 
 public class CalculadoraFotoVoltaica {
