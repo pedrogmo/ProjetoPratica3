@@ -29,8 +29,6 @@ import java.util.ArrayList;
 
 public class EmpresaIndividualFragment extends Fragment {
 
-    private EmpresaIndividualViewModel mViewModel;
-
     private CheckBox chkTipoUsuario;
     private ListView lvListaUsuarios;
 
@@ -45,7 +43,6 @@ public class EmpresaIndividualFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        this.mViewModel = ViewModelProviders.of(this).get(EmpresaIndividualViewModel.class);
         View root = inflater.inflate(R.layout.fragment_empresaindividual, container, false);
 
         try
@@ -120,13 +117,6 @@ public class EmpresaIndividualFragment extends Fragment {
             new UsuarioArrayAdapter(
                     getActivity().getApplicationContext(), this.listaUsuarios)
         );
-    }
-
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        mViewModel = ViewModelProviders.of(this).get(EmpresaIndividualViewModel.class);
-        // TODO: Use the ViewModel
     }
 
 }

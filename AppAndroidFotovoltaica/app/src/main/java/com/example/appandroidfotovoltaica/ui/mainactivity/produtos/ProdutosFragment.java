@@ -12,7 +12,6 @@ import android.widget.Spinner;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.lifecycle.ViewModelProviders;
 
 import com.example.appandroidfotovoltaica.classes.adapters.produtoarrayadapter.ProdutoArrayAdapter;
 import com.example.appandroidfotovoltaica.classes.categoria.Categoria;
@@ -36,7 +35,6 @@ import java.util.ArrayList;
 
 public class ProdutosFragment extends Fragment {
 
-    private ProdutosViewModel toolsViewModel;
     private ArrayList<Produto> listaProdutos;
     private ListView lvProdutos;
     private FloatingActionButton fabAdicionar;
@@ -52,8 +50,6 @@ public class ProdutosFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        toolsViewModel =
-                ViewModelProviders.of(this).get(ProdutosViewModel.class);
         View root = inflater.inflate(R.layout.fragment_produtos, container, false);
 
         this.spCategoria = (Spinner) root.findViewById(R.id.spCategoria);

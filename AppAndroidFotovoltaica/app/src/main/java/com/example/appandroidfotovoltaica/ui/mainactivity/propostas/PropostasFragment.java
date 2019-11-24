@@ -15,7 +15,6 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.lifecycle.ViewModelProviders;
 
 import com.example.appandroidfotovoltaica.R;
 import com.example.appandroidfotovoltaica.classes.constantesdetransicao.ConstantesDeTransicao;
@@ -31,15 +30,12 @@ public class PropostasFragment extends Fragment {
 
     private static final int STORAGE_CODE = 1000;
 
-    private PropostasViewModel propostasViewModel;
-
     private Button btnGerar;
     private ListView lvProposta;
 
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        this.propostasViewModel = ViewModelProviders.of(this).get(PropostasViewModel.class);
         View root = inflater.inflate(R.layout.fragment_propostas, container, false);
 
         this.btnGerar = (Button) root.findViewById(R.id.btnGerarPDF);
@@ -105,7 +101,7 @@ public class PropostasFragment extends Fragment {
                 {
                     Toast.makeText(
                         getActivity().getApplicationContext(),
-                        "Permission denied.",
+                        "Acesso negado.",
                         Toast.LENGTH_SHORT).show();
                 }
             }break;

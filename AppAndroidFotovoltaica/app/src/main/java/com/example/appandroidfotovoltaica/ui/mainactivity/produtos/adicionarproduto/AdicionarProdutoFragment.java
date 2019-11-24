@@ -1,7 +1,6 @@
 package com.example.appandroidfotovoltaica.ui.mainactivity.produtos.adicionarproduto;
 
 import androidx.fragment.app.FragmentTransaction;
-import androidx.lifecycle.ViewModelProviders;
 
 import android.graphics.Color;
 import android.os.Bundle;
@@ -44,7 +43,6 @@ import java.util.Vector;
 
 public class AdicionarProdutoFragment extends Fragment {
 
-    private AdicionarProdutoViewModel mViewModel;
     private EditText
         etNome,
         etPreco,
@@ -71,7 +69,6 @@ public class AdicionarProdutoFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        mViewModel = ViewModelProviders.of(this).get(AdicionarProdutoViewModel.class);
         View root = inflater.inflate(R.layout.fragment_adicionarproduto, container, false);
 
         Bundle bundle = getArguments();
@@ -197,13 +194,6 @@ public class AdicionarProdutoFragment extends Fragment {
         });
 
         return root;
-    }
-
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        mViewModel = ViewModelProviders.of(this).get(AdicionarProdutoViewModel.class);
-        // TODO: Use the ViewModel
     }
 
     private void adicionarTextView(

@@ -32,7 +32,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class CadastrarEmpresaFragment extends Fragment {
-    private CadastrarEmpresaViewModel cadastrarUsuarioViewModel;
     private Button btnCadastrarEmpresa;
     private EditText etNomeEmpresa, etCNPJEmpresa, etSenhaUm, etSenhaConfirmada;
     private TextView tvExceptionNome, tvExceptionCNPJ, tvExceptionSenhaUm, tvExceptionSenhaConfirmada;
@@ -44,8 +43,6 @@ public class CadastrarEmpresaFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        cadastrarUsuarioViewModel =
-                ViewModelProviders.of(this).get(CadastrarEmpresaViewModel.class);
         View root = inflater.inflate(R.layout.fragment_cadastrarempresa, container, false);
 
         etNomeEmpresa = root.findViewById(R.id.etNomeEmpresaCadastrar);

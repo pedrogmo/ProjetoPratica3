@@ -1,7 +1,6 @@
 package com.example.appandroidfotovoltaica.ui.loginactivity.usuarioempresa;
 
 import androidx.fragment.app.FragmentTransaction;
-import androidx.lifecycle.ViewModelProviders;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -35,8 +34,6 @@ import java.util.Map;
 
 public class UsuarioEmpresaFragment extends Fragment {
 
-    private UsuarioEmpresaViewModel mViewModel;
-
     private TextView
         tvEmail,
         tvNome,
@@ -47,14 +44,9 @@ public class UsuarioEmpresaFragment extends Fragment {
 
     private Usuario usuarioAtual;
 
-    public static UsuarioEmpresaFragment newInstance() {
-        return new UsuarioEmpresaFragment();
-    }
-
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        this.mViewModel = ViewModelProviders.of(this).get(UsuarioEmpresaViewModel.class);
         View root = inflater.inflate(R.layout.fragment_usuarioempresa, container, false);
 
         Bundle b = getArguments();
@@ -283,12 +275,4 @@ public class UsuarioEmpresaFragment extends Fragment {
 
         return root;
     }
-
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        mViewModel = ViewModelProviders.of(this).get(UsuarioEmpresaViewModel.class);
-        // TODO: Use the ViewModel
-    }
-
 }

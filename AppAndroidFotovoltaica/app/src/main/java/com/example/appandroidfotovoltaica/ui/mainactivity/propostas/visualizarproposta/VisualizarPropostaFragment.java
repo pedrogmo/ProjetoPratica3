@@ -12,7 +12,6 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProviders;
 
 import com.example.appandroidfotovoltaica.R;
 import com.example.appandroidfotovoltaica.classes.empresa.Empresa;
@@ -35,8 +34,6 @@ import java.io.ByteArrayOutputStream;
 
 public class VisualizarPropostaFragment extends Fragment {
 
-    private VisualizarPropostaViewModel propostasViewModel;
-
     private com.github.barteksc.pdfviewer.PDFView pdfView;
     private static final int STORAGE_CODE = 1000;
     private Usuario logado;
@@ -44,7 +41,6 @@ public class VisualizarPropostaFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        this.propostasViewModel = ViewModelProviders.of(this).get(VisualizarPropostaViewModel.class);
         View root = inflater.inflate(R.layout.fragment_visualizarproposta, container, false);
         pdfView = root.findViewById(R.id.pdfView);
 

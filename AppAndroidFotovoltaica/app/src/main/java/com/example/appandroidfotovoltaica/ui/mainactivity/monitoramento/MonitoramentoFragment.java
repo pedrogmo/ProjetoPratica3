@@ -1,7 +1,5 @@
 package com.example.appandroidfotovoltaica.ui.mainactivity.monitoramento;
 
-import androidx.lifecycle.ViewModelProviders;
-
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -28,8 +26,6 @@ import java.net.Socket;
 
 public class MonitoramentoFragment extends Fragment {
 
-    private MonitoramentoViewModel mViewModel;
-
     private TextView tvConexao, tvLuz, tvTemperatura;
     private EditText etIp;
     private Button btnConectar;
@@ -48,7 +44,6 @@ public class MonitoramentoFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        mViewModel = ViewModelProviders.of(this).get(MonitoramentoViewModel.class);
         View root = inflater.inflate(R.layout.fragment_monitoramento, container, false);
 
         tvConexao = root.findViewById(R.id.tvConexaoArduino);
@@ -77,13 +72,6 @@ public class MonitoramentoFragment extends Fragment {
         });
 
         return root;
-    }
-
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState)
-    {
-        super.onActivityCreated(savedInstanceState);
-        mViewModel = ViewModelProviders.of(this).get(MonitoramentoViewModel.class);
     }
 
     private class ConexaoThread extends Thread {

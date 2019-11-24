@@ -14,7 +14,6 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProviders;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -36,15 +35,12 @@ import java.util.Map;
 
 public class PerfilFragment extends Fragment {
 
-    private PerfilViewModel perfilViewModel;
     EditText etNome, etTelefone, etData, etCpf, etSenhaUm, etSenhaConfirmada;
     TextView tvEmail, tvEmpresa, tvExceptionNome, tvExceptionSenhaUm, tvExceptionSenhaConfirmada, tvExceptionTelefone, tvExceptionData, tvExceptionCpf;
     Button btnAlterar, btnExcluir;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        perfilViewModel =
-                ViewModelProviders.of(this).get(PerfilViewModel.class);
         View root = inflater.inflate(R.layout.fragment_perfil, container, false);
         etNome = root.findViewById(R.id.etNomePerfil);
         etTelefone = root.findViewById(R.id.etTelefonePerfil);

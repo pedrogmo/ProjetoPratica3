@@ -18,7 +18,6 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.lifecycle.ViewModelProviders;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -35,8 +34,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class AdicionarClienteFragment extends Fragment {
-
-    private AdicionarClienteViewModel galleryViewModel;
 
     private EditText
         etNomeCliente,
@@ -58,16 +55,7 @@ public class AdicionarClienteFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        galleryViewModel =
-                ViewModelProviders.of(this).get(AdicionarClienteViewModel.class);
         View root = inflater.inflate(R.layout.fragment_adicionarcliente, container, false);
-        /*final TextView textView = root.findViewById(R.id.text_gallery);
-        galleryViewModel.getText().observe(this, new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
-            }
-        });*/
 
         this.etNomeCliente = (EditText) root.findViewById(R.id.etNomeClienteAdd);
         this.etDataNascimentoCliente = (EditText) root.findViewById(R.id.etDataNascimentoClienteAdd);

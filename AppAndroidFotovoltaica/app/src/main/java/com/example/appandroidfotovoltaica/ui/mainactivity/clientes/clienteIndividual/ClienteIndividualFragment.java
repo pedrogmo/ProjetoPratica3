@@ -1,7 +1,6 @@
 package com.example.appandroidfotovoltaica.ui.mainactivity.clientes.clienteIndividual;
 
 import androidx.fragment.app.FragmentTransaction;
-import androidx.lifecycle.ViewModelProviders;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -36,8 +35,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class ClienteIndividualFragment extends Fragment {
-
-    private ClienteIndividualViewModel mViewModel;
     private Cliente clienteAtual;
     private EditText
         etEmail,
@@ -59,7 +56,6 @@ public class ClienteIndividualFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        mViewModel = ViewModelProviders.of(this).get(ClienteIndividualViewModel.class);
         View root = inflater.inflate(R.layout.fragment_clienteindividual, container, false);
 
         Bundle bundle = getArguments();

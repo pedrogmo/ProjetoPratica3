@@ -1,7 +1,6 @@
 package com.example.appandroidfotovoltaica.ui.mainactivity.kits;
 
 import androidx.fragment.app.FragmentTransaction;
-import androidx.lifecycle.ViewModelProviders;
 
 import android.os.Bundle;
 
@@ -29,8 +28,6 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import java.util.ArrayList;
 
 public class KitsFragment extends Fragment {
-
-    private KitsViewModel mViewModel;
     private ListView lvKits;
     private FloatingActionButton fabAdicionar;
 
@@ -43,7 +40,6 @@ public class KitsFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        mViewModel = ViewModelProviders.of(this).get(KitsViewModel.class);
         View root = inflater.inflate(R.layout.fragment_kits, container, false);
 
         lvKits = root.findViewById(R.id.lvListaKits);
@@ -92,12 +88,5 @@ public class KitsFragment extends Fragment {
         });
 
         return root;
-    }
-
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        mViewModel = ViewModelProviders.of(this).get(KitsViewModel.class);
-        // TODO: Use the ViewModel
     }
 }

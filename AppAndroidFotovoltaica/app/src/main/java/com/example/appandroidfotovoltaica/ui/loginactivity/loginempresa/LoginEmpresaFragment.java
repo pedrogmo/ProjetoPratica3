@@ -26,7 +26,6 @@ import com.example.appandroidfotovoltaica.ui.loginactivity.empresaindividual.Emp
 
 public class LoginEmpresaFragment extends Fragment {
 
-    private LoginEmpresaViewModel galleryViewModel;
 
     private EditText
         etCNPJEmpresa,
@@ -39,8 +38,6 @@ public class LoginEmpresaFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        galleryViewModel =
-                ViewModelProviders.of(this).get(LoginEmpresaViewModel.class);
         View root = inflater.inflate(R.layout.fragment_loginempresa, container, false);
 
         etCNPJEmpresa = root.findViewById(R.id.etCNPJEmpresaLogin);

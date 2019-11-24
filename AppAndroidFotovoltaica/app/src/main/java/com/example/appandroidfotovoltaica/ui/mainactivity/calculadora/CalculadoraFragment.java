@@ -23,7 +23,6 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProviders;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -49,7 +48,6 @@ import java.util.Map;
 
 public class CalculadoraFragment extends Fragment {
 
-    private CalculadoraViewModel calculadoraViewModel;
     private int indiceMes = 0;
     private ValorMensalEnergia valoresMensaisEnergia[];
     private Kit[] kits;
@@ -66,8 +64,6 @@ public class CalculadoraFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        calculadoraViewModel =
-                ViewModelProviders.of(this).get(CalculadoraViewModel.class);
         View root = inflater.inflate(R.layout.fragment_calculadora, container, false);
 
         valoresMensaisEnergia = new ValorMensalEnergia[12];

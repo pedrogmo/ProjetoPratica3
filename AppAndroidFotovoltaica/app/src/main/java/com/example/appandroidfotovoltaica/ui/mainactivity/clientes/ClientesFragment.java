@@ -18,7 +18,6 @@ import android.widget.ListView;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.lifecycle.ViewModelProviders;
 
 import com.example.appandroidfotovoltaica.ui.mainactivity.MainActivity;
 import com.example.appandroidfotovoltaica.classes.mytask.MyTask;
@@ -31,8 +30,6 @@ import java.util.ArrayList;
 
 public class ClientesFragment extends Fragment {
 
-    private ClientesViewModel galleryViewModel;
-
     private EditText etBuscarCliente;
     private ListView lvListaClientes;
     private FloatingActionButton fabNovoCliente;
@@ -41,8 +38,6 @@ public class ClientesFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        galleryViewModel =
-                ViewModelProviders.of(this).get(ClientesViewModel.class);
         View root = inflater.inflate(R.layout.fragment_clientes, container, false);
 
         etBuscarCliente = root.findViewById(R.id.etBuscarCliente);

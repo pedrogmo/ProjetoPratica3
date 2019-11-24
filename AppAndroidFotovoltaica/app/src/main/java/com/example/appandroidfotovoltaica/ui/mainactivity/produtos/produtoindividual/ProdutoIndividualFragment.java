@@ -1,7 +1,6 @@
 package com.example.appandroidfotovoltaica.ui.mainactivity.produtos.produtoindividual;
 
 import androidx.fragment.app.FragmentTransaction;
-import androidx.lifecycle.ViewModelProviders;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -42,8 +41,6 @@ import java.util.Map;
 
 public class ProdutoIndividualFragment extends Fragment {
 
-    private ProdutoIndividualViewModel mViewModel;
-
     private EditText etPreco;
     private TextView
         tvNome,
@@ -64,7 +61,6 @@ public class ProdutoIndividualFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        mViewModel = ViewModelProviders.of(this).get(ProdutoIndividualViewModel.class);
         View root = inflater.inflate(R.layout.fragment_produtoindividual, container, false);
 
         Bundle bundle = getArguments();
@@ -205,14 +201,6 @@ public class ProdutoIndividualFragment extends Fragment {
 
         return root;
     }
-
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        mViewModel = ViewModelProviders.of(this).get(ProdutoIndividualViewModel.class);
-        // TODO: Use the ViewModel
-    }
-
     private void adicionarTextView(
         String texto,
         LinearLayout.LayoutParams params)

@@ -39,7 +39,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class CadastrarUsuarioFragment extends Fragment {
-    private CadastrarUsuarioViewModel cadastrarUsuarioViewModel;
     private Spinner spEmpresa;
     private Empresa[] empresas;
     private Button btnCadastrarUsuario;
@@ -56,8 +55,6 @@ public class CadastrarUsuarioFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        cadastrarUsuarioViewModel =
-                ViewModelProviders.of(this).get(CadastrarUsuarioViewModel.class);
         View root = inflater.inflate(R.layout.fragment_cadastrarusuario, container, false);
         etNome = root.findViewById(R.id.etNomeUsuario);
         tvExceptionNome = root.findViewById(R.id.tvExceptionNomeUsuario);

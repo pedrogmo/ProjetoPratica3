@@ -1,7 +1,6 @@
 package com.example.appandroidfotovoltaica.ui.mainactivity.kits.adicionarkit;
 
 import androidx.fragment.app.FragmentTransaction;
-import androidx.lifecycle.ViewModelProviders;
 
 import android.os.Bundle;
 
@@ -53,8 +52,6 @@ import java.util.Map;
 
 public class AdicionarKitFragment extends Fragment {
 
-    private AdicionarKitViewModel mViewModel;
-
     private Spinner spCategoria;
     private AutoCompleteTextView actvProduto;
     private EditText etQtd;
@@ -82,7 +79,6 @@ public class AdicionarKitFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        mViewModel = ViewModelProviders.of(this).get(AdicionarKitViewModel.class);
         View root = inflater.inflate(R.layout.fragment_adicionarkit, container, false);
 
         spCategoria = root.findViewById(R.id.spCategoriaKit);
@@ -397,13 +393,6 @@ public class AdicionarKitFragment extends Fragment {
         });
 
         return root;
-    }
-
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        mViewModel = ViewModelProviders.of(this).get(AdicionarKitViewModel.class);
-        // TODO: Use the ViewModel
     }
 
     public Kit buscaKit(
