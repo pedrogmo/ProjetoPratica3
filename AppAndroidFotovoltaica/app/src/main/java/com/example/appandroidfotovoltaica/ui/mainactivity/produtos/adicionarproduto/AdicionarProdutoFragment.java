@@ -13,9 +13,11 @@ import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -175,7 +177,7 @@ public class AdicionarProdutoFragment extends Fragment {
                         }
                         else if (categoriaProduto == StringBox.class)
                         {
-                            params.put("tipo", etCampos.get(0).getText().toString().trim());
+                            //params.put("tipo", etCampos.get(0).getText().toString().trim()); TEM QUE MUDAR AQUI
                             params.put("numeroPolos", etCampos.get(1).getText().toString().trim());
                             params.put("tensaoMaxima", etCampos.get(2).getText().toString().trim());
                             params.put("correnteNominal", etCampos.get(3).getText().toString().trim());
@@ -204,6 +206,15 @@ public class AdicionarProdutoFragment extends Fragment {
         txt.setLayoutParams(params);
         txt.setText(texto);
         this.llCamposExtra.addView(txt);
+    }
+    private void adicionarSpinner(
+            String[] opcoes,
+            LinearLayout.LayoutParams params)
+    {
+        Spinner sp = new Spinner(getActivity().getApplicationContext());
+        sp.setAdapter(new ArrayAdapter<String>(getActivity().getApplicationContext(), android.R.layout.simple_list_item_1, opcoes));
+        this.llCamposExtra.addView(sp);
+        this.etCampos.add(null);
     }
 
     private void adicionarEditText(
@@ -305,9 +316,9 @@ public class AdicionarProdutoFragment extends Fragment {
         }
         else if (this.categoriaProduto == StringBox.class)
         {
-            this.adicionarTextView("Tipo (CA/CC):", params);
-            this.adicionarEditText(params, false);
-            this.adicionarTxtExc(params);
+            this.adicionarTextView("Tipo:", params);
+            String[] tipoStringBox = {"CA","CC"};
+            this.adicionarSpinner(tipoStringBox, params);
 
             this.adicionarTextView("Número de polos:", params);
             this.adicionarEditText(params, true);
