@@ -21,6 +21,7 @@ import com.example.appandroidfotovoltaica.classes.constantesdetransicao.Constant
 import com.example.appandroidfotovoltaica.classes.enderecos.Enderecos;
 import com.example.appandroidfotovoltaica.classes.mytask.MyTask;
 import com.example.appandroidfotovoltaica.classes.proposta.Proposta;
+import com.example.appandroidfotovoltaica.ui.mainactivity.MainActivity;
 import com.example.appandroidfotovoltaica.ui.mainactivity.propostas.visualizarproposta.VisualizarPropostaFragment;
 
 import java.util.ArrayList;
@@ -45,13 +46,15 @@ public class PropostasFragment extends Fragment {
 
         /* BUSCA A PROPOSTA*/
         MyTask task = new MyTask(Proposta[].class);
-        task.execute(Enderecos.GET_PROPOSTA);
+        task.execute(Enderecos.GET_PROPOSTA + "/" + ((MainActivity) getActivity()).getUsuario().getCodigo());
         while(task.isTrabalhando()) ;
         Proposta[] arrProposta = (Proposta[]) task.getDados();
+
 
         ArrayList<String> alNomes = new ArrayList<String>();
         for(Proposta p : arrProposta)
             alNomes.add(p.getNome());
+
 
         this.lvProposta.setAdapter(
             new ArrayAdapter<String>(
@@ -59,6 +62,7 @@ public class PropostasFragment extends Fragment {
                 0,
                 alNomes)
         );
+
 
         this.btnGerar.setOnClickListener(new View.OnClickListener() {
             @Override
