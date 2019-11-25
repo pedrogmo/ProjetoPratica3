@@ -58,6 +58,7 @@ public class Enderecos
     public static final String DELETE_CABO = IP_PORTA + "delete_cabo";
 
     public static final String GET_KIT = IP_PORTA + "kit";
+    public static final String GET_KIT_EMPRESA = IP_PORTA + "kit_empresa";
     public static final String POST_KIT = IP_PORTA + "insert_kit";
     public static final String DELETE_KIT = IP_PORTA + "delete_kit";
 

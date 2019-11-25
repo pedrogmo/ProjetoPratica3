@@ -14,10 +14,21 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import com.example.appandroidfotovoltaica.R;
+import com.example.appandroidfotovoltaica.classes.categoria.Categoria;
 import com.example.appandroidfotovoltaica.classes.cliente.Cliente;
 import com.example.appandroidfotovoltaica.classes.empresa.Empresa;
 import com.example.appandroidfotovoltaica.classes.enderecos.Enderecos;
+import com.example.appandroidfotovoltaica.classes.kit.Kit;
+import com.example.appandroidfotovoltaica.classes.kitproduto.KitProduto;
 import com.example.appandroidfotovoltaica.classes.mytask.MyTask;
+import com.example.appandroidfotovoltaica.classes.produto.Produto;
+import com.example.appandroidfotovoltaica.classes.produto.cabo.Cabo;
+import com.example.appandroidfotovoltaica.classes.produto.equipamento.bombasolar.BombaSolar;
+import com.example.appandroidfotovoltaica.classes.produto.equipamento.inversor.Inversor;
+import com.example.appandroidfotovoltaica.classes.produto.equipamento.modulo.Modulo;
+import com.example.appandroidfotovoltaica.classes.produto.fixacao.Fixacao;
+import com.example.appandroidfotovoltaica.classes.produto.stringbox.StringBox;
+import com.example.appandroidfotovoltaica.classes.produtoquantidade.ProdutoQuantidade;
 import com.example.appandroidfotovoltaica.classes.proposta.Proposta;
 import com.example.appandroidfotovoltaica.classes.usuario.Usuario;
 import com.example.appandroidfotovoltaica.ui.mainactivity.MainActivity;
@@ -34,15 +45,25 @@ import com.itextpdf.text.Phrase;
 import com.itextpdf.text.Element;
 
 import java.io.ByteArrayOutputStream;
+import java.util.ArrayList;
 
 public class VisualizarPropostaFragment extends Fragment {
 
     private com.github.barteksc.pdfviewer.PDFView pdfView;
     private static final int STORAGE_CODE = 1000;
+    private Kit kitAtual;
     private Usuario usuarioLogado;
     private Cliente cliente;
     private Empresa empresa;
     private Proposta propostaAtual;
+    private ArrayList<ProdutoQuantidade> produtosKit;
+    private Modulo[] arrModulo;
+    private Inversor[] arrInversor;
+    private StringBox[] arrStringBox;
+    private Fixacao[] arrFixacao;
+    private BombaSolar[] arrBombaSolar;
+    private Cabo[] arrCabo;
+
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -54,7 +75,14 @@ public class VisualizarPropostaFragment extends Fragment {
         Bundle bundle = getArguments();
         propostaAtual = (Proposta) bundle.getSerializable("proposta");
 
-        MyTask task = new MyTask(Empresa[].class);
+        MyTask task = new MyTask(Kit[].class);
+        task.execute(Enderecos.GET_KIT + "/" + propostaAtual.getCodKit());
+        while (task.isTrabalhando()) ;
+        Kit[] resultKits = (Kit[]) task.getDados();
+
+        kitAtual = resultKits[0];
+
+        task = new MyTask(Empresa[].class);
         task.execute(Enderecos.GET_EMPRESA + "/" + usuarioLogado.getCodEmpresa());
         while (task.isTrabalhando()) ;
         Empresa[] resultEmpresas = (Empresa[]) task.getDados();
@@ -67,6 +95,9 @@ public class VisualizarPropostaFragment extends Fragment {
         Cliente[] resultClientes = (Cliente[]) task.getDados();
 
         cliente = resultClientes[0];
+
+        fazerBuscas();
+        produtosKit = produtosDoKit();
 
         if (Build.VERSION.SDK_INT > Build.VERSION_CODES.M)
         {
@@ -105,7 +136,7 @@ public class VisualizarPropostaFragment extends Fragment {
             doc.open();
             doc.add(new Chunk(""));
 
-            String text = usuarioLogado.getNome() + " " + cliente.getNome() + " " + empresa.getNome();
+            String text = "Proposta de " + usuarioLogado.getNome() + " (" + empresa.getNome() + ")";
 
             doc.addAuthor(usuarioLogado.getNome());
 
@@ -117,32 +148,37 @@ public class VisualizarPropostaFragment extends Fragment {
             doc.add(paragrafoInicial);
 
             PdfPTable table = new PdfPTable(3);
-            PdfPCell cell = new PdfPCell(new Phrase("Cell with colspan 3"));
+            PdfPCell cell = new PdfPCell(new Phrase("Kit: " + kitAtual.getNome()));
             cell.setColspan(3);
             cell.setHorizontalAlignment(Element.ALIGN_CENTER);
             table.addCell(cell);
-            cell = new PdfPCell(new Phrase("Cell with rowspan 2"));
-            cell.setRowspan(2);
-            cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
-            table.addCell(cell);
-            table.addCell("Cell 1.1");
-            cell = new PdfPCell();
-            cell.addElement(new Phrase("Cell 1.2"));
-            table.addCell(cell);
-            cell = new PdfPCell(new Phrase("Cell 2.1"));
-            cell.setPadding(5);
-            cell.setUseAscender(true);
-            cell.setUseDescender(true);
-            cell.setHorizontalAlignment(Element.ALIGN_CENTER);
-            table.addCell(cell);
-            cell = new PdfPCell();
-            cell.setPadding(5);
-            cell.setUseAscender(true);
-            cell.setUseDescender(true);
-            Paragraph p = new Paragraph("Cell 2.2");
-            p.setAlignment(Element.ALIGN_CENTER);
-            cell.addElement(p);
-            table.addCell(cell);
+
+            for(ProdutoQuantidade pq : produtosKit)
+            {
+                cell = new PdfPCell(new Phrase(Categoria.getCategoria(pq.getProduto())));
+                cell.setRowspan(2);
+                cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
+                table.addCell(cell);
+                table.addCell("Nome: " + pq.getProduto().getNome());
+                cell = new PdfPCell();
+                cell.addElement(new Phrase("Quantidade: " + pq.getQuantidade()));
+                table.addCell(cell);
+                cell = new PdfPCell(new Phrase("Preço unitário: R$" + pq.getProduto().getPreco()));
+                cell.setPadding(5);
+                cell.setUseAscender(true);
+                cell.setUseDescender(true);
+                cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+                table.addCell(cell);
+                cell = new PdfPCell();
+                cell.setPadding(5);
+                cell.setUseAscender(true);
+                cell.setUseDescender(true);
+                Paragraph p = new Paragraph("Preço total: R$" + pq.getProduto().getPreco() * pq.getQuantidade());
+                p.setAlignment(Element.ALIGN_CENTER);
+                cell.addElement(p);
+                table.addCell(cell);
+            }
+
             doc.add(table);
             doc.close();
 
@@ -205,12 +241,81 @@ public class VisualizarPropostaFragment extends Fragment {
     }
 
 
+    private void fazerBuscas()
+    {
+        int codEmpresa = ((MainActivity) getActivity()).getUsuario().getCodEmpresa();
 
-        //pdfView.fromSource();
+        MyTask task = new MyTask(Modulo[].class);
+        task.execute(Enderecos.GET_MODULO + "/" + codEmpresa);
+        while(task.isTrabalhando()) ;
+        arrModulo = (Modulo[]) task.getDados();
 
+        task = new MyTask(Inversor[].class);
+        task.execute(Enderecos.GET_INVERSOR + "/" + codEmpresa);
+        while(task.isTrabalhando()) ;
+        arrInversor = (Inversor[]) task.getDados();
 
+        task = new MyTask(StringBox[].class);
+        task.execute(Enderecos.GET_STRINGBOX + "/" + codEmpresa);
+        while(task.isTrabalhando()) ;
+        arrStringBox = (StringBox[]) task.getDados();
 
-        //pdfView.fromBytes().load();
+        task = new MyTask(Fixacao[].class);
+        task.execute(Enderecos.GET_FIXACAO + "/" + codEmpresa);
+        while(task.isTrabalhando()) ;
+        arrFixacao = (Fixacao[]) task.getDados();
 
+        task = new MyTask(BombaSolar[].class);
+        task.execute(Enderecos.GET_BOMBASOLAR + "/" + codEmpresa);
+        while(task.isTrabalhando()) ;
+        arrBombaSolar = (BombaSolar[]) task.getDados();
 
+        task = new MyTask(Cabo[].class);
+        task.execute(Enderecos.GET_CABO + "/" + codEmpresa);
+        while(task.isTrabalhando()) ;
+        arrCabo = (Cabo[]) task.getDados();
+    }
+
+    private ArrayList<ProdutoQuantidade> produtosDoKit()
+    {
+        ArrayList<ProdutoQuantidade> ret = new ArrayList<ProdutoQuantidade>();
+
+        Produto[][] vetores =
+                {
+                        arrModulo, arrInversor, arrStringBox, arrFixacao, arrBombaSolar, arrCabo
+                };
+
+        for(int i=0; i<6; ++i)
+        {
+            KitProduto[] kitProdutos;
+            MyTask task = new MyTask(KitProduto[].class);
+            task.execute(Categoria.ROTAS_GET_KITPRODUTO[i] + "/" + kitAtual.getCodigo());
+            while (task.isTrabalhando()) ;
+            kitProdutos = (KitProduto[]) task.getDados();
+
+            for (KitProduto kp : kitProdutos)
+            {
+                Produto p = produtoCodigo(vetores[i], kp.getCodProduto());
+                if (p != null)
+                {
+                    try
+                    {
+                        ret.add(new ProdutoQuantidade(p, kp.getQuantidade()));
+                    }
+                    catch (Exception exc) {}
+                }
+            }
+        }
+        return ret;
+    }
+
+    private Produto produtoCodigo(
+            Produto[] produtos,
+            int codigo)
+    {
+        for(Produto p : produtos)
+            if (p.getCodigo() == codigo)
+                return p;
+        return null;
+    }
 }

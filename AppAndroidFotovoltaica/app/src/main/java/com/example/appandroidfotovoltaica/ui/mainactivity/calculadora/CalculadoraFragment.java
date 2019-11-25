@@ -77,7 +77,7 @@ public class CalculadoraFragment extends Fragment {
         int codEmpresa = ((MainActivity) getActivity()).getUsuario().getCodEmpresa();
 
         MyTask task = new MyTask(Kit[].class);
-        task.execute(Enderecos.GET_KIT + "/" + codEmpresa);
+        task.execute(Enderecos.GET_KIT_EMPRESA + "/" + codEmpresa);
         while(task.isTrabalhando()) ;
         kits = (Kit[]) task.getDados();
 

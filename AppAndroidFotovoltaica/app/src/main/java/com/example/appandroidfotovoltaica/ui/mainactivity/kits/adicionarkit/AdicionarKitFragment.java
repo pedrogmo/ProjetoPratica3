@@ -306,7 +306,7 @@ public class AdicionarKitFragment extends Fragment {
                             @Override
                             public void onResponse(String response) {
                                 MyTask task = new MyTask(Kit[].class);
-                                task.execute(Enderecos.GET_KIT + "/" + codEmpresa);
+                                task.execute(Enderecos.GET_KIT_EMPRESA + "/" + codEmpresa);
                                 while(task.isTrabalhando()) ;
                                 Kit[] kits = (Kit[]) task.getDados();
 

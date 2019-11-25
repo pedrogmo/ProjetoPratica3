@@ -47,7 +47,7 @@ public class KitsFragment extends Fragment {
 
         MyTask task = new MyTask(Kit[].class);
         int codEmp = ((MainActivity)getActivity()).getUsuario().getCodEmpresa();
-        task.execute(Enderecos.GET_KIT + "/" + codEmp);
+        task.execute(Enderecos.GET_KIT_EMPRESA + "/" + codEmp);
         while(task.isTrabalhando()) ;
         kits = (Kit[]) task.getDados();
 
