@@ -244,7 +244,7 @@ public class CalculadoraFragment extends Fragment {
                     KitProduto[] kitmodulo = (KitProduto[]) task.getDados();
 
                     task = new MyTask(Modulo[].class);
-                    task.execute(Enderecos.GET_MODULO + kitmodulo[0].getCodProduto());
+                    task.execute(Enderecos.GET_MODULO + "/" + kitmodulo[0].getCodProduto());
                     while(task.isTrabalhando()) ;
                     Modulo[] modulo = (Modulo[]) task.getDados();
 
