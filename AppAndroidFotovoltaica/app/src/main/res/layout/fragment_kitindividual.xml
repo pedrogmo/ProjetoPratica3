@@ -23,7 +23,8 @@
                 android:text="Nome: "
                 android:textSize="20dp"
                 android:layout_marginBottom="30dp"
-                android:gravity="center" />
+                android:gravity="center"
+                android:layout_centerHorizontal="true"/>
 
             <TextView
                 android:id="@+id/tvProdutosKit"
@@ -33,14 +34,16 @@
                 android:textSize="15dp"
                 android:layout_below="@+id/tvNomeKit"
                 android:layout_marginBottom="20dp"
-                android:gravity="center"/>
+                android:gravity="center"
+                android:layout_centerHorizontal="true"/>
 
             <ListView
                 android:id="@+id/lvListaProdutosKits"
-                android:layout_width="200dp"
+                android:layout_width="300dp"
                 android:layout_height="300dp"
                 android:layout_below="@+id/tvProdutosKit"
-                android:gravity="center">
+                android:gravity="center"
+                android:layout_centerHorizontal="true">
             </ListView>
         
             <Button
@@ -50,7 +53,8 @@
                 android:text="Excluir"
                 android:layout_below="@+id/lvListaProdutosKits"
                 android:layout_marginBottom="30dp"
-                android:gravity="center"/>
+                android:gravity="center"
+                android:layout_centerHorizontal="true"/>
 
         </RelativeLayout>
 
