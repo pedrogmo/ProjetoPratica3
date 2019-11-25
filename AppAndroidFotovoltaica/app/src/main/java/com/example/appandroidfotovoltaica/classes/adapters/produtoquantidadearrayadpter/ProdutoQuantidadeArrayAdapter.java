@@ -54,7 +54,7 @@ public class ProdutoQuantidadeArrayAdapter extends ArrayAdapter<ProdutoQuantidad
 
             TextView tvPrecoProduto =
                     (TextView) viewAtual.findViewById(R.id.tvPrecoProdutoKit);
-            tvPrecoProduto.setText(pq.getProduto().getPreco() + "R$ por unidade");
+            tvPrecoProduto.setText("R$" + pq.getProduto().getPreco() + " por unidade");
         }
         return viewAtual;
     }
