@@ -14,11 +14,13 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import com.example.appandroidfotovoltaica.R;
+import com.example.appandroidfotovoltaica.classes.cliente.Cliente;
 import com.example.appandroidfotovoltaica.classes.empresa.Empresa;
 import com.example.appandroidfotovoltaica.classes.enderecos.Enderecos;
 import com.example.appandroidfotovoltaica.classes.mytask.MyTask;
 import com.example.appandroidfotovoltaica.classes.proposta.Proposta;
 import com.example.appandroidfotovoltaica.classes.usuario.Usuario;
+import com.example.appandroidfotovoltaica.ui.mainactivity.MainActivity;
 import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Chunk;
 import com.itextpdf.text.Document;
@@ -37,8 +39,9 @@ public class VisualizarPropostaFragment extends Fragment {
 
     private com.github.barteksc.pdfviewer.PDFView pdfView;
     private static final int STORAGE_CODE = 1000;
-    private Usuario logado;
-    private String nomeEmpresa;
+    private Usuario usuarioLogado;
+    private Cliente cliente;
+    private Empresa empresa;
     private Proposta propostaAtual;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -46,18 +49,24 @@ public class VisualizarPropostaFragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_visualizarproposta, container, false);
         pdfView = root.findViewById(R.id.pdfView);
 
-        logado = (Usuario)getActivity().getIntent().getSerializableExtra("usuario");
+        usuarioLogado = ((MainActivity) getActivity()).getUsuario();
 
         Bundle bundle = getArguments();
-        this.propostaAtual = (Proposta) bundle.getSerializable("proposta");
-
+        propostaAtual = (Proposta) bundle.getSerializable("proposta");
 
         MyTask task = new MyTask(Empresa[].class);
-        task.execute(Enderecos.GET_EMPRESA + "/" + logado.getCodEmpresa());
+        task.execute(Enderecos.GET_EMPRESA + "/" + usuarioLogado.getCodEmpresa());
         while (task.isTrabalhando()) ;
         Empresa[] resultEmpresas = (Empresa[]) task.getDados();
 
-        nomeEmpresa = resultEmpresas[0].getNome();
+        empresa = resultEmpresas[0];
+
+        task = new MyTask(Cliente[].class);
+        task.execute(Enderecos.GET_CLIENTE + "/" + propostaAtual.getCodCliente());
+        while (task.isTrabalhando()) ;
+        Cliente[] resultClientes = (Cliente[]) task.getDados();
+
+        cliente = resultClientes[0];
 
         if (Build.VERSION.SDK_INT > Build.VERSION_CODES.M)
         {
@@ -86,7 +95,7 @@ public class VisualizarPropostaFragment extends Fragment {
     {
         Document doc = new Document(PageSize.LETTER, 0.75F, 0.75F, 0.75F, 0.75F);
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-        String fileName = "Proposta Meira";
+        String fileName = "Proposta Solarium";
 
         String filePath = Environment.getExternalStorageDirectory() + "/" + fileName + ".pdf";
 
@@ -95,19 +104,15 @@ public class VisualizarPropostaFragment extends Fragment {
             PdfWriter.getInstance(doc, byteArrayOutputStream);
             doc.open();
             doc.add(new Chunk(""));
-            String nomeAutorProposta = logado.getNome();
-            String nomeEmpresaProposta = nomeEmpresa;
-            String nomeClient;
-            String text = "O MEEIRO TEM UM GRANDE CORAÇÃO...";
 
-            doc.addAuthor("Gustavo de Meira");
+            String text = usuarioLogado.getNome() + " " + cliente.getNome() + " " + empresa.getNome();
 
-            doc.addTitle("Pdf do Meira");
+            doc.addAuthor(usuarioLogado.getNome());
+
+            doc.addTitle(propostaAtual.getNome());
 
             Paragraph paragrafoInicial = new Paragraph(text, new Font(Font.FontFamily.HELVETICA, 24, Font.NORMAL, BaseColor.BLACK));
             paragrafoInicial.setAlignment(Element.ALIGN_CENTER);
-
-
 
             doc.add(paragrafoInicial);
 

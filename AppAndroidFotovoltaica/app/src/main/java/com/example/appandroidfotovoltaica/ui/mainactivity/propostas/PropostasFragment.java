@@ -1,11 +1,9 @@
 package com.example.appandroidfotovoltaica.ui.mainactivity.propostas;
 
 import android.Manifest;
-import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -45,20 +43,16 @@ public class PropostasFragment extends Fragment {
 
         this.lvProposta = (ListView) root.findViewById(R.id.lvListaPropostas);
 
-
-
         /* BUSCA A PROPOSTA*/
         MyTask task = new MyTask(Proposta[].class);
         task.execute(Enderecos.GET_PROPOSTA + "/" + ((MainActivity) getActivity()).getUsuario().getCodigo());
         while(task.isTrabalhando()) ;
         arrProposta = (Proposta[]) task.getDados();
 
-
         ArrayList<String> alNomes = new ArrayList<String>();
         for(Proposta p : arrProposta){
             alNomes.add(p.getNome());
         }
-
 
         this.lvProposta.setAdapter(
             new ArrayAdapter<String>(
@@ -85,9 +79,9 @@ public class PropostasFragment extends Fragment {
                         VisualizarPropostaFragment fragment = new VisualizarPropostaFragment();
                         fragment.setArguments(bundle);
                         fragmentTransaction.replace(R.id.fragment_propostas,
-                                                    fragment,
-                                                    ConstantesDeTransicao.F_PROPOSTAS_VISUALIZAR)
-                                                    .addToBackStack(ConstantesDeTransicao.M_PROPOSTAS_VISUALIZAR).commit();
+                            fragment,
+                            ConstantesDeTransicao.F_PROPOSTAS_VISUALIZAR)
+                            .addToBackStack(ConstantesDeTransicao.M_PROPOSTAS_VISUALIZAR).commit();
 
                     }
                 }
