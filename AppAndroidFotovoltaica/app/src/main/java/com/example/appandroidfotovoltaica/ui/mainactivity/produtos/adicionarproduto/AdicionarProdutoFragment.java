@@ -63,6 +63,7 @@ public class AdicionarProdutoFragment extends Fragment {
     private Class<? extends Produto> categoriaProduto;
 
     private MensagensErroProduto mensagensErroProduto;
+    Spinner sp = null;
 
     public static AdicionarProdutoFragment newInstance() {
         return new AdicionarProdutoFragment();
@@ -106,6 +107,7 @@ public class AdicionarProdutoFragment extends Fragment {
                 final String nome = etNome.getText().toString().trim();
                 final String preco = etPreco.getText().toString().trim();
                 final String descricao = etDescricao.getText().toString().trim();
+
 
                 if (mensagensErroProduto.teveMensagensDeErro(nome, preco, descricao, etCampos))
                     return;
@@ -177,7 +179,7 @@ public class AdicionarProdutoFragment extends Fragment {
                         }
                         else if (categoriaProduto == StringBox.class)
                         {
-                            //params.put("tipo", etCampos.get(0).getText().toString().trim()); TEM QUE MUDAR AQUI
+                            params.put("tipo", sp.getSelectedItem().toString());
                             params.put("numeroPolos", etCampos.get(1).getText().toString().trim());
                             params.put("tensaoMaxima", etCampos.get(2).getText().toString().trim());
                             params.put("correnteNominal", etCampos.get(3).getText().toString().trim());
@@ -214,7 +216,6 @@ public class AdicionarProdutoFragment extends Fragment {
         Spinner sp = new Spinner(getActivity().getApplicationContext());
         sp.setAdapter(new ArrayAdapter<String>(getActivity().getApplicationContext(), android.R.layout.simple_list_item_1, opcoes));
         this.llCamposExtra.addView(sp);
-        this.etCampos.add(null);
     }
 
     private void adicionarEditText(
