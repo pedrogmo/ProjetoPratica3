@@ -158,7 +158,7 @@ public class KitIndividualFragment extends Fragment {
         task = new MyTask(Inversor[].class);
         task.execute(Enderecos.GET_INVERSOR + "/" + codEmpresa);
         while(task.isTrabalhando()) ;
-        arrInversor = (Inversor[]) task.getDados();;
+        arrInversor = (Inversor[]) task.getDados();
 
         task = new MyTask(StringBox[].class);
         task.execute(Enderecos.GET_STRINGBOX + "/" + codEmpresa);
