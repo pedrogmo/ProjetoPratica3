@@ -185,6 +185,11 @@ public class KitIndividualFragment extends Fragment {
     {
         ArrayList<ProdutoQuantidade> ret = new ArrayList<ProdutoQuantidade>();
 
+        Produto[][] vetores =
+        {
+                arrModulo, arrInversor, arrStringBox, arrFixacao, arrBombaSolar, arrCabo
+        };
+
         for(int i=0; i<6; ++i)
         {
             KitProduto[] kitProdutos;
@@ -195,7 +200,7 @@ public class KitIndividualFragment extends Fragment {
 
             for (KitProduto kp : kitProdutos)
             {
-                Produto p = produtoCodigo(arrModulo, kp.getCodProduto());
+                Produto p = produtoCodigo(vetores[i], kp.getCodProduto());
                 if (p != null)
                 {
                     try
