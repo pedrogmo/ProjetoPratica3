@@ -76,7 +76,7 @@ public class ProdutoIndividualFragment extends Fragment {
 
         this.tvNome.setText(this.tvNome.getText() + produtoAtual.getNome());
         this.tvDescricao.setText(this.tvDescricao.getText() + produtoAtual.getDescricao());
-        this.etPreco.setText(produtoAtual.getPreco() + "");
+        this.etPreco.setText("R$" + produtoAtual.getPreco());
         this.llCamposExtra = (LinearLayout) root.findViewById(R.id.camposExtraProdutoAlt);
 
         this.adiconarCamposExtra();
