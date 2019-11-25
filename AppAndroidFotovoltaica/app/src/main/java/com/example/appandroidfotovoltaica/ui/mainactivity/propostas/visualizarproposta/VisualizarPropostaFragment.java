@@ -17,6 +17,7 @@ import com.example.appandroidfotovoltaica.R;
 import com.example.appandroidfotovoltaica.classes.empresa.Empresa;
 import com.example.appandroidfotovoltaica.classes.enderecos.Enderecos;
 import com.example.appandroidfotovoltaica.classes.mytask.MyTask;
+import com.example.appandroidfotovoltaica.classes.proposta.Proposta;
 import com.example.appandroidfotovoltaica.classes.usuario.Usuario;
 import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Chunk;
@@ -38,6 +39,7 @@ public class VisualizarPropostaFragment extends Fragment {
     private static final int STORAGE_CODE = 1000;
     private Usuario logado;
     private String nomeEmpresa;
+    private Proposta propostaAtual;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -45,6 +47,9 @@ public class VisualizarPropostaFragment extends Fragment {
         pdfView = root.findViewById(R.id.pdfView);
 
         logado = (Usuario)getActivity().getIntent().getSerializableExtra("usuario");
+
+        Bundle bundle = getArguments();
+        this.propostaAtual = (Proposta) bundle.getSerializable("proposta");
 
 
         MyTask task = new MyTask(Empresa[].class);

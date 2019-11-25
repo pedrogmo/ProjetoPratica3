@@ -25,14 +25,7 @@
         android:layout_marginTop="50dp"
         android:layout_below="@+id/etBuscarProposta"/>
 
-    <Button
-        android:id="@+id/btnGerarPDF"
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
-        android:text="Gerar"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@+id/lvListaPropostas"
-        android:layout_marginTop="20dp"/>
+
 
 </RelativeLayout>
 </FrameLayout>

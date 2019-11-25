@@ -1,12 +1,15 @@
 package com.example.appandroidfotovoltaica.ui.mainactivity.propostas;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
@@ -33,13 +36,13 @@ public class PropostasFragment extends Fragment {
 
     private Button btnGerar;
     private ListView lvProposta;
+    Proposta[] arrProposta;
 
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_propostas, container, false);
 
-        this.btnGerar = (Button) root.findViewById(R.id.btnGerarPDF);
         this.lvProposta = (ListView) root.findViewById(R.id.lvListaPropostas);
 
 
@@ -48,23 +51,54 @@ public class PropostasFragment extends Fragment {
         MyTask task = new MyTask(Proposta[].class);
         task.execute(Enderecos.GET_PROPOSTA + "/" + ((MainActivity) getActivity()).getUsuario().getCodigo());
         while(task.isTrabalhando()) ;
-        Proposta[] arrProposta = (Proposta[]) task.getDados();
+        arrProposta = (Proposta[]) task.getDados();
 
 
         ArrayList<String> alNomes = new ArrayList<String>();
-        for(Proposta p : arrProposta)
+        for(Proposta p : arrProposta){
             alNomes.add(p.getNome());
+        }
 
 
         this.lvProposta.setAdapter(
             new ArrayAdapter<String>(
                 getActivity().getApplicationContext(),
-                0,
+                    android.R.layout.simple_list_item_1,
                 alNomes)
         );
 
+        this.lvProposta.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                if (Build.VERSION.SDK_INT > Build.VERSION_CODES.M)
+                {
+                    if (getActivity().checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_DENIED)
+                    {
+                        String[] permissions = {Manifest.permission.WRITE_EXTERNAL_STORAGE};
+                        requestPermissions(permissions, STORAGE_CODE);
+                    }
+                    else
+                    {
+                        FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+                        Bundle bundle = new Bundle();
+                        bundle.putSerializable("proposta", arrProposta[i]);
+                        VisualizarPropostaFragment fragment = new VisualizarPropostaFragment();
+                        fragment.setArguments(bundle);
+                        fragmentTransaction.replace(R.id.fragment_propostas,
+                                                    fragment,
+                                                    ConstantesDeTransicao.F_PROPOSTAS_VISUALIZAR)
+                                                    .addToBackStack(ConstantesDeTransicao.M_PROPOSTAS_VISUALIZAR).commit();
 
-        this.btnGerar.setOnClickListener(new View.OnClickListener() {
+                    }
+                }
+                else
+                {
+
+                }
+            }
+        });
+
+        /*this.btnGerar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (Build.VERSION.SDK_INT > Build.VERSION_CODES.M)
@@ -88,7 +122,7 @@ public class PropostasFragment extends Fragment {
             }
 
 
-        });
+        });*/
         return root;
     }
 
