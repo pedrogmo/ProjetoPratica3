@@ -136,34 +136,84 @@ public class VisualizarPropostaFragment extends Fragment {
             doc.open();
             doc.add(new Chunk(""));
 
-            String text = "Proposta de " + usuarioLogado.getNome() + " (" + empresa.getNome() + ")";
+            String header = "Proposta de " + usuarioLogado.getNome() + " (" + empresa.getNome() + ")";
 
             doc.addAuthor(usuarioLogado.getNome());
 
             doc.addTitle(propostaAtual.getNome());
 
-            Paragraph paragrafoInicial = new Paragraph(text, new Font(Font.FontFamily.HELVETICA, 24, Font.NORMAL, BaseColor.BLACK));
+            Paragraph cabecalho = new Paragraph(header, new Font(Font.FontFamily.HELVETICA, 24, Font.NORMAL, BaseColor.BLACK));
+            cabecalho.setAlignment(Element.ALIGN_CENTER);
+
+            doc.add(cabecalho);
+
+            doc.add(new Paragraph("\n\n"));
+
+            String textoIntroducao = "Os cálculos foram feitos com base nos valores obtidos em nossas análises, segue a proposta:";
+            Paragraph paragrafoInicial = new Paragraph(textoIntroducao, new Font(Font.FontFamily.HELVETICA, 14, Font.NORMAL, BaseColor.BLACK));
             paragrafoInicial.setAlignment(Element.ALIGN_CENTER);
 
             doc.add(paragrafoInicial);
 
-            PdfPTable table = new PdfPTable(3);
+            doc.add(new Paragraph("\n\n"));
+
+            PdfPTable table = new PdfPTable(5);
             PdfPCell cell = new PdfPCell(new Phrase("Kit: " + kitAtual.getNome()));
-            cell.setColspan(3);
+            cell.setColspan(5);
             cell.setHorizontalAlignment(Element.ALIGN_CENTER);
             table.addCell(cell);
 
+            Paragraph categoria = new Paragraph("Tipo");
+            categoria.setAlignment(Element.ALIGN_CENTER);
+            cell = new PdfPCell(categoria);
+            cell.setRowspan(1);
+            cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
+            table.addCell(cell);
+            table.addCell("Modelo");
+            cell = new PdfPCell();
+            Paragraph qtd = new Paragraph("Quantidade Total");
+            qtd.setAlignment(Element.ALIGN_CENTER);
+            cell.addElement(qtd);
+            cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
+            table.addCell(cell);
+            Paragraph precoU = new Paragraph("Preço unitário");
+            precoU.setAlignment(Element.ALIGN_CENTER);
+            cell = new PdfPCell(precoU);
+            cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
+            cell.setPadding(5);
+            cell.setUseAscender(true);
+            cell.setUseDescender(true);
+            cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+            table.addCell(cell);
+            cell = new PdfPCell();
+            cell.setPadding(5);
+            cell.setUseAscender(true);
+            cell.setUseDescender(true);
+            Paragraph precoT = new Paragraph("Preço total");
+            precoT.setAlignment(Element.ALIGN_CENTER);
+            cell.addElement(precoT);
+            table.addCell(cell);
+
+            double valorTotal = 0, precoTotalProduto = 0;
             for(ProdutoQuantidade pq : produtosKit)
             {
-                cell = new PdfPCell(new Phrase(Categoria.getCategoria(pq.getProduto())));
-                cell.setRowspan(2);
+                categoria = new Paragraph(Categoria.getCategoria(pq.getProduto()));
+                categoria.setAlignment(Element.ALIGN_CENTER);
+                cell = new PdfPCell(categoria);
+                cell.setRowspan(1);
                 cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
                 table.addCell(cell);
-                table.addCell("Nome: " + pq.getProduto().getNome());
+                table.addCell(pq.getProduto().getNome());
                 cell = new PdfPCell();
-                cell.addElement(new Phrase("Quantidade: " + pq.getQuantidade()));
+                qtd = new Paragraph(pq.getQuantidade() + "");
+                qtd.setAlignment(Element.ALIGN_CENTER);
+                cell.addElement(qtd);
+                cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
                 table.addCell(cell);
-                cell = new PdfPCell(new Phrase("Preço unitário: R$" + pq.getProduto().getPreco()));
+                precoU = new Paragraph(pq.getProduto().getPreco() + "");
+                precoU.setAlignment(Element.ALIGN_CENTER);
+                cell = new PdfPCell(precoU);
+                cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
                 cell.setPadding(5);
                 cell.setUseAscender(true);
                 cell.setUseDescender(true);
@@ -173,13 +223,18 @@ public class VisualizarPropostaFragment extends Fragment {
                 cell.setPadding(5);
                 cell.setUseAscender(true);
                 cell.setUseDescender(true);
-                Paragraph p = new Paragraph("Preço total: R$" + pq.getProduto().getPreco() * pq.getQuantidade());
-                p.setAlignment(Element.ALIGN_CENTER);
-                cell.addElement(p);
+                precoTotalProduto = pq.getProduto().getPreco() * pq.getQuantidade();
+                valorTotal += precoTotalProduto;
+                precoT = new Paragraph(precoTotalProduto + "");
+                precoT.setAlignment(Element.ALIGN_CENTER);
+                cell.addElement(precoT);
                 table.addCell(cell);
             }
 
             doc.add(table);
+            Paragraph custo = new Paragraph("Custo Total: " + valorTotal, new Font(Font.FontFamily.HELVETICA, 14, Font.NORMAL, BaseColor.BLACK));
+            doc.add(custo);
+
             doc.close();
 
 

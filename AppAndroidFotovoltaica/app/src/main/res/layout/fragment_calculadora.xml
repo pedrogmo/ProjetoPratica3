@@ -236,12 +236,13 @@
 
             <Button
                 android:id="@+id/btnCriarProposta"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_margin="20dp"
                 android:text="Criar Proposta"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="50dp"
-                android:layout_centerHorizontal="true"
-                android:layout_below="@+id/tvInversorMenos">
+                android:background="#f1c40f"
+                android:layout_below="@+id/tvInversorMenos"
+                android:layout_marginBottom="100dp">
             </Button>
 
         </RelativeLayout>
