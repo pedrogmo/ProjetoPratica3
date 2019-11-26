@@ -63,6 +63,7 @@ public class VisualizarPropostaFragment extends Fragment {
     private Fixacao[] arrFixacao;
     private BombaSolar[] arrBombaSolar;
     private Cabo[] arrCabo;
+    private int qtdKits = 0;
 
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -74,6 +75,8 @@ public class VisualizarPropostaFragment extends Fragment {
 
         Bundle bundle = getArguments();
         propostaAtual = (Proposta) bundle.getSerializable("proposta");
+
+        qtdKits = propostaAtual.getQtdKits();
 
         MyTask task = new MyTask(Kit[].class);
         task.execute(Enderecos.GET_KIT + "/" + propostaAtual.getCodKit());
@@ -194,7 +197,7 @@ public class VisualizarPropostaFragment extends Fragment {
             cell.addElement(precoT);
             table.addCell(cell);
 
-            double valorTotal = 0, precoTotalProduto = 0;
+            double valorTotal = 0, precoTotalProduto = 0, qtdTotalProduto = 0;
             for(ProdutoQuantidade pq : produtosKit)
             {
                 categoria = new Paragraph(Categoria.getCategoria(pq.getProduto()));
@@ -205,7 +208,8 @@ public class VisualizarPropostaFragment extends Fragment {
                 table.addCell(cell);
                 table.addCell(pq.getProduto().getNome());
                 cell = new PdfPCell();
-                qtd = new Paragraph(pq.getQuantidade() + "");
+                qtdTotalProduto  = pq.getQuantidade() * qtdKits;
+                qtd = new Paragraph(qtdTotalProduto + "");
                 qtd.setAlignment(Element.ALIGN_CENTER);
                 cell.addElement(qtd);
                 cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
@@ -223,7 +227,7 @@ public class VisualizarPropostaFragment extends Fragment {
                 cell.setPadding(5);
                 cell.setUseAscender(true);
                 cell.setUseDescender(true);
-                precoTotalProduto = pq.getProduto().getPreco() * pq.getQuantidade();
+                precoTotalProduto = pq.getProduto().getPreco() * qtdTotalProduto;
                 valorTotal += precoTotalProduto;
                 precoT = new Paragraph(precoTotalProduto + "");
                 precoT.setAlignment(Element.ALIGN_CENTER);
@@ -232,7 +236,8 @@ public class VisualizarPropostaFragment extends Fragment {
             }
 
             doc.add(table);
-            Paragraph custo = new Paragraph("Custo Total: " + valorTotal, new Font(Font.FontFamily.HELVETICA, 14, Font.NORMAL, BaseColor.BLACK));
+            Paragraph custo = new Paragraph("Custo Total: R$" + valorTotal, new Font(Font.FontFamily.HELVETICA, 14, Font.NORMAL, BaseColor.BLACK));
+            custo.setAlignment(Element.ALIGN_CENTER);
             doc.add(custo);
 
             doc.close();

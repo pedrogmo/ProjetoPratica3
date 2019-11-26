@@ -54,7 +54,7 @@ public class CalculadoraFragment extends Fragment {
     private Kit[] kits;
     private Cliente[] clientes;
     private int indKit, indCliente;
-    private double media;
+    private double media, qtdPlacas = 0;
 
     private ProdutoQuantidade moduloQtd;
 
@@ -275,9 +275,10 @@ public class CalculadoraFragment extends Fragment {
                         media = CalculadoraFotoVoltaica.media(valoresMensaisEnergia);
                     }
 
-                    tvNumeroPlacas.setText(tvNumeroPlacas.getText().toString() + CalculadoraFotoVoltaica.numeroPlacas(media,
+                    qtdPlacas = CalculadoraFotoVoltaica.numeroPlacas(media,
                             Float.parseFloat(etIrradiacao.getText().toString()),
-                            watts) + "");
+                            watts);
+                    tvNumeroPlacas.setText(tvNumeroPlacas.getText().toString() + qtdPlacas + "");
                     tvInversor.setText(tvInversor.getText().toString() + CalculadoraFotoVoltaica.inversor(media,
                             Double.parseDouble(etIrradiacao.getText().toString())) + "");
                     tvInversorMais.setText(tvInversorMais.getText().toString() + CalculadoraFotoVoltaica.inversorMais(media,
@@ -373,10 +374,9 @@ public class CalculadoraFragment extends Fragment {
                             protected Map<String, String> getParams()
                             {
                                 Map<String, String> params = new HashMap<String, String>();
-
                                 final int qtdKits = (int) Math.ceil(
-                                        media /
-                                        (((Modulo) moduloQtd.getProduto()).getPotencia() * moduloQtd.getQuantidade())
+                                         qtdPlacas/
+                                        moduloQtd.getQuantidade()
                                 );
 
                                 params.put("nome", nome);
