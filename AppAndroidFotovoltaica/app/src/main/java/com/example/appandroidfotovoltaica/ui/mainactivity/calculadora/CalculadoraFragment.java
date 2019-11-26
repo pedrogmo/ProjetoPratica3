@@ -39,6 +39,7 @@ import com.example.appandroidfotovoltaica.classes.kit.Kit;
 import com.example.appandroidfotovoltaica.classes.kitproduto.KitProduto;
 import com.example.appandroidfotovoltaica.classes.mytask.MyTask;
 import com.example.appandroidfotovoltaica.classes.produto.equipamento.modulo.Modulo;
+import com.example.appandroidfotovoltaica.classes.produtoquantidade.ProdutoQuantidade;
 import com.example.appandroidfotovoltaica.classes.valormensal.ValorMensalEnergia;
 import com.example.appandroidfotovoltaica.ui.mainactivity.MainActivity;
 
@@ -53,6 +54,9 @@ public class CalculadoraFragment extends Fragment {
     private Kit[] kits;
     private Cliente[] clientes;
     private int indKit, indCliente;
+    private double media;
+
+    private ProdutoQuantidade moduloQtd;
 
     private TextView tvNumeroPlacas, tvInversor, tvInversorMais, tvInversorMenos, tvMes;
     private EditText etIrradiacao, etMedia;
@@ -257,12 +261,14 @@ public class CalculadoraFragment extends Fragment {
                         return;
                     }
 
+                    moduloQtd = new ProdutoQuantidade(modulo[0], kitmodulo[0].getQuantidade());
+
                     float watts = modulo[0].getPotencia();
 
                     etIrradiacao.onEditorAction(EditorInfo.IME_ACTION_DONE);
                     etMedia.onEditorAction(EditorInfo.IME_ACTION_DONE);
                     limpar();
-                    double media = 0;
+
                     if (rbTotal.isChecked()) {
                         media = Double.parseDouble(etMedia.getText().toString());
                     } else if (rbMensal.isChecked()) {
@@ -367,10 +373,17 @@ public class CalculadoraFragment extends Fragment {
                             protected Map<String, String> getParams()
                             {
                                 Map<String, String> params = new HashMap<String, String>();
+
+                                final int qtdKits = (int) Math.ceil(
+                                        media /
+                                        (((Modulo) moduloQtd.getProduto()).getPotencia() * moduloQtd.getQuantidade())
+                                );
+
                                 params.put("nome", nome);
                                 params.put("codUsuario", ((MainActivity) getActivity()).getUsuario().getCodigo() + "");
                                 params.put("codCliente", clientes[indCliente].getCodigo() + "");
                                 params.put("codKit", kits[indKit].getCodigo() + "");
+                                params.put("qtdKits", qtdKits + "");
                                 return params;
                             }
                         };

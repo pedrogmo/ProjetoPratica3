@@ -10,14 +10,16 @@ public class Proposta
     private int codUsuario;
     private int codCliente;
     private int codKit;
+    private int qtdKits;
 
     public Proposta()
     {
         this.codigo = 0;
         this.nome = "";
-        this.codKit = 0;
-        this.codCliente = 0;
         this.codUsuario = 0;
+        this.codCliente = 0;
+        this.codKit = 0;
+        this.qtdKits = 0;
     }
 
     public Proposta(
@@ -25,13 +27,15 @@ public class Proposta
         String nome,
         int codKit,
         int codCliente,
-        int codUsuario) throws Exception
+        int codUsuario,
+        int qtdKits) throws Exception
     {
         this.setCodigo(codigo);
         this.setNome(nome);
         this.setCodKit(codKit);
         this.setCodCliente(codCliente);
         this.setCodUsuario(codUsuario);
+        this.setQtdKits(qtdKits);
     }
 
     public Proposta(
@@ -44,6 +48,7 @@ public class Proposta
         this.codKit = modelo.codKit;
         this.codCliente = modelo.codCliente;
         this.codUsuario = modelo.codUsuario;
+        this.qtdKits = modelo.qtdKits;
     }
 
     public int getCodigo()
@@ -110,6 +115,19 @@ public class Proposta
         this.nome = nome;
     }
 
+    public int getQtdKits()
+    {
+        return qtdKits;
+    }
+
+    public void setQtdKits(
+            int qtdKits) throws Exception
+    {
+        if (qtdKits < 0)
+            throw new IllegalArgumentException("Proposta - setQtdKits: quantidade negativa");
+        this.qtdKits = qtdKits;
+    }
+
     public int hashCode()
     {
         int ret = 1;
@@ -118,6 +136,7 @@ public class Proposta
         ret = ret * 2 + new Integer(this.codKit).hashCode();
         ret = ret * 2 + new Integer(this.codCliente).hashCode();
         ret = ret * 2 + new Integer(this.codUsuario).hashCode();
+        ret = ret * 2 + new Integer(this.qtdKits).hashCode();
         return ret;
     }
 
@@ -147,6 +166,8 @@ public class Proposta
         if (this.codUsuario != k.codUsuario)
             return false;
         if (this.codCliente != k.codCliente)
+            return false;
+        if (this.qtdKits != k.qtdKits)
             return false;
 
         return true;
