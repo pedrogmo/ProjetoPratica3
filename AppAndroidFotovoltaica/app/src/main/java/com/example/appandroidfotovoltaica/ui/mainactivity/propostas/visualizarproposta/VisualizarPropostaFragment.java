@@ -1,7 +1,9 @@
 package com.example.appandroidfotovoltaica.ui.mainactivity.propostas.visualizarproposta;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
@@ -32,6 +34,7 @@ import com.example.appandroidfotovoltaica.classes.produtoquantidade.ProdutoQuant
 import com.example.appandroidfotovoltaica.classes.proposta.Proposta;
 import com.example.appandroidfotovoltaica.classes.usuario.Usuario;
 import com.example.appandroidfotovoltaica.ui.mainactivity.MainActivity;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Chunk;
 import com.itextpdf.text.Document;
@@ -45,6 +48,7 @@ import com.itextpdf.text.Phrase;
 import com.itextpdf.text.Element;
 
 import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.util.ArrayList;
 
 public class VisualizarPropostaFragment extends Fragment {
@@ -65,11 +69,15 @@ public class VisualizarPropostaFragment extends Fragment {
     private Cabo[] arrCabo;
     private int qtdKits = 0;
 
+    FloatingActionButton fabEnviarProposta;
+
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_visualizarproposta, container, false);
         pdfView = root.findViewById(R.id.pdfView);
+
+        fabEnviarProposta = root.findViewById(R.id.fabEnviarProposta);
 
         usuarioLogado = ((MainActivity) getActivity()).getUsuario();
 
@@ -120,6 +128,13 @@ public class VisualizarPropostaFragment extends Fragment {
         {
 
         }
+
+        fabEnviarProposta.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //eu não sei
+            }
+        });
 
 
         return root;
