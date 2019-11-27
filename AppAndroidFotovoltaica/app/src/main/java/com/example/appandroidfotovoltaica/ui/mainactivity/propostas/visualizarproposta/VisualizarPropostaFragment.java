@@ -217,7 +217,6 @@ public class VisualizarPropostaFragment extends Fragment {
                 table.addCell(pq.getProduto().getNome());
                 cell = new PdfPCell();
                 qtdTotalProduto  = pq.getQuantidade() * propostaAtual.getQtdKits();
-                Log.d("MEIRAAAAAA",propostaAtual.getQtdKits() + "");
                 qtd = new Paragraph(qtdTotalProduto + "");
                 qtd.setAlignment(Element.ALIGN_CENTER);
                 cell.addElement(qtd);

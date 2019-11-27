@@ -278,12 +278,12 @@ public class CalculadoraFragment extends Fragment {
                     qtdPlacas = CalculadoraFotoVoltaica.numeroPlacas(media,
                             Float.parseFloat(etIrradiacao.getText().toString()),
                             watts);
-                    tvNumeroPlacas.setText(tvNumeroPlacas.getText().toString() + qtdPlacas + "");
-                    tvInversor.setText(tvInversor.getText().toString() + CalculadoraFotoVoltaica.inversor(media,
+                    tvNumeroPlacas.append(qtdPlacas + "");
+                    tvInversor.append(CalculadoraFotoVoltaica.inversor(media,
                             Double.parseDouble(etIrradiacao.getText().toString())) + "");
-                    tvInversorMais.setText(tvInversorMais.getText().toString() + CalculadoraFotoVoltaica.inversorMais(media,
+                    tvInversorMais.append(CalculadoraFotoVoltaica.inversorMais(media,
                             Double.parseDouble(etIrradiacao.getText().toString())) + "");
-                    tvInversorMenos.setText(tvInversorMenos.getText().toString() + CalculadoraFotoVoltaica.inversorMenos(media,
+                    tvInversorMenos.append(CalculadoraFotoVoltaica.inversorMenos(media,
                             Double.parseDouble(etIrradiacao.getText().toString())) + "");
 
                     btnCriar.setVisibility(View.VISIBLE);
@@ -296,7 +296,7 @@ public class CalculadoraFragment extends Fragment {
         });
 
         btnCriar = root.findViewById(R.id.btnCriarProposta);
-        btnCriar.setVisibility(View.INVISIBLE);
+
 
         btnCriar.setOnClickListener(new View.OnClickListener() {
             @Override
