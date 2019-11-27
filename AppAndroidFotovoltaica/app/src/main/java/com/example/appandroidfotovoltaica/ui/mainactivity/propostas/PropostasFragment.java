@@ -4,12 +4,15 @@ import android.Manifest;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -18,6 +21,8 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.example.appandroidfotovoltaica.R;
+import com.example.appandroidfotovoltaica.classes.adapters.clientearrayadapter.ClienteArrayAdapter;
+import com.example.appandroidfotovoltaica.classes.cliente.Cliente;
 import com.example.appandroidfotovoltaica.classes.constantesdetransicao.ConstantesDeTransicao;
 import com.example.appandroidfotovoltaica.classes.enderecos.Enderecos;
 import com.example.appandroidfotovoltaica.classes.mytask.MyTask;
@@ -35,6 +40,8 @@ public class PropostasFragment extends Fragment {
     private Button btnGerar;
     private ListView lvProposta;
     Proposta[] arrProposta;
+    EditText etBuscarProposta;
+    private ArrayList<String> alNomes;
 
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -42,6 +49,7 @@ public class PropostasFragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_propostas, container, false);
 
         this.lvProposta = (ListView) root.findViewById(R.id.lvListaPropostas);
+        etBuscarProposta = root.findViewById(R.id.etBuscarProposta);
 
         /* BUSCA A PROPOSTA*/
         MyTask task = new MyTask(Proposta[].class);
@@ -49,7 +57,7 @@ public class PropostasFragment extends Fragment {
         while(task.isTrabalhando()) ;
         arrProposta = (Proposta[]) task.getDados();
 
-        ArrayList<String> alNomes = new ArrayList<String>();
+        alNomes = new ArrayList<String>();
         for(Proposta p : arrProposta){
             alNomes.add(p.getNome());
         }
@@ -89,6 +97,33 @@ public class PropostasFragment extends Fragment {
                 {
 
                 }
+            }
+        });
+        etBuscarProposta.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                alNomes.clear();
+                for(Proposta p : arrProposta)
+                    if (p.getNome().toUpperCase().contains(String.valueOf(charSequence).toUpperCase()))
+                    {
+                        alNomes.add(p.getNome());
+                    }
+
+                lvProposta.setAdapter(new ArrayAdapter<String>(
+                        getActivity().getApplicationContext(),
+                        android.R.layout.simple_list_item_1,
+                        alNomes)
+                );
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
             }
         });
 

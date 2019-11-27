@@ -88,11 +88,9 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                /*final String email =  etEmailLogin.getText().toString().trim();
-                final String senha = etSenhaLogin.getText().toString();*/
+                final String email =  etEmailLogin.getText().toString().trim();
+                final String senha = etSenhaLogin.getText().toString();
 
-                final String email =  "pedro@gmail.com";
-                final String senha = "supermacho";
 
                 if(email.equals("") || senha.equals(""))
                 {

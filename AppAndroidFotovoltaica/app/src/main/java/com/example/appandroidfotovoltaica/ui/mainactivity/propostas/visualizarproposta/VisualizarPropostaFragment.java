@@ -69,7 +69,6 @@ public class VisualizarPropostaFragment extends Fragment {
     private Cabo[] arrCabo;
     private int qtdKits = 0;
 
-    FloatingActionButton fabEnviarProposta;
 
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -77,7 +76,6 @@ public class VisualizarPropostaFragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_visualizarproposta, container, false);
         pdfView = root.findViewById(R.id.pdfView);
 
-        fabEnviarProposta = root.findViewById(R.id.fabEnviarProposta);
 
         usuarioLogado = ((MainActivity) getActivity()).getUsuario();
 
@@ -129,12 +127,6 @@ public class VisualizarPropostaFragment extends Fragment {
 
         }
 
-        fabEnviarProposta.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //eu não sei
-            }
-        });
 
 
         return root;
