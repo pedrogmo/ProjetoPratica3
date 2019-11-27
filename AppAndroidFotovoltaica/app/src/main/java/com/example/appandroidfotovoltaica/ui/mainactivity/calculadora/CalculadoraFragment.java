@@ -378,6 +378,7 @@ public class CalculadoraFragment extends Fragment {
                                          qtdPlacas/
                                         moduloQtd.getQuantidade()
                                 );
+                                tvNumeroPlacas.append("| " + qtdKits + " |");
 
                                 params.put("nome", nome);
                                 params.put("codUsuario", ((MainActivity) getActivity()).getUsuario().getCodigo() + "");

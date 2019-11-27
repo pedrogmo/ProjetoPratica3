@@ -7,6 +7,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -67,7 +68,6 @@ public class VisualizarPropostaFragment extends Fragment {
     private Fixacao[] arrFixacao;
     private BombaSolar[] arrBombaSolar;
     private Cabo[] arrCabo;
-    private int qtdKits = 0;
 
 
 
@@ -82,7 +82,7 @@ public class VisualizarPropostaFragment extends Fragment {
         Bundle bundle = getArguments();
         propostaAtual = (Proposta) bundle.getSerializable("proposta");
 
-        qtdKits = propostaAtual.getQtdKits();
+
 
         MyTask task = new MyTask(Kit[].class);
         task.execute(Enderecos.GET_KIT + "/" + propostaAtual.getCodKit());
@@ -204,7 +204,8 @@ public class VisualizarPropostaFragment extends Fragment {
             cell.addElement(precoT);
             table.addCell(cell);
 
-            double valorTotal = 0, precoTotalProduto = 0, qtdTotalProduto = 0;
+            double valorTotal = 0, precoTotalProduto = 0;
+            int qtdTotalProduto = 0;
             for(ProdutoQuantidade pq : produtosKit)
             {
                 categoria = new Paragraph(Categoria.getCategoria(pq.getProduto()));
@@ -215,7 +216,8 @@ public class VisualizarPropostaFragment extends Fragment {
                 table.addCell(cell);
                 table.addCell(pq.getProduto().getNome());
                 cell = new PdfPCell();
-                qtdTotalProduto  = pq.getQuantidade() * qtdKits;
+                qtdTotalProduto  = pq.getQuantidade() * propostaAtual.getQtdKits();
+                Log.d("MEIRAAAAAA",propostaAtual.getQtdKits() + "");
                 qtd = new Paragraph(qtdTotalProduto + "");
                 qtd.setAlignment(Element.ALIGN_CENTER);
                 cell.addElement(qtd);
