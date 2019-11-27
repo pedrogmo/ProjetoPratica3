@@ -6,6 +6,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -72,32 +73,17 @@ public class PropostasFragment extends Fragment {
         this.lvProposta.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                if (Build.VERSION.SDK_INT > Build.VERSION_CODES.M)
-                {
-                    if (getActivity().checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_DENIED)
-                    {
-                        String[] permissions = {Manifest.permission.WRITE_EXTERNAL_STORAGE};
-                        requestPermissions(permissions, STORAGE_CODE);
-                    }
-                    else
-                    {
-                        FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-                        Bundle bundle = new Bundle();
-                        bundle.putSerializable("proposta", arrProposta[i]);
-                        VisualizarPropostaFragment fragment = new VisualizarPropostaFragment();
-                        fragment.setArguments(bundle);
-                        fragmentTransaction.replace(R.id.fragment_propostas,
-                            fragment,
-                            ConstantesDeTransicao.F_PROPOSTAS_VISUALIZAR)
-                            .addToBackStack(ConstantesDeTransicao.M_PROPOSTAS_VISUALIZAR).commit();
-
-                    }
-                }
-                else
-                {
-
-                }
+                FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("proposta", arrProposta[i]);
+                VisualizarPropostaFragment fragment = new VisualizarPropostaFragment();
+                fragment.setArguments(bundle);
+                fragmentTransaction.replace(R.id.fragment_propostas,
+                    fragment,
+                    ConstantesDeTransicao.F_PROPOSTAS_VISUALIZAR)
+                    .addToBackStack(ConstantesDeTransicao.M_PROPOSTAS_VISUALIZAR).commit();
             }
+
         });
         etBuscarProposta.addTextChangedListener(new TextWatcher() {
             @Override
