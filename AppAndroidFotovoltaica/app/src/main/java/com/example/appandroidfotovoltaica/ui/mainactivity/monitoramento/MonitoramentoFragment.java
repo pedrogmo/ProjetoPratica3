@@ -32,10 +32,12 @@ public class MonitoramentoFragment extends Fragment {
 
     private static final int SERVER_PORT = 80;
     private Socket socket;
-    private boolean rodando = true;
+    private boolean rodando = true, conectando = true;
     private BufferedReader input;
     private PrintWriter output;
     private String mensagem = "\r\n\r\n";
+
+    private String[] resultados;
 
     public static MonitoramentoFragment newInstance() {
         return new MonitoramentoFragment();
@@ -52,6 +54,8 @@ public class MonitoramentoFragment extends Fragment {
         etIp = root.findViewById(R.id.etIpArduino);
         btnConectar = root.findViewById(R.id.btnConectarArduino);
 
+        resultados = new String[3];
+
         btnConectar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -67,7 +71,14 @@ public class MonitoramentoFragment extends Fragment {
                     }
                 }
 
+                tvConexao.setText("Conectando...");
+
                 new ConexaoThread().start();
+                while(conectando) ;
+
+                tvConexao.setText(resultados[0]);
+                tvLuz.setText(resultados[1]);
+                tvTemperatura.setText(resultados[2]);
             }
         });
 
@@ -81,13 +92,11 @@ public class MonitoramentoFragment extends Fragment {
 
             try
             {
-                tvConexao.setText("Conectando com arduino...");
-
                 final String IP = etIp.getText().toString().trim();
 
                 InetAddress serverAddr = InetAddress.getByName(IP);
                 socket = new Socket(serverAddr, SERVER_PORT);
-                rodando = true;
+
                 output = new PrintWriter(
 			         new BufferedWriter(
         				new OutputStreamWriter(socket.getOutputStream())),
@@ -95,18 +104,24 @@ public class MonitoramentoFragment extends Fragment {
         		);
                 input = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 
-                tvConexao.setText("Conectado");
-
+                rodando = true;
                 new EnviadorThread().start();
                 while(rodando) ;
 
+                rodando = true;
                 new ReceptorThread().start();
+                while(rodando) ;
+
+                resultados[0] = "Conectado";
             }
             catch (Exception e)
             {
-                tvConexao.setText("Erro ao conectar");
+                resultados[0] = e.toString();
             }
-
+            finally
+            {
+                conectando = false;
+            }
         }
     }
 
@@ -139,13 +154,13 @@ public class MonitoramentoFragment extends Fragment {
                                 else
                                     qualidade = " (Luminosidade ótima)";
 
-                                tvLuz.setText("Luz: " + luz + qualidade);
-                                tvTemperatura.setText("Temperatura: " + temp + "ºC");
+                                resultados[1] = "Luz: " + luz + qualidade;
+                                resultados[2] = "Temperatura: " + temp + "ºC";
                             }
                             catch(Exception exc)
                             {
-                                tvLuz.setText("Luz: [ERRO]");
-                                tvTemperatura.setText("Temperatura: [ERRO]");
+                                resultados[1] = "Luz: [ERRO]";
+                                resultados[2] = "Temperatura: [ERRO]";
                             }
                         }
                     });
@@ -154,6 +169,10 @@ public class MonitoramentoFragment extends Fragment {
             catch (IOException e)
             {
                 e.printStackTrace();
+            }
+            finally
+            {
+                rodando = false;
             }
         }
     }
