@@ -162,6 +162,10 @@ public class MonitoramentoFragment extends Fragment {
                                 resultados[1] = "Luz: [ERRO]";
                                 resultados[2] = "Temperatura: [ERRO]";
                             }
+                            finally
+                            {
+                                rodando = false;
+                            }
                         }
                     });
                 }
