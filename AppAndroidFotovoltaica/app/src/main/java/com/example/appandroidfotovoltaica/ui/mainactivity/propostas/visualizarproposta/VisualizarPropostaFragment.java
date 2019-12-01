@@ -361,6 +361,7 @@ public class VisualizarPropostaFragment extends Fragment {
             while (task.isTrabalhando()) ;
             kitProdutos = (KitProduto[]) task.getDados();
 
+            if (vetores != null)
             for (KitProduto kp : kitProdutos)
             {
                 Produto p = produtoCodigo(vetores[i], kp.getCodProduto());
